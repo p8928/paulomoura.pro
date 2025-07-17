@@ -24,6 +24,32 @@
   font-display: swap;
 }
 
+/* outfit-100 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 100;
+  src: url('/fonts/outfit/outfit-v14-latin-100.woff2') format('woff2');
+}
+/* outfit-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/outfit/outfit-v14-latin-regular.woff2') format('woff2');
+}
+/* ortica-regular */
+@font-face {
+  font-family: 'Ortica';
+  src: url('/fonts/ortica/OrticaLinear-Regular.woff2') format('woff2'),
+       url('/fonts/ortica/OrticaLinear-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Importa as regras do Tailwind */
 @tailwind base;
 @tailwind components;
@@ -33,8 +59,13 @@
 body {
   font-family: 'Outfit', sans-serif;
   font-weight: 400; /* Padrão para regular */
-  font-size: 1.125rem; /* Aumenta o tamanho da fonte */
-  background-color: #F3F0E9; /* Cor de fundo da imagem */
+  font-size: 1.125rem;
+  background-color: #F3F0E9;
+}
+
+/* Classe de utilidade customizada para forçar o peso 100 */
+.font-thin-100 {
+  font-weight: 100 !important;
 }
 
 /* Preloader Styles */
