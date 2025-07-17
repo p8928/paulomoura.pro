@@ -12,8 +12,9 @@ export default {
       },
       fontFamily: {
         'sans': ['Outfit', 'sans-serif'],
-        'serif': ['Ortica', 'serif'],
+        'serif': ['ui-serif', 'Georgia', 'serif'], // Usando fontes padrão do sistema
         'outfit': ['Outfit', 'sans-serif'],
+        'ortica': ['Ortica', 'sans-serif'],
       }
     },
   },

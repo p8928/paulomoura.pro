@@ -1,19 +1,13 @@
-/* outfit-300 - latin */
+/* ortica-regular */
 @font-face {
-  font-display: swap;
-  font-family: 'Outfit';
+  font-family: 'Ortica';
+  src: url('/fonts/ortica/OrticaLinear-Regular.woff2') format('woff2'),
+       url('/fonts/ortica/OrticaLinear-Regular.woff') format('woff');
+  font-weight: normal; /* 400 */
   font-style: normal;
-  font-weight: 300;
-  src: url('/fonts/outfit/outfit-v14-latin-300.woff2') format('woff2');
-}
-/* outfit-regular - latin */
-@font-face {
   font-display: swap;
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 400; /* Corresponds to regular */
-  src: url('/fonts/outfit/outfit-v14-latin-regular.woff2') format('woff2');
 }
+
 /* Importa as regras do Tailwind */
 @tailwind base;
 @tailwind components;
