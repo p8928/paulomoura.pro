@@ -40,21 +40,11 @@ const { title } = Astro.props;
 		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 		<script>
-			// Preloader logic
-			window.addEventListener('load', () => {
-			  const preloader = document.getElementById('preloader');
-			  if (preloader) {
-				setTimeout(() => {
-					preloader.classList.add('preloader-hidden');
-				}, 2000);
-			  }
-			});
-
-			// Swiper initialization
+			// Swiper initialization function
 			function initSwipers() {
 				// Note: Swiper is available globally from the CDN script
 				const testimonialSwiperEl = document.querySelector('.testimonial-swiper');
-				if (testimonialSwiperEl) {
+				if (testimonialSwiperEl && !testimonialSwiperEl.swiper) { // Check if not already initialized
 					const testimonialSlides = testimonialSwiperEl.querySelectorAll('.swiper-slide');
 					new Swiper(testimonialSwiperEl, {
 						loop: testimonialSlides.length > 1,
@@ -73,7 +63,7 @@ const { title } = Astro.props;
 				}
 
 				const helpSwiperEl = document.querySelector('.help-swiper');
-				if (helpSwiperEl) {
+				if (helpSwiperEl && !helpSwiperEl.swiper) { // Check if not already initialized
 					const helpSlides = helpSwiperEl.querySelectorAll('.swiper-slide');
 					new Swiper(helpSwiperEl, {
 						loop: helpSlides.length > 1,
@@ -91,9 +81,24 @@ const { title } = Astro.props;
 					});
 				}
 			}
+
+			// Preloader logic that triggers Swiper initialization
+			function runPageLogic() {
+				const preloader = document.getElementById('preloader');
+				if (preloader) {
+					setTimeout(() => {
+						preloader.classList.add('preloader-hidden');
+						// Initialize Swipers AFTER preloader is hidden
+						initSwipers();
+					}, 2000);
+				} else {
+					// If no preloader, init immediately
+					initSwipers();
+				}
+			}
 			
 			// Run on initial page load
-			document.addEventListener('DOMContentLoaded', initSwipers);
+			document.addEventListener('DOMContentLoaded', runPageLogic);
 			// Run on view transitions
 			document.addEventListener('astro:after-swap', initSwipers);
 		</script>
