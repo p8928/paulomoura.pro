@@ -1,10 +1,7 @@
 ---
-// Import Swiper and required modules
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+// Use the Swiper bundle to ensure all modules are included
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 ---
 
 <section class="py-24 sm:py-32 px-4 sm:px-8">
@@ -79,9 +76,6 @@ import 'swiper/css/pagination';
 
 <script>
   const swiper = new Swiper('.testimonial-swiper', {
-    // Use Swiper modules
-    modules: [Navigation, Pagination],
-    
     // Optional parameters
     loop: true,
     slidesPerView: 1,
@@ -98,7 +92,7 @@ import 'swiper/css/pagination';
   });
 </script>
 
-<style>
+<style is:global>
   .animated-underline::after {
     content: '';
     position: absolute;
@@ -115,5 +109,11 @@ import 'swiper/css/pagination';
 
   section:hover .animated-underline::after {
     transform: scaleX(1);
+  }
+
+  /* Override Swiper default blue color for navigation arrows */
+  .testimonial-swiper .swiper-button-next,
+  .testimonial-swiper .swiper-button-prev {
+    color: #E6B333; /* Gold color from the theme */
   }
 </style>
