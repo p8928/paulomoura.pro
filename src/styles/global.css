@@ -6,15 +6,6 @@
   font-weight: 400; /* Corresponds to regular */
   src: url('/fonts/outfit/outfit-v14-latin-regular.woff2') format('woff2');
 }
-/* playfair-display-regular - latin */
-@font-face {
-  font-display: swap;
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400; /* Corresponds to regular */
-  src: url('/fonts/playfair-display/playfair-display-v39-latin-regular.woff2') format('woff2');
-}
-
 /* Importa as regras do Tailwind */
 @tailwind base;
 @tailwind components;
