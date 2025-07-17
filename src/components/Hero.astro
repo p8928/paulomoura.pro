@@ -1,6 +1,6 @@
 <section class="h-screen flex flex-col justify-center items-center p-4 sm:p-8">
   <main id="hero-text" class="text-center">
-    <h1 style="font-size: 3rem; line-height: 1.5; --sm-font-size: 3.75rem; --lg-font-size: 6rem;" class="sm:text-6xl lg:text-8xl">
+    <h1 class="hero-title">
       <span class="font-ortica">SEUS DIREITOS,</span>
       <br>
       <span class="font-outfit font-thin text-holographic inline-block">NOSSA</span> <span class="font-ortica">LUTA.</span>
@@ -15,6 +15,22 @@
   @media (min-width: 1024px) {
     h1 {
       font-size: var(--lg-font-size);
+    }
+  }
+</style>
+<style>
+  .hero-title {
+    font-size: 3rem; /* 48px - text-5xl */
+    line-height: 1.5;
+  }
+  @media (min-width: 640px) { /* sm */
+    .hero-title {
+      font-size: 3.75rem; /* 60px - text-6xl */
+    }
+  }
+  @media (min-width: 1024px) { /* lg */
+    .hero-title {
+      font-size: 6rem; /* 96px - text-8xl */
     }
   }
 </style>
