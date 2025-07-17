@@ -102,7 +102,7 @@
 
   function initTestimonialSwiper() {
     const swiperEl = document.querySelector('.testimonial-swiper');
-    if (swiperEl) {
+    if (swiperEl && !swiperEl.swiper) { // Check if not already initialized
       const slides = swiperEl.querySelectorAll('.swiper-slide');
       new Swiper(swiperEl, {
         modules: [Navigation, Autoplay],

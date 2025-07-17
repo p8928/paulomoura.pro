@@ -245,7 +245,7 @@
     import { Navigation, Pagination } from 'swiper/modules';
 	function initHelpSwiper() {
 	  const helpSwiperEl = document.querySelector('.help-swiper');
-	  if (helpSwiperEl) {
+	  if (helpSwiperEl && !helpSwiperEl.swiper) { // Check if not already initialized
 		const helpSlides = helpSwiperEl.querySelectorAll('.swiper-slide');
 		const helpSwiper = new Swiper(helpSwiperEl, {
 		  modules: [Navigation, Pagination],
