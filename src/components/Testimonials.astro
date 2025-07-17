@@ -1,14 +1,21 @@
+---
+// Import Swiper and required modules
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+---
+
 <section class="py-24 sm:py-32 px-4 sm:px-8">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl" style="line-height: 1.5 !important;">
       A seriedade <span class="relative inline-block"><span class="animated-underline">que você espera</span></span>, com o respeito que merece.
     </h2>
     <div class="w-48 h-px bg-brand-text mx-auto my-12"></div>
-    <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST">
-      <p class="text-sm sm:text-lg leading-loose font-light max-w-3xl mx-auto">
-        Tratamos seu caso com profissionalismo, ética e respeito, oferecendo toda a transparência a fim de que você compreenda cada etapa nos mínimos detalhes.
-      </p>
-    </form>
+    <p class="text-sm sm:text-lg leading-loose font-light max-w-3xl mx-auto">
+      Tratamos seu caso com profissionalismo, ética e respeito, oferecendo toda a transparência a fim de que você compreenda cada etapa nos mínimos detalhes.
+    </p>
     <div class="mt-20 max-w-3xl mx-auto relative">
       <!-- Testimonial Slider -->
       <div class="swiper testimonial-swiper px-10">
@@ -69,6 +76,27 @@
     </div>
   </div>
 </section>
+
+<script>
+  const swiper = new Swiper('.testimonial-swiper', {
+    // Use Swiper modules
+    modules: [Navigation, Pagination],
+    
+    // Optional parameters
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // Enable swiping on touch screens
+    grabCursor: true,
+  });
+</script>
 
 <style>
   .animated-underline::after {
