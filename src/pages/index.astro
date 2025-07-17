@@ -21,11 +21,11 @@ import Footer from '../components/Footer.astro';
 
   <main class="w-full bg-brand-background text-brand-text" style="background-color: #F3F0E9;">
     <Hero />
-    <Testimonials />
+    <Testimonials client:visible />
     <HyggeBreak />
     <SuccessStories />
     <Journey />
-    <Help />
+    <Help client:visible />
     <Faq />
     <Contact />
   </main>
