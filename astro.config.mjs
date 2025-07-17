@@ -5,5 +5,8 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://p0022025.paulomoura.pro',
-  integrations: [tailwind()]
+  integrations: [tailwind()],
+  build: {
+    inlineStylesheets: 'always'
+  }
 });
