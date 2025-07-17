@@ -1,0 +1,38 @@
+<header class="fixed top-0 left-0 right-0 z-20 p-4 sm:p-8">
+  <div class="flex justify-between items-center">
+    <a href="/" class="flex items-center space-x-3">
+      <img src="/images/tg-logo.png" alt="Tiago Gomes Logo" class="h-10 sm:h-12">
+    </a>
+    <div id="header-line" class="hidden sm:flex-grow h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-4 sm:mx-8 line-shimmer transition-opacity duration-300" style="opacity: 0;"></div>
+  </div>
+</header>
+
+<script>
+  // Header line fade effect
+  document.addEventListener('DOMContentLoaded', () => {
+    const headerLine = document.getElementById('header-line');
+    const heroText = document.getElementById('hero-text');
+    
+    if (headerLine && heroText) {
+      const updateLineOpacity = () => {
+        const scrollPosition = window.scrollY;
+        const fadeEnd = heroText.offsetTop - 4;
+        let opacity = 1;
+
+        if (scrollPosition > 0 && scrollPosition < fadeEnd) {
+          opacity = 1 - (scrollPosition / fadeEnd);
+        } else if (scrollPosition >= fadeEnd) {
+          opacity = 0;
+        }
+        
+        headerLine.style.opacity = Math.max(0, Math.min(1, opacity)).toString();
+      };
+
+      // Set initial state on load
+      updateLineOpacity();
+      
+      // Update on scroll
+      document.addEventListener('scroll', updateLineOpacity);
+    }
+  });
+</script>

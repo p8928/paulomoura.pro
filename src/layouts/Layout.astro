@@ -1,0 +1,97 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100..900&family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
+		<ViewTransitions />
+		<script is:inline src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+		<ViewTransitions />
+		<script is:inline src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+	</head>
+	<body>
+		<div id="preloader" class="preloader">
+			<div class="preloader-content">
+				<h2 class="font-serif text-2xl text-brand-primary/80 preloader-fade-in" style="animation-delay: 0.2s;">Tiago Gomes</h2>
+				<p class="font-serif text-sm text-brand-primary/70 preloader-fade-in" style="animation-delay: 0.5s;">Advogado Trabalhista</p>
+				<div class="preloader-line-container mt-6">
+				  <div class="preloader-line-left"></div>
+				  <div class="preloader-line-right"></div>
+				</div>
+			</div>
+		</div>
+		<slot />
+		<script>
+			// Preloader logic
+			window.addEventListener('load', () => {
+			  const preloader = document.getElementById('preloader');
+			  if (preloader) {
+				setTimeout(() => {
+					preloader.classList.add('preloader-hidden');
+				}, 2000);
+			  }
+			});
+
+			// Swiper initialization using Astro's lifecycle event
+			async function initSwipers() {
+				const { default: Swiper } = await import('swiper');
+				const { Navigation, Pagination, Autoplay } = await import('swiper/modules');
+
+				const testimonialSwiperEl = document.querySelector('.testimonial-swiper');
+				if (testimonialSwiperEl) {
+					const testimonialSlides = testimonialSwiperEl.querySelectorAll('.swiper-slide');
+					const testimonialSwiper = new Swiper(testimonialSwiperEl, {
+						modules: [Navigation, Autoplay],
+						loop: testimonialSlides.length > 1,
+						slidesPerView: 1,
+						slidesPerGroup: 1,
+						autoplay: {
+							delay: 5000,
+							disableOnInteraction: false,
+						},
+						navigation: {
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},
+					});
+				}
+
+				const helpSwiperEl = document.querySelector('.help-swiper');
+				if (helpSwiperEl) {
+					const helpSlides = helpSwiperEl.querySelectorAll('.swiper-slide');
+					const helpSwiper = new Swiper(helpSwiperEl, {
+						modules: [Navigation, Pagination],
+						loop: helpSlides.length > 1,
+						slidesPerView: 1,
+						spaceBetween: 30,
+						navigation: {
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},
+						pagination: {
+							el: '.swiper-pagination',
+							clickable: true,
+						},
+					});
+				}
+			}
+			
+			document.addEventListener('astro:after-swap', initSwipers);
+		</script>
+	</body>
+</html>
