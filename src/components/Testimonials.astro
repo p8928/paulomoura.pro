@@ -122,6 +122,5 @@
       swiperEl.setAttribute('data-swiper-initialized', 'true');
     }
   }
-  // Use astro:page-load to ensure everything is ready
-  document.addEventListener('astro:page-load', initTestimonialSwiper);
+  document.addEventListener('DOMContentLoaded', initTestimonialSwiper);
 </script>
