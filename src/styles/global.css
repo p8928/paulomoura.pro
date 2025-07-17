@@ -63,11 +63,6 @@ body {
   background-color: #F3F0E9;
 }
 
-/* Classe de utilidade customizada para forçar o peso 100 */
-.font-thin-100 {
-  font-weight: 100 !important;
-}
-
 /* Preloader Styles */
 .preloader {
   position: fixed;
