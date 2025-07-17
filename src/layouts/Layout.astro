@@ -13,8 +13,7 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="robots" content="noindex, nofollow">
-		<link rel="preload" href="/fonts/playfair-display/playfair-display-v39-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/outfit/outfit-v14-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/outfit/outfit-v14-latin-300.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="preconnect" href="https://formspree.io">
 		<title>{title}</title>
 		
@@ -22,10 +21,10 @@ const { title } = Astro.props;
 			/* Inlining critical font definition to improve LCP */
 			@font-face {
 			  font-display: swap;
-			  font-family: 'Playfair Display';
+			  font-family: 'Outfit';
 			  font-style: normal;
-			  font-weight: 400;
-			  src: url('/fonts/playfair-display/playfair-display-v39-latin-regular.woff2') format('woff2');
+			  font-weight: 300;
+			  src: url('/fonts/outfit/outfit-v14-latin-300.woff2') format('woff2');
 			}
 		</style>
 

@@ -1,3 +1,11 @@
+/* outfit-300 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/outfit/outfit-v14-latin-300.woff2') format('woff2');
+}
 /* outfit-regular - latin */
 @font-face {
   font-display: swap;
