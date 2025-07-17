@@ -3,7 +3,7 @@
   font-display: swap;
   font-family: 'Outfit';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400; /* Corresponds to regular */
   src: url('/fonts/outfit/outfit-v14-latin-regular.woff2') format('woff2');
 }
 /* playfair-display-regular - latin */
@@ -11,24 +11,8 @@
   font-display: swap;
   font-family: 'Playfair Display';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400; /* Corresponds to regular */
   src: url('/fonts/playfair-display/playfair-display-v39-latin-regular.woff2') format('woff2');
-}
-/* playfair-display-700 - latin */
-@font-face {
-  font-display: swap;
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/playfair-display/playfair-display-v39-latin-700.woff2') format('woff2');
-}
-/* playfair-display-italic - latin */
-@font-face {
-  font-display: swap;
-  font-family: 'Playfair Display';
-  font-style: italic;
-  font-weight: 400;
-  src: url('/fonts/playfair-display/playfair-display-v39-latin-italic.woff2') format('woff2');
 }
 
 /* Importa as regras do Tailwind */
