@@ -1,7 +1,5 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import '../styles/global.css';
 
 const { title } = Astro.props;
@@ -18,9 +16,10 @@ const { title } = Astro.props;
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100..900&family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
-		<ViewTransitions />
-		<script is:inline src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+		
+		<!-- SwiperJS CSS -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+		
 		<ViewTransitions />
 		<script is:inline src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
 	</head>
@@ -36,6 +35,10 @@ const { title } = Astro.props;
 			</div>
 		</div>
 		<slot />
+
+		<!-- SwiperJS JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 		<script>
 			// Preloader logic
 			window.addEventListener('load', () => {
@@ -47,16 +50,13 @@ const { title } = Astro.props;
 			  }
 			});
 
-			// Swiper initialization using Astro's lifecycle event
-			async function initSwipers() {
-				const { default: Swiper } = await import('swiper');
-				const { Navigation, Pagination, Autoplay } = await import('swiper/modules');
-
+			// Swiper initialization
+			function initSwipers() {
+				// Note: Swiper is available globally from the CDN script
 				const testimonialSwiperEl = document.querySelector('.testimonial-swiper');
 				if (testimonialSwiperEl) {
 					const testimonialSlides = testimonialSwiperEl.querySelectorAll('.swiper-slide');
-					const testimonialSwiper = new Swiper(testimonialSwiperEl, {
-						modules: [Navigation, Autoplay],
+					new Swiper(testimonialSwiperEl, {
 						loop: testimonialSlides.length > 1,
 						slidesPerView: 1,
 						slidesPerGroup: 1,
@@ -68,14 +68,14 @@ const { title } = Astro.props;
 							nextEl: '.swiper-button-next',
 							prevEl: '.swiper-button-prev',
 						},
+						grabCursor: true,
 					});
 				}
 
 				const helpSwiperEl = document.querySelector('.help-swiper');
 				if (helpSwiperEl) {
 					const helpSlides = helpSwiperEl.querySelectorAll('.swiper-slide');
-					const helpSwiper = new Swiper(helpSwiperEl, {
-						modules: [Navigation, Pagination],
+					new Swiper(helpSwiperEl, {
 						loop: helpSlides.length > 1,
 						slidesPerView: 1,
 						spaceBetween: 30,
@@ -87,10 +87,14 @@ const { title } = Astro.props;
 							el: '.swiper-pagination',
 							clickable: true,
 						},
+						grabCursor: true,
 					});
 				}
 			}
 			
+			// Run on initial page load
+			document.addEventListener('DOMContentLoaded', initSwipers);
+			// Run on view transitions
 			document.addEventListener('astro:after-swap', initSwipers);
 		</script>
 	</body>
