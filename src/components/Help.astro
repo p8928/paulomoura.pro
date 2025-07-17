@@ -245,7 +245,7 @@
     import { Navigation, Pagination } from 'swiper/modules';
 	function initHelpSwiper() {
 	  const helpSwiperEl = document.querySelector('.help-swiper');
-	  if (helpSwiperEl && !helpSwiperEl.swiper) { // Check if not already initialized
+	  if (helpSwiperEl && !helpSwiperEl.hasAttribute('data-swiper-initialized')) {
 		const helpSlides = helpSwiperEl.querySelectorAll('.swiper-slide');
 		const helpSwiper = new Swiper(helpSwiperEl, {
 		  modules: [Navigation, Pagination],
@@ -261,6 +261,7 @@
 			clickable: true,
 		  },
 		});
+        helpSwiperEl.setAttribute('data-swiper-initialized', 'true');
 	  }
 	}
 	document.addEventListener('astro:page-load', initHelpSwiper);

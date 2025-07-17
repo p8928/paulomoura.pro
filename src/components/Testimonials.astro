@@ -102,7 +102,7 @@
 
   function initTestimonialSwiper() {
     const swiperEl = document.querySelector('.testimonial-swiper');
-    if (swiperEl && !swiperEl.swiper) { // Check if not already initialized
+    if (swiperEl && !swiperEl.hasAttribute('data-swiper-initialized')) {
       const slides = swiperEl.querySelectorAll('.swiper-slide');
       new Swiper(swiperEl, {
         modules: [Navigation, Autoplay],
@@ -119,6 +119,7 @@
         },
         grabCursor: true,
       });
+      swiperEl.setAttribute('data-swiper-initialized', 'true');
     }
   }
   // Use astro:page-load to ensure everything is ready
