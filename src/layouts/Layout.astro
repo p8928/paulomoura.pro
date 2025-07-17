@@ -82,8 +82,8 @@ const { title } = Astro.props;
 				}
 			}
 
-			// Preloader logic that triggers Swiper initialization
-			function runPageLogic() {
+			// Main logic to run when the page is fully loaded
+			window.addEventListener('load', () => {
 				const preloader = document.getElementById('preloader');
 				if (preloader) {
 					setTimeout(() => {
@@ -95,11 +95,9 @@ const { title } = Astro.props;
 					// If no preloader, init immediately
 					initSwipers();
 				}
-			}
-			
-			// Run on initial page load
-			document.addEventListener('DOMContentLoaded', runPageLogic);
-			// Run on view transitions
+			});
+
+			// Also initialize for Astro's client-side navigation
 			document.addEventListener('astro:after-swap', initSwipers);
 		</script>
 	</body>
