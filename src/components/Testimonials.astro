@@ -93,3 +93,34 @@
     color: #E6B333; /* Gold color from the theme */
   }
 </style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/navigation';
+
+  function initTestimonialSwiper() {
+    const swiperEl = document.querySelector('.testimonial-swiper');
+    if (swiperEl) {
+      const slides = swiperEl.querySelectorAll('.swiper-slide');
+      new Swiper(swiperEl, {
+        modules: [Navigation, Autoplay],
+        loop: slides.length > 1,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        grabCursor: true,
+      });
+    }
+  }
+  // Use astro:page-load to ensure everything is ready
+  document.addEventListener('astro:page-load', initTestimonialSwiper);
+</script>
