@@ -1,39 +1,41 @@
 <header class="fixed top-0 left-0 right-0 z-20 p-4 sm:p-8">
- 
   <div class="flex justify-between items-center">
     <a href="/" class="flex items-center space-x-3">
       <img src="/images/tg-logo-small.webp" alt="Tiago Gomes Logo" class="h-10 sm:h-12">
     </a>
-    <div id="header-line" class="hidden sm:flex-grow h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-4 sm:mx-8 line-shimmer transition-opacity duration-300" style="opacity: 0;"></div>
+    <!-- Golden Line -->
+    <div id="header-line" class="hidden sm:flex-grow h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-4 sm:mx-8 line-shimmer transition-opacity duration-300"></div>
   </div>
 </header>
 
 <script>
-  // Header line fade effect
   document.addEventListener('DOMContentLoaded', () => {
     const headerLine = document.getElementById('header-line');
+    // O elemento principal dentro do Hero.astro tem o id "hero-text"
     const heroText = document.getElementById('hero-text');
-    
-    if (headerLine && heroText) {
-      const updateLineOpacity = () => {
-        const scrollPosition = window.scrollY;
-        const fadeEnd = heroText.offsetTop - 4;
-        let opacity = 1;
 
-        if (scrollPosition > 0 && scrollPosition < fadeEnd) {
-          opacity = 1 - (scrollPosition / fadeEnd);
-        } else if (scrollPosition >= fadeEnd) {
+    if (headerLine && heroText) {
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        // Define o ponto final do fade um pouco antes do final da hero section
+        const fadeEnd = heroText.offsetHeight - 100;
+        
+        let opacity = 1;
+        if (scrollY > 0 && scrollY < fadeEnd) {
+          // Calcula a opacidade inversamente à posição de rolagem
+          opacity = 1 - (scrollY / fadeEnd);
+        } else if (scrollY >= fadeEnd) {
           opacity = 0;
         }
         
         headerLine.style.opacity = Math.max(0, Math.min(1, opacity)).toString();
       };
 
-      // Set initial state on load
-      updateLineOpacity();
+      // Executa a função uma vez no carregamento para definir o estado inicial
+      handleScroll();
       
-      // Update on scroll
-      document.addEventListener('scroll', updateLineOpacity);
+      // Adiciona o listener para o evento de scroll
+      document.addEventListener('scroll', handleScroll);
     }
   });
 </script>
