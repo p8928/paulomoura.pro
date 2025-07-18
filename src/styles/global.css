@@ -35,6 +35,8 @@ body {
   font-weight: 400; /* Padrão para regular */
   font-size: 1.125rem;
   background-color: #F3F0E9;
+  background-image: radial-gradient(rgba(114, 87, 82, 0.1) 1px, transparent 1px);
+  background-size: 5px 5px;
 }
 
 /* Preloader Styles */
