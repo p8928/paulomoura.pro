@@ -34,12 +34,14 @@ body {
   font-family: 'Outfit', sans-serif;
   font-weight: 400; /* Padrão para regular */
   font-size: 1.125rem;
-  background-color: #F3F0E9; /* Cor base do papel */
-  /* Efeito de textura de papel com ranhuras */
+  background-color: #F3F0E9;
   background-image: 
-    linear-gradient(rgba(210, 195, 170, 0.1) 1px, transparent 1px),
-    linear-gradient(to right, rgba(210, 195, 170, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+    /* Layer 3: Gaps - The Golden Mean */
+    repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(234, 227, 217, 0.4) 101px, transparent 102px, transparent 200px),
+    /* Layer 2: Chaos - The Golden Mean */
+    repeating-linear-gradient(87deg, transparent, transparent 28px, rgba(234, 227, 217, 0.3) 29px, rgba(249, 245, 236, 0.3) 30px, transparent 31px, transparent 55px),
+    /* Layer 1: Base - The Golden Mean */
+    repeating-linear-gradient(88deg, transparent, transparent 18px, #EDE8DE 19px, #F7F4EE 20px, transparent 21px);
 }
 
 /* Preloader Styles */
