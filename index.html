@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paulomoura.pro - Em Construção</title>
+    <link rel="icon" href="/favicon.png"> <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        :root {
+            --roxo-claro: #E0BBE4;
+            --roxo-medio: #957DAD;
+            --roxo-escuro: #5B4F71;
+            --roxo-profundo: #362D4A;
+            --branco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--roxo-escuro);
+            color: var(--branco);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .container {
+            background-color: var(--roxo-profundo);
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            border: 2px solid var(--roxo-medio);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: var(--roxo-claro);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--roxo-claro);
+            font-weight: 400;
+        }
+
+        .icon-construction {
+            font-size: 5em;
+            color: var(--roxo-medio);
+            margin-bottom: 25px;
+            display: block; /* Para garantir que o ícone fique centralizado */
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .icon-construction::before {
+            content: '🚧'; /* Ícone de construção - compatível com a maioria dos sistemas */
+        }
+
+        .footer-text {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: var(--roxo-claro);
+            opacity: 0.7;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 40px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .icon-construction {
+                font-size: 4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 25px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            .icon-construction {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="icon-construction"></span>
+        <h1>Em Construção</h1>
+        <p>Estamos trabalhando arduamente para criar uma experiência incrível para você. <br>Volte em breve para conferir as novidades!</p>
+        <p class="footer-text">paulomoura.pro</p>
+    </div>
+</body>
+</html>
