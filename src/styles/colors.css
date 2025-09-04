@@ -1,0 +1,140 @@
+:root {
+  /* Ferrari Red - Base: hsl(9, 100%, 51%) */
+  --red-50: hsl(9, 100%, 98%);
+  --red-100: hsl(9, 100%, 95%);
+  --red-200: hsl(9, 100%, 90%);
+  --red-300: hsl(9, 100%, 80%);
+  --red-400: hsl(9, 100%, 70%);
+  --red-500: hsl(9, 100%, 60%);
+  --red-600: hsl(9, 100%, 51%);
+  --red-700: hsl(9, 100%, 40%);
+  --red-800: hsl(9, 100%, 30%);
+  --red-900: hsl(9, 100%, 20%);
+  --red-950: hsl(9, 100%, 10%);
+
+  /* Silver (Prata) - Base: hsl(0, 0%, 75%) */
+  --silver-50: hsl(0, 0%, 98%);
+  --silver-100: hsl(0, 0%, 95%);
+  --silver-200: hsl(0, 0%, 90%);
+  --silver-300: hsl(0, 0%, 83%);
+  --silver-400: hsl(0, 0%, 75%);
+  --silver-500: hsl(0, 0%, 65%);
+  --silver-600: hsl(0, 0%, 55%);
+  --silver-700: hsl(0, 0%, 45%);
+  --silver-800: hsl(0, 0%, 35%);
+  --silver-900: hsl(0, 0%, 25%);
+  --silver-950: hsl(0, 0%, 15%);
+
+  /* Neutral Colors for Text */
+  --neutral-50: hsl(0, 0%, 98%);
+  --neutral-100: hsl(0, 0%, 96%);
+  --neutral-200: hsl(0, 0%, 93%);
+  --neutral-300: hsl(0, 0%, 88%);
+  --neutral-400: hsl(0, 0%, 80%);
+  --neutral-500: hsl(0, 0%, 70%);
+  --neutral-600: hsl(0, 0%, 60%);
+  --neutral-700: hsl(0, 0%, 50%);
+  --neutral-800: hsl(0, 0%, 40%);
+  --neutral-900: hsl(0, 0%, 30%);
+  --neutral-950: hsl(0, 0%, 20%);
+  --neutral-1000: hsl(0, 0%, 10%);
+
+  /* Theme Colors */
+  --primary: var(--red-600);
+  --primary-light: var(--red-500);
+  --primary-dark: var(--red-700);
+  --secondary: var(--silver-400);
+  --secondary-light: var(--silver-300);
+  --secondary-dark: var(--silver-500);
+  --text: var(--neutral-950);
+  --text-light: var(--neutral-700);
+  --text-lighter: var(--neutral-500);
+  --background: var(--neutral-50);
+  --background-dark: var(--neutral-100);
+  --background-darker: var(--neutral-200);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary: var(--red-500);
+  --primary-light: var(--red-400);
+  --primary-dark: var(--red-600);
+  --secondary: var(--silver-500);
+  --secondary-light: var(--silver-400);
+  --secondary-dark: var(--silver-600);
+  --text: var(--neutral-50);
+  --text-light: var(--neutral-200);
+  --text-lighter: var(--neutral-400);
+  --background: var(--neutral-1000);
+  --background-dark: var(--neutral-950);
+  --background-darker: var(--neutral-900);
+}
+
+/* Base Styles */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    90deg,
+    hsl(0, 90%, 30%) 0%,         /* Deep, rich red */
+    hsl(0, 100%, 40%) 25%,       /* Bright red */
+    hsl(0, 95%, 45%) 50%,        /* Vivid red */
+    hsl(0, 100%, 40%) 75%,       /* Bright red */
+    hsl(0, 90%, 30%) 100%        /* Deep, rich red */
+  );
+  background-size: 200% 200%;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(
+    90deg,
+    hsl(0, 90%, 15%) 0%,
+    hsl(0, 100%, 20%) 25%,
+    hsl(0, 95%, 25%) 50%,
+    hsl(0, 100%, 20%) 75%,
+    hsl(0, 90%, 15%) 100%
+  );
+  background-size: 200% 200%;
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--primary-light);
+}

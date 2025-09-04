@@ -1,0 +1,24 @@
+{
+  "name": "digital-growth",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@swup/astro": "^1.7.0",
+    "@types/three": "^0.180.0",
+    "animejs": "^4.1.3",
+    "aos": "^2.3.4",
+    "astro": "^5.13.5",
+    "framer-motion": "^12.23.12",
+    "gsap": "^3.13.0",
+    "lucide-astro": "^0.542.0",
+    "three": "^0.180.0"
+  }
+}
