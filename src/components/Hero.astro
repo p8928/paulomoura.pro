@@ -1,0 +1,325 @@
+---
+import Menu from '../components/Menu.astro';
+---
+
+<section class="hero">
+  <header class="hero__header">
+    <div class="hero__logo">
+      <img src="/img/logo_dark.webp" alt="Logo Moura">
+    </div>
+    <nav class="hero__nav">
+      <a href="/contato" class="hero__nav-link hover-underline contato-teste" style="position: relative;" hx-get="/api/contact-form" hx-target="body" hx-swap="beforeend">CONTATO</a>
+      <button class="hero__menu-btn" id="openMenu">
+        MENU
+        <span class="hero__menu-lines">
+          <span></span>
+        </span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="hero__content">
+    <h1 class="hero__title">MOURA</h1>
+    <p class="hero__subtitle">PRESENÇA DIGITAL QUE TRANSCENDE ALGORITMOS E TECNOLOGIAS</p>
+
+    <div class="hero__actions">
+      <button class="hero__btn hero__btn--text">
+        <span class="hero__btn-dot"></span>
+        Sobre nós
+      </button>
+      <div class="hero__actions-right">
+        <a href="/metodologia" class="hero__btn hero__btn--underline">
+          Conhecer a metodologia
+        </a>
+        <a href="/conversa" class="hero__btn hero__btn--primary">
+          AGENDAR CONVERSA
+        </a>
+      </div>
+    </div>
+  </main>
+  
+  <Menu />
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .hero__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    overflow: visible;
+  }
+  
+  .hero__logo {
+    flex: 0 0 auto;
+  }
+  
+  .hero__nav {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  /* Layout mobile */
+  @media (max-width: 768px) {
+    .hero__header {
+      position: relative;
+      height: 60px;
+    }
+    
+    .hero__logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    
+    .hero__nav {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .hero__nav-link {
+      order: 2;
+    }
+    
+    .hero__menu-btn {
+      order: 1;
+    }
+  }
+  
+  .hero__logo img {
+    width: 40px;
+    height: auto;
+  }
+
+  .hero__nav-link {
+    color: #6B6B6B;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    transition: color 0.3s ease;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Desktop hover effect */
+  @media (min-width: 769px) {
+    .hero__nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #B41B4D;
+      transition: width 0.3s ease;
+    }
+    
+    .hero__nav-link:hover {
+      color: #2D2D2D;
+    }
+    
+    .hero__nav-link.hover-underline:hover::after {
+      width: 100%;
+    }
+  }
+
+  .hero__menu-btn {
+    background: none;
+    border: none;
+    color: #6B6B6B;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .hero__menu-btn:hover {
+    color: #2D2D2D;
+  }
+
+  .hero__menu-lines {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__menu-lines span {
+    width: 28px;
+    height: 1px;
+    background: #6B6B6B;
+    transition: background 0.3s ease;
+  }
+
+  .hero__menu-btn:hover .hero__menu-lines span {
+    background: #2D2D2D;
+  }
+
+  .hero__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .hero__title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(4rem, 20vw, 20rem);
+    font-weight: 300;
+    color: #2D2D2D;
+    line-height: 0.85;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: #6B6B6B;
+    font-weight: 200;
+    letter-spacing: 0.17em;
+    margin: 0 0 4rem 1rem;
+    max-width: 972px;
+    text-align: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 972px;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .hero__actions-right {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: fit-content;
+  }
+
+  .hero__btn--text {
+    color: #6B6B6B;
+    font-size: 1rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero__btn--text:hover {
+    color: #2D2D2D;
+  }
+
+  .hero__btn-dot {
+    width: 8px;
+    height: 8px;
+    background: #6B6B6B;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .hero__btn--text:hover .hero__btn-dot {
+    background: #2D2D2D;
+  }
+
+  .hero__btn--underline {
+    color: #2D2D2D;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 2px solid #2D2D2D;
+    padding-bottom: 2px;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero__btn--underline:hover {
+    opacity: 0.7;
+  }
+
+  .hero__btn--primary {
+    background: #2D2D2D;
+    color: #E8D5D0;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .hero__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 45, 45, 0.3);
+  }
+  
+  /* Responsive */
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: 1.5rem;
+    }
+
+    .hero__header {
+      margin-bottom: 2rem;
+    }
+
+    .hero__actions {
+      gap: 1.5rem;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero__actions-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    
+    .hero__btn--text {
+      display: none;
+    }
+  }
+</style>
