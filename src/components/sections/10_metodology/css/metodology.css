@@ -1,0 +1,52 @@
+.metodology {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4xl) var(--space-lg);
+  background-color: var(--color-background);
+}
+
+.metodology-content {
+  max-width: 800px;
+  width: 100%;
+}
+
+.metodology-title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-5xl);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2xl);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.metodology-paragraph {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.metodology-blockquote {
+  margin: var(--space-2xl) 0;
+  padding-left: var(--space-xl);
+  border-left: 2px solid var(--color-accent);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-2xl);
+  font-style: italic;
+  color: var(--color-text-primary);
+}
+
+.metodology-cite {
+  display: block;
+  margin-top: var(--space-md);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  color: var(--color-text-tertiary);
+  font-style: normal;
+}
