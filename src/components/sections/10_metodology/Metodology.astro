@@ -2,272 +2,126 @@
 import './css/metodology.css';
 ---
 
-<section class="metodology-section animate-on-scroll">
-  <div class="metodology-container">
-    <header class="metodology-hero">
-      <div class="metodology-header">
-        <h1 class="metodology-title">
-          <span class="title-brand">Brand</span>
-          <svg class="title-dash" viewBox="0 0 80 10" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="10" fill="#C0B283"/></svg>
-          <span class="title-led">Led</span>
-        </h1>
-      </div>
-    </header>
-
-    <main class="metodology-main-content">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-
-      <div class="metodology-grid-content">
-        <h2 class="metodology-subtitle">FAÇA SEU BRANDING TRABALHAR POR VOCÊ</h2>
-
-        <p class="metodology-paragraph">
-          Você pode encontrar qualquer profissional ou agência que crie um site, publique conteúdo e gerencie SEO adotando abordagem genérica — acontece que sua empresa não é algo qualquer. Uma comunicação digital coesa requer um olhar profundo sobre os valores, características e virtudes da sua marca.
-        </p>
-
-        <blockquote class="metodology-blockquote">
-          "Em vez de apenas corresponder suas palavras-chave a páginas da web, o Google quer entender do que você realmente necessita com base em quem você é e o que, como indivíduo, precisa no momento. O Google chama isso de contexto pessoal."
-          <cite class="metodology-cite">Eli Schwartz — Autor e criador do conceito Product-Led SEO</cite>
-        </blockquote>
-
-        <div class="metodology-final-grid">
-          <p class="metodology-paragraph">
-            O Google compreende nossas preferências à medida em que pesquisamos, clicamos ou avaliamos, por exemplo. Isso significa que o algoritmo — a cada dia mais calibrado — sabe quando a sua empresa é recomendação adequada ao contexto do usuário.
-          </p>
-          <p class="metodology-paragraph">
-            Quanto mais complexidade esse contexto adquire, maior a quantidade de critérios que determinarão o resultado da pesquisa e, consequentemente, melhores serão as recomendações. O melhor disso tudo é que os benefícios não se limitam ao usuário: a sua marca também tem muito a ganhar, contanto que entenda o jogo.
-          </p>
-        </div>
-      </div>
-    </main>
+<header class="metodology-hero">
+  <div class="metodology-header">
+    <h1 class="metodology-title">
+      <span class="title-brand">Brand</span>
+      <svg class="title-dash" viewBox="0 0 80 10" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="10" fill="#C0B283"/></svg>
+      <span class="title-led">Led</span>
+    </h1>
   </div>
-</section>
+</header>
 
-<style>
-  .metodology-section {
-    position: relative;
-    scroll-snap-align: start;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background-color: #F9F9F9;
-  }
+<main class="metodology-main-content">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
 
-  .metodology-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
-    position: relative;
-    z-index: 2;
-  }
+  <div class="metodology-grid-content">
+    <h2 class="metodology-subtitle animate-fade-in">FAÇA SEU BRANDING TRABALHAR POR VOCÊ</h2>
 
-  .metodology-hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #F9F9F9;
-    overflow: hidden;
-  }
+    <p class="metodology-paragraph animate-fade-in">
+      Você pode encontrar qualquer profissional ou agência que crie um site, publique conteúdo e gerencie SEO adotando abordagem genérica — acontece que sua empresa não é algo qualquer. Uma comunicação digital coesa requer um olhar profundo sobre os valores, características e virtudes da sua marca.
+    </p>
 
-  .metodology-header {
-    text-align: center;
-    width: 100%;
-  }
+    <blockquote class="metodology-blockquote animate-pull-quote">
+      "Em vez de apenas corresponder suas palavras-chave a páginas da web, o Google quer entender do que você realmente necessita com base em quem você é e o que, como indivíduo, precisa no momento. O Google chama isso de contexto pessoal."
+      <cite class="metodology-cite">Eli Schwartz — Autor e criador do conceito Product-Led SEO</cite>
+    </blockquote>
 
-  .metodology-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    font-family: var(--font-family-heading);
-    font-size: clamp(4rem, 12vw, 10rem);
-    text-transform: uppercase;
-    line-height: 1;
-    margin: 0;
-  }
+    <div class="metodology-final-grid">
+      <p class="metodology-paragraph animate-fade-in">
+        O Google compreende nossas preferências à medida em que pesquisamos, clicamos ou avaliamos, por exemplo. Isso significa que o algoritmo — a cada dia mais calibrado — sabe quando a sua empresa é recomendação adequada ao contexto do usuário.
+      </p>
+      <p class="metodology-paragraph animate-fade-in">
+        Quanto mais complexidade esse contexto adquire, maior a quantidade de critérios que determinarão o resultado da pesquisa e, consequentemente, melhores serão as recomendações. O melhor disso tudo é que os benefícios não se limitam ao usuário: a sua marca também tem muito a ganhar, contanto que entenda o jogo.
+      </p>
+    </div>
+  </div>
+</main>
 
-  .title-brand {
-    font-weight: 700;
-    color: var(--color-primary);
-  }
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  .title-led {
-    font-weight: 300;
-    color: var(--color-primary);
-  }
+  gsap.registerPlugin(ScrollTrigger);
 
-  .title-dash {
-    width: clamp(3rem, 8vw, 8rem);
-    height: auto;
-    margin-top: 0.2em;
-  }
+  function initAnimations() {
+    // Limpar triggers anteriores para evitar duplicação
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-  .metodology-main-content {
-    position: relative;
-    padding: clamp(4rem, 10vh, 8rem) var(--space-lg);
-    background-color: #F9F9F9;
-    overflow: hidden;
-  }
+    // Coreografia do Título
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.from(".title-brand", { x: -50, opacity: 0, duration: 1, ease: "power3.out" })
+      .from(".title-led", { x: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8")
+      .from(".title-dash rect", { scaleX: 0, transformOrigin: "center", duration: 0.8, ease: "power3.inOut" }, "-=0.8");
 
-  .metodology-grid-content {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--space-lg);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    // Animação de Parallax para as formas
+    gsap.to(".shape-1", {
+      y: -150,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".metodology-main-content",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.4,
+      },
+    });
 
-  .metodology-subtitle {
-    grid-column: 1 / 8;
-    font-family: var(--font-family-heading);
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    font-weight: var(--font-weight-light);
-    letter-spacing: var(--letter-spacing-normal);
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-    line-height: 1.3;
-    margin-bottom: var(--space-xl);
-  }
+    gsap.to(".shape-2", {
+      y: 200,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".metodology-main-content",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.6,
+      },
+    });
 
-  .metodology-paragraph {
-    grid-column: 1 / 7;
-    font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-light);
-    font-size: var(--font-size-lg);
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-lg);
-    max-width: 65ch;
-  }
+    // Animação de Fade-in para os textos
+    const fadeElements = document.querySelectorAll(".animate-fade-in");
+    fadeElements.forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          }
+        }
+      );
+    });
 
-  .metodology-blockquote {
-    grid-column: 8 / 13;
-    align-self: start;
-    margin-top: var(--space-2xl);
-    padding-left: var(--space-lg);
-    border-left: 2px solid var(--color-accent);
-    font-family: var(--font-family-heading);
-    font-weight: var(--font-weight-regular);
-    font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl));
-    font-style: italic;
-    color: var(--color-text-primary);
-    transition: border-color var(--transition-normal);
-  }
-
-  .metodology-blockquote:hover {
-    border-left-color: var(--color-accent-accessible);
-  }
-
-  .metodology-cite {
-    display: block;
-    margin-top: var(--space-md);
-    font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-tertiary);
-    font-style: normal;
-  }
-
-  .metodology-final-grid {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-3xl);
-    margin-top: var(--space-3xl);
-  }
-
-  /* Shapes & Decorative Elements */
-  .shape {
-    position: absolute;
-    z-index: 0;
-    opacity: 0.06;
-    will-change: transform;
-  }
-
-  .shape-1 {
-    top: 10%;
-    left: 5%;
-    width: 150px;
-    height: 150px;
-    background-color: var(--color-accent);
-    border-radius: 50%;
-  }
-
-  .shape-2 {
-    bottom: 5%;
-    right: -50px;
-    width: 300px;
-    height: 450px;
-    background-color: var(--color-light-gray);
-    transform: rotate(35deg);
-  }
-
-  /* Animation using the site's consistent pattern */
-  .metodology-header {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-  }
-
-  .metodology-subtitle {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.3s forwards;
-  }
-
-  .metodology-paragraph {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-  }
-
-  .metodology-blockquote {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
-  }
-
-  .metodology-final-grid {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    // Animação para o Pull Quote
+    const blockquote = document.querySelector('.animate-pull-quote');
+    if (blockquote) {
+      gsap.from(blockquote, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 1.2,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: blockquote,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        }
+      });
     }
   }
 
-  /* Responsive Adjustments */
-  @media (max-width: 900px) {
-    .metodology-subtitle,
-    .metodology-paragraph,
-    .metodology-blockquote {
-      grid-column: 1 / -1;
-    }
+  // Executar na carga inicial da página
+  document.addEventListener('DOMContentLoaded', initAnimations);
 
-    .metodology-blockquote {
-      margin-top: var(--space-2xl);
-      margin-bottom: var(--space-2xl);
-      padding-left: 0;
-      padding-top: var(--space-lg);
-      border-left: none;
-      border-top: 2px solid var(--color-accent);
-      text-align: center;
-    }
-
-    .metodology-final-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-    
-    .metodology-hero {
-      height: 50vh;
-    }
-  }
-</style>
+  // Executar em navegações subsequentes do Astro
+  document.addEventListener('astro:page-load', initAnimations);
+  
+  // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
+  document.addEventListener('astro:before-swap', () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  });
+</script>
