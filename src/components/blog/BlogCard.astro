@@ -2,6 +2,13 @@
 const { entry } = Astro.props;
 const { data, slug } = entry;
 const { title, description, publishDate, tags } = data;
+
+// Format the date without the day of the week
+const formattedDate = publishDate.toLocaleDateString('pt-BR', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
 ---
 <a href={`/blog/${slug}/`} class="blog-card">
   <div class="blog-thumb">
@@ -9,12 +16,12 @@ const { title, description, publishDate, tags } = data;
   </div>
   <div class="blog-content-inner">
     <div class="blog-meta">
-      <span>{publishDate.toDateString()}</span>
+      <span class="blog-date">{formattedDate}</span>
       <span class="blog-category">{tags[0]}</span>
     </div>
     <h3 class="blog-title">{title}</h3>
     <p class="blog-excerpt">{description}</p>
-    <div class="blog-read-more">Ler mais →</div>
+    <div class="blog-read-more">Ler mais</div>
   </div>
 </a>
 
@@ -22,22 +29,23 @@ const { title, description, publishDate, tags } = data;
 .blog-card {
   background: var(--color-background);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-border);
+  height: 100%;
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .blog-thumb {
-  height: 160px;
+  height: 200px;
   background: var(--color-background);
   display: flex;
   align-items: center;
@@ -48,11 +56,11 @@ const { title, description, publishDate, tags } = data;
 }
 
 .text-thumb {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--color-text-primary);
-  letter-spacing: 2px;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
 }
 
 .blog-content-inner {
@@ -65,24 +73,33 @@ const { title, description, publishDate, tags } = data;
 .blog-meta {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-tertiary);
+}
+
+.blog-date {
+  font-variant-numeric: tabular-nums;
 }
 
 .blog-category {
-  background: var(--color-accent);
-  color: white;
-  padding: 0.25rem 0.5rem;
+  background: transparent;
+  color: var(--color-accent);
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--color-accent);
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .blog-title {
-  font-size: 1.25rem;
-  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  margin: 0.25rem 0;
   color: var(--color-text-primary);
   flex-grow: 1;
+  line-height: 1.4;
 }
 
 .blog-excerpt {
@@ -90,16 +107,27 @@ const { title, description, publishDate, tags } = data;
   margin-bottom: 1rem;
   line-height: 1.5;
   flex-grow: 1;
+  font-size: 0.9rem;
 }
 
 .blog-read-more {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  color: var(--color-accent);
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  align-self: flex-start;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-weight: 500;
+}
+
+.blog-read-more:hover {
   background: var(--color-accent);
   color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  align-self: flex-start;
+  transform: translateY(-1px);
 }
 </style>

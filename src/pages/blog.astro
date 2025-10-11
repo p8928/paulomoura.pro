@@ -81,7 +81,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
 
 .full-screen-title {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-hero);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: var(--font-weight-light);
   color: var(--color-text-primary);
   letter-spacing: var(--letter-spacing-tight);
@@ -132,32 +132,34 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
 }
 
 .blog-content {
-  padding: 2rem 1rem;
-  max-width: 1400px;
+  padding: 2rem 2rem;
+  max-width: 1000px;
   margin: 0 auto;
   background-color: var(--color-background);
 }
 
 .search-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto 2rem;
   position: relative;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: var(--color-background);
   color: var(--color-text-primary);
+  transition: border-color 0.2s ease;
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(192, 178, 131, 0.2);
 }
 
 .blog-grid {
@@ -165,11 +167,20 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
 @media (max-width: 1200px) {
   .full-screen-title {
     font-size: 10rem;
+  }
+}
+
+@media (min-width: 1201px) {
+  .blog-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 }
 
