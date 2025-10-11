@@ -21,7 +21,12 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
     </div>
     <h3 class="blog-title">{title}</h3>
     <p class="blog-excerpt">{description}</p>
-    <div class="blog-read-more">Ler mais</div>
+    <div class="blog-arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
   </div>
 </a>
 
@@ -80,18 +85,22 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 
 .blog-date {
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  color: var(--color-text-tertiary);
 }
 
 .blog-category {
   background: transparent;
   color: var(--color-accent);
-  padding: 0.15rem 0.5rem;
+  padding: 0.2rem 0.6rem;
   border: 1px solid var(--color-accent);
-  border-radius: 4px;
-  font-size: 0.7rem;
+  border-radius: 12px;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
+  letter-spacing: 1.2px;
+  font-weight: 300;
+  transition: all 0.3s ease;
 }
 
 .blog-title {
@@ -110,24 +119,24 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
   font-size: 0.9rem;
 }
 
-.blog-read-more {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  background: transparent;
+.blog-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 0.5rem;
   color: var(--color-accent);
-  text-decoration: none;
-  border: 1px solid var(--color-accent);
-  border-radius: 4px;
-  font-size: 0.75rem;
-  align-self: flex-start;
-  transition: all 0.2s ease;
-  text-align: center;
-  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.blog-read-more:hover {
-  background: var(--color-accent);
-  color: white;
-  transform: translateY(-1px);
+.blog-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card:hover .blog-arrow svg {
+  transform: translateX(6px);
 }
 </style>
