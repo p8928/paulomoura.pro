@@ -1,0 +1,110 @@
+---
+import './css/metodology.css';
+---
+
+<main class="metodology-main-content snap-section">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+
+  <div class="metodology-grid-content">
+    <h2 class="metodology-subtitle animate-fade-in">FAÇA SEU BRANDING TRABALHAR POR VOCÊ</h2>
+
+    <div class="metodology-text-content">
+      <p class="text-body animate-fade-in">
+        Você pode encontrar profissionais que criem sites, publiquem conteúdo e gerenciem SEO com abordagens genéricas. <strong>Mas sua empresa exige especificidade.</strong> Comunicação digital coesa requer olhar profundo sobre valores, características e virtudes que tornam sua marca distinta, insubstituível.
+      </p>
+      <div class="metodology-final-grid">
+        <p class="text-body animate-fade-in">
+          O Google compreende preferências à medida que pesquisamos, clicamos, avaliamos. Seu algoritmo — cada vez mais refinado — identifica quando sua empresa é a recomendação certa para cada usuário, em cada momento.
+        </p>
+        <p class="text-body animate-fade-in">
+          E quanto mais fatores ele considera, melhores suas recomendações se tornam. Isso beneficia o usuário, sim. Mas beneficia ainda mais marcas que fornecem substância genuína para o algoritmo trabalhar.
+        </p>
+      </div>
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <blockquote class="metodology-blockquote animate-pull-quote">
+      "Em vez de apenas corresponder suas palavras-chave a páginas da web, o Google quer entender do que você realmente necessita com base em quem você é e o que, como indivíduo, precisa no momento. O Google chama isso de contexto pessoal."
+      <cite class="metodology-cite">Eli Schwartz — Autor e criador do conceito Product-Led SEO</cite>
+    </div>
+  </div>
+  
+  <!-- Section separator button -->
+  <div class="section-separator">
+    <a href="#" class="cta-link desktop-cta">SEO PÓS-IA: O QUE MUDOU →</a>
+  </div>
+</main>
+
+<style>
+  /* CTA styles matching the branding section */
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-xl);
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  .cta-link:hover::before {
+    left: 0;
+  }
+
+  .cta-link:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+  }
+
+  .arrow {
+    margin-left: var(--space-sm);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-link:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .desktop-cta {
+    display: inline-flex;
+  }
+  
+  .section-separator {
+    max-width: 1200px; /* Match the grid container max-width */
+    margin: var(--space-5xl) auto var(--space-5xl); /* Increased spacing */
+    text-align: center;
+    padding: 0 var(--space-lg);
+  }
+  
+  .cta-link {
+    font-style: normal; /* Remove any italic styling */
+  }
+</style>

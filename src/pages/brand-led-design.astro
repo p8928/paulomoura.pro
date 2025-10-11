@@ -1,0 +1,687 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/nav/Navigation.astro';
+import Footer from '../components/footer/Footer.astro';
+// O CSS do Hero original será importado aqui para manter o estilo
+import '../components/sections/14_manifest/css/brand-led-design-hero.css';
+---
+
+<Layout>
+  <Navigation slot="nav" />
+
+  <div slot="rest-content">
+    <!-- 1. Seção Hero Original Extraída -->
+    <section class="brand-led-design-hero snap-section" style="height: 90vh; min-height: 700px;">
+      <div class="hero-content">
+        <h1 class="full-screen-title" id="brand-led-title">
+          <span class="title-part">BRAND</span>
+          <span class="title-dash-container">
+            <svg class="title-dash" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+              <path class="dash-path" d="M20,10 H80" stroke="currentColor" stroke-width="4" fill="none"></path>
+            </svg>
+          </span>
+          <span class="title-part">LED</span>
+          <span class="title-design">DESIGN</span>
+        </h1>
+      </div>
+      <div class="noise-overlay"></div>
+      <!-- Bauhaus-inspired geometric element -->
+      <div class="bauhaus-dot"></div>
+    </section>
+
+    <!-- 2. Novo Conteúdo Editorial -->
+    <div id="manifesto-content">
+      <!-- Ulm School-inspired background elements -->
+      <div class="ulm-background">
+        <div class="ulm-element ulm-grid"></div>
+        <div class="ulm-element ulm-circle"></div>
+        <div class="ulm-element ulm-line"></div>
+      </div>
+      <section class="manifesto-section animate-on-scroll">
+        <p class="section-intro reveal-text" id="emphasis-text" style="text-align: center; max-width: 70ch; margin-left: auto; margin-right: auto; margin-bottom: var(--space-5xl);">
+          <span class="word"><span class="letter">D</span><span class="letter">e</span><span class="letter">s</span><span class="letter">i</span><span class="letter">g</span><span class="letter">n</span></span>
+          <span class="word"><span class="letter">n</span><span class="letter">ã</span><span class="letter">o</span></span>
+          <span class="word"><span class="letter">é</span></span>
+          <span class="word"><span class="letter">d</span><span class="letter">e</span><span class="letter">c</span><span class="letter">o</span><span class="letter">r</span><span class="letter">a</span><span class="letter">ç</span><span class="letter">ã</span><span class="letter">o</span><span class="letter">.</span></span>
+          <span class="word"><span class="letter">É</span></span>
+          <span class="word"><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span><span class="letter">u</span><span class="letter">n</span><span class="letter">i</span><span class="letter">c</span><span class="letter">a</span><span class="letter">ç</span><span class="letter">ã</span><span class="letter">o</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">s</span><span class="letter">t</span><span class="letter">r</span><span class="letter">u</span><span class="letter">t</span><span class="letter">u</span><span class="letter">r</span><span class="letter">a</span><span class="letter">d</span><span class="letter">a</span><span class="letter">,</span></span>
+          <span class="word"><span class="letter">f</span><span class="letter">u</span><span class="letter">n</span><span class="letter">d</span><span class="letter">a</span><span class="letter">m</span><span class="letter">e</span><span class="letter">n</span><span class="letter">t</span><span class="letter">a</span><span class="letter">d</span><span class="letter">a</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">m</span></span>
+          <span class="word"><span class="letter">d</span><span class="letter">é</span><span class="letter">c</span><span class="letter">a</span><span class="letter">d</span><span class="letter">a</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">d</span><span class="letter">e</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">v</span><span class="letter">o</span><span class="letter">l</span><span class="letter">u</span><span class="letter">ç</span><span class="letter">ã</span><span class="letter">o</span></span>
+          <span class="word"><span class="letter">d</span><span class="letter">a</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">m</span><span class="letter">a</span><span class="letter">i</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">i</span><span class="letter">m</span><span class="letter">p</span><span class="letter">o</span><span class="letter">r</span><span class="letter">t</span><span class="letter">a</span><span class="letter">n</span><span class="letter">t</span><span class="letter">e</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">s</span><span class="letter">c</span><span class="letter">o</span><span class="letter">l</span><span class="letter">a</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">u</span><span class="letter">r</span><span class="letter">o</span><span class="letter">p</span><span class="letter">e</span><span class="letter">i</span><span class="letter">a</span><span class="letter">s</span></span>
+          <span class="word"><span class="letter">—</span></span>
+          <span class="word"><span class="letter">a</span><span class="letter">p</span><span class="letter">l</span><span class="letter">i</span><span class="letter">c</span><span class="letter">a</span><span class="letter">d</span><span class="letter">a</span></span>
+          <span class="word"><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span></span>
+          <span class="word"><span class="letter">p</span><span class="letter">r</span><span class="letter">o</span><span class="letter">p</span><span class="letter">ó</span><span class="letter">s</span><span class="letter">i</span><span class="letter">t</span><span class="letter">o</span><span class="letter">,</span></span>
+          <span class="word"><span class="letter">n</span><span class="letter">ã</span><span class="letter">o</span></span>
+          <span class="word"><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span></span>
+          <span class="word"><span class="letter">e</span><span class="letter">x</span><span class="letter">c</span><span class="letter">e</span><span class="letter">s</span><span class="letter">s</span><span class="letter">o</span><span class="letter">.</span></span>
+        </p>
+        <h2 class="text-title-section">O Frenesi Visual da Web Moderna</h2>
+        <div class="manifesto-grid">
+          <div class="grid-main">
+            <p class="text-body with-drop-cap">A democratização de ferramentas como Webflow trouxe algo perigoso: a ilusão de que efeitos substituem substância. Parallax excessivo. Animações que disputam atenção. Tipografia que grita sem dizer nada. Cores que impressionam, mas não comunicam. O resultado? Sites visualmente "impressionantes" que falham no essencial: transmitir identidade e gerar conexão.</p>
+          </div>
+          <div class="grid-aside">
+            <p class="pull-quote">Beleza sem propósito é ruído. Design sem fundamento é decoração.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto-section animate-on-scroll">
+        <h2 class="text-title-section">Design como Linguagem, Não como Espetáculo</h2>
+        <div class="manifesto-grid">
+          <div class="grid-main">
+            <p class="text-body">Brand-Led Design parte de um princípio simples: <strong>o visual serve à mensagem, nunca o contrário.</strong> Cada escolha — da tipografia à interação, da cor ao espaçamento — é deliberada.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto-section animate-on-scroll">
+          <h2 class="text-title-section">Quatro Escolas, Uma Síntese</h2>
+          <div class="schools-grid">
+              <div class="school-card animate-on-scroll">
+                  <h3 class="school-title">Alemanha & Suíça</h3>
+                  <p class="school-subtitle">Clareza e Função</p>
+                  <p class="text-body">Bauhaus e Swiss Style eram sobre <strong>eliminar o supérfluo para revelar o essencial.</strong></p>
+              </div>
+              <div class="school-card animate-on-scroll">
+                  <h3 class="school-title">Dinamarca</h3>
+                  <p class="school-subtitle">Interação e Conforto</p>
+                  <p class="text-body">A escola dinamarquesa nos ensinou que <strong>design não deve impressionar, deve acolher.</strong></p>
+              </div>
+              <div class="school-card animate-on-scroll">
+                  <h3 class="school-title">França</h3>
+                  <p class="school-subtitle">Profundidade e Sofisticação</p>
+                  <p class="text-body">Design francês nos lembra que <strong>sofisticação não é complexidade, é refinamento.</strong></p>
+              </div>
+              <div class="school-card animate-on-scroll">
+                  <h3 class="school-title">Itália</h3>
+                  <p class="school-subtitle">Emoção e Expressão</p>
+                  <p class="text-body">Design italiano nos ensina que <strong>racionalidade não exclui emoção.</strong></p>
+              </div>
+          </div>
+      </section>
+      
+      <section class="manifesto-section animate-on-scroll">
+        <h2 class="text-title-section">O Que Nós Não Fazemos</h2>
+        <ul class="principles-list">
+          <li class="animate-on-scroll"><span>Não</span> seguimos tendências sem propósito.</li>
+          <li class="animate-on-scroll"><span>Não</span> criamos para impressionar outros designers.</li>
+          <li class="animate-on-scroll"><span>Não</span> abusamos de animação.</li>
+          <li class="animate-on-scroll"><span>Não</span> ignoramos performance.</li>
+          <li class="animate-on-scroll"><span>Não</span> copiamos concorrentes.</li>
+          <li class="animate-on-scroll"><span>Não</span> separamos design de conteúdo.</li>
+        </ul>
+      </section>
+
+      <section class="manifesto-cta animate-on-scroll">
+        <h2 class="text-title-section">Vamos Projetar Sua Identidade Visual</h2>
+        <p class="text-intro" style="text-align: center; margin-left: auto; margin-right: auto;">Se você quer presença visual que carrega sua identidade de forma indelével, Brand-Led Design é para você.</p>
+        <a href="/contato" class="cta-link desktop-cta">Entrar em Contato →</a>
+      </section>
+    </div>
+    <Footer />
+  </div>
+</Layout>
+
+<style is:global>
+  /* Estilos globais necessários para o Hero extraído */
+  @import '../components/sections/14_manifest/css/brand-led-design-hero.css';
+</style>
+
+<style>
+  /* Estilos específicos para a nova página do manifesto */
+  #manifesto-content {
+    padding: var(--space-4xl) var(--space-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5xl);
+    background-color: var(--color-background);
+    position: relative;
+    z-index: 3; /* Above the Ulm background elements */
+  }
+
+  .manifesto-section {
+    padding: var(--space-3xl) 0;
+  }
+  
+  .manifesto-section .text-title-section {
+      margin-bottom: var(--space-2xl);
+      text-align: center;
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .manifesto-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .grid-main .text-body {
+    max-width: 65ch;
+  }
+
+  .with-drop-cap::first-letter {
+    font-family: var(--font-family-heading);
+    font-size: 4em;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.1em;
+    color: var(--color-accent-accessible);
+  }
+
+  .pull-quote {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+    border-left: 2px solid var(--color-accent);
+    padding-left: var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .schools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .schools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .school-card {
+      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      background-color: var(--color-white);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  }
+
+  .school-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-accent-accessible);
+  }
+
+  .school-title {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--space-xs);
+  }
+
+  .school-subtitle {
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-base);
+      color: var(--color-text-tertiary);
+      margin-bottom: var(--space-lg);
+  }
+
+  .principles-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-normal);
+  }
+
+  .principles-list li {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .principles-list li:first-child {
+      border-top: 1px solid var(--color-border);
+  }
+
+  .principles-list span {
+    font-style: italic;
+    color: var(--color-accent-accessible);
+    margin-right: var(--space-sm);
+  }
+
+  .manifesto-cta {
+    text-align: center;
+    padding: var(--space-5xl) var(--space-2xl);
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+  }
+
+  .manifesto-cta .btn {
+      margin-top: var(--space-lg);
+  }
+
+  /* Estilo para cta-link seguindo o padrão das outras seções */
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-2xl);
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  .cta-link:hover::before {
+    left: 0;
+  }
+
+  .cta-link:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+  }
+
+  .arrow {
+    margin-left: var(--space-sm);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-link:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .desktop-cta {
+    display: inline-flex;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0.2s;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .principles-list li, .school-card {
+      transition-delay: 0s;
+  }
+  
+  /* Ulm School-inspired background elements */
+  .ulm-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Behind the content */
+    pointer-events: none; /* Allow interactions with content */
+  }
+  
+  .ulm-element {
+    position: absolute;
+    opacity: 0.15;
+  }
+  
+  .ulm-grid {
+    top: 10%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--color-text-primary);
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .ulm-circle {
+    bottom: 20%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--color-text-primary);
+    border-radius: 50%;
+  }
+  
+  .ulm-line {
+    top: 40%;
+    right: 15%;
+    width: 120px;
+    height: 2px;
+    background: var(--color-text-primary);
+    transform: rotate(45deg);
+  }
+  
+  /* Bauhaus-inspired geometric dot */
+  .bauhaus-dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    top: 20%;
+    right: 15%;
+    z-index: 2; /* Above the background but below content */
+  }
+  
+  /* Brand-led title styles */
+  #brand-led-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .title-part {
+    display: inline-block;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(150px);
+    transition: transform 0.4s ease, color 0.4s ease;
+  }
+  
+  .title-design {
+    display: inline-block;
+    margin-left: 0.5rem;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(150px);
+    transition: transform 0.4s ease, color 0.4s ease;
+  }
+  
+  .title-dash-container {
+    display: flex;
+    align-items: center;
+    height: 1em;
+    margin: 0 var(--space-xs);
+    opacity: 0;
+  }
+  
+  .title-dash {
+    width: clamp(2rem, 6vw, 4rem);
+    height: 0.08em;
+    background: linear-gradient(to right, transparent 0%, var(--color-accent) 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    transition: background-position 1s ease;
+  }
+  
+  .title-part.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .title-design.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .title-dash-container.reveal {
+    opacity: 1;
+  }
+  
+  .title-dash.reveal {
+    background-position: 0 0;
+  }
+  
+  .title-part:hover {
+    transform: translateY(-10px);
+    color: var(--color-accent);
+  }
+  
+  .title-design:hover {
+    transform: translateY(-10px);
+    color: var(--color-accent);
+  }
+  
+  /* Text reveal effect */
+  .reveal-text {
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .word {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0 0.25em;
+  }
+  
+  .letter {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+  }
+  
+  .letter.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+</style>
+
+<script>
+  // Script para animações de scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const revealText = document.querySelector('.reveal-text');
+    const letters = document.querySelectorAll('.letter');
+    const words = document.querySelectorAll('.word');
+
+    // Observer for regular animated elements
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            if (element.parentElement?.matches('.principles-list, .schools-grid')) {
+                const children = Array.from(element.parentElement.children);
+                const childIndex = children.indexOf(element);
+                element.style.transitionDelay = `${childIndex * 100}ms`;
+            }
+            element.classList.add('is-visible');
+            observer.unobserve(element);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => observer.observe(el));
+      
+      // Observer for reveal text effect - each word individually
+      const textObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate each letter with a delay
+            letters.forEach((letter, index) => {
+              setTimeout(() => {
+                letter.classList.add('revealed');
+              }, index * 30); // 30ms delay between each letter (faster than before)
+            });
+            
+            textObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 }); // Trigger when 20% of the element is visible
+      
+      if (revealText) {
+        textObserver.observe(revealText);
+      }
+    } else {
+      animatedElements.forEach(el => el.classList.add('is-visible'));
+      if (revealText) {
+        // Fallback: reveal all letters immediately if IntersectionObserver is not supported
+        letters.forEach(letter => {
+          letter.classList.add('revealed');
+        });
+      }
+    }
+  });
+  // GSAP animation for the main title
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if GSAP is available
+    if (typeof gsap !== 'undefined') {
+      // Wait a bit to ensure DrawSVGPlugin is loaded
+      setTimeout(() => {
+        // Animate the main title with stagger effect
+        gsap.from(".title-part", {
+          duration: 1.2,
+          y: 150,
+          opacity: 0,
+          stagger: 0.3,
+          ease: "power3.out",
+          delay: 0.2
+        });
+        
+        // Animate the dash with a draw effect (only if DrawSVGPlugin is available)
+        if (typeof DrawSVGPlugin !== 'undefined') {
+          gsap.from(".dash-path", {
+            duration: 1,
+            drawSVG: 0,
+            ease: "power2.out",
+            delay: 0.5
+          });
+        } else {
+          // Fallback: animate opacity and scale
+          gsap.from(".title-dash", {
+            duration: 1,
+            scaleX: 0,
+            opacity: 0,
+            transformOrigin: "center",
+            ease: "power2.out",
+            delay: 0.5
+          });
+        }
+        
+        // Animate the "DESIGN" with a different effect
+        gsap.from(".title-design", {
+          duration: 1.2,
+          y: 150,
+          opacity: 0,
+          ease: "back.out(1.7)",
+          delay: 1
+        });
+        
+        // Add hover effect to the title
+        const title = document.getElementById('brand-led-title');
+        title.addEventListener('mouseenter', () => {
+          gsap.to(".title-part", {
+            duration: 0.4,
+            y: -10,
+            color: 'var(--color-accent)',
+            stagger: 0.05,
+            ease: "power2.out"
+          });
+          
+          gsap.to(".title-design", {
+            duration: 0.4,
+            y: -10,
+            color: 'var(--color-accent)',
+            ease: "power2.out"
+          });
+        });
+        
+        title.addEventListener('mouseleave', () => {
+          gsap.to(".title-part", {
+            duration: 0.4,
+            y: 0,
+            color: 'var(--color-white)',
+            stagger: 0.05,
+            ease: "power2.out"
+          });
+          
+          gsap.to(".title-design", {
+            duration: 0.4,
+            y: 0,
+            color: 'var(--color-white)',
+            ease: "power2.out"
+          });
+        });
+      }, 300); // Small delay to ensure GSAP plugins are loaded
+    } else {
+      // Fallback if GSAP is not loaded
+      console.warn('GSAP is not loaded. Title animations will not run.');
+    }
+  });
+</script>
+
+<!-- Simple animation script using Web Animations API -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titleParts = document.querySelectorAll('.title-part');
+    const titleDesign = document.querySelector('.title-design');
+    const titleDash = document.querySelector('.title-dash');
+    const dashContainer = document.querySelector('.title-dash-container');
+    
+    // Animate each title part with a delay
+    titleParts.forEach((part, index) => {
+      setTimeout(() => {
+        part.classList.add('reveal');
+      }, 300 * index);
+    });
+    
+    // Animate the dash after the first parts
+    setTimeout(() => {
+      dashContainer.classList.add('reveal');
+      titleDash.classList.add('reveal');
+    }, 600);
+    
+    // Animate the DESIGN part after the dash
+    setTimeout(() => {
+      titleDesign.classList.add('reveal');
+    }, 1000);
+  });
+</script>

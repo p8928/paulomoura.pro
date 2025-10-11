@@ -2,42 +2,17 @@
 import './css/metodology.css';
 ---
 
-<header class="metodology-hero">
+<header class="metodology-hero snap-section">
   <div class="metodology-header">
     <h1 class="metodology-title">
       <span class="title-brand">Brand</span>
-      <svg class="title-dash" viewBox="0 0 80 10" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="10" fill="#C0B283"/></svg>
+      <div class="title-dash-container">
+        <div class="title-dash"></div>
+      </div>
       <span class="title-led">Led</span>
     </h1>
   </div>
 </header>
-
-<main class="metodology-main-content">
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-
-  <div class="metodology-grid-content">
-    <h2 class="metodology-subtitle animate-fade-in">FAÇA SEU BRANDING TRABALHAR POR VOCÊ</h2>
-
-    <p class="metodology-paragraph animate-fade-in">
-      Você pode encontrar qualquer profissional ou agência que crie um site, publique conteúdo e gerencie SEO adotando abordagem genérica — acontece que sua empresa não é algo qualquer. Uma comunicação digital coesa requer um olhar profundo sobre os valores, características e virtudes da sua marca.
-    </p>
-
-    <blockquote class="metodology-blockquote animate-pull-quote">
-      "Em vez de apenas corresponder suas palavras-chave a páginas da web, o Google quer entender do que você realmente necessita com base em quem você é e o que, como indivíduo, precisa no momento. O Google chama isso de contexto pessoal."
-      <cite class="metodology-cite">Eli Schwartz — Autor e criador do conceito Product-Led SEO</cite>
-    </blockquote>
-
-    <div class="metodology-final-grid">
-      <p class="metodology-paragraph animate-fade-in">
-        O Google compreende nossas preferências à medida em que pesquisamos, clicamos ou avaliamos, por exemplo. Isso significa que o algoritmo — a cada dia mais calibrado — sabe quando a sua empresa é recomendação adequada ao contexto do usuário.
-      </p>
-      <p class="metodology-paragraph animate-fade-in">
-        Quanto mais complexidade esse contexto adquire, maior a quantidade de critérios que determinarão o resultado da pesquisa e, consequentemente, melhores serão as recomendações. O melhor disso tudo é que os benefícios não se limitam ao usuário: a sua marca também tem muito a ganhar, contanto que entenda o jogo.
-      </p>
-    </div>
-  </div>
-</main>
 
 <script>
   import { gsap } from "gsap";
@@ -45,18 +20,46 @@ import './css/metodology.css';
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Store ScrollTrigger instances to properly clean them up
+  let scrollTriggerInstances = [];
+
   function initAnimations() {
     // Limpar triggers anteriores para evitar duplicação
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    // Clear our local array as well
+    scrollTriggerInstances.forEach(trigger => trigger.kill());
+    scrollTriggerInstances = [];
 
-    // Coreografia do Título
-    const tl = gsap.timeline({ delay: 0.2 });
-    tl.from(".title-brand", { x: -50, opacity: 0, duration: 1, ease: "power3.out" })
-      .from(".title-led", { x: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8")
-      .from(".title-dash rect", { scaleX: 0, transformOrigin: "center", duration: 0.8, ease: "power3.inOut" }, "-=0.8");
+    // Coreografia do Título - Now using opacity and transform properties that match the CSS
+    const tl = gsap.timeline({ 
+      delay: 0.2,
+      onStart: () => {
+        // Make the entire title visible when animation starts
+        const title = document.querySelector('.metodology-title');
+        if (title) {
+          title.style.opacity = '1';
+          title.style.visibility = 'visible';
+        }
+      }
+    });
+    
+    tl.fromTo(".title-brand", 
+      { x: -50, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    )
+    .fromTo(".title-led", 
+      { x: 50, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
+      "-=0.8"
+    )
+    .fromTo(".title-dash", 
+      { scaleX: 0, opacity: 0, transformOrigin: "center" }, 
+      { scaleX: 1, opacity: 1, duration: 0.8, ease: "power3.inOut" }, 
+      "-=0.8"
+    );
 
     // Animação de Parallax para as formas
-    gsap.to(".shape-1", {
+    const shape1Trigger = gsap.to(".shape-1", {
       y: -150,
       ease: "none",
       scrollTrigger: {
@@ -66,8 +69,9 @@ import './css/metodology.css';
         scrub: 0.4,
       },
     });
+    scrollTriggerInstances.push(shape1Trigger.scrollTrigger);
 
-    gsap.to(".shape-2", {
+    const shape2Trigger = gsap.to(".shape-2", {
       y: 200,
       ease: "none",
       scrollTrigger: {
@@ -77,11 +81,12 @@ import './css/metodology.css';
         scrub: 0.6,
       },
     });
+    scrollTriggerInstances.push(shape2Trigger.scrollTrigger);
 
     // Animação de Fade-in para os textos
     const fadeElements = document.querySelectorAll(".animate-fade-in");
     fadeElements.forEach(el => {
-      gsap.fromTo(el,
+      const fadeTrigger = gsap.fromTo(el,
         { opacity: 0, y: 30 },
         {
           opacity: 1,
@@ -95,12 +100,13 @@ import './css/metodology.css';
           }
         }
       );
+      scrollTriggerInstances.push(fadeTrigger.scrollTrigger);
     });
 
     // Animação para o Pull Quote
     const blockquote = document.querySelector('.animate-pull-quote');
     if (blockquote) {
-      gsap.from(blockquote, {
+      const quoteTrigger = gsap.from(blockquote, {
         opacity: 0,
         scale: 0.95,
         duration: 1.2,
@@ -111,6 +117,7 @@ import './css/metodology.css';
           toggleActions: "play none none none",
         }
       });
+      scrollTriggerInstances.push(quoteTrigger.scrollTrigger);
     }
   }
 
@@ -123,5 +130,7 @@ import './css/metodology.css';
   // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
   document.addEventListener('astro:before-swap', () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    scrollTriggerInstances.forEach(trigger => trigger.kill());
+    scrollTriggerInstances = [];
   });
 </script>

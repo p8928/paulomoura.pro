@@ -1,0 +1,379 @@
+  .branding-section {
+    background-color: #ffffff;
+    color: #000000;
+    padding: var(--space-5xl) var(--space-2xl); /* Espaçamento consistente */
+    display: flex;
+    align-items: center;
+    position: relative;
+    scroll-snap-align: start;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl); /* Espaçamento consistente */
+    align-items: center;
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg); /* Espaçamento consistente */
+    margin-bottom: var(--space-lg);
+  }
+
+  .main-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: var(--font-weight-light);
+    color: #000000;
+    margin: 0;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .bauhaus-element {
+    width: 80px;
+    height: 4px;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+    align-self: flex-start;
+  }
+
+  .section-content {
+    padding-top: var(--space-xl); /* Espaçamento consistente */
+  }
+
+  .section-title {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: #000000;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    margin: 0 0 var(--space-xl) 0; /* Espaçamento consistente */
+    letter-spacing: -0.01em;
+  }
+
+  .description {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    margin: 0 0 var(--space-3xl) 0; /* Espaçamento consistente */
+    color: #333333;
+    font-weight: var(--font-weight-light);
+    max-width: 70ch; /* Limite de largura para legibilidade */
+  }
+
+  .description strong {
+    color: #000000;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-2xl);
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  .cta-link:hover::before {
+    left: 0;
+  }
+
+  .cta-link:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+  }
+
+  .arrow {
+    margin-left: var(--space-sm);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-link:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  /* Controle de visibilidade dos CTAs */
+  .mobile-cta {
+    display: none;
+  }
+
+  .desktop-cta {
+    display: block;
+  }
+
+  .right-column {
+    padding-top: var(--space-2xl); /* Espaçamento consistente */
+  }
+
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg); /* Espaçamento consistente */
+  }
+
+  .right-title {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    margin: 0;
+    color: #000000;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .right-description {
+    font-family: var(--font-family-primary);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    color: #333333;
+    font-weight: var(--font-weight-light);
+    margin: 0;
+    max-width: 70ch; /* Limite de largura para legibilidade */
+  }
+
+  .brand-elements {
+    display: flex;
+    gap: var(--space-md); /* Espaçamento consistente */
+    margin-top: var(--space-md);
+  }
+
+  .element-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+  }
+
+  .element-bar {
+    width: 30px;
+    height: 4px;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+    align-self: center;
+  }
+
+  /* Controle de visibilidade dos CTAs */
+  .mobile-cta {
+    display: none;
+  }
+
+  .desktop-cta {
+    display: block;
+  }
+
+  /* Animações de entrada */
+  .section-header {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  }
+
+  .section-content {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  }
+
+  .right-column {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .content-wrapper {
+      gap: var(--space-2xl); /* Espaçamento consistente */
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-md);
+    }
+    
+    .section-content {
+      padding-top: var(--space-sm);
+    }
+    
+    .right-column {
+      padding-top: var(--space-lg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .branding-section {
+      padding: var(--space-4xl) var(--space-lg); /* Espaçamento consistente */
+    }
+
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl); /* Espaçamento consistente */
+      text-align: left;
+      justify-items: start;
+    }
+
+    .right-column {
+      padding-top: 0;
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-lg);
+      text-align: center;
+      align-items: center;
+    }
+    
+    .bauhaus-element {
+      align-self: center;
+    }
+    
+    .section-content {
+      padding-top: 0;
+    }
+    
+    .right-content {
+      align-items: center;
+    }
+    
+    /* Inverter ordem do CTA em mobile */
+    .mobile-cta {
+      display: inline-flex;
+      margin-top: var(--space-xl); /* Espaçamento consistente */
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .desktop-cta {
+      display: none;
+    }
+    
+    .right-title {
+      text-align: center;
+    }
+    
+    .right-description {
+      text-align: center;
+    }
+    
+    .brand-elements {
+      justify-content: center;
+    }
+    
+    .left-column {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .branding-section {
+      padding: var(--space-3xl) var(--space-md); /* Espaçamento consistente */
+    }
+
+    .content-wrapper {
+      gap: var(--space-xl); /* Espaçamento consistente */
+      text-align: left;
+      justify-items: start;
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-md);
+      gap: var(--space-md);
+    }
+    
+    .bauhaus-element {
+      width: 60px;
+      height: 3px;
+    }
+    
+    .section-content {
+      padding-top: 0;
+    }
+    
+    .description {
+      margin-bottom: var(--space-xl); /* Espaçamento consistente */
+    }
+    
+    .mobile-cta {
+      margin-top: var(--space-xl); /* Espaçamento consistente */
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .right-title {
+      text-align: center;
+    }
+    
+    .right-description {
+      text-align: center;
+    }
+    
+    .left-column {
+      text-align: center;
+    }
+    
+    .right-column {
+      text-align: center;
+    }
+    
+    .brand-elements {
+      justify-content: center;
+    }
+  }
+  
+  /* Forçar centralização do CTA mobile em todos os dispositivos móveis */
+  @media (max-width: 768px) {
+    .mobile-cta {
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+  }

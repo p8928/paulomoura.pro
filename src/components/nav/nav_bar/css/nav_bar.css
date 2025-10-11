@@ -1,0 +1,343 @@
+.hero__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-fixed);
+    padding: var(--space-lg) var(--space-xl);
+    background: transparent;
+    box-sizing: border-box;
+  }
+  
+  .hero__logo {
+    flex: 0 0 auto;
+  }
+  
+  .hero__nav {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-left: auto;
+  }
+  
+  .contact {
+    font-weight: 300;
+  }
+  
+  /* Layout mobile */
+  @media (max-width: 768px) {
+    .hero__header {
+      position: fixed;
+      padding: var(--space-md);
+      height: 60px;
+    }
+    
+    .hero__logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    
+    .hero__nav {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .hero__nav-link {
+      order: 2;
+    }
+    
+    .hero__menu-btn {
+      order: 1;
+      background: none;
+      border: none;
+      color: var(--color-medium-gray);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) 0;
+    }
+    
+    .hero__language-selector,
+    .blog-link {
+      display: none !important;
+    }
+  }
+  
+  .hero__logo img {
+    width: var(--size-control-xs);
+    height: auto;
+    opacity: 0.8;
+  }
+  
+  .hero__logo:hover img {
+    opacity: 1;
+  }
+
+  .hero__nav-link {
+    color: var(--color-dark-gray);
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    transition: color 0.2s ease;
+    position: relative;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    letter-spacing: 0.18em;
+    background: none;
+  }
+  
+  /* Simple hover effect */
+  .hero__nav-link:hover {
+    color: var(--color-text-primary);
+  }
+  
+  /* Enhanced hover effects for blog and contact links (similar to language selector) */
+  .blog-link,
+  .contact {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blog-link::before,
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--radius-md);
+    transform: scale(0.96, 0.9);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  
+  .blog-link:hover::before,
+  .contact:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    background: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+  
+  .blog-link:hover,
+  .contact:hover {
+    color: var(--color-accent-accessible);
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Remove underline effect from blog and contact links */
+  .blog-link.hover-underline::after,
+  .contact.hover-underline::after {
+    display: none;
+  }
+  
+  /* Underline animation for specific links */
+  .hero__nav-link.hover-underline {
+    position: relative;
+  }
+  
+  .hero__nav-link.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  .hero__nav-link.hover-underline:hover::after {
+    width: calc(100% - 24px);
+  }
+  
+  /* Underline animation for specific links */
+  .hero__nav-link.hover-underline {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero__nav-link.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1.5px;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-dark-gray);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-sm);
+  }
+  
+  .hero__nav-link.hover-underline:hover::after {
+    width: calc(100% - 24px);
+  }
+  
+  .hero__menu-btn {
+    background: none;
+    border: none;
+    color: var(--color-dark-gray);
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.18em;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .hero__menu-btn:hover {
+    color: var(--color-accent-accessible);
+  }
+
+  .hero__menu-lines {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__menu-lines span {
+    width: 28px;
+    height: 1px;
+    background: var(--color-dark-gray);
+    transition: background 0.3s ease;
+  }
+
+  .hero__menu-btn:hover .hero__menu-lines span {
+    background: var(--color-accent-accessible);
+  }
+  
+  /* Language selector styles */
+  .hero__language-selector {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hero__language-btn {
+    background: none;
+    border: none;
+    color: var(--color-dark-gray);
+    cursor: pointer;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  
+  .hero__language-btn:hover {
+    color: var(--color-accent-accessible);
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .hero__language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    width: 180px;
+    z-index: var(--z-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid #eaeaea;
+  }
+  
+  .hero__language-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .hero__language-option {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 16px;
+    color: var(--color-dark-gray);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-md);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  
+
+  /* Hygge hover effect */
+  .hero__language-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--radius-md);
+    transform: scale(0.96, 0.9);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  .hero__language-option:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    background: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .hero__language-option:active::before {
+    transform: scale(0.98);
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  .hero__language-option.active {
+    font-weight: 500;
+  }
+  
+  .hero__language-option svg {
+    width: 20px;
+    height: 15px;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+  
+  .hero__language-option.active::before {
+    background: rgba(160, 138, 74, 0.05); /* Alterado para usar a cor de destaque com transparência */
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  

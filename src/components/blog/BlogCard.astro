@@ -1,0 +1,105 @@
+---
+const { entry } = Astro.props;
+const { data, slug } = entry;
+const { title, description, publishDate, tags } = data;
+---
+<a href={`/blog/${slug}/`} class="blog-card">
+  <div class="blog-thumb">
+    <div class="text-thumb">{tags[0]}</div>
+  </div>
+  <div class="blog-content-inner">
+    <div class="blog-meta">
+      <span>{publishDate.toDateString()}</span>
+      <span class="blog-category">{tags[0]}</span>
+    </div>
+    <h3 class="blog-title">{title}</h3>
+    <p class="blog-excerpt">{description}</p>
+    <div class="blog-read-more">Ler mais →</div>
+  </div>
+</a>
+
+<style>
+.blog-card {
+  background: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.blog-thumb {
+  height: 160px;
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.text-thumb {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  letter-spacing: 2px;
+}
+
+.blog-content-inner {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.blog-category {
+  background: var(--color-accent);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.blog-title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  color: var(--color-text-primary);
+  flex-grow: 1;
+}
+
+.blog-excerpt {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.blog-read-more {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+</style>

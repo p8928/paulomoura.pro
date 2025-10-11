@@ -1,0 +1,87 @@
+---
+import './css/brandled.css';
+---
+
+<section class="hero-section snap-section">
+  <div class="watermark-container">
+    <h1 class="watermark-animated">
+      <span class="brand-part">BRAND</span>
+      <svg class="dash-svg" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+        <path class="dash-path" d="M20,10 H80" stroke="currentColor" stroke-width="4" fill="none" />
+      </svg>
+      <span class="led-part">LED</span>
+    </h1>
+  </div>
+  <div class="noise-overlay"></div>
+  <div class="container">
+    <div class="hero-text">
+      <span class="hero-text-first-line">Autoridade digital que algoritmos compreendem, </span> 
+      <span class="highlight">clientes reconhecem.</span>
+    </div>
+  </div>
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+    gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+    
+    // Initialize GSAP animations when the component is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Remove grid-overlay animation and keep only noise-overlay
+      gsap.to('.noise-overlay', {
+        yPercent: 7,
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.8
+        }
+      });
+      
+      // Use GPU-accelerated transforms for better performance
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+      
+      // Use translate3d for GPU acceleration and more subtle movement
+      tl.fromTo('.brand-part', 
+        { xPercent: -8, opacity: 0.3, scale: 0.97 },
+        { 
+          xPercent: 0, 
+          opacity: 1,
+          scale: 1,
+          duration: 1.2, 
+          ease: "sine.out"
+        }
+      );
+      
+      tl.fromTo('.dash-path', 
+        { drawSVG: "0%", opacity: 0.3 },
+        { 
+          drawSVG: "100%", 
+          opacity: 1,
+          duration: 0.8, 
+          ease: "sine.out"
+        },
+        "-=0.6" // Overlap with previous animation
+      );
+      
+      tl.fromTo('.led-part', 
+        { xPercent: 8, opacity: 0.3, scale: 0.97 },
+        { 
+          xPercent: 0, 
+          opacity: 1,
+          scale: 1,
+          duration: 1.2, 
+          ease: "sine.out"
+        },
+        "-=0.5" // Start slightly before previous animation completes
+      );
+    });
+  </script>
+</section>

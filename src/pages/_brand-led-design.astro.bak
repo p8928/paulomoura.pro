@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/nav/Navigation.astro';
+import BrandLedDesignHero from '../components/sections/14_manifest/BrandLedDesignHero.astro';
+import Footer from '../components/footer/Footer.astro';
+---
+
+<Layout>
+  <Navigation slot="nav" />
+  <BrandLedDesignHero slot="snap-content" />
+  <Footer slot="rest-content" />
+</Layout>
+

@@ -1,0 +1,390 @@
+---
+---
+
+<section class="branding-section animate-on-scroll">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="left-column">
+        <div class="section-header">
+          <h2 class="main-title">BRANDING</h2>
+          <div class="bauhaus-element"></div>
+        </div>
+        
+        <div class="section-content">
+          <h3 class="text-title-section">
+            ELEVANDO O DIGITAL<br>
+            AO PADRÃO DA SUA<br>
+            MARCA
+          </h3>
+          
+          <p class="text-body">
+            O que torna seu negócio excepcional deve tornar sua presença online incontornável. Transpomos seus valores em identidade digital projetada para construir autoridade e aumentar vendas.
+          </p>
+        </div>
+        
+        <div class="cta-section">
+          <a href="#" class="cta-link desktop-cta">
+            VEJA COMO ISSO TRANSFORMA NEGÓCIOS
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="right-column">
+        <div class="right-content">
+          <h3 class="text-title-section">
+            PENSADO PARA<br>
+            PESSOAS, AMIGÁVEL<br>
+            PARA ROBÔS
+          </h3>
+          
+          <p class="text-body">
+            Deciframos a semântica da sua comunicação e a otimizamos para que a essência da sua marca conecte com sua audiência e seja compreendida por mecanismos de busca.
+          </p>
+          
+          <div class="brand-elements">
+            <div class="element-dot"></div>
+            <div class="element-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .branding-section {
+    background-color: #ffffff;
+    color: #000000;
+    padding: var(--space-5xl) var(--space-2xl); /* Espaçamento consistente */
+    display: flex;
+    align-items: center;
+    position: relative;
+    scroll-snap-align: start;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl); /* Espaçamento consistente */
+    align-items: center;
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg); /* Espaçamento consistente */
+    margin-bottom: var(--space-lg);
+  }
+
+  .main-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: var(--font-weight-light);
+    color: #000000;
+    margin: 0;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .bauhaus-element {
+    width: 80px;
+    height: 4px;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+    align-self: flex-start;
+  }
+
+  .section-content {
+    padding-top: var(--space-xl); /* Espaçamento consistente */
+  }
+
+  .section-title {
+  }
+
+  .description {
+    max-width: 70ch; /* Limite de largura para legibilidade */
+  }
+
+  .description strong {
+    color: #000000;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md) var(--space-2xl);
+    background: transparent;
+    color: #000000;
+    border: 2px solid var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  .cta-link:hover::before {
+    left: 0;
+  }
+
+  .cta-link:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+  }
+
+  .arrow {
+    margin-left: var(--space-sm);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-link:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .desktop-cta {
+    display: block;
+  }
+
+  .right-column {
+    padding-top: var(--space-2xl); /* Espaçamento consistente */
+  }
+
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg); /* Espaçamento consistente */
+  }
+
+  .right-title {
+  }
+
+  .right-description {
+    max-width: 70ch; /* Limite de largura para legibilidade */
+  }
+
+  .brand-elements {
+    display: flex;
+    gap: var(--space-md); /* Espaçamento consistente */
+    margin-top: var(--space-md);
+  }
+
+  .element-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+  }
+
+  .element-bar {
+    width: 30px;
+    height: 4px;
+    background: var(--color-accent); /* Alterado para cor de destaque */
+    align-self: center;
+  }
+
+  .cta-section {
+    margin-top: var(--space-xl);
+  }
+
+  .desktop-cta {
+    display: inline-flex;
+  }
+
+  /* Animações de entrada */
+  .section-header {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  }
+
+  .section-content {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  }
+
+  .right-column {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .content-wrapper {
+      gap: var(--space-2xl);
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-md);
+    }
+    
+    .section-content {
+      padding-top: var(--space-sm);
+    }
+    
+    .right-column {
+      padding-top: var(--space-lg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .branding-section {
+      padding: var(--space-4xl) var(--space-lg);
+    }
+
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      text-align: center;
+      justify-items: center;
+    }
+
+    .right-column {
+      padding-top: 0;
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-lg);
+      text-align: center;
+      align-items: center;
+    }
+    
+    .bauhaus-element {
+      align-self: center;
+    }
+    
+    .section-content {
+      padding-top: 0;
+    }
+    
+    .right-content {
+      align-items: center;
+    }
+    
+    .desktop-cta {
+      display: inline-flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .right-title {
+      text-align: center;
+    }
+    
+    .right-description {
+      text-align: center;
+    }
+    
+    .brand-elements {
+      justify-content: center;
+    }
+    
+    .left-column {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .branding-section {
+      padding: var(--space-3xl) var(--space-md);
+    }
+
+    .content-wrapper {
+      gap: var(--space-xl);
+      text-align: left;
+      justify-items: start;
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-md);
+      gap: var(--space-md);
+    }
+    
+    .bauhaus-element {
+      width: 60px;
+      height: 3px;
+    }
+    
+    .section-content {
+      padding-top: 0;
+    }
+    
+    .description {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .desktop-cta {
+      width: 100%;
+      max-width: 100%;
+      padding: var(--space-xs) var(--space-lg);
+      font-size: 0.8rem;
+    }
+    
+    .right-title {
+      text-align: center;
+    }
+    
+    .right-description {
+      text-align: center;
+    }
+    
+    .left-column {
+      text-align: center;
+    }
+    
+    .right-column {
+      text-align: center;
+    }
+    
+    .brand-elements {
+      justify-content: center;
+    }
+  }
+</style>

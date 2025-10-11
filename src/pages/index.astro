@@ -1,20 +1,28 @@
 ---
-import MetalBackground from '../components/MetalBackground.astro';
+import Layout from '../layouts/Layout.astro'
+import Navigation from '../components/nav/Navigation.astro'
+import Hero from '../components/sections/01_hero/Hero.astro'
+import BrandLed from '../components/sections/02_brand-led/BrandLed.astro'
+import Branding from '../components/sections/03_branding/Branding.astro'
+import Architecture from '../components/sections/04_architecture/Architecture.astro'
+import BrandLedSeo from '../components/sections/05_brand-led_seo/BrandLedSeo.astro'
+import Industries from '../components/sections/06_industries/Industries.astro'
+import Services from '../components/sections/08_services/Services.astro'
+import Faq from '../components/sections/11_faq/faq.astro'
+import Partnership from '../components/sections/09_partnership/Partnership.astro'
+import Footer from '../components/footer/Footer.astro'
 ---
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Paulo Moura</title>
-    <meta name="description" content="Portfólio de Paulo Moura" />
-    <link rel="stylesheet" href="/src/styles/colors.css" />
-  </head>
-  <body>
-    <MetalBackground />
-    <div class="container" style="display: none;">
-      <h1>Bem-vindo ao portfólio de Paulo Moura</h1>
-      <p>Este é o início do nosso projeto com Astro.</p>
-    </div>
-  </body>
-</html>
+<Layout>
+  <Hero slot="hero" />
+  <Navigation slot="nav" />
+  <BrandLed slot="snap-content" />
+  <Branding slot="snap-content" />
+  <Architecture slot="snap-content" />
+  <BrandLedSeo slot="snap-content" />
+  <Industries slot="rest-content" />
+  <Services slot="rest-content" />
+  <Faq slot="rest-content" />
+  <Partnership slot="rest-content" />
+  <Footer slot="rest-content" />
+</Layout>

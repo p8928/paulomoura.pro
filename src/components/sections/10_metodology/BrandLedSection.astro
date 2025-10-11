@@ -1,0 +1,324 @@
+---
+import './css/brandled_section.css';
+---
+
+<section id="brandled-methodology" class="brandled-section">
+  <!-- Ulm School-inspired background elements -->
+  <div class="ulm-background">
+    <div class="ulm-element ulm-grid"></div>
+    <div class="ulm-element ulm-circle"></div>
+    <div class="ulm-element ulm-line"></div>
+  </div>
+  
+  <div class="brandled-section__container">
+    <header class="section-header">
+      <h2 class="section-title">POR ONDE A TRANSFORMAÇÃO COMEÇA</h2>
+      <p class="section-intro">
+        Estruturar sua identidade digital é o primeiro grande passo. Para isso, você precisa desaprender a maioria das táticas obsoletas que profissionais ainda praticam e disseminam — as quais não apenas deixaram de funcionar, mas a prejudicar seu crescimento online.
+      </p>
+    </header>
+    
+    <!-- Static rectangles section -->
+    <div class="floating-rectangles">
+      <div class="static-rect" id="rect1" 
+           hx-get="/api/htmx/traffic-generation" 
+           hx-target="#htmx-content" 
+           hx-swap="innerHTML"
+           hx-trigger="click">
+        <p>Geração de Tráfego</p>
+      </div>
+      <div class="static-rect" id="rect2"
+           hx-get="/api/htmx/keywords" 
+           hx-target="#htmx-content" 
+           hx-swap="innerHTML"
+           hx-trigger="click">
+        <p>Palavras-chave</p>
+      </div>
+      <div class="static-rect" id="rect3"
+           hx-get="/api/htmx/vanity-metrics" 
+           hx-target="#htmx-content" 
+           hx-swap="innerHTML"
+           hx-trigger="click">
+        <p>Métricas de Vaidade</p>
+      </div>
+    </div>
+    
+    <!-- HTMX content container -->
+    <div id="htmx-content" class="htmx-content-container"></div>
+  </div>
+</section>
+
+<style>
+  .ulm-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .ulm-element {
+    position: absolute;
+    opacity: 0.15;
+  }
+
+  .ulm-grid {
+    top: 10%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--color-text-primary);
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .ulm-circle {
+    bottom: 20%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--color-text-primary);
+    border-radius: 50%;
+  }
+
+  .ulm-line {
+    top: 40%;
+    right: 15%;
+    width: 120px;
+    height: 2px;
+    background: var(--color-text-primary);
+    transform: rotate(45deg);
+  }
+
+  .brandled-section {
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    padding: 0 var(--space-lg);
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin: 0 auto var(--space-xl);
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.2s forwards;
+    color: var(--color-text-secondary);
+    text-align: center;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+  }
+
+  .section-intro {
+    /* Inherits from global section-intro class */
+    max-width: 900px; /* Override for this specific section */
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.2s forwards;
+  }
+
+  /* Static rectangles styles */
+  .floating-rectangles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    max-width: 900px;
+    margin: var(--space-3xl) auto;
+    position: relative;
+  }
+
+  .static-rect {
+    background: var(--color-white);
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: 0;
+    box-shadow: none;
+    min-width: auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+  }
+
+  .static-rect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--color-accent);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .static-rect:hover {
+    background-color: #fafafa;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .static-rect:hover::before {
+    height: 100%;
+  }
+
+  .static-rect p {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: var(--font-family-primary);
+    color: var(--color-text-primary);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .static-rect:hover p {
+    color: var(--color-accent-accessible);
+    transform: translateX(2px);
+  }
+
+  .htmx-content-container:empty {
+    display: none;
+  }
+  
+  .htmx-content-container {
+    max-width: 900px;
+    margin: var(--space-xl) auto;
+    padding: var(--space-xl);
+    background: #fafafa;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid var(--color-primary);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .floating-rectangles {
+      grid-template-columns: 1fr;
+    }
+    
+    .static-rect {
+      width: 100%;
+      padding: var(--space-lg);
+    }
+    
+    .accent-circle {
+      width: 300px;
+      height: 300px;
+      animation: rotate 20s linear infinite;
+    }
+    
+    .section {
+      padding: 60px 20px;
+    }
+
+    .section-description {
+      font-size: 1.1rem;
+    }
+
+    .header-left {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .accordion-body {
+      padding: 0 25px 30px 25px;
+    }
+  }
+</style>
+
+<script>
+  function toggleAccordion(itemId) {
+    const item = document.getElementById(itemId);
+    const allItems = document.querySelectorAll('.accordion-item');
+    
+    // Close all other items
+    allItems.forEach(i => {
+      if (i.id !== itemId) {
+        i.classList.remove('active');
+      }
+    });
+    
+    // Toggle current item
+    item.classList.toggle('active');
+    
+    // Smooth scroll to item if opening on mobile
+    if (item.classList.contains('active') && window.innerWidth <= 768) {
+      setTimeout(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }
+
+  // Close accordion when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.accordion-item')) {
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+  });
+  
+  // Cleanup any potential animation instances when leaving the page
+  document.addEventListener('astro:before-swap', () => {
+    // Currently no animations in this component, but keeping for future use
+  });
+</script>

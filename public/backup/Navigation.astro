@@ -1,0 +1,192 @@
+---
+import NavBar from './nav_bar/NavBar.astro';
+import Menu from './overlay_menu/Menu.astro';
+---
+
+<NavBar />
+<Menu />
+
+<script is:inline>
+  // Function to initialize menu functionality once all elements are available
+  const initMenu = () => {
+    const openMenuBtn = document.getElementById('openMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const servicosLink = document.getElementById('servicosLink');
+    const backToMenu = document.getElementById('backToMenu');
+    const mainMenu = document.getElementById('mainMenu');
+    const servicesMenu = document.getElementById('servicesMenu');
+    const menuLinks = document.querySelectorAll('.menu-overlay__link[data-preview]');
+    
+    // Get all animation containers
+    const servicosAnimation = document.getElementById('menu-animation-servicos');
+    const brandLedAnimation = document.getElementById('menu-animation-brand-led');
+    const growthAnimation = document.getElementById('menu-animation-growth');
+    const blogAnimation = document.getElementById('menu-animation-blog');
+    const contatoAnimation = document.getElementById('menu-animation-contato');
+    const brandingAnimation = document.getElementById('menu-animation-branding-digital');
+    const webDevAnimation = document.getElementById('menu-animation-desenvolvimento-web');
+    const seoAnimation = document.getElementById('menu-animation-brand-led-seo');
+    const growthStrategyAnimation = document.getElementById('menu-animation-growth-strategy');
+    const trustAnimation = document.getElementById('menu-animation-consultoria');
+
+    // Only continue if all required elements exist
+    if (!openMenuBtn || !menuOverlay || !closeMenuBtn) {
+      // If not all elements are ready, try again after a short delay
+      setTimeout(initMenu, 100);
+      return;
+    }
+    
+    // Animation mapping - matches the data-preview attribute values
+    const animations = {
+      'servicos': servicosAnimation,
+      'brand-led': brandLedAnimation,
+      'growth': growthAnimation,
+      'blog': blogAnimation,
+      'contato': contatoAnimation,
+      'branding-digital': brandingAnimation,
+      'desenvolvimento-web': webDevAnimation,
+      'brand-led-seo': seoAnimation,
+      'growth-strategy': growthStrategyAnimation,
+      'consultoria': trustAnimation
+    };
+
+    // Open menu function
+    const openMenu = () => {
+      menuOverlay.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+      
+      // Reset menu states when opening
+      if (mainMenu) mainMenu.classList.remove('menu-overlay__nav--hidden');
+      if (servicesMenu) servicesMenu.classList.remove('menu-overlay__nav--active');
+      
+      // Show default animation when menu opens
+      showMenuAnimation();
+    };
+
+    // Close menu function
+    const closeMenu = () => {
+      menuOverlay.classList.remove('is-active');
+      document.body.style.overflow = '';
+      
+      // Reset menu states when closing
+      if (mainMenu) mainMenu.classList.remove('menu-overlay__nav--hidden');
+      if (servicesMenu) servicesMenu.classList.remove('menu-overlay__nav--active');
+    };
+
+    // Show services menu
+    const showServicesMenu = () => {
+      if (mainMenu) mainMenu.classList.add('menu-overlay__nav--hidden');
+      if (servicesMenu) servicesMenu.classList.add('menu-overlay__nav--active');
+    };
+
+    // Show main menu
+    const showMainMenu = () => {
+      if (servicesMenu) servicesMenu.classList.remove('menu-overlay__nav--active');
+      if (mainMenu) mainMenu.classList.remove('menu-overlay__nav--hidden');
+    };
+
+    // Show specific animation based on menu item
+    const showMenuAnimation = (animationKey) => {
+      // Hide all specific animations first
+      Object.values(animations).forEach(anim => {
+        if (anim) anim.classList.add('hidden');
+      });
+      
+      // Hide the default logo container first
+      const defaultContainer = document.querySelector('.menu-overlay__preview-animation-container');
+      if (defaultContainer) {
+        defaultContainer.classList.add('hidden');
+      }
+      
+      // Show default logo if no specific animation key is provided
+      if (animationKey === undefined) {
+        // Show the default logo container 
+        defaultContainer.classList.remove('hidden');
+        return;
+      }
+      
+      // Show the specific animation if it exists
+      if (animations[animationKey]) {
+        animations[animationKey].classList.remove('hidden');
+      } else {
+        // For items without a specific animation, show the default logo
+        defaultContainer.classList.remove('hidden');
+      }
+    };
+
+    // Event listeners
+    openMenuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openMenu();
+    });
+
+    closeMenuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMenu();
+    });
+    
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('is-active')) {
+        closeMenu();
+      }
+    });
+
+    // Close menu when clicking outside content
+    menuOverlay.addEventListener('click', (e) => {
+      if (e.target === menuOverlay) {
+        closeMenu();
+      }
+    });
+
+    // Navigate to services menu
+    if (servicosLink) {
+      servicosLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showServicesMenu();
+        // Show default animation when navigating to services
+        setTimeout(() => showMenuAnimation(), 100);
+      });
+    }
+
+    // Navigate back to main menu
+    if (backToMenu) {
+      backToMenu.addEventListener('click', (e) => {
+        e.preventDefault();
+        showMainMenu();
+        // Show default animation when going back to main menu
+        setTimeout(() => showMenuAnimation(), 100);
+      });
+    }
+
+    // Add hover events for preview (desktop only)
+    menuLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const previewKey = link.getAttribute('data-preview');
+        showMenuAnimation(previewKey);
+      });
+    });
+
+    // Make preview container clickable
+    const previewContainer = document.querySelector('.menu-overlay__preview');
+    if (previewContainer) {
+      previewContainer.addEventListener('click', () => {
+        // Find the currently active menu link and trigger its click
+        const activeLink = document.querySelector('.menu-overlay__link:hover');
+        if (activeLink) {
+          activeLink.click();
+        }
+      });
+    }
+  };
+
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenu);
+  } else {
+    // DOM is already ready, run immediately
+    // Use a small timeout to ensure all components are rendered
+    setTimeout(initMenu, 100);
+  }
+</script>

@@ -1,0 +1,509 @@
+/* ===========================
+   GLOBAL STYLES - MOURA
+   =========================== */
+
+/* CSS Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar Styling - Mais fina e com esquema de cores refinado */
+::-webkit-scrollbar {
+  width: 4px; /* Ainda mais fino */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05); /* Fundo quase invisível */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #000000 0%, #333333 100%); /* Preto sofisticado */
+  border-radius: 2px;
+  border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #333333 0%, #000000 100%);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  line-height: 1.6;
+  color: #000000; /* Preto absoluto */
+  background: #ffffff; /* Branco puro */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  
+  /* Firefox scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #000000 rgba(0, 0, 0, 0.05);
+}
+
+/* CSS Custom Properties (Design Tokens) */
+:root {
+  /* Colors */
+  --color-primary: #000000;
+  --color-secondary: #333333;
+  --color-tertiary: #666666;
+  --color-background: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: #333333;
+  --color-text-tertiary: #666666;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.05);
+  --color-accent: #C0B283; /* Cor de destaque */
+  --color-accent-accessible: #A08A4A; /* Cor de destaque com melhor contraste */
+  --color-white: #FFFFFF;
+  --color-light-gray: #B8B8B8;
+  --color-dark-gray: #2D2D2D;
+  --color-medium-gray: #6B6B6B;
+
+  /* Typography */
+  --font-family-primary: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-heading: 'Neue Haas Grotesk', sans-serif;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  --font-size-5xl: 3rem;        /* 48px */
+  --font-size-hero: clamp(8rem, 15vw, 18rem);
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+
+  /* Spacing */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  --space-4xl: 6rem;     /* 96px */
+  --space-5xl: 8rem;     /* 128px */
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  --shadow-inset: inset 0 0 0 5px var(--color-accent);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  
+  /* Sizes */
+  --size-icon-sm: 24px;
+  --size-icon-md: 32px;
+  --size-icon-lg: 50px;
+  --size-control-xs: 40px;
+  --size-max-height: 500px;
+  
+  /* Animation values */
+  --transform-translateY-5px: translateY(-5px);
+  --transform-translateY-20px: translateY(20px);
+  --transform-translateX-10px: translateX(10px);
+  --transform-translateX-neg-10px: translateX(-10px);
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md) 0;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin: 0 0 var(--space-md) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Links */
+a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--color-accent-accessible);
+}
+
+/* Efeito de sublinhado animado para links no corpo do texto */
+p a {
+  background-image: linear-gradient(var(--color-accent-accessible), var(--color-accent-accessible)); /* Alterado para cor de destaque com melhor contraste */
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px; /* Começa com sublinhado de largura 0 */
+  transition: background-size var(--transition-normal), color var(--transition-normal);
+}
+
+p a:hover {
+  background-size: 100% 1px; /* Anima a largura do sublinhado para 100% */
+}
+
+/* Lists */
+ul, ol {
+  margin: 0 0 var(--space-md) var(--space-lg);
+  padding: 0;
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-accessible); /* Alterado para cor de destaque com melhor contraste */
+  border-color: var(--color-accent-accessible); /* Alterado para cor de destaque com melhor contraste */
+  color: var(--color-background);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-text-primary);
+  transition: all var(--transition-normal); /* Transição mais completa */
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent-accessible); /* Alterado para cor de destaque com melhor contraste */
+  border-color: var(--color-accent-accessible); /* Alterado para cor de destaque com melhor contraste */
+  color: var(--color-primary);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border: none;
+}
+
+.btn-ghost:hover {
+  color: var(--color-text-primary);
+}
+
+/* Scroll snapping container */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: 100vh;
+  
+  /* Ocultar scrollbar no Chrome, Safari, Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge */
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Sections with scroll snapping */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100vh;
+}
+
+/* Wrapper for rest content to handle overlaps */
+.rest-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ajustar o snap container para manter a altura completa */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  height: calc(100vh - 100px); /* Subtrair o espaço ocupado pela navegação */
+  width: 100vw; /* Make sure it doesn't exceed viewport width */
+  
+  /* Ocultar scrollbar no Chrome, Safari, Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge */
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Wrapper para layout geral */
+.layout-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: clamp(4rem, 12vw, 8rem);
+    --space-2xl: 2rem;
+    --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --space-5xl: 6rem;
+  }
+  
+  .snap-section {
+    height: auto;
+    min-height: 100vh;
+    padding: var(--space-3xl) var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero: clamp(3rem, 10vw, 6rem);
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 2.5rem;
+    --space-4xl: 3rem;
+    --space-5xl: 4rem;
+  }
+  
+  .snap-section {
+    padding: var(--space-2xl) var(--space-sm);
+  }
+}
+
+/* Scroll-triggered Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   TYPOGRAPHY HIERARCHY
+   =========================== */
+
+/* Hero Text: For the most prominent text, usually in the hero section. */
+.text-hero {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+/* Section Title: For the main title of each content section. */
+.text-title-section {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* Section Intro: For introductory paragraphs in sections. */
+.text-intro {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-tertiary);
+  max-width: 65ch; /* Optimal line length for readability */
+  margin-bottom: var(--space-xl);
+}
+
+/* Body Text: For the main content text. */
+.text-body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* Quote Text: For testimonials or pull quotes. */
+.text-quote {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+/* Label Text: For smaller text elements like captions or labels. */
+.text-label {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Button Text: For text within button components. */
+.text-button {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+/* Responsive adjustments for typography */
+@media (max-width: 768px) {
+  .text-title-section {
+    font-size: var(--font-size-3xl);
+  }
+
+  .text-intro {
+    font-size: var(--font-size-base);
+  }
+
+  .text-quote {
+    font-size: var(--font-size-xl);
+  }
+}

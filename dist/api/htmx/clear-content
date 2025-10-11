@@ -1,0 +1,10 @@
+
+    <script>
+      // Limpa o conteúdo e remove classes ativas
+      document.querySelectorAll('.static-rect').forEach(rect => {
+        rect.classList.remove('active');
+      });
+      // Fecha o conteúdo HTMX
+      document.querySelector('#htmx-content').innerHTML = '';
+    </script>
+  

@@ -1,0 +1,84 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moura | Marketing e Comunicação Digital</title>
+    <meta name="description" content="Moura " />
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-platinum.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32-platinum.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16-platinum.png">
+    
+    <script>
+      // Função para detectar o modo do sistema e atualizar a favicon
+      function setFaviconBasedOnSystem() {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const favicon = document.getElementById('favicon');
+        
+        if (isDarkMode) {
+          // Modo escuro - usar favicon com design claro
+          favicon.href = '/favicon-dark.svg';
+        } else {
+          // Modo claro - usar favicon com design escuro
+          favicon.href = '/favicon-light.svg';
+        }
+      }
+      
+      // Chamar na carga da página e quando o tema muda
+      setFaviconBasedOnSystem();
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFaviconBasedOnSystem);
+    </script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2D2D2D">
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/fonts/outfit-v14-latin/style.css" />
+    
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <main id="main-content">
+      <slot name="nav" />
+      <slot name="hero" />
+      <slot name="snap-content" />
+      <div class="rest-content-wrapper">
+        <slot name="rest-content" />
+      </div>
+    </main>
+    
+    <script>
+      // Ensure HTMX is properly initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof htmx !== 'undefined') {
+          // Process any HTMX elements that might not have been processed
+          htmx.process(document.body);
+        }
+      });
+    </script>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+        if (!animatedElements.length) return;
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1 // Triggers when 10% of the element is visible
+        });
+
+        animatedElements.forEach(element => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>

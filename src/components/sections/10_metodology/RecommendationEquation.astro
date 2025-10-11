@@ -1,0 +1,197 @@
+---
+import './css/recommendation_equation.css';
+---
+
+<section class="equation-section">
+  <div class="ulm-background">
+    <div class="ulm-element ulm-grid"></div>
+    <div class="ulm-element ulm-circle"></div>
+    <div class="ulm-element ulm-line"></div>
+  </div>
+  
+  <div class="equation-container">
+    <header class="equation-header">
+      <h2 class="section-title">A equação da recomendação perfeita</h2>
+    </header>
+    
+    <div class="equation-content">
+      <div class="equation-side equation-side-a">
+        <div class="side-label">Lado A</div>
+        <h3 class="side-title">Usuários revelam necessidades</h3>
+        <p class="text-body">
+          Cada busca, clique e pausa. O algoritmo absorve sinais comportamentais e constrói perfis com precisão quase íntima.
+        </p>
+      </div>
+
+      <div class="equation-connector">
+        <div class="connector-elements">
+          <div class="connector-plus">+</div>
+        </div>
+      </div>
+
+      <div class="equation-side equation-side-b">
+        <div class="side-label">Lado B</div>
+        <h3 class="side-title">Empresas comunicam essência</h3>
+        <p class="text-body">
+          Diferenciais e capacidade de solucionar problemas específicos através de identidade digital clara.
+        </p>
+      </div>
+    </div>
+
+    <div class="equation-result">
+      <div class="result-label">Resultado</div>
+      <p class="result-text">
+        <strong>Necessidade encontra solução.</strong><br>
+        Não é coincidência. É arquitetura de informação.
+      </p>
+      <p class="text-body">
+        A recomendação perfeita acontece quando o Google possui informação suficiente de ambos os lados.
+      </p>
+    </div>
+
+    <div class="equation-context">
+      <p class="text-body">
+        O problema? Enquanto o lado do usuário se aprimora automaticamente, o lado da empresa depende de comunicação intencional. Marcas com presença genérica fornecem sinais genéricos — e recebem tráfego desqualificado.
+      </p>
+      <p class="text-body text-highlight">
+        <strong>Marcas com identidade digital clara, autêntica e estruturada fornecem ao algoritmo a substância necessária para identificá-las como solução certa no momento certo.</strong>
+      </p>
+      <p class="text-body">
+        Nossa metodologia traduz a essência da sua marca em linguagem que algoritmos compreendem e recompensam — sem artificialidade, apenas clareza estratégica.
+      </p>
+    </div>
+    
+    <!-- CTA Button -->
+    <div class="cta-section">
+      <a href="#" class="cta-button desktop-cta">
+        COMPARAR ÀS ABORDAGENS TRADICIONAIS
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+  
+  <script>
+    import { gsap } from "gsap";
+    
+    // Store GSAP animation instances to properly clean them up
+    let animationInstances = [];
+    
+    function initAnimations() {
+      // Clear any existing animations
+      animationInstances.forEach(animation => animation.kill());
+      animationInstances = [];
+      
+      // Fade in the main elements with stagger
+      gsap.from(".equation-header", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out"
+      });
+      
+      gsap.from(".equation-side", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power2.out",
+        delay: 0.2
+      });
+      
+      gsap.from(".equation-connector", {
+        duration: 0.8,
+        scale: 0.8,
+        opacity: 0,
+        ease: "back.out(1.7)",
+        delay: 0.4
+      });
+      
+      gsap.from(".equation-result", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out",
+        delay: 0.6
+      });
+      
+      gsap.from(".equation-context", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out",
+        delay: 0.8
+      });
+      
+      gsap.from(".desktop-cta", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out",
+        delay: 1.0
+      });
+      
+      // Animate the connector elements with a subtle pulsating effect
+      const pulseAnimation = gsap.to(".connector-elements", {
+        scale: 1.05,
+        duration: 1.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+        repeatDelay: 0.5
+      });
+      animationInstances.push(pulseAnimation);
+      
+      // Animate the Ulm elements for subtle movement
+      const gridFloat = gsap.to(".ulm-grid", {
+        x: 15,
+        y: 15,
+        duration: 15,
+        repeat: -1,
+        yoyo: true,
+        ease: "none",
+        opacity: 0.15
+      });
+      animationInstances.push(gridFloat);
+      
+      const circleFloat = gsap.to(".ulm-circle", {
+        x: -20,
+        y: -20,
+        duration: 18,
+        repeat: -1,
+        yoyo: true,
+        ease: "none",
+        opacity: 0.15
+      });
+      animationInstances.push(circleFloat);
+      
+      // Add hover effects for interactive elements
+      const sides = document.querySelectorAll('.equation-side');
+      sides.forEach(side => {
+        side.addEventListener('mouseenter', () => {
+          gsap.to(side, {
+            y: -5,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+        
+        side.addEventListener('mouseleave', () => {
+          gsap.to(side, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+      });
+    }
+    
+    // Execute after the DOM is loaded
+    document.addEventListener('DOMContentLoaded', initAnimations);
+    
+    // Clean up animations when leaving the page
+    document.addEventListener('astro:before-swap', () => {
+      animationInstances.forEach(animation => animation.kill());
+      animationInstances = [];
+    });
+  </script>
+</section>

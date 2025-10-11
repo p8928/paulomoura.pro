@@ -1,0 +1,208 @@
+---
+// Sample blog data - this would typically come from a CMS or content collection
+const blogPosts = [
+  {
+    id: 1,
+    title: "A Importância da Marca no Mundo Digital",
+    excerpt: "Como uma identidade visual forte pode impactar positivamente no posicionamento da sua empresa no ambiente online.",
+    date: "15 Jun 2024",
+    readTime: "5 min",
+    href: "/blog/importancia-da-maca-no-mundo-digital/"
+  },
+  {
+    id: 2,
+    title: "Marketing de Conteúdo Estratégico",
+    excerpt: "Estratégias eficazes para criar conteúdo que gere engajamento e converta leads em clientes fiéis.",
+    date: "22 Maio 2024",
+    readTime: "7 min",
+    href: "/blog/marketing-de-conteudo-estrategico/"
+  },
+  {
+    id: 3,
+    title: "Design Sustentável e Responsabilidade",
+    excerpt: "Como o design pode promover práticas sustentáveis e conscientizar os consumidores sobre responsabilidade ambiental.",
+    date: "08 Abr 2024",
+    readTime: "6 min",
+    href: "/blog/design-sustentavel-e-responsabilidade/"
+  },
+  {
+    id: 4,
+    title: "Branding e Experiência do Cliente",
+    excerpt: "A conexão entre uma identidade de marca forte e a experiência positiva do cliente em todos os touchpoints.",
+    date: "23 Mar 2024",
+    readTime: "8 min",
+    href: "/blog/branding-e-experiencia-do-cliente/"
+  },
+  {
+    id: 5,
+    title: "Tendências de Design em 2024",
+    excerpt: "Análise das principais tendências visuais que estão moldando o design contemporâneo e como aplicá-las no seu negócio.",
+    date: "10 Fev 2024",
+    readTime: "9 min",
+    href: "/blog/tendencias-de-design-em-2024/"
+  },
+  {
+    id: 6,
+    title: "O Poder da Narrativa Visual",
+    excerpt: "Como utilizar elementos visuais para contar histórias que ressoem com seu público e fortaleçam seu posicionamento.",
+    date: "28 Jan 2024",
+    readTime: "4 min",
+    href: "/blog/poder-da-narrativa-visual/"
+  }
+];
+---
+
+<div class="blog-container">
+  <div class="blog-header">
+    <h2 class="text-title-section">Blog</h2>
+    <p class="text-intro">Insights sobre marketing, comunicação e branding para impulsionar o seu negócio.</p>
+  </div>
+  
+  <div class="blog-grid">
+    {blogPosts.map(post => (
+      <a href={post.href} class="blog-card" key={post.id}>
+        <div class="blog-thumb">
+          <div class="typographic-element">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="20" width="80" height="60" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <line x1="20" y1="40" x2="80" y2="40" stroke="currentColor" stroke-width="1.5" />
+              <line x1="20" y1="50" x2="70" y2="50" stroke="currentColor" stroke-width="1.5" />
+              <line x1="20" y1="60" x2="60" y2="60" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="80" cy="30" r="5" fill="var(--color-accent)" />
+            </svg>
+          </div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span class="date">{post.date}</span>
+            <span class="read-time">{post.readTime}</span>
+          </div>
+          <h3 class="blog-title">{post.title}</h3>
+          <p class="blog-excerpt">{post.excerpt}</p>
+          <span class="read-more">Ler mais</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .blog-container {
+    padding: var(--space-4xl) var(--space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .blog-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-3xl);
+  }
+  
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-normal);
+    height: 100%;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .blog-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-background);
+    transition: var(--transition-normal);
+  }
+  
+  .blog-card:hover .blog-thumb {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .typographic-element {
+    color: var(--color-text-primary);
+    width: 80%;
+    height: 80%;
+  }
+  
+  .typographic-element svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .blog-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .blog-meta {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+  
+  .date, .read-time {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .blog-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+  }
+  
+  .blog-excerpt {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-lg) 0;
+    line-height: var(--line-height-normal);
+    flex-grow: 1;
+  }
+  
+  .read-more {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent-accessible);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+  
+  .blog-card:hover .read-more {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .blog-container {
+      padding: var(--space-3xl) var(--space-md);
+    }
+    
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+    
+    .blog-thumb {
+      height: 160px;
+    }
+  }
+</style>

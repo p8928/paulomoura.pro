@@ -1,0 +1,260 @@
+---
+import './css/expertise.css';
+
+// Industry data
+const industries = [
+  {
+    id: 'restaurants',
+    title: 'Restaurantes',
+    description: 'Experiência digital impecável e estratégias de crescimento sob medida.',
+    approach: 'Transformamos a identidade culinária em presença digital memorável, otimizando a experiência do cliente desde a primeira visualização até o pedido.',
+    challenges: ['Fazer com que o sabor transite na digitalização'],
+    solutions: [
+      'Branding que reflete a experiência gastronômica',
+      'E-commerce de alimentos e bebidas otimizado',
+      'SEO local para maior visibilidade em buscas'
+    ]
+  },
+  {
+    id: 'tech',
+    title: 'Tech',
+    description: 'Comunicação B2B técnica o suficiente para convencer, humana o bastante para converter.',
+    approach: 'Criamos narrativas que traduzem complexidade técnica em benefícios claros para clientes, gerando confiança em decisões de compra complexas.',
+    challenges: ['Traduzir tecnologia em benefícios palpáveis'],
+    solutions: [
+      'Linguagem técnica adaptada para diferentes públicos',
+      'Content marketing estratégico para decisores técnicos',
+      'Otimização de conversão em funis B2B'
+    ]
+  },
+  {
+    id: 'architecture',
+    title: 'Arquitetura',
+    description: 'Projetos que comunicam valor antes mesmo da primeira reunião.',
+    approach: 'Transformamos conceitos arquitetônicos em narrativas visuais que demonstram valor e diferencial antes mesmo de um primeiro contato.',
+    challenges: ['Comunicar valor intangível de projetos complexos'],
+    solutions: [
+      'Visualizações arquitetônicas de alta fidelidade',
+      'Portfólio digital estratégico',
+      'SEO em nichos especializados'
+    ]
+  },
+  {
+    id: 'ecommerce',
+    title: 'E-commerce',
+    description: 'Jornadas de compra fluidas que transformam hesitação em confiança.',
+    approach: 'Desenvolvemos jornadas de compra baseadas em psicologia do consumidor e dados de comportamento para maximizar conversões.',
+    challenges: ['Reduzir taxas de abandono de carrinho'],
+    solutions: [
+      'UX/UI otimizada para conversão',
+      'SEO de produtos e categorias',
+      'Experiência móvel priorizada'
+    ]
+  },
+  {
+    id: 'legal',
+    title: 'Jurídico',
+    description: 'Presença digital que atrai o cliente certo, em total conformidade com a OAB.',
+    approach: 'Criamos presenças digitais que transmitem autoridade e confiança, respeitando as diretrizes da OAB e regulamentações do setor.',
+    challenges: ['Conciliar autoridade com restrições legais'],
+    solutions: [
+      'Conteúdo educativo dentro das diretrizes da OAB',
+      'SEO local para advogados e escritórios',
+      'Gestão de reputação online'
+    ]
+  },
+  {
+    id: 'clinics',
+    title: 'Clínicas',
+    description: 'Posicionamento que diferencia seu consultório exatamente como você idealizou.',
+    approach: 'Desenvolvemos estratégias que refletem a identidade e valores da clínica, atraindo pacientes que compartilham dos mesmos princípios.',
+    challenges: ['Diferenciar-se em um mercado saturado'],
+    solutions: [
+      'Branding de clínicas e profissionais',
+      'SEO local e por especialidades',
+      'Gestão de avaliações e reputação'
+    ]
+  }
+];
+---
+
+<!-- Expertise Hero Section matching Metodologia style -->
+<div class="metodology-hero">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+
+  <header class="metodology-header">
+    <h1 class="metodology-title">
+      <span class="title-brand">EXPERTISE</span>
+    </h1>
+  </header>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Store ScrollTrigger instances to properly clean them up
+  let scrollTriggerInstances = [];
+
+  function initAnimations() {
+    // Limpar triggers anteriores para evitar duplicação
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    // Clear our local array as well
+    scrollTriggerInstances = [];
+
+    // Coreografia do Título - Now using opacity and transform properties that match the CSS
+    const tl = gsap.timeline({ 
+      delay: 0.2,
+      onStart: () => {
+        // Make the entire title visible when animation starts
+        const title = document.querySelector('.metodology-title');
+        if (title) {
+          title.style.opacity = '1';
+          title.style.visibility = 'visible';
+        }
+      }
+    });
+    
+    tl.fromTo(".title-brand", 
+      { x: -50, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+  }
+
+  // Executar na carga inicial da página
+  document.addEventListener('DOMContentLoaded', initAnimations);
+
+  // Executar em navegações subsequentes do Astro
+  document.addEventListener('astro:page-load', initAnimations);
+  
+  // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
+  document.addEventListener('astro:before-swap', () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    scrollTriggerInstances.forEach(trigger => trigger.kill());
+    scrollTriggerInstances = [];
+  });
+</script>
+
+<!-- Industries Overview Section -->
+<section class="industries-overview">
+  <div class="container">
+    <div class="overview-content">
+      <h2 class="overview-title">COMPREENDEMOS SEUS DESAFIOS</h2>
+      <p class="overview-description">
+        Cada negócio tem suas particularidades. Tratamos sua situação com a especificidade que o contexto exige.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Industries Grid Section -->
+<section class="industries-grid">
+  <div class="container">
+    <div class="industries-wrapper">
+      {industries.map(industry => (
+        <div class="industry-card" id={industry.id}>
+          <div class="industry-header">
+            <h3 class="industry-title">{industry.title}</h3>
+            <p class="industry-description">{industry.description}</p>
+          </div>
+          
+          <button class="expand-btn" aria-expanded="false" aria-controls={`content-${industry.id}`}>
+            <span class="expand-text">Ver detalhes</span>
+            <span class="expand-arrow">→</span>
+          </button>
+          
+          <div class="industry-content" id={`content-${industry.id}`}>
+            <div class="industry-approach">
+              <h4>Nossa Abordagem</h4>
+              <p>{industry.approach}</p>
+            </div>
+            
+            <div class="industry-challenges">
+              <h4>Principais Desafios</h4>
+              <ul>
+                {industry.challenges.map(challenge => (
+                  <li>{challenge}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="industry-solutions">
+              <h4>Soluções Aplicadas</h4>
+              <ul>
+                {industry.solutions.map(solution => (
+                  <li>{solution}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="industry-cta">
+              <a href="/contato" class="cta-link">
+                DESCUBRA MAIS DETALHES
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <div class="methodology-text">
+    <h3 class="methodology-title">METODOLOGIA QUE SE ADAPTA<br>À SUA MARCA, NÃO O CONTRÁRIO.</h3>
+    
+    <p class="methodology-description">
+      Serviços tradicionais forçam sua empresa a se encaixar em templates. 
+      Nós fazemos o oposto: mergulhamos na sua identidade, extraímos o que 
+      te torna insubstituível e traduzimos isso em presença digital que o 
+      Google compreende e seus clientes reconhecem.
+    </p>
+    
+    <p class="methodology-description">
+      Cada camada — essência, expressão, estrutura — é calibrada 
+      especificamente para você. Não existe Brand-Led genérico. 
+      Existe o seu Brand-Led.
+    </p>
+  </div>
+  
+  <div class="final-cta">
+    <a href="/contato" class="cta-button">
+      AGENDAR CONVERSA
+      <span class="arrow">→</span>
+    </a>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const expandButtons = document.querySelectorAll('.expand-btn');
+      
+      expandButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const contentId = button.getAttribute('aria-controls');
+          const content = document.getElementById(contentId);
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          
+          // Toggle the expanded state
+          button.setAttribute('aria-expanded', String(!isExpanded));
+          
+          // Toggle the content visibility with class
+          if (isExpanded) {
+            content.classList.remove('expanded');
+            button.querySelector('.expand-text').textContent = 'Ver detalhes';
+          } else {
+            content.classList.add('expanded');
+            button.querySelector('.expand-text').textContent = 'Ocultar detalhes';
+          }
+          
+          // Update the arrow rotation
+          const arrow = button.querySelector('.expand-arrow');
+          arrow.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(90deg)';
+        });
+      });
+    });
+  </script>
+</section>

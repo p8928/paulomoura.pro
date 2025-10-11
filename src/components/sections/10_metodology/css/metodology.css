@@ -14,6 +14,12 @@
   overflow: hidden;
 }
 
+/* Adjust metodology hero section to account for navigation */
+.metodology-hero {
+  margin-top: calc(-2 * (var(--space-lg) + var(--space-lg)));
+  padding-top: calc(var(--space-lg) + var(--space-lg));
+}
+
 .metodology-header {
   text-align: center;
   width: 100%;
@@ -29,22 +35,38 @@
   text-transform: uppercase;
   line-height: 1;
   margin: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .title-brand {
   font-weight: 700;
   color: var(--color-primary);
+  opacity: 0; /* Initially hidden for animation */
+  transform: translateX(-50px); /* Initially positioned off-screen */
 }
 
 .title-led {
   font-weight: 300;
   color: var(--color-primary);
+  opacity: 0; /* Initially hidden for animation */
+  transform: translateX(50px); /* Initially positioned off-screen */
+}
+
+.title-dash-container {
+  display: flex;
+  align-items: center;
+  height: 1em; /* Match the text height */
+  margin: 0 var(--space-xs); /* Add some spacing */
 }
 
 .title-dash {
-  width: clamp(3rem, 8vw, 8rem); /* Aumentado */
-  height: auto;
-  margin-top: 0.2em;
+  width: clamp(2rem, 6vw, 4rem);
+  height: 0.08em;
+  background-color: var(--color-accent);
+  opacity: 0; /* Initially hidden for animation */
+  transform: scaleX(0); /* Initially scaled to 0 */
+  transform-origin: center;
 }
 
 /* 2. Main Content Section
@@ -63,12 +85,11 @@
   gap: var(--space-lg);
   max-width: 1200px;
   margin: 0 auto;
+  align-items: start; /* Alinha os itens no topo */
 }
 
-/* Asymmetric Layout Elements */
-
 .metodology-subtitle {
-  grid-column: 1 / 8;
+  grid-column: 1 / -1; /* Ocupa a largura total */
   font-family: var(--font-family-heading);
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: var(--font-weight-light);
@@ -79,33 +100,44 @@
   margin-bottom: var(--space-xl);
 }
 
+.metodology-text-content {
+  grid-column: 1 / 8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
 .metodology-paragraph {
-  grid-column: 1 / 7;
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-light);
-  font-size: var(--font-size-lg);
-  line-height: 1.8;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
   max-width: 65ch;
+  margin-bottom: 0; /* Remove margin bottom para usar gap */
+}
+
+.vertical-divider {
+  grid-column: 8 / 9;
+  width: 1px;
+  height: 100%;
+  background-color: #000; /* Linha preta fina */
+  opacity: 0.2;
+  justify-self: center;
 }
 
 .metodology-blockquote {
-  grid-column: 8 / 13;
-  align-self: start;
-  margin-top: var(--space-2xl);
+  grid-column: 9 / 13;
+  align-self: center; /* Adicionado para centralizar verticalmente */
+  margin: 0; /* Remove margens anteriores */
   padding-left: var(--space-lg);
-  border-left: 2px solid var(--color-accent);
+  border-left: none; /* Remove a borda antiga */
   font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-regular);
-  font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
   font-style: italic;
   color: var(--color-text-primary);
-  transition: border-color var(--transition-normal);
-}
-
-.metodology-blockquote:hover {
-  border-left-color: var(--color-accent-accessible);
 }
 
 .metodology-cite {
@@ -114,16 +146,16 @@
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
   color: var(--color-text-tertiary);
   font-style: normal;
 }
 
 .metodology-final-grid {
-  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-3xl);
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-2xl); /* Espaçamento ajustado */
 }
 
 /* Shapes & Decorative Elements */
@@ -156,10 +188,13 @@
 /* Responsive Adjustments */
 
 @media (max-width: 900px) {
-  .metodology-subtitle,
-  .metodology-paragraph,
+  .metodology-text-content,
   .metodology-blockquote {
     grid-column: 1 / -1;
+  }
+
+  .vertical-divider {
+    display: none; /* Esconde a linha vertical */
   }
 
   .metodology-blockquote {
@@ -168,7 +203,7 @@
     padding-left: 0;
     padding-top: var(--space-lg);
     border-left: none;
-    border-top: 2px solid var(--color-accent);
+    border-top: 1px solid rgba(0, 0, 0, 0.2); /* Linha preta fina horizontal */
     text-align: center;
   }
 

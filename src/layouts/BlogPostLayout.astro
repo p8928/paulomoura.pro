@@ -1,0 +1,27 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+<Layout title={frontmatter.title}>
+  <div class="blog-post">
+    <style>
+      .blog-post {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      .blog-post h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .blog-post .publish-date {
+        font-style: italic;
+        color: #888;
+        margin-bottom: 2rem;
+      }
+    </style>
+    <h1>{frontmatter.title}</h1>
+    <p class="publish-date">{frontmatter.publishDate.toDateString()}</p>
+    <slot />
+  </div>
+</Layout>
