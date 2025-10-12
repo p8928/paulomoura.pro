@@ -37,16 +37,38 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-border);
   height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-accent), rgba(192, 178, 131, 0.5));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .blog-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  border-color: var(--color-accent);
+}
+
+.blog-card:hover::before {
+  opacity: 0.2;
 }
 
 .blog-thumb {
@@ -91,10 +113,9 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 }
 
 .blog-category {
-  background: transparent;
+  background: rgba(192, 178, 131, 0.1);
   color: var(--color-accent);
   padding: 0.2rem 0.6rem;
-  border: 1px solid var(--color-accent);
   border-radius: 12px;
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -138,5 +159,13 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 
 .blog-card:hover .blog-arrow svg {
   transform: translateX(6px);
+}
+
+.blog-card:hover .blog-title {
+  color: var(--color-accent);
+}
+
+.blog-card:hover .text-thumb {
+  color: var(--color-accent);
 }
 </style>
