@@ -19,11 +19,7 @@ export async function GET({ request }) {
     slug: post.slug,
     title: post.data.title,
     description: post.data.description,
-    publishDate: post.data.publishDate.toLocaleDateString('pt-BR', { 
-      day: '2-digit', 
-      month: '2-digit', 
-      year: 'numeric' 
-    }),
+    publishDate: post.data.publishDate,
     tags: post.data.tags,
   }));
   

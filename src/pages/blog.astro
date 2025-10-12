@@ -12,6 +12,10 @@ const allPosts = await getCollection('blog', ({ data }) => {
 
 // Sort posts by date
 const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// Define initial posts to show
+const initialPostsToShow = 6;
+const postsToShow = initialPostsToShow;
 ---
 <Layout title="Blog - Moura | Marketing e Comunicação Digital">
   <Navigation slot="nav" />
@@ -51,8 +55,15 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
           </span>
         </h2>
         <div class="blog-grid" id="blog-grid">
-          {sortedPosts.map(post => <BlogCard entry={post} />)}
+          {sortedPosts.slice(0, postsToShow).map(post => <BlogCard entry={post} />)}
         </div>
+        {sortedPosts.length > postsToShow && (
+          <div class="load-more-container">
+            <button id="load-more-button" class="load-more-button">
+              Carregar mais
+            </button>
+          </div>
+        )}
       </main>
       <Sidebar class="sidebar" />
     </div>
@@ -211,6 +222,33 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
   align-items: center;
 }
 
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.load-more-button {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.load-more-button:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+}
+
 .topic-item {
   display: inline-block;
 }
@@ -264,6 +302,165 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
   .full-screen-title {
     font-size: 4rem;
   }
+}
+
+/* Load more button styles */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.load-more-button {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.load-more-button:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 178, 131, 0.3);
+}
+
+.load-more-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Ensure blog cards have consistent styling */
+.blog-card {
+  background: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  border-color: var(--color-accent);
+}
+
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+.blog-thumb {
+  height: 180px;
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.text-thumb {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+}
+
+.blog-content-inner {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.blog-date {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
+
+.blog-category {
+  background: rgba(192, 178, 131, 0.1);
+  color: var(--color-accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.blog-title {
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text-primary);
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+.blog-excerpt {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  flex-grow: 1;
+  font-size: 0.9rem;
+}
+
+.blog-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+.blog-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card:hover .blog-arrow svg {
+  transform: translateX(6px);
+}
+
+.blog-card:hover .blog-title {
+  color: var(--color-accent);
+}
+
+.blog-card:hover .text-thumb {
+  color: var(--color-accent);
 }
 </style>
 
@@ -333,6 +530,104 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
           document.querySelector('.title-blog').style.transform = 'translateY(0)';
         }, 900);
       }, 100);
+    }
+  });
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Load more functionality
+    const loadMoreButton = document.getElementById('load-more-button');
+    if (loadMoreButton) {
+      let currentIndex = 6; // Start after initial 6 posts
+      
+      loadMoreButton.addEventListener('click', async () => {
+        try {
+          // Show loading state
+          loadMoreButton.textContent = 'Carregando...';
+          loadMoreButton.disabled = true;
+          
+          // Fetch next 6 posts as data
+          const response = await fetch(`/api/blog-posts-html?start=${currentIndex}&limit=6`);
+          const data = await response.json();
+          
+          if (data.posts && data.posts.length > 0) {
+            // Append new posts to the grid
+            const blogGrid = document.getElementById('blog-grid');
+            
+            // Find a reference blog card to get the Astro CID for styling
+            const referenceCard = document.querySelector('.blog-card');
+            const astroCid = referenceCard ? referenceCard.getAttributeNames().find(attr => attr.startsWith('data-astro-cid-')) : null;
+            
+            data.posts.forEach(post => {
+              const formattedDate = new Date(post.publishDate).toLocaleDateString('pt-BR', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric' 
+              });
+              
+              const blogCard = document.createElement('a');
+              blogCard.href = `/blog/${post.slug}/`;
+              blogCard.className = 'blog-card';
+              
+              // Apply the Astro CID attribute for proper styling
+              if (astroCid) {
+                blogCard.setAttribute(astroCid, '');
+              }
+              
+              blogCard.innerHTML = `
+                <div class="blog-thumb">
+                  <div class="text-thumb">${post.tags[0]}</div>
+                </div>
+                <div class="blog-content-inner">
+                  <div class="blog-meta">
+                    <span class="blog-date">${formattedDate}</span>
+                    <span class="blog-category">${post.tags[0]}</span>
+                  </div>
+                  <h3 class="blog-title">${post.title}</h3>
+                  <p class="blog-excerpt">${post.description}</p>
+                  <div class="blog-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              `;
+              
+              // For nested elements, we also need to add the Astro CID
+              const nestedElements = blogCard.querySelectorAll('.blog-thumb, .text-thumb, .blog-content-inner, .blog-meta, .blog-date, .blog-category, .blog-title, .blog-excerpt, .blog-arrow');
+              nestedElements.forEach(element => {
+                if (astroCid) {
+                  element.setAttribute(astroCid, '');
+                }
+              });
+              
+              blogGrid.appendChild(blogCard);
+            });
+            
+            // Update index
+            currentIndex += data.posts.length;
+            
+            // Hide button if no more posts
+            if (currentIndex >= data.total) {
+              loadMoreButton.style.display = 'none';
+            } else {
+              // Reset button text and enable
+              loadMoreButton.textContent = 'Carregar mais';
+              loadMoreButton.disabled = false;
+            }
+          } else {
+            // No more posts, hide button
+            loadMoreButton.style.display = 'none';
+          }
+        } catch (error) {
+          console.error('Error loading more posts:', error);
+          // Reset button in case of error
+          loadMoreButton.textContent = 'Erro ao carregar. Tentar novamente?';
+          loadMoreButton.disabled = false;
+        }
+      });
     }
   });
 </script>
