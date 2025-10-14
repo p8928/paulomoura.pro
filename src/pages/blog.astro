@@ -35,35 +35,49 @@ const postsToShow = initialPostsToShow;
     
     <div class="blog-main-content">
       <main class="blog-posts">
-        <h2 class="blog-grid-title">
-          <span class="title-highlight">INSIGHTS & RECURSOS</span>
-          <div class="title-divider">
-            <svg class="divider-svg" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-              <path class="divider-line" d="M20,10 H80" stroke="currentColor" stroke-width="2" fill="none"></path>
-            </svg>
+        <div class="search-header">
+          <h2 class="blog-grid-title">
+            <span class="title-highlight">INSIGHTS & RECURSOS</span>
+            <div class="title-divider">
+              <svg class="divider-svg" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+                <path class="divider-line" d="M20,10 H80" stroke="currentColor" stroke-width="2" fill="none"></path>
+              </svg>
+            </div>
+            <span class="title-subtext">
+              <span class="topic-item">BRANDING</span>
+              <span class="separator">|</span>
+              <span class="topic-item">COMUNICAÇÃO</span>
+              <span class="separator">|</span>
+              <span class="topic-item">SEO</span>
+              <span class="separator">|</span>
+              <span class="topic-item">MARKETING</span>
+              <span class="separator">|</span>
+              <span class="topic-item">CONTEÚDO</span>
+            </span>
+          </h2>
+          <div class="search-container-main">
+            <input
+              type="text"
+              placeholder="Buscar no blog..."
+              class="search-input-main"
+              id="search-input-main"
+            />
           </div>
-          <span class="title-subtext">
-            <span class="topic-item">BRANDING</span>
-            <span class="separator">|</span>
-            <span class="topic-item">COMUNICAÇÃO</span>
-            <span class="separator">|</span>
-            <span class="topic-item">SEO</span>
-            <span class="separator">|</span>
-            <span class="topic-item">MARKETING</span>
-            <span class="separator">|</span>
-            <span class="topic-item">CONTEÚDO</span>
-          </span>
-        </h2>
+        </div>
         <div class="blog-grid" id="blog-grid">
           {sortedPosts.slice(0, postsToShow).map(post => <BlogCard entry={post} />)}
         </div>
         {sortedPosts.length > postsToShow && (
-          <div class="load-more-container">
+          <div class="load-more-container" id="load-more-container">
             <button id="load-more-button" class="load-more-button">
               Carregar mais
             </button>
           </div>
         )}
+        <div id="search-results-info" class="search-results-info" style="display: none;">
+          <h3>Resultados da busca por: <span id="search-query-display"></span></h3>
+          <p id="search-results-count"></p>
+        </div>
       </main>
       <Sidebar class="sidebar" />
     </div>
@@ -171,6 +185,40 @@ const postsToShow = initialPostsToShow;
   grid-column: 2;
 }
 
+.search-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.search-container-main {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.search-input-main {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 30px; /* Pill-shaped */
+  font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+  font-family: var(--font-family-primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-input-main:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(192, 178, 131, 0.3);
+  transform: translateY(-2px);
+}
+
 .blog-grid-title {
   font-family: var(--font-family-heading);
   text-align: center;
@@ -263,6 +311,53 @@ const postsToShow = initialPostsToShow;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+.search-results-info {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: rgba(192, 178, 131, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.search-results-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text-primary);
+}
+
+.search-results-info p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+#search-query-display {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.search-loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  grid-column: 1 / -1;
+}
+
+.search-error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #d32f2f; /* Red error color */
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 1200px) {
@@ -464,80 +559,237 @@ const postsToShow = initialPostsToShow;
 }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Check if GSAP is available
-    if (typeof gsap !== 'undefined') {
-      // Wait for a bit to ensure elements are rendered
-      setTimeout(() => {
-        // Animate the main title with stagger effect
-        gsap.to(".title-part", {
-          duration: 1.2,
-          y: 0,
-          opacity: 1,
-          stagger: 0.3,
-          ease: "power3.out",
-          delay: 0.2
-        });
-        
-        // Animate the dash with a scale effect
-        gsap.to(".title-dash-container", {
-          duration: 1,
-          opacity: 1,
-          ease: "power2.out",
-          delay: 0.7
-        });
-        
-        gsap.to(".title-dash", 
-          { 
-            scaleX: 1, 
-            opacity: 1, 
-            duration: 0.8, 
-            ease: "power3.inOut",
+<script is:inline type="module">
+  (async () => {
+    try {
+      // Import GSAP dynamically
+      const gsapModule = await import('https://esm.sh/gsap@3.13.0');
+      const gsap = gsapModule.default || gsapModule;
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        // Wait for a bit to ensure elements are rendered
+        setTimeout(() => {
+          // Animate the main title with stagger effect
+          gsap.to(".title-part", {
+            duration: 1.2,
+            y: 0,
+            opacity: 1,
+            stagger: 0.3,
+            ease: "power3.out",
+            delay: 0.2
+          });
+          
+          // Animate the dash with a scale effect
+          gsap.to(".title-dash-container", {
+            duration: 1,
+            opacity: 1,
+            ease: "power2.out",
             delay: 0.7
-          }
-        );
-        
-        // Animate the "BLOG" with a different effect
-        gsap.to(".title-blog", {
-          duration: 1.2,
-          y: 0,
-          opacity: 1,
-          ease: "back.out(1.7)",
-          delay: 1
-        });
-      }, 100); // Small delay to ensure DOM is ready
-    } else {
-      console.warn('GSAP not available');
+          });
+          
+          gsap.to(".title-dash", 
+            { 
+              scaleX: 1, 
+              opacity: 1, 
+              duration: 0.8, 
+              ease: "power3.inOut",
+              delay: 0.7
+            }
+          );
+          
+          // Animate the "BLOG" with a different effect
+          gsap.to(".title-blog", {
+            duration: 1.2,
+            y: 0,
+            opacity: 1,
+            ease: "back.out(1.7)",
+            delay: 1
+          });
+        }, 100); // Small delay to ensure DOM is ready
+      });
+    } catch (err) {
+      console.warn('GSAP could not be loaded. Using fallback animations.', err);
       // Simple fallback animation using CSS classes
-      setTimeout(() => {
-        document.querySelectorAll('.title-part').forEach((part, index) => {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.querySelectorAll('.title-part').forEach((part, index) => {
+            setTimeout(() => {
+              part.style.opacity = '1';
+              part.style.transform = 'translateY(0)';
+            }, 300 * index);
+          });
+          
           setTimeout(() => {
-            part.style.opacity = '1';
-            part.style.transform = 'translateY(0)';
-          }, 300 * index);
-        });
-        
-        setTimeout(() => {
-          document.querySelector('.title-dash-container').style.opacity = '1';
-          const dash = document.querySelector('.title-dash');
-          dash.style.transform = 'scaleX(1)';
-          dash.style.opacity = '1';
-        }, 600);
-        
-        setTimeout(() => {
-          document.querySelector('.title-blog').style.opacity = '1';
-          document.querySelector('.title-blog').style.transform = 'translateY(0)';
-        }, 900);
-      }, 100);
+            document.querySelector('.title-dash-container').style.opacity = '1';
+            const dash = document.querySelector('.title-dash');
+            dash.style.transform = 'scaleX(1)';
+            dash.style.opacity = '1';
+          }, 600);
+          
+          setTimeout(() => {
+            document.querySelector('.title-blog').style.opacity = '1';
+            document.querySelector('.title-blog').style.transform = 'translateY(0)';
+          }, 900);
+        }, 100);
+      });
     }
-  });
+  })();
 </script>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     // Load more functionality
     const loadMoreButton = document.getElementById('load-more-button');
+    const loadMoreContainer = document.getElementById('load-more-container');
+    
+    // Search functionality
+    const searchInput = document.getElementById('search-input-main');
+    const blogGrid = document.getElementById('blog-grid');
+    const searchResultsInfo = document.getElementById('search-results-info');
+    const searchQueryDisplay = document.getElementById('search-query-display');
+    const searchResultsCount = document.getElementById('search-results-count');
+    
+    if (searchInput) {
+      let searchTimeout;
+      
+      searchInput.addEventListener('input', (e) => {
+        // Clear the previous timeout
+        clearTimeout(searchTimeout);
+        
+        // Set a new timeout to delay the search
+        searchTimeout = setTimeout(async () => {
+          const query = e.target.value.trim();
+          
+          if (query.length === 0) {
+            // If search is empty, show all posts again
+            showAllPosts();
+            return;
+          }
+          
+          if (query.length < 2) {
+            // Don't search if query is too short
+            return;
+          }
+          
+          try {
+            // Show loading state
+            blogGrid.innerHTML = '<div class="search-loading">Buscando...</div>';
+            
+            // Fetch search results
+            const response = await fetch(`/api/search-posts?q=${encodeURIComponent(query)}&limit=12`);
+            const data = await response.json();
+            
+            if (data.posts) {
+              displaySearchResults(data.posts, data.query, data.total);
+            } else {
+              blogGrid.innerHTML = '<div class="no-results">Nenhum resultado encontrado.</div>';
+            }
+          } catch (error) {
+            console.error('Error searching posts:', error);
+            blogGrid.innerHTML = '<div class="search-error">Erro ao buscar posts. Tente novamente.</div>';
+          }
+        }, 500); // Delay the search by 500ms to avoid too many requests
+      });
+      
+      function displaySearchResults(posts, query, total) {
+        // Clear the main blog grid
+        blogGrid.innerHTML = '';
+        
+        // Update search results info
+        searchQueryDisplay.textContent = query;
+        searchResultsCount.textContent = `Foram encontrados ${total} resultados`;
+        searchResultsInfo.style.display = 'block';
+        
+        // Hide the load more button when showing search results
+        if (loadMoreButton && loadMoreContainer) {
+          loadMoreButton.style.display = 'none';
+        }
+        
+        if (posts.length === 0) {
+          blogGrid.innerHTML = '<div class="no-results">Nenhum resultado encontrado.</div>';
+          return;
+        }
+        
+        // Find a reference blog card to get the Astro CID for styling
+        const referenceCard = document.querySelector('.blog-card');
+        const astroCid = referenceCard ? referenceCard.getAttributeNames().find(attr => attr.startsWith('data-astro-cid-')) : null;
+        
+        // Create blog cards for search results
+        posts.forEach(post => {
+          const formattedDate = new Date(post.publishDate).toLocaleDateString('pt-BR', { 
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric' 
+          });
+          
+          // Generate placeholder image URL
+          const placeholderImage = post.image && post.image.url 
+            ? post.image.url 
+            : `https://placehold.co/600x400/ccc/969696?text=${encodeURIComponent(post.tags[0])}`;
+          const placeholderAlt = post.image && post.image.alt 
+            ? post.image.alt 
+            : `Imagem para o artigo: ${post.title}`;
+          
+          const blogCard = document.createElement('a');
+          blogCard.href = `/blog/${post.slug}/`;
+          blogCard.className = 'blog-card';
+          
+          // Apply the Astro CID attribute for proper styling
+          if (astroCid) {
+            blogCard.setAttribute(astroCid, '');
+          }
+          
+          blogCard.innerHTML = `
+            <div class="blog-thumb">
+              <img 
+                src="${placeholderImage}" 
+                alt="${placeholderAlt}"
+                class="blog-thumb-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="blog-content-inner">
+              <div class="blog-meta">
+                <span class="blog-date">${formattedDate}</span>
+                <span class="blog-category">${post.tags[0]}</span>
+              </div>
+              <h3 class="blog-title">${post.title}</h3>
+              <p class="blog-excerpt">${post.description}</p>
+              <div class="blog-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </div>
+          `;
+          
+          // For nested elements, we also need to add the Astro CID
+          const nestedElements = blogCard.querySelectorAll('.blog-thumb, .blog-thumb-img, .blog-content-inner, .blog-meta, .blog-date, .blog-category, .blog-title, .blog-excerpt, .blog-arrow');
+          nestedElements.forEach(element => {
+            if (astroCid) {
+              element.setAttribute(astroCid, '');
+            }
+          });
+          
+          blogGrid.appendChild(blogCard);
+        });
+      }
+      
+      function showAllPosts() {
+        // Reset the search results info
+        searchResultsInfo.style.display = 'none';
+        
+        // Show the load more button again
+        if (loadMoreButton && loadMoreContainer) {
+          loadMoreButton.style.display = 'block';
+        }
+        
+        // Reload the initial posts
+        location.reload();
+      }
+    }
+    
     if (loadMoreButton) {
       let currentIndex = 6; // Start after initial 6 posts
       
@@ -566,6 +818,14 @@ const postsToShow = initialPostsToShow;
                 year: 'numeric' 
               });
               
+              // Generate placeholder image URL
+              const placeholderImage = post.image && post.image.url 
+                ? post.image.url 
+                : `https://placehold.co/600x400/ccc/969696?text=${encodeURIComponent(post.tags[0])}`;
+              const placeholderAlt = post.image && post.image.alt 
+                ? post.image.alt 
+                : `Imagem para o artigo: ${post.title}`;
+              
               const blogCard = document.createElement('a');
               blogCard.href = `/blog/${post.slug}/`;
               blogCard.className = 'blog-card';
@@ -577,7 +837,12 @@ const postsToShow = initialPostsToShow;
               
               blogCard.innerHTML = `
                 <div class="blog-thumb">
-                  <div class="text-thumb">${post.tags[0]}</div>
+                  <img 
+                    src="${placeholderImage}" 
+                    alt="${placeholderAlt}"
+                    class="blog-thumb-img"
+                    loading="lazy"
+                  />
                 </div>
                 <div class="blog-content-inner">
                   <div class="blog-meta">
@@ -596,7 +861,7 @@ const postsToShow = initialPostsToShow;
               `;
               
               // For nested elements, we also need to add the Astro CID
-              const nestedElements = blogCard.querySelectorAll('.blog-thumb, .text-thumb, .blog-content-inner, .blog-meta, .blog-date, .blog-category, .blog-title, .blog-excerpt, .blog-arrow');
+              const nestedElements = blogCard.querySelectorAll('.blog-thumb, .blog-thumb-img, .blog-content-inner, .blog-meta, .blog-date, .blog-category, .blog-title, .blog-excerpt, .blog-arrow');
               nestedElements.forEach(element => {
                 if (astroCid) {
                   element.setAttribute(astroCid, '');

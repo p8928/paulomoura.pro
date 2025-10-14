@@ -1,0 +1,56 @@
+<div class="reading-progress-bar">
+  <div class="progress-indicator"></div>
+</div>
+
+<style>
+.reading-progress-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.reading-progress-bar.visible {
+  transform: translateY(0);
+}
+
+.progress-indicator {
+  height: 100%;
+  background: var(--color-accent);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.querySelector('.reading-progress-bar');
+    const progressIndicator = document.querySelector('.progress-indicator');
+    
+    // Show the progress bar after a short delay to prevent initial flash
+    setTimeout(() => {
+      progressBar.classList.add('visible');
+    }, 500);
+    
+    // Calculate and update scroll progress
+    const updateScrollProgress = () => {
+      const scrollPosition = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollPosition / documentHeight) * 100;
+      
+      // Update the progress bar width with a maximum of 100%
+      progressIndicator.style.width = Math.min(scrollPercent, 100) + '%';
+    };
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', updateScrollProgress);
+    
+    // Update initially
+    updateScrollProgress();
+  });
+</script>

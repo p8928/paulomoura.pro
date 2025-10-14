@@ -388,93 +388,101 @@ const services = [
   </main>
 </div>
 
-<script>
-  import { gsap } from "gsap";
+<script is:inline>
+  // Dynamically load GSAP
+  (async () => {
+    try {
+      const gsapModule = await import('https://esm.sh/gsap@3.13.0');
+      const gsap = gsapModule.default || gsapModule;
 
-  function initInteractiveServices() {
-    const navLinks = document.querySelectorAll('.services-nav-list a');
-    const articles = document.querySelectorAll('.service-article');
+      function initInteractiveServices() {
+        const navLinks = document.querySelectorAll('.services-nav-list a');
+        const articles = document.querySelectorAll('.service-article');
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        const targetId = link.getAttribute('data-target');
-        const targetArticle = document.getElementById(targetId);
+        navLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const targetId = link.getAttribute('data-target');
+            const targetArticle = document.getElementById(targetId);
 
-        if (!targetArticle || link.classList.contains('active')) {
-          return;
-        }
+            if (!targetArticle || link.classList.contains('active')) {
+              return;
+            }
 
-        // Update active link
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+            // Update active link
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
 
-        // Find currently active article
-        const currentArticle = document.querySelector('.service-article:not(.is-hidden)');
+            // Find currently active article
+            const currentArticle = document.querySelector('.service-article:not(.is-hidden)');
 
-        // Animate out the current article
-        if (currentArticle) {
-          gsap.to(currentArticle, {
-            opacity: 0,
-            y: 20,
-            duration: 0.3,
-            ease: 'power2.in',
-            onComplete: () => {
-              currentArticle.classList.add('is-hidden');
-              
-              // Animate in the new article
-              targetArticle.classList.remove('is-hidden');
-              gsap.fromTo(targetArticle, 
-                { opacity: 0, y: 20 },
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  duration: 0.4, 
-                  ease: 'power2.out',
-                  onComplete: () => {
-                    // Scroll to the service content after animation completes
-                    setTimeout(() => {
-                      targetArticle.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "nearest"
-                      });
-                    }, 50); // Small delay to ensure rendering is complete
-                  }
+            // Animate out the current article
+            if (currentArticle) {
+              gsap.to(currentArticle, {
+                opacity: 0,
+                y: 20,
+                duration: 0.3,
+                ease: 'power2.in',
+                onComplete: () => {
+                  currentArticle.classList.add('is-hidden');
+                  
+                  // Animate in the new article
+                  targetArticle.classList.remove('is-hidden');
+                  gsap.fromTo(targetArticle, 
+                    { opacity: 0, y: 20 },
+                    { 
+                      opacity: 1, 
+                      y: 0, 
+                      duration: 0.4, 
+                      ease: 'power2.out',
+                      onComplete: () => {
+                        // Scroll to the service content after animation completes
+                        setTimeout(() => {
+                          targetArticle.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                            inline: "nearest"
+                          });
+                        }, 50); // Small delay to ensure rendering is complete
+                      }
+                    }
+                  );
                 }
-              );
+              });
+            } else {
+                // If no article is visible, just animate in the new one
+                targetArticle.classList.remove('is-hidden');
+                gsap.fromTo(targetArticle, 
+                    { opacity: 0, y: 20 },
+                    { 
+                      opacity: 1, 
+                      y: 0, 
+                      duration: 0.4, 
+                      ease: 'power2.out',
+                      onComplete: () => {
+                        // Scroll to the service content after animation completes
+                        setTimeout(() => {
+                          targetArticle.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                            inline: "nearest"
+                          });
+                        }, 50); // Small delay to ensure rendering is complete
+                      }
+                    }
+                );
             }
           });
-        } else {
-            // If no article is visible, just animate in the new one
-            targetArticle.classList.remove('is-hidden');
-            gsap.fromTo(targetArticle, 
-                { opacity: 0, y: 20 },
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  duration: 0.4, 
-                  ease: 'power2.out',
-                  onComplete: () => {
-                    // Scroll to the service content after animation completes
-                    setTimeout(() => {
-                      targetArticle.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "nearest"
-                      });
-                    }, 50); // Small delay to ensure rendering is complete
-                  }
-                }
-            );
-        }
-      });
-    });
-  }
+        });
+      }
 
-  document.addEventListener('DOMContentLoaded', initInteractiveServices);
-  document.addEventListener('astro:page-load', initInteractiveServices);
+      document.addEventListener('DOMContentLoaded', initInteractiveServices);
+      document.addEventListener('astro:page-load', initInteractiveServices);
+    } catch (err) {
+      console.warn('GSAP could not be loaded. Service animations will not run.', err);
+    }
+  })();
 </script>
 
 <style>

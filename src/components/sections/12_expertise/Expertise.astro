@@ -90,52 +90,70 @@ const industries = [
   </header>
 </div>
 
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+<script is:inline type="module">
+  // Initialize GSAP and ScrollTrigger after ensuring they are loaded
+  const initAnimations = async () => {
+    try {
+      // Dynamically import GSAP and ScrollTrigger
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        await import('https://esm.sh/gsap@3.13.0'),
+        await import('https://esm.sh/gsap/ScrollTrigger?bundle=esm')
+      ]);
 
-  gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-  // Store ScrollTrigger instances to properly clean them up
-  let scrollTriggerInstances = [];
+      // Store ScrollTrigger instances to properly clean them up
+      let scrollTriggerInstances = [];
 
-  function initAnimations() {
-    // Limpar triggers anteriores para evitar duplicação
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    // Clear our local array as well
-    scrollTriggerInstances = [];
+      // Function to initialize animations
+      const animateTitle = () => {
+        // Limpar triggers anteriores para evitar duplicação
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        // Clear our local array as well
+        scrollTriggerInstances = [];
 
-    // Coreografia do Título - Now using opacity and transform properties that match the CSS
-    const tl = gsap.timeline({ 
-      delay: 0.2,
-      onStart: () => {
-        // Make the entire title visible when animation starts
-        const title = document.querySelector('.metodology-title');
-        if (title) {
-          title.style.opacity = '1';
-          title.style.visibility = 'visible';
-        }
+        // Coreografia do Título - Now using opacity and transform properties that match the CSS
+        const tl = gsap.timeline({ 
+          delay: 0.2,
+          onStart: () => {
+            // Make the entire title visible when animation starts
+            const title = document.querySelector('.metodology-title');
+            if (title) {
+              title.style.opacity = '1';
+              title.style.visibility = 'visible';
+            }
+          }
+        });
+        
+        tl.fromTo(".title-brand", 
+          { x: -50, opacity: 0 }, 
+          { x: 0, opacity: 1, duration: 1, ease: "power3.out" }
+        );
+      };
+      
+      // Execute immediately when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', animateTitle);
+      } else {
+        animateTitle();
       }
-    });
-    
-    tl.fromTo(".title-brand", 
-      { x: -50, opacity: 0 }, 
-      { x: 0, opacity: 1, duration: 1, ease: "power3.out" }
-    );
-  }
 
-  // Executar na carga inicial da página
-  document.addEventListener('DOMContentLoaded', initAnimations);
-
-  // Executar em navegações subsequentes do Astro
-  document.addEventListener('astro:page-load', initAnimations);
+      // Executar em navegações subsequentes do Astro
+      document.addEventListener('astro:page-load', animateTitle);
+      
+      // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
+      document.addEventListener('astro:before-swap', () => {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        scrollTriggerInstances.forEach(trigger => trigger.kill());
+        scrollTriggerInstances = [];
+      });
+    } catch (err) {
+      console.warn('GSAP or ScrollTrigger could not be loaded. Animations will not run.', err);
+    }
+  };
   
-  // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
-  document.addEventListener('astro:before-swap', () => {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    scrollTriggerInstances.forEach(trigger => trigger.kill());
-    scrollTriggerInstances = [];
-  });
+  // Execute the animation initialization
+  initAnimations();
 </script>
 
 <!-- Industries Overview Section -->

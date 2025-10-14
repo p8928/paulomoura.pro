@@ -1,7 +1,7 @@
 ---
 const { entry } = Astro.props;
 const { data, slug } = entry;
-const { title, description, publishDate, tags } = data;
+const { title, description, publishDate, tags, image } = data;
 
 // Format the date without the day of the week
 const formattedDate = publishDate.toLocaleDateString('pt-BR', {
@@ -9,10 +9,19 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
   month: '2-digit',
   year: 'numeric'
 });
+
+// Generate a placeholder image URL based on the tag
+const placeholderImage = image && image.url ? image.url : `https://placehold.co/600x400/ccc/969696?text=${encodeURIComponent(tags[0])}`;
+const placeholderAlt = image && image.alt ? image.alt : `Imagem para o artigo: ${title}`;
 ---
 <a href={`/blog/${slug}/`} class="blog-card">
   <div class="blog-thumb">
-    <div class="text-thumb">{tags[0]}</div>
+    <img 
+      src={placeholderImage} 
+      alt={placeholderAlt}
+      class="blog-thumb-img"
+      loading="lazy"
+    />
   </div>
   <div class="blog-content-inner">
     <div class="blog-meta">
@@ -80,6 +89,13 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
+}
+
+.blog-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .text-thumb {

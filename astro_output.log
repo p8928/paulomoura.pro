@@ -1,0 +1,488 @@
+22:31:24 [types] Generated 1ms
+22:31:24 [content] Syncing content
+22:31:24 [content] Synced content
+
+ astro  v5.14.3 ready in 1194 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+22:31:24 watching for file changes...
+22:31:26 [200] /blog 65ms
+Full request URL: http://localhost:4321/api/search-posts
+Parsed URL: http://localhost:4321/api/search-posts
+Search query received: 
+All search params: {}
+22:31:42 [200] /api/search-posts 3ms
+22:35:49 [watch] /src/components/blog/Sidebar.astro?astro&type=style&index=0&lang.css
+22:35:50 [200] /blog 42ms
+22:35:57 [404] /tags/branding 7ms
+22:36:40 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+22:36:40 [200] /blog 24ms
+22:39:41 [watch] /src/components/blog/BlogCard.astro?astro&type=style&index=0&lang.css
+22:39:41 [200] /blog 28ms
+22:40:31 [200] /blog 16ms
+22:40:33 [200] /api/blog-posts-html 4ms
+22:41:44 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+22:41:44 [200] /blog 56ms
+22:41:49 [200] /api/blog-posts-html 2ms
+22:42:16 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+22:42:16 [200] /blog 18ms
+22:42:20 [200] /api/blog-posts-html 2ms
+22:42:29 [200] /blog 14ms
+22:42:35 [200] /api/blog-posts-html 2ms
+22:44:36 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+22:44:36 [200] /blog 31ms
+22:44:42 [200] /api/blog-posts-html 2ms
+22:47:41 [200] /blog/transformacao-digital-e-cultura/ 15ms
+23:03:36 [200] /metodologia 29ms
+23:03:41 [200] /exemplo-post 27ms
+23:05:46 [200] /blog 15ms
+23:05:46 [200] /exemplo-post 99ms
+23:06:25 [200] /exemplo-post 16ms
+23:06:26 [ERROR] Could not import `../components/blog/BlogPost.astro`.
+  Hint:
+    This is often caused by a typo in the import path. Please make sure the file exists.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/
+  Stack trace:
+    at /home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/src/pages/blog/[...slug].astro:4:22
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:06:48 [200] /exemplo-post 15ms
+23:06:49 [200] /blog 15ms
+23:07:02 [200] /exemplo-post 14ms
+23:07:03 [200] /blog 58ms
+23:08:28 [200] /exemplo-post 13ms
+23:08:29 [200] /blog 17ms
+23:08:59 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:08:59 [watch] src/components/blog/BlogPost.astro
+23:10:23 [200] /exemplo-post 19ms
+23:10:46 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:10:46 [watch] src/components/blog/BlogPost.astro
+23:11:10 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:11:10 [watch] src/components/blog/BlogPost.astro
+23:11:19 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:11:19 [watch] src/components/blog/BlogPost.astro
+23:11:31 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:11:31 [watch] src/components/blog/BlogPost.astro
+23:11:47 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:11:47 [watch] src/components/blog/BlogPost.astro
+23:12:00 [200] /exemplo-post 15ms
+23:12:54 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:12:54 [watch] src/components/blog/BlogPost.astro
+23:13:08 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:13:08 [watch] src/components/blog/BlogPost.astro
+23:15:20 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:15:20 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:22 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:23 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:24 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:24 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:25 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:25 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:26 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:27 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:28 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:29 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:15:29 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:30 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:16:30 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:30 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:30 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:53 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:16:53 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:53 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:16:53 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:19 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:17:19 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:19 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:19 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:32 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:17:32 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:32 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:17:32 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:52 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:19:52 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:52 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:53 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:53 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:54 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:55 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:56 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:56 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:57 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:57 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:58 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:58 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:59 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:19:59 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:00 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:00 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:01 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:01 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:02 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:03 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:04 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:20:04 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:21:44 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:21:45 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:21:45 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:21:45 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:21:45 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:30:57 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:30:59 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:00 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:01 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:02 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:03 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:04 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:05 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:06 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:07 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:08 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:09 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:10 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:11 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:12 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:13 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:13 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:14 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:15 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:16 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:17 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:18 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:19 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:20 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:21 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:21 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:31:22 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:31 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:32:31 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:31 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:32 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:32 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:33 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:34 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:35 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:35 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:36 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:37 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:38 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:38 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:39 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:39 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:40 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:41 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:42 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:32:42 [ERROR] Expected "}" but found ":"
+  Stack trace:
+    at failureErrorWithLog (/home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/node_modules/esbuild/lib/main.js:1467:15)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+23:35:42 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:35:42 [200] /blog 20ms
+23:35:42 [200] /exemplo-post 79ms
+23:37:02 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:37:03 [200] /blog 36ms
+23:37:03 [200] /exemplo-post 74ms
+23:37:29 [watch] /src/components/blog/BlogPost.astro?astro&type=style&index=0&lang.css
+23:37:29 [200] /blog 44ms
+23:37:29 [200] /exemplo-post 90ms
+23:40:50 [200] /exemplo-post 17ms
+23:40:50 [200] /blog 11ms
+21:47:27 [200] / 52ms
+21:48:03 [200] /exemplo-post/ 8ms
+21:49:06 [200] /exemplo-post/ 9ms
+21:57:07 [200] /blog 59ms
+21:57:07 [200] /exemplo-post 90ms
+21:58:14 [200] /exemplo-post/ 12ms
+22:00:15 [200] /exemplo-post/ 10ms
+22:15:58 [200] /blog/ 8ms
+Full request URL: http://localhost:4321/api/search-posts
+Parsed URL: http://localhost:4321/api/search-posts
+Search query received: 
+All search params: {}
+22:26:19 [200] /api/search-posts 5ms
+22:39:06 [200] /exemplo-post 13ms
+22:39:06 [200] /blog 47ms

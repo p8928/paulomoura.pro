@@ -1,0 +1,136 @@
+---
+// Componente para trechos importantes no corpo do post
+const { type = 'highlight', icon = true } = Astro.props;
+---
+
+{type === 'highlight' ? (
+  <div class="highlighted-content">
+    <slot />
+  </div>
+) : type === 'caution' ? (
+  <div class="caution-content">
+    {icon && (
+      <div class="caution-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+    )}
+    <div class="caution-text">
+      <slot />
+    </div>
+  </div>
+) : type === 'tip' ? (
+  <div class="tip-content">
+    {icon && (
+      <div class="tip-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 10 12 13 15 10"></polyline>
+          <circle cx="12" cy="17" r="1"></circle>
+          <line x1="12" y1="22" x2="12" y2="18"></line>
+        </svg>
+      </div>
+    )}
+    <div class="tip-text">
+      <slot />
+    </div>
+  </div>
+) : (
+  <div class="note-content">
+    {icon && (
+      <div class="note-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+    )}
+    <div class="note-text">
+      <slot />
+    </div>
+  </div>
+)}
+
+<style>
+.highlighted-content {
+  background-color: rgba(192, 178, 131, 0.15);
+  border-left: 4px solid var(--color-accent);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+.caution-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.05); /* Preto com baixa opacidade */
+  border-left: 4px solid var(--color-text-tertiary); /* Cor do texto terciário */
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.caution-icon {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.tip-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: rgba(192, 178, 131, 0.08); /* Cor de destaque com baixa opacidade */
+  border-left: 4px solid var(--color-accent); /* Cor de destaque */
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.tip-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.note-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.03); /* Preto com muito baixa opacidade */
+  border-left: 4px solid var(--color-accent-accessible); /* Cor de destaque com melhor contraste */
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.note-icon {
+  color: var(--color-accent-accessible);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.caution-text, .tip-text, .note-text {
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .highlighted-content,
+  .caution-content,
+  .tip-content,
+  .note-content {
+    padding: 1rem;
+  }
+  
+  .caution-content,
+  .tip-content,
+  .note-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+</style>

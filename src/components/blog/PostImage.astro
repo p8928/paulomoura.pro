@@ -1,0 +1,63 @@
+---
+// Componente para imagens no corpo do post com legendas
+const { src, alt, caption, size = 'medium' } = Astro.props;
+---
+
+<figure class={`post-image ${size}`}>
+  <img 
+    src={src} 
+    alt={alt} 
+    loading="lazy"
+  />
+  {caption && (
+    <figcaption class="image-caption">
+      {caption}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+.post-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.post-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
+}
+
+.post-image.small img {
+  max-width: 50%;
+}
+
+.post-image.medium img {
+  max-width: 80%;
+}
+
+.post-image.large img {
+  max-width: 100%;
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-tertiary);
+  margin-top: 0.75rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .post-image.small img {
+    max-width: 100%;
+  }
+  
+  .post-image.medium img {
+    max-width: 100%;
+  }
+}
+</style>

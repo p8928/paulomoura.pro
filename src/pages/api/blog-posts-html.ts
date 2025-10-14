@@ -21,6 +21,7 @@ export async function GET({ request }) {
     description: post.data.description,
     publishDate: post.data.publishDate,
     tags: post.data.tags,
+    image: post.data.image || null,
   }));
   
   return new Response(JSON.stringify({

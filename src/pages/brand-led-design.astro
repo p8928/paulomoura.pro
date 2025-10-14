@@ -570,92 +570,102 @@ import '../components/sections/14_manifest/css/brand-led-design-hero.css';
       }
     }
   });
-  // GSAP animation for the main title
-  document.addEventListener('DOMContentLoaded', () => {
-    // Check if GSAP is available
-    if (typeof gsap !== 'undefined') {
-      // Wait a bit to ensure DrawSVGPlugin is loaded
-      setTimeout(() => {
-        // Animate the main title with stagger effect
-        gsap.from(".title-part", {
-          duration: 1.2,
-          y: 150,
-          opacity: 0,
-          stagger: 0.3,
-          ease: "power3.out",
-          delay: 0.2
-        });
-        
-        // Animate the dash with a draw effect (only if DrawSVGPlugin is available)
-        if (typeof DrawSVGPlugin !== 'undefined') {
-          gsap.from(".dash-path", {
-            duration: 1,
-            drawSVG: 0,
-            ease: "power2.out",
-            delay: 0.5
-          });
-        } else {
-          // Fallback: animate opacity and scale
-          gsap.from(".title-dash", {
-            duration: 1,
-            scaleX: 0,
+  // Dynamically load GSAP and run animations
+  (async () => {
+    try {
+      // Import GSAP dynamically
+      const gsapModule = await import('https://esm.sh/gsap@3.13.0');
+      const gsap = gsapModule.default || gsapModule;
+      
+      // For DrawSVGPlugin, we need to import it separately and register it
+      const drawSVGModule = await import('https://esm.sh/gsap/DrawSVGPlugin');
+      const DrawSVGPlugin = drawSVGModule.DrawSVGPlugin;
+      gsap.registerPlugin(DrawSVGPlugin);
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit to ensure DrawSVGPlugin is loaded
+        setTimeout(() => {
+          // Animate the main title with stagger effect
+          gsap.from(".title-part", {
+            duration: 1.2,
+            y: 150,
             opacity: 0,
-            transformOrigin: "center",
-            ease: "power2.out",
-            delay: 0.5
-          });
-        }
-        
-        // Animate the "DESIGN" with a different effect
-        gsap.from(".title-design", {
-          duration: 1.2,
-          y: 150,
-          opacity: 0,
-          ease: "back.out(1.7)",
-          delay: 1
-        });
-        
-        // Add hover effect to the title
-        const title = document.getElementById('brand-led-title');
-        title.addEventListener('mouseenter', () => {
-          gsap.to(".title-part", {
-            duration: 0.4,
-            y: -10,
-            color: 'var(--color-accent)',
-            stagger: 0.05,
-            ease: "power2.out"
+            stagger: 0.3,
+            ease: "power3.out",
+            delay: 0.2
           });
           
-          gsap.to(".title-design", {
-            duration: 0.4,
-            y: -10,
-            color: 'var(--color-accent)',
-            ease: "power2.out"
-          });
-        });
-        
-        title.addEventListener('mouseleave', () => {
-          gsap.to(".title-part", {
-            duration: 0.4,
-            y: 0,
-            color: 'var(--color-white)',
-            stagger: 0.05,
-            ease: "power2.out"
+          // Animate the dash with a draw effect (only if DrawSVGPlugin is available)
+          if (DrawSVGPlugin) {
+            gsap.from(".dash-path", {
+              duration: 1,
+              drawSVG: 0,
+              ease: "power2.out",
+              delay: 0.5
+            });
+          } else {
+            // Fallback: animate opacity and scale
+            gsap.from(".title-dash", {
+              duration: 1,
+              scaleX: 0,
+              opacity: 0,
+              transformOrigin: "center",
+              ease: "power2.out",
+              delay: 0.5
+            });
+          }
+          
+          // Animate the "DESIGN" with a different effect
+          gsap.from(".title-design", {
+            duration: 1.2,
+            y: 150,
+            opacity: 0,
+            ease: "back.out(1.7)",
+            delay: 1
           });
           
-          gsap.to(".title-design", {
-            duration: 0.4,
-            y: 0,
-            color: 'var(--color-white)',
-            ease: "power2.out"
+          // Add hover effect to the title
+          const title = document.getElementById('brand-led-title');
+          title.addEventListener('mouseenter', () => {
+            gsap.to(".title-part", {
+              duration: 0.4,
+              y: -10,
+              color: 'var(--color-accent)',
+              stagger: 0.05,
+              ease: "power2.out"
+            });
+            
+            gsap.to(".title-design", {
+              duration: 0.4,
+              y: -10,
+              color: 'var(--color-accent)',
+              ease: "power2.out"
+            });
           });
-        });
-      }, 300); // Small delay to ensure GSAP plugins are loaded
-    } else {
+          
+          title.addEventListener('mouseleave', () => {
+            gsap.to(".title-part", {
+              duration: 0.4,
+              y: 0,
+              color: 'var(--color-white)',
+              stagger: 0.05,
+              ease: "power2.out"
+            });
+            
+            gsap.to(".title-design", {
+              duration: 0.4,
+              y: 0,
+              color: 'var(--color-white)',
+              ease: "power2.out"
+            });
+          });
+        }, 300); // Small delay to ensure GSAP plugins are loaded
+      });
+    } catch (err) {
       // Fallback if GSAP is not loaded
-      console.warn('GSAP is not loaded. Title animations will not run.');
+      console.warn('GSAP could not be loaded. Title animations will not run.', err);
     }
-  });
+  })();
 </script>
 
 <!-- Simple animation script using Web Animations API -->

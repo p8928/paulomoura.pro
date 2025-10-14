@@ -1,0 +1,230 @@
+---
+import { getCollection } from 'astro:content';
+import { getEntryBySlug } from 'astro:content';
+import BlogPost from '../components/blog/BlogPost.astro';
+import HighlightedContent from '../components/blog/HighlightedContent.astro';
+import PostImage from '../components/blog/PostImage.astro';
+import TableOfContents from '../components/blog/TableOfContents.astro';
+
+// Obter um post real do sistema de conteúdo
+const allPosts = await getCollection('blog');
+const post = allPosts.find(p => p.slug === 'branding-e-experiencia-do-cliente') || allPosts[0]; // Usar o primeiro como fallback
+
+// Pegar posts relacionados (os 2 primeiros diferentes do post atual)
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .slice(0, 2);
+---
+
+<BlogPost post={post} relatedPosts={relatedPosts}>
+  <div class="post-content" slot="content">
+    <TableOfContents>
+      <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
+      <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
+      <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
+      <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
+      <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
+      <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
+      <li><a href="#conclusao">Conclusão</a></li>
+    </TableOfContents>
+
+    <p>
+      O design digital evoluiu drasticamente nas últimas décadas, transformando-se de uma disciplina 
+      emergente em uma força dominante que molda nossa interação com a tecnologia. Este artigo explora 
+      a jornada fascinante do design digital, desde suas raízes até as inovações contemporâneas que 
+      continuam a redefinir como vivenciamos o mundo digital. Compreender essa evolução é crucial para 
+      profissionais que buscam criar experiências significativas e impactantes.
+    </p>
+
+    <HighlightedContent type="tip">
+      O design digital bem-sucedido não apenas atende às necessidades funcionais, mas também conecta-se 
+      emocionalmente com os usuários, criando laços duradouros entre marcas e consumidores.
+    </HighlightedContent>
+
+    <h2 id="evolucao-design-digital">A Evolução do Design Digital</h2>
+    <p>
+      A trajetória do design digital começou com interfaces rudimentares em computadores pessoais 
+      da década de 1980. Naquela época, os designers lidavam com limitações técnicas severas, como 
+      resoluções de tela baixas, paletas de cores restritas e tipografia limitada. Apesar dessas 
+      restrições, pioneiros como Susan Kare, responsável pelo design dos ícones do Macintosh, 
+      estabeleceram fundamentos que ainda influenciam o design contemporâneo.
+    </p>
+
+    <p>
+      Com a popularização da internet na década de 1990, surgiu uma nova era de possibilidades. 
+      Websites começaram a incorporar elementos gráficos, animações e interatividade. No entanto, 
+      muitos designs da época eram excessivamente ornamentados, com fundos animados, cores conflitantes 
+      e tipografias inadequadas. Essa fase, embora caótica, foi fundamental para explorar o potencial 
+      expressivo do meio digital.
+    </p>
+
+    <ul>
+      <li>Primeira geração (1980-1990): Interfaces primitivas com limitações técnicas</li>
+      <li>Web 1.0 (1990-2000): Experimentação excessiva com elementos visuais</li>
+      <li>Web 2.0 (2000-2010): Foco na usabilidade e experiência do usuário</li>
+      <li>Design responsivo (2010-presente): Adaptação para múltiplos dispositivos</li>
+      <li>Futuro próximo: Realidade aumentada e interfaces conversacionais</li>
+    </ul>
+
+    <HighlightedContent type="highlight">
+      Cada fase da evolução do design digital trouxe lições valiosas sobre equilíbrio entre 
+      funcionalidade e estética, preparando o terreno para as abordagens contemporâneas centradas 
+      no usuário.
+    </HighlightedContent>
+
+    <h2 id="principios-fundamentais">Princípios Fundamentais do Design Digital</h2>
+    <p>
+      Os princípios que governam o design digital moderno são baseados em décadas de pesquisa 
+      em psicologia cognitiva, ergonomia e design visual. O princípio da hierarquia visual, por 
+      exemplo, ajuda os usuários a navegar intuitivamente pelo conteúdo, guiando-os através de 
+      elementos mais importantes para os secundários. Da mesma forma, o contraste e a repetição 
+      criam coesão visual enquanto mantêm o interesse do usuário.
+    </p>
+
+    <p>
+      A acessibilidade emerge como um princípio cada vez mais importante, reconhecendo que 
+      designs inclusivos beneficiam todos os usuários. Considerações como contraste de cores 
+      adequado, tamanhos de fonte legíveis e navegação por teclado não apenas atendem às normas 
+      de conformidade, mas também melhoram a experiência geral.
+    </p>
+
+    <HighlightedContent type="caution">
+      Ignorar os princípios fundamentais do design digital pode resultar em experiências frustrantes 
+      que afastam usuários e prejudicam objetivos comerciais.
+    </HighlightedContent>
+
+    <h2 id="ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</h2>
+    <p>
+      O ecossistema de ferramentas disponíveis para designers digitais hoje é extraordinariamente 
+      rico e diversificado. Softwares como Figma, Adobe XD e Sketch permitem prototipagem colaborativa 
+      em tempo real, enquanto bibliotecas de componentes como Storybook facilitam a manutenção de 
+      sistemas de design escaláveis. Além disso, tecnologias emergentes como inteligência artificial 
+      estão começando a auxiliar designers na geração de layouts e sugestões de melhoria.
+    </p>
+
+    <ol>
+      <li>Prototipagem: Ferramentas colaborativas para testes rápidos</li>
+      <li>Sistemas de design: Bibliotecas de componentes reutilizáveis</li>
+      <li>Análise de dados: Insights comportamentais para decisões informadas</li>
+      <li>Inteligência artificial: Assistência na criação e otimização</li>
+      <li>Realidade aumentada: Novas dimensões de interação</li>
+    </ol>
+
+    <h2 id="tendencias-atuais">Tendências Atuais em Design Digital</h2>
+    <p>
+      As tendências atuais refletem uma crescente ênfase na personalização, autenticidade e 
+      imersão. Designs minimalistas com tipografia ousada e microinterações sutis estão 
+      substituindo os elementos excessivamente elaborados do passado. A utilização de gradientes, 
+      ilustrações customizadas e animações significativas cria experiências memoráveis sem 
+      comprometer a funcionalidade.
+    </p>
+
+    <p>
+      A individualização baseada em dados representa uma fronteira emocionante, onde interfaces 
+      se adaptam dinamicamente às preferências e comportamentos dos usuários. Esta abordagem não 
+      apenas melhora a relevância do conteúdo, mas também constrói conexões mais profundas 
+      entre marcas e consumidores.
+    </p>
+
+    <HighlightedContent type="note">
+      As tendências atuais em design digital convergem para uma filosofia centrada no ser humano, 
+      priorizando experiências significativas sobre meras funcionalidades.
+    </HighlightedContent>
+
+    <h2 id="casos-sucesso">Casos de Sucesso e Estudos de Caso</h2>
+    <p>
+      Empresas líderes como Apple, Google e Airbnb demonstram consistentemente como princípios 
+      sólidos de design digital podem diferenciar marcas e criar vantagens competitivas duradouras. 
+      O design sistemático da interface do iPhone revolucionou a interação homem-máquina, enquanto 
+      a abordagem de design limpa e intuitiva do Google Search democratizou o acesso à informação. 
+      Estes exemplos ilustram como o design cuidadoso pode transformar conceitos complexos em 
+      experiências simples e agradáveis.
+    </p>
+
+    <h2 id="desafios-oportunidades">Desafios e Oportunidades Futuras</h2>
+    <p>
+      À medida que avançamos para um futuro cada vez mais conectado, designers digitais enfrentam 
+      novos desafios éticos e técnicos. Questões como privacidade de dados, vício comportamental 
+      e inclusão digital exigem uma abordagem mais consciente e responsável. Ao mesmo tempo, 
+      tecnologias emergentes como realidade aumentada, voz e interfaces cerebrais oferecem 
+      oportunidades inexploradas para expandir os limites da interação digital.
+    </p>
+
+    <h2 id="conclusao">Conclusão</h2>
+    <p>
+      O design digital evoluiu de uma prática experimental para uma disciplina fundamental 
+      que molda como interagimos com o mundo tecnológico. Sua importância continuará crescendo 
+      à medida que a linha entre experiências físicas e digitais se torna cada vez mais tênue. 
+      Profissionais que abraçarem essa evolução com empatia, inovação e responsabilidade estarão 
+      bem posicionados para liderar a próxima revolução digital.
+    </p>
+
+    <p>
+      Investir em design digital não é apenas uma questão de estética – é um compromisso com 
+      a excelência da experiência humana em um mundo cada vez mais digital.
+    </p>
+
+    <div class="share-section" style="margin-top: var(--space-3xl); text-align: center; padding: var(--space-lg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--color-background) 0%, rgba(192, 178, 131, 0.05) 100%); max-width: 600px; margin-left: auto; margin-right: auto; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--color-accent), #000000, var(--color-accent));"></div>
+      <h3 class="text-label" style="color: var(--color-accent); margin-bottom: var(--space-sm);">Compartilhe</h3>
+      <p class="text-intro" style="max-width: none; margin-top: var(--space-sm); margin-bottom: var(--space-lg); color: var(--color-text-tertiary); font-size: var(--font-size-base);">
+        Achou este conteúdo útil? Compartilhe com sua rede.
+      </p>
+      <div class="social-share-buttons" style="justify-content: center; display: flex; gap: var(--space-md); align-items: center; position: relative;">
+        <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.data.title)}%20${Astro.url.href}`} 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="social-share-btn"
+           aria-label="Compartilhar no WhatsApp"
+           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
+           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
+          <img src="/img/icons/whatsapp-circle.svg" alt="Compartilhar no WhatsApp" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
+          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
+        </a>
+        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(post.data.title)}`} 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="social-share-btn"
+           aria-label="Compartilhar no LinkedIn"
+           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
+           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
+          <img src="/img/icons/linkedin-circle.svg" alt="Compartilhar no LinkedIn" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
+          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
+        </a>
+        <a href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(post.data.title)}`} 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="social-share-btn"
+           aria-label="Compartilhar no Twitter"
+           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
+           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
+          <img src="/img/icons/twitter-alt-circle.svg" alt="Compartilhar no Twitter" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
+          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
+        </a>
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`} 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="social-share-btn"
+           aria-label="Compartilhar no Facebook"
+           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
+           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
+          <img src="/img/icons/facebook.svg" alt="Compartilhar no Facebook" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
+          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
+        </a>
+        <a href={`mailto:?subject=${encodeURIComponent(post.data.title)}&body=${Astro.url.href}`} 
+           aria-label="Compartilhar por Email" 
+           class="social-share-btn"
+           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
+           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
+          <img src="/img/icons/circle-envelope.svg" alt="Compartilhar por Email" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
+          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</BlogPost>

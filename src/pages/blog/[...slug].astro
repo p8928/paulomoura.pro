@@ -1,17 +1,36 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import BlogPost from '../../components/blog/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+// Obter o slug do parâmetro de rota
+const { slug } = Astro.params;
+
+// Obter a coleção de posts do blog
+const blogPosts = await getCollection('blog');
+const post = blogPosts.find(p => p.slug === slug);
+
+// Obter posts relacionados com base nas tags
+const relatedPosts = blogPosts
+  .filter(p => 
+    p.data.tags.some((tag: string) => post?.data.tags.includes(tag)) && 
+    p.slug !== post?.slug
+  )
+  .slice(0, 3); // Pegar até 3 posts relacionados
 ---
-<BlogPostLayout frontmatter={entry.data}>
-  <Content />
-</BlogPostLayout>
+
+{post ? 
+  <BlogPost post={post} relatedPosts={relatedPosts}>
+    <article class="post-content">
+      <slot />
+    </article>
+  </BlogPost>
+  : <p>Post não encontrado</p>
+}
