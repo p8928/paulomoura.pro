@@ -164,9 +164,11 @@ import Menu from '../overlay_menu/Menu.astro';
 
     mobileMenuBtn.addEventListener('click', () => {
       overlayMenu.classList.add('open');
+      document.body.classList.add('overlay-open');
     });
 
     closeMenuBtn.addEventListener('click', () => {
       overlayMenu.classList.remove('open');
+      document.body.classList.remove('overlay-open');
     });
   </script>
