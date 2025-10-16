@@ -6,6 +6,7 @@ import HighlightedContent from '../components/blog/HighlightedContent.astro';
 import PostImage from '../components/blog/PostImage.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
 import Button from '../components/ui/Button.astro';
+import ShareOverlay from '../components/ui/share_overlay/ShareOverlay.astro';
 
 // Obter um post real do sistema de conteúdo
 const allPosts = await getCollection('blog');
@@ -171,61 +172,7 @@ const relatedPosts = allPosts
       <p class="text-intro" style="max-width: none; margin-top: var(--space-sm); margin-bottom: var(--space-lg); color: var(--color-text-tertiary); font-size: var(--font-size-base);">
         Achou este conteúdo útil? Compartilhe com sua rede.
       </p>
-      <div class="social-share-buttons" style="justify-content: center; display: flex; gap: var(--space-md); align-items: center; position: relative;">
-        <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.data.title)}%20${Astro.url.href}`} 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="social-share-btn"
-           aria-label="Compartilhar no WhatsApp"
-           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
-           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
-           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
-          <img src="/img/icons/whatsapp-circle.svg" alt="Compartilhar no WhatsApp" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
-          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
-        </a>
-        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(post.data.title)}`} 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="social-share-btn"
-           aria-label="Compartilhar no LinkedIn"
-           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
-           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
-           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
-          <img src="/img/icons/linkedin-circle.svg" alt="Compartilhar no LinkedIn" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
-          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
-        </a>
-        <a href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(post.data.title)}`} 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="social-share-btn"
-           aria-label="Compartilhar no Twitter"
-           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
-           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
-           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
-          <img src="/img/icons/twitter-alt-circle.svg" alt="Compartilhar no Twitter" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
-          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
-        </a>
-        <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`} 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="social-share-btn"
-           aria-label="Compartilhar no Facebook"
-           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
-           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
-           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
-          <img src="/img/icons/facebook.svg" alt="Compartilhar no Facebook" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
-          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
-        </a>
-        <a href={`mailto:?subject=${encodeURIComponent(post.data.title)}&body=${Astro.url.href}`} 
-           aria-label="Compartilhar por Email" 
-           class="social-share-btn"
-           style="border-radius: 0; border: none; background-color: transparent !important; color: var(--color-text-primary) !important; border-color: transparent !important; transform: none !important; box-shadow: none !important; position: relative; display: inline-block;"
-           onmouseover="this.querySelector('img').style.transform='scale(1.2)'; this.querySelector('div').style.transform='scaleX(1)';"
-           onmouseout="this.querySelector('img').style.transform='scale(1)'; this.querySelector('div').style.transform='scaleX(0)';">
-          <img src="/img/icons/circle-envelope.svg" alt="Compartilhar por Email" style="width: 40px; height: 40px; fill: currentColor; transition: transform 0.3s ease;" />
-          <div style="position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: var(--color-accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></div>
-        </a>
-      </div>
+      <Button id="shareBtn" variant="secondary">Compartilhar</Button>
     </div>
     
     <!-- Seção de chamada para a Metodologia -->
@@ -247,10 +194,41 @@ const relatedPosts = allPosts
   </div>
 </BlogPost>
 
+<ShareOverlay post={post} url={Astro.url.href} />
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const shareBtn = document.getElementById('shareBtn');
+    const shareOverlay = document.getElementById('shareOverlay');
+    const closeShareBtn = document.getElementById('closeShareBtn');
+
+    console.log('Share Button:', shareBtn);
+    console.log('Share Overlay:', shareOverlay);
+    console.log('Close Share Button:', closeShareBtn);
+
+    if (shareBtn && shareOverlay && closeShareBtn) {
+      console.log('Attaching event listeners...');
+      shareBtn.addEventListener('click', () => {
+        console.log('Share button clicked!');
+        shareOverlay.classList.add('open');
+        document.body.classList.add('overlay-open');
+      });
+
+      closeShareBtn.addEventListener('click', () => {
+        console.log('Close button clicked!');
+        shareOverlay.classList.remove('open');
+        document.body.classList.remove('overlay-open');
+      });
+    } else {
+      console.error('One or more elements for the share overlay were not found.');
+    }
+  });
+</script>
+
 <style>
   @media (max-width: 768px) {
     .share-section {
-      display: none;
+      /* Mantém a seção visível em mobile, mas o botão já substituiu os ícones */
     }
   }
 </style>

@@ -1,26 +1,32 @@
 ---
 interface Props {
-  href: string;
+  href?: string;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'primary-dark' | 'secondary-dark';
   class?: string;
-  'aria-label'?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-const { href, variant = 'primary', class: className, 'aria-label': ariaLabel } = Astro.props;
+const { href, variant = 'primary', class: className, type = 'button', ...rest } = Astro.props;
 
 // Mapeia as variantes para as classes CSS globais existentes
 const variantClasses = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
-  tertiary: 'btn-ghost', // Usando 'btn-ghost' para a variante terciária
+  tertiary: 'btn-ghost',
   'primary-dark': 'btn-primary-dark',
   'secondary-dark': 'btn-secondary-dark'
 };
 ---
 
-<a href={href} class:list={['btn', variantClasses[variant], className]} aria-label={ariaLabel}>
-  <slot />
-</a>
+{href ? (
+  <a href={href} class:list={['btn', variantClasses[variant], className]} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class:list={['btn', variantClasses[variant], className]} {...rest}>
+    <slot />
+  </button>
+)}
 
 <style>
   /*
