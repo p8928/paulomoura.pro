@@ -13,31 +13,30 @@
   <defs
      id="defs1">
     <linearGradient
-       id="linearGradient1">
+       id="linearGradient2">
       <stop
-         style="stop-color:#ffffff;stop-opacity:1;"
+         style="stop-color:#c0ae82;stop-opacity:1;"
          offset="0"
-         id="stop1" />
-      <stop
-         style="stop-color:#ffffff;stop-opacity:0.93118554;"
-         offset="1"
          id="stop2" />
+      <stop
+         style="stop-color:#baa66e;stop-opacity:1;"
+         offset="1"
+         id="stop3" />
     </linearGradient>
     <linearGradient
-       xlink:href="#linearGradient1"
-       id="linearGradient2"
+       xlink:href="#linearGradient2"
+       id="linearGradient3"
        x1="56.910126"
-       y1="104.59323"
+       y1="106.3896"
        x2="242.81351"
-       y2="104.59323"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,1.796371)" />
+       y2="106.3896"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      id="layer1"
      transform="translate(-56.910125,-31.41494)">
     <path
-       style="font-size:192px;font-family:Plaster;-inkscape-font-specification:Plaster;white-space:pre;fill:url(#linearGradient2);stroke-width:1.0558"
+       style="font-size:192px;font-family:Plaster;-inkscape-font-specification:Plaster;white-space:pre;fill:url(#linearGradient3);fill-opacity:1;stroke-width:1.0558"
        d="m 192.39439,33.211311 h 8.20564 q 33.55196,0 40.11647,26.864274 2.097,8.704024 2.097,20.094476 v 99.397819 h -50.41911 z m -67.65096,0 h 50.69263 V 179.56788 h -50.69263 z m -67.833304,0 H 107.60276 V 179.56788 H 56.910126 Z"
        id="text1"
        aria-label="M" />

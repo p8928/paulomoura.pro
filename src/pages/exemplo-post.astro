@@ -5,15 +5,16 @@ import BlogPost from '../components/blog/BlogPost.astro';
 import HighlightedContent from '../components/blog/HighlightedContent.astro';
 import PostImage from '../components/blog/PostImage.astro';
 import TableOfContents from '../components/blog/TableOfContents.astro';
+import Button from '../components/ui/Button.astro';
 
 // Obter um post real do sistema de conteúdo
 const allPosts = await getCollection('blog');
 const post = allPosts.find(p => p.slug === 'branding-e-experiencia-do-cliente') || allPosts[0]; // Usar o primeiro como fallback
 
-// Pegar posts relacionados (os 2 primeiros diferentes do post atual)
+// Pegar posts relacionados (os 4 primeiros diferentes do post atual)
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)
-  .slice(0, 2);
+  .slice(0, 4);
 ---
 
 <BlogPost post={post} relatedPosts={relatedPosts}>
@@ -41,7 +42,7 @@ const relatedPosts = allPosts
       emocionalmente com os usuários, criando laços duradouros entre marcas e consumidores.
     </HighlightedContent>
 
-    <h2 id="evolucao-design-digital">A Evolução do Design Digital</h2>
+    <h2 id="evolucao-design-digital" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">A Evolução do Design Digital</h2>
     <p>
       A trajetória do design digital começou com interfaces rudimentares em computadores pessoais 
       da década de 1980. Naquela época, os designers lidavam com limitações técnicas severas, como 
@@ -72,7 +73,7 @@ const relatedPosts = allPosts
       no usuário.
     </HighlightedContent>
 
-    <h2 id="principios-fundamentais">Princípios Fundamentais do Design Digital</h2>
+    <h2 id="principios-fundamentais" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Princípios Fundamentais do Design Digital</h2>
     <p>
       Os princípios que governam o design digital moderno são baseados em décadas de pesquisa 
       em psicologia cognitiva, ergonomia e design visual. O princípio da hierarquia visual, por 
@@ -93,7 +94,7 @@ const relatedPosts = allPosts
       que afastam usuários e prejudicam objetivos comerciais.
     </HighlightedContent>
 
-    <h2 id="ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</h2>
+    <h2 id="ferramentas-tecnologias" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Ferramentas e Tecnologias Modernas</h2>
     <p>
       O ecossistema de ferramentas disponíveis para designers digitais hoje é extraordinariamente 
       rico e diversificado. Softwares como Figma, Adobe XD e Sketch permitem prototipagem colaborativa 
@@ -110,7 +111,7 @@ const relatedPosts = allPosts
       <li>Realidade aumentada: Novas dimensões de interação</li>
     </ol>
 
-    <h2 id="tendencias-atuais">Tendências Atuais em Design Digital</h2>
+    <h2 id="tendencias-atuais" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Tendências Atuais em Design Digital</h2>
     <p>
       As tendências atuais refletem uma crescente ênfase na personalização, autenticidade e 
       imersão. Designs minimalistas com tipografia ousada e microinterações sutis estão 
@@ -131,7 +132,7 @@ const relatedPosts = allPosts
       priorizando experiências significativas sobre meras funcionalidades.
     </HighlightedContent>
 
-    <h2 id="casos-sucesso">Casos de Sucesso e Estudos de Caso</h2>
+    <h2 id="casos-sucesso" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Casos de Sucesso e Estudos de Caso</h2>
     <p>
       Empresas líderes como Apple, Google e Airbnb demonstram consistentemente como princípios 
       sólidos de design digital podem diferenciar marcas e criar vantagens competitivas duradouras. 
@@ -141,7 +142,7 @@ const relatedPosts = allPosts
       experiências simples e agradáveis.
     </p>
 
-    <h2 id="desafios-oportunidades">Desafios e Oportunidades Futuras</h2>
+    <h2 id="desafios-oportunidades" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Desafios e Oportunidades Futuras</h2>
     <p>
       À medida que avançamos para um futuro cada vez mais conectado, designers digitais enfrentam 
       novos desafios éticos e técnicos. Questões como privacidade de dados, vício comportamental 
@@ -150,7 +151,7 @@ const relatedPosts = allPosts
       oportunidades inexploradas para expandir os limites da interação digital.
     </p>
 
-    <h2 id="conclusao">Conclusão</h2>
+    <h2 id="conclusao" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Conclusão</h2>
     <p>
       O design digital evoluiu de uma prática experimental para uma disciplina fundamental 
       que molda como interagimos com o mundo tecnológico. Sua importância continuará crescendo 
@@ -226,5 +227,30 @@ const relatedPosts = allPosts
         </a>
       </div>
     </div>
+    
+    <!-- Seção de chamada para a Metodologia -->
+    <div style="margin-top: 4rem; padding: 2.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--color-background) 0%, rgba(192, 178, 131, 0.08) 100%); max-width: 800px; margin-left: auto; margin-right: auto; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--color-accent), #000000, var(--color-accent));"></div>
+      <h3 style="color: var(--color-accent); margin-bottom: 1.5rem; font-size: 1.4rem;">Nossa filosofia de SEO</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary); line-height: 1.7;">
+        Tudo o que você acabou de ler reflete minha filosofia de que o futuro do SEO está atrelado à força da sua marca.
+      </p>
+      <p style="margin-bottom: 0; color: var(--color-text-secondary); line-height: 1.7;">
+        Quem busca por hacks e atalhos a fim de "jogar damas" contra algoritmos indecifráveis que "jogam xadrez" está fechando as próprias portas para um ecossistema que valoriza o que é autêntico e genuíno.
+      </p>
+      <div style="text-align: center; margin-top: 2rem;">
+        <Button variant="secondary" href="/metodologia" style="padding: 0.8rem 2rem;">
+          Conheça a metodologia brand-led
+        </Button>
+      </div>
+    </div>
   </div>
 </BlogPost>
+
+<style>
+  @media (max-width: 768px) {
+    .share-section {
+      display: none;
+    }
+  }
+</style>

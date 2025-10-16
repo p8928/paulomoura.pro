@@ -5,6 +5,7 @@ import Navigation from '../nav/Navigation.astro';
 import Footer from '../footer/Footer.astro';
 import ReadingProgressBar from './ReadingProgressBar.astro';
 import BackToTopButton from './BackToTopButton.astro';
+import Button from '../ui/Button.astro';
 
 // Props para receber os dados do post
 const { post, relatedPosts } = Astro.props;
@@ -45,6 +46,25 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
       <article class="blog-post-content">
       <header class="post-header">
         <h1 class="post-title">{title}</h1>
+        <div class="post-meta-top hygge-meta">
+          <div class="post-date-author">
+            <time class="post-date" datetime={publishDate.toISOString()}>
+              {publishDate.toLocaleDateString('pt-BR', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+              })}
+            </time>
+            <span class="post-author-divider" aria-hidden="true">•</span>
+            <a href="/author/paulo-moura" class="post-author">Paulo Moura | Fundador e Estrategista em SEO e Marketing Digital</a>
+          </div>
+          <div class="post-stats">
+            <span class="reading-time">
+              {/* TODO: Implement reading time calculation */}
+              <span>10 min de leitura</span>
+            </span>
+          </div>
+        </div>
         <div class="post-meta-bottom">
           <div class="post-tags">
             {tags.map(tag => (
@@ -53,19 +73,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
               </a>
             ))}
           </div>
-          <div class="reading-time">
-            {/* TODO: Implement reading time calculation */}
-            <span>10 min de leitura</span>
-          </div>
-        </div>
-        <div class="post-meta-top">
-          <time class="post-date" datetime={publishDate.toISOString()}>
-            {publishDate.toLocaleDateString('pt-BR', { 
-              day: 'numeric', 
-              month: 'long', 
-              year: 'numeric' 
-            })}
-          </time>
         </div>
       </header>
 
@@ -73,12 +80,97 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
         <slot name="content" />
       </div>
 
+
+      {/* Botão de compartilhamento que abre o overlay */}
+      <div class="share-trigger-container share-overlay-btn">
+        <Button variant="minimal" aria-label="Compartilhar conteúdo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span>Compartilhar</span>
+        </Button>
+      </div>
+
+      {/* Overlay de compartilhamento */}
+      <div class="share-overlay" id="shareOverlay" style="display: none;">
+        <div class="share-overlay-content">
+          <div class="share-overlay-header">
+            <h3>Compartilhe este conteúdo</h3>
+            <button class="close-share-overlay" aria-label="Fechar">&times;</button>
+          </div>
+          <div class="social-share-options">
+            <Button 
+              variant="secondary"
+              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${Astro.url.href}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Compartilhar no WhatsApp"
+              class="share-option-btn"
+            >
+              <img src="/img/icons/whatsapp-circle.png" alt="WhatsApp" width="24" height="24" loading="lazy"/>
+              <span>WhatsApp</span>
+            </Button>
+            <Button 
+              variant="secondary"
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(title)}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Compartilhar no LinkedIn"
+              class="share-option-btn"
+            >
+              <img src="/img/icons/linkedin-circle.png" alt="LinkedIn" width="24" height="24" loading="lazy"/>
+              <span>LinkedIn</span>
+            </Button>
+            <Button 
+              variant="secondary"
+              href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(title)}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Compartilhar no Twitter"
+              class="share-option-btn"
+            >
+              <img src="/img/icons/twitter-alt-circle.png" alt="Twitter" width="24" height="24" loading="lazy"/>
+              <span>Twitter</span>
+            </Button>
+            <Button 
+              variant="secondary"
+              href={`mailto:?subject=${encodeURIComponent(title)}&body=${Astro.url.href}`}
+              aria-label="Compartilhar por Email"
+              class="share-option-btn"
+            >
+              <img src="/img/icons/circle-envelope.png" alt="Email" width="24" height="24" loading="lazy"/>
+              <span>Email</span>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Próximo conteúdo - somente se houver artigos relacionados */}
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section class="next-content">
+          <div class="next-content-wrapper">
+            <span class="next-content-label">Próximo conteúdo:</span>
+            <a href={`/blog/${relatedPosts[0].slug}/`} class="next-content-link">
+              {relatedPosts[0].data.title}
+              <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </section>
+      )}
+
       <footer class="post-footer">
 
         <section class="newsletter-cta">
           <div class="newsletter-content">
             <p>Receba conteúdos exclusivos, pensados para quem deseja modernizar os negócios. Venha fazer parte desse grupo seleto!</p>
-            <a href="https://paulomoura.substack.com/" class="btn-subscribe" target="_blank" rel="noopener">inscreva-se</a>
+            <Button variant="primary" href="https://paulomoura.substack.com/" target="_blank" class="btn-primary">Inscreva-se</Button>
           </div>
         </section>
       </footer>
@@ -90,11 +182,14 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   </div>
 
     {relatedPosts && relatedPosts.length > 0 && (
-      <section class="related-posts">
-        <h2>Artigos Relacionados</h2>
+      <section class="related-posts hygge-related-posts">
+        <div class="related-posts-header">
+          <h2 class="related-posts-title">Recomendamos também:</h2>
+          <div class="related-posts-divider"></div>
+        </div>
         <div class="related-posts-grid">
           {relatedPosts.map(post => (
-            <a href={`/blog/${post.slug}/`} class="related-post-card">
+            <a href={`/blog/${post.slug}/`} class="related-post-card hygge-card">
               <div class="related-post-thumb">
                 <img 
                   src={post.data.image && post.data.image.url 
@@ -114,6 +209,15 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
             </a>
           ))}
         </div>
+        <div class="view-all-posts">
+          <Button variant="tertiary" href="/blog" class="btn-view-all">
+            Ver todos os posts
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </Button>
+        </div>
       </section>
     )}
 
@@ -123,6 +227,46 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   <Footer slot="rest-content" />
 
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const shareTriggerBtn = document.querySelector('.share-trigger-container button');
+    const shareOverlay = document.getElementById('shareOverlay');
+    const closeBtn = document.querySelector('.close-share-overlay');
+    
+    // Only proceed if all elements exist
+    if (shareTriggerBtn && shareOverlay && closeBtn) {
+      // Abrir o overlay
+      shareTriggerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        shareOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Evita scroll do conteúdo de fundo
+      });
+      
+      // Fechar o overlay
+      closeBtn.addEventListener('click', function() {
+        shareOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+      
+      // Fechar o overlay ao clicar fora do conteúdo
+      shareOverlay.addEventListener('click', function(e) {
+        if (e.target === shareOverlay) {
+          shareOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+      
+      // Fechar com a tecla ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && shareOverlay.style.display === 'flex') {
+          shareOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+  });
+</script>
 
 <style>
 .blog-post-page {
@@ -196,6 +340,10 @@ article.blog-post-content {
   article.blog-post-content {
     max-width: 100%;
     margin: 0 auto;
+  }
+
+  .share-section {
+    display: none;
   }
 }
 
@@ -341,28 +489,59 @@ article.blog-post-content {
   }
 }
 
+/* Melhorias de espaçamento e tipografia para desktop - similar à experiência Kindle */
 .post-body p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem !important; /* Aumentado para melhor respiração entre parágrafos */
 }
 
+/* Estilos mais específicos para sobrescrever o CSS global */
 .post-body h2 {
-  font-size: 1.8rem;
-  margin: 2.5rem 0 1.5rem;
-  color: var(--color-text-primary);
+  font-size: 1.8rem !important;
+  margin: 6rem 0 2rem !important; /* Aumentado significativamente o espaçamento superior */
+  color: var(--color-text-primary) !important;
 }
 
 .post-body h3 {
-  font-size: 1.5rem;
-  margin: 2rem 0 1rem;
-  color: var(--color-text-primary);
+  font-size: 1.5rem !important;
+  margin: 5rem 0 1.5rem !important; /* Aumentado significativamente o espaçamento superior */
+  color: var(--color-text-primary) !important;
 }
 
 .post-body blockquote {
   border-left: 4px solid var(--color-accent);
   padding: 1rem 1.5rem;
-  margin: 2rem 0;
+  margin: 2.5rem 0; /* Ajustado para consistência */
   background-color: rgba(192, 178, 131, 0.05);
   font-style: italic;
+}
+
+/* Estilo de leitura tipo Kindle para desktop */
+@media (min-width: 769px) {
+  .post-body {
+    font-size: 1.15rem; /* Levemente maior para melhor legibilidade */
+    line-height: 1.75; /* Ajuste para espaçamento vertical */
+    max-width: 720px; /* Limita a largura para melhor leitura */
+    margin-left: auto;
+    margin-right: auto;
+    hyphens: auto; /* Adiciona hifenização para melhor leitura */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .post-body p {
+    text-align: justify;
+    margin-bottom: 1.8rem;
+  }
+  
+  .post-body blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding: 1.1rem 1.6rem;
+    margin: 2.5rem 0;
+    background-color: transparent;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
 }
 
 .post-body ul, .post-body ol {
@@ -375,7 +554,6 @@ article.blog-post-content {
 }
 
 .post-footer {
-  border-top: 1px solid var(--color-border);
   padding-top: 2.5rem;
   margin-top: 3rem;
 }
@@ -417,7 +595,25 @@ article.blog-post-content {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.newsletter-cta {
+  padding: 2.5rem;
+  margin: 3rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+}
 
+.newsletter-content p {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.newsletter-content .btn-subscribe {
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+}
 
 .related-posts {
   margin-top: 4rem;
@@ -425,17 +621,159 @@ article.blog-post-content {
   border-top: 1px solid var(--color-border);
 }
 
-.related-posts h2 {
+.related-posts-title {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   color: var(--color-text-primary);
-  text-align: center;
+  text-align: left;
+  margin-bottom: 1.2rem;
 }
 
 .related-posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+}
+
+/* Estilo Hygge para artigos relacionados */
+.hygge-related-posts {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+.related-posts-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.related-posts-header h2 {
+  font-size: 1.4rem;
+  color: var(--color-accent);
+  margin: 0;
+  padding-right: 1rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.related-posts-divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-accent), transparent);
+  opacity: 0.7;
+}
+
+.hygge-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  background: linear-gradient(135deg, var(--color-background) 0%, rgba(192, 178, 131, 0.03) 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 1;
+}
+
+.hygge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent, rgba(192, 178, 131, 0.03));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.hygge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: rgba(192, 178, 131, 0.3);
+}
+
+.hygge-card:hover::before {
+  opacity: 1;
+}
+
+.hygge-card .related-post-content {
+  padding: 1.5rem;
+}
+
+.hygge-card .related-post-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  transition: color var(--transition-normal);
+}
+
+.hygge-card:hover .related-post-title {
+  color: var(--color-accent);
+}
+
+.hygge-card .related-post-date {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.hygge-card .related-post-tag {
+  background: rgba(192, 178, 131, 0.1);
+  color: var(--color-accent);
+  padding: 0.25rem 0.7rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  display: inline-block;
+  transition: all var(--transition-normal);
+}
+
+.hygge-card:hover .related-post-tag {
+  background: var(--color-accent);
+  color: white;
+}
+
+.view-all-posts {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .hygge-related-posts {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .related-posts-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .related-posts-header h2 {
+    padding-right: 0;
+  }
+  
+  .related-posts-divider {
+    width: 100%;
+    height: 1px;
+  }
+  
+  .view-all-posts {
+    margin-top: 2rem;
+  }
 }
 
 .related-post-card {
@@ -509,37 +847,7 @@ article.blog-post-content {
   display: inline-block;
 }
 
-.newsletter-cta {
-  margin-top: 3rem; /* Aumentar o espaçamento superior */
-  margin-bottom: 2.5rem; /* Adicionar espaçamento inferior */
-  padding: 2rem; /* Aumentar o preenchimento interno */
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-background);
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Adicionar leve sombra para destaque */
-}
 
-.newsletter-content p {
-  margin: 0 0 1rem 0;
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
-}
-
-.btn-subscribe {
-  display: inline-block;
-  padding: 0.6rem 1.5rem;
-  background-color: var(--color-accent);
-  color: white;
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-  font-weight: var(--font-weight-medium);
-  transition: background-color 0.3s ease;
-}
-
-.btn-subscribe:hover {
-  background-color: #a89a72; /* tom mais escuro do accent para efeito de hover */
-}
 
 
 
@@ -659,6 +967,74 @@ article.blog-post-content {
   color: var(--color-text-tertiary);
 }
 
+/* Estilo Hygge para o cabeçalho do post */
+.hygge-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.post-date-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.post-author-divider {
+  color: var(--color-text-tertiary);
+  opacity: 0.7;
+}
+
+.post-author {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+  position: relative;
+}
+
+.post-author:hover {
+  color: var(--color-accent);
+}
+
+.post-author::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-normal);
+}
+
+.post-author:hover::after {
+  width: 100%;
+}
+
+.post-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hygge-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .post-stats {
+    align-self: flex-end;
+  }
+}
+
 .social-share-buttons {
   display: flex;
   gap: 0.8rem;
@@ -744,20 +1120,31 @@ article.blog-post-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: var(--color-background);
   transition: all var(--transition-normal);
   text-decoration: none;
-  border: 1px solid var(--color-text-tertiary);
+  border: 1px solid var(--color-border);
   cursor: pointer;
   flex-shrink: 0;
 }
 
+.social-share-btn-bottom:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(192, 178, 131, 0.3);
+}
+
 .social-share-btn-bottom svg {
   transition: all var(--transition-normal);
-  filter: grayscale(100%) brightness(0.6);
+  color: var(--color-text-tertiary);
+}
+
+.social-share-btn-bottom:hover svg {
+  color: white;
 }
 
 .social-share-btn-bottom:hover {
@@ -822,8 +1209,8 @@ article.blog-post-content {
   }
   
   .social-share-btn-bottom {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
   
   /* Estilos para o componente de newsletter em mobile */
@@ -841,6 +1228,267 @@ article.blog-post-content {
   .btn-subscribe {
     padding: 0.5rem 1.2rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Estilo para o componente de próximo conteúdo */
+.next-content {
+  padding: 2rem 0;
+  margin: 2rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.next-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.next-content-label {
+  font-size: 0.9rem;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+}
+
+.next-content-link {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.next-content-link:hover {
+  color: var(--color-text-primary);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.next-content-link:hover .arrow-icon {
+  transform: translateX(3px);
+}
+
+/* Estilo para mobile */
+@media (max-width: 768px) {
+  .next-content {
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+  }
+  
+  .next-content-link {
+    font-size: 1.1rem;
+  }
+}
+
+/* Estilo para o botão de compartilhamento */
+.share-trigger-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.share-trigger-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Estilos para o overlay de compartilhamento */
+.share-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.share-overlay-content {
+  width: 90%;
+  max-width: 400px;
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+.share-overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.share-overlay-header h3 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.2rem;
+}
+
+.close-share-overlay {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-share-overlay:hover {
+  background-color: var(--color-border);
+}
+
+.social-share-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.share-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.share-option-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+  background-color: rgba(192, 178, 131, 0.05);
+}
+
+.share-option-btn img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Estilo adicional para garantir visibilidade das imagens */
+.share-overlay-content img {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.share-option-btn span {
+  font-size: 1rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo para dispositivos muito pequenos */
+@media (max-width: 576px) {
+  .next-content {
+    margin: 1.5rem 0.5rem;
+  }
+  
+  .next-content-label {
+    font-size: 0.8rem;
+  }
+  
+  .next-content-link {
+    font-size: 1rem;
+  }
+  
+  .share-overlay-content {
+    width: 95%;
+    padding: 1.2rem;
+  }
+  
+  .share-trigger-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  
+  .share-option-btn img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Estilos específicos para garantir visibilidade dos ícones */
+.share-option-btn img {
+  min-width: 24px;
+  min-height: 24px;
+  object-fit: contain;
+}
+
+/* Exibir o botão de compartilhamento somente no mobile */
+@media (max-width: 768px) {
+  .share-trigger-container {
+    display: block;
+  }
+  
+  /* Esconder a seção de artigos relacionados no mobile */
+  .related-posts {
+    display: none;
+  }
+}
+
+/* Esconder o botão de compartilhamento no desktop */
+@media (min-width: 769px) {
+  .share-trigger-container {
+    display: none;
+  }
+  
+  /* Exibir a seção de artigos relacionados somente no desktop */
+  .related-posts {
+    display: block;
+  }
+}
+
+/* Esconder os elementos de compartilhamento originais no mobile */
+@media (max-width: 768px) {
+  
+  .social-share-buttons {
+    display: none;
+  }
+  
+  .share-article-section {
+    display: none;
+  }
+}
+
+/* Ajustes para o tamanho das imagens dos artigos relacionados em desktop */
+@media (min-width: 769px) {
+  .related-post-thumb {
+    height: 180px;
   }
 }
 </style>

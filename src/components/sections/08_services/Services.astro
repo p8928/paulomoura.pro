@@ -1,4 +1,6 @@
 ---
+import Button from '../../ui/Button.astro';
+
 // O conteúdo dos serviços foi extraído para um objeto para facilitar a manutenção
 // e para que o HTML não precise ser repetido no script.
 const services = [
@@ -162,10 +164,10 @@ const defaultActiveTab = services[0].id;
       </div>
       
       <div class="services-footer">
-        <a href="/servicos" class="btn btn-secondary">
-          SAIBA MAIS SOBRE NOSSOS SERVIÇOS
+        <Button href="/servicos" variant="secondary-dark">
+          Nossos serviços
           <span class="arrow">→</span>
-        </a>
+        </Button>
       </div>
     </div>
   </div>

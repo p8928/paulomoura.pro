@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Button from '../components/ui/Button.astro';
 ---
 
 <Layout>
@@ -8,7 +9,7 @@ import Layout from '../layouts/Layout.astro'
       <a href="/" class="cv-logo">
         <img src="/img_avif/m_black.avif" alt="Moura Logo" class="logo-img" />
       </a>
-      <a href="/cv.pdf" class="cv-download-btn" download>BAIXAR CV</a>
+      <Button href="/cv.pdf" variant="secondary" class="cv-download-btn" download>Baixar cv</Button>
     </div>
   </header>
   

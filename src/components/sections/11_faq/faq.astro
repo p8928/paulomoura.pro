@@ -1,5 +1,6 @@
 ---
 // src/components/sections/11_faq/faq.astro
+import Button from '../../ui/Button.astro';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -95,10 +96,10 @@ const faqItems = parseFAQ(faqContent);
     </div>
     
     <div class="faq-cta-section">
-      <a href="/contato" class="faq-cta-button">
-        FALAR COM ESPECIALISTA
+      <Button href="/contato" variant="primary" class="faq-cta-button">
+        Fale com especialista
         <span class="arrow">→</span>
-      </a>
+      </Button>
     </div>
   </div>
 </div>

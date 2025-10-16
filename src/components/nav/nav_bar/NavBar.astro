@@ -1,21 +1,36 @@
 ---
 import './css/nav_bar.css';
+import Menu from '../overlay_menu/Menu.astro';
 ---
 
   <header class="hero__header">
     <div class="hero__logo">
       <a href="/">
-        <img src="/img_avif/m_black.avif" alt="Logo Moura">
+        <img src="/img/logo/main_logo_black.svg" alt="Logo Moura">
       </a>
     </div>
+    
+
+    
+    <!-- Hamburger Menu Button (only visible on mobile) -->
+    <button class="hero__menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+      <div class="hero__menu-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    
     <nav class="hero__nav">
-      <a href="/servicos" class="hero__nav-link services-link blog-link">SERVIÇOS</a>
+      <a href="/about" class="hero__nav-link about-link desktop-only">Sobre</a>
       
-      <a href="/blog" class="hero__nav-link blog-link">BLOG</a>
+      <a href="/servicos" class="hero__nav-link services-link blog-link">Serviços</a>
+      
+      <a href="/blog" class="hero__nav-link blog-link">Blog</a>
       
       <a href="/contato" 
-         class="hero__nav-link contact">
-        CONTATO
+         class="hero__nav-link contact desktop-only">
+        Contato
       </a>
       
       <!-- Language selector moved to the end of the navigation -->
@@ -66,6 +81,8 @@ import './css/nav_bar.css';
         </div>
       </div>
     </nav>
+    
+<Menu />
   </header>
 
   <script is:inline>
@@ -90,7 +107,7 @@ import './css/nav_bar.css';
         languageDropdown.classList.toggle('show');
       });
       
-      // Close dropdown when clicking outside or pressing ESC
+      // Close language dropdown when clicking outside
       document.addEventListener('click', function(e) {
         if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
           closeDropdown();
@@ -137,5 +154,19 @@ import './css/nav_bar.css';
       function closeDropdown() {
         languageDropdown.classList.remove('show');
       }
+    });
+    
+
+    
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const overlayMenu = document.getElementById('overlayMenu');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      overlayMenu.classList.add('open');
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+      overlayMenu.classList.remove('open');
     });
   </script>

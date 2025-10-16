@@ -9,6 +9,7 @@
     overflow: hidden;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     min-height: 100vh;
+    margin-bottom: 5rem;
   }
 
   .container {

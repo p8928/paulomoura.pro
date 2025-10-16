@@ -51,10 +51,6 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 body {
@@ -72,21 +68,21 @@ body {
 /* CSS Custom Properties (Design Tokens) */
 :root {
   /* Colors */
-  --color-primary: #000000;
-  --color-secondary: #333333;
-  --color-tertiary: #666666;
-  --color-background: #ffffff;
-  --color-text-primary: #000000;
+  --color-primary: hsl(0, 0%, 0%);
+  --color-secondary: hsl(0, 0%, 20%);
+  --color-tertiary: hsl(0, 0%, 40%);
+  --color-background: hsl(0, 0%, 100%);
+  --color-text-primary: hwb(0 0% 100%);
   --color-text-secondary: #333333;
-  --color-text-tertiary: #666666;
-  --color-border: rgba(0, 0, 0, 0.1);
-  --color-shadow: rgba(0, 0, 0, 0.05);
-  --color-accent: #C0B283; /* Cor de destaque */
-  --color-accent-accessible: #A08A4A; /* Cor de destaque com melhor contraste */
-  --color-white: #FFFFFF;
-  --color-light-gray: #B8B8B8;
-  --color-dark-gray: #2D2D2D;
-  --color-medium-gray: #6B6B6B;
+  --color-text-tertiary: hsl(0, 0%, 40%);
+  --color-border: hsla(0, 0%, 0%, 0.1);
+  --color-shadow: hsla(0, 0%, 0%, 0.05);
+  --color-accent: hsl(46, 33%, 63%); /* Cor de destaque */
+  --color-accent-accessible: hsl(45, 37%, 46%); /* Cor de destaque com melhor contraste */
+  --color-white: hsl(0, 0%, 100%);
+  --color-light-gray: hsl(0, 0%, 72%);
+  --color-dark-gray: hsl(0, 0%, 18%);
+  --color-medium-gray: hsl(0, 0%, 42%);
 
   /* Typography */
   --font-family-primary: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;

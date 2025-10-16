@@ -1,6 +1,7 @@
 ---
 // src/pages/contato.astro
 import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
 ---
 
 <Layout title="Contato - Paulo Moura" description="Entre em contato conosco">
@@ -104,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="success-message__content">
         <h2 class="success-message__title">Obrigado!</h2>
         <p class="success-message__text">Sua mensagem foi enviada. Entraremos em contato em breve.</p>
-        <a href="/" class="btn btn-secondary">Voltar ao início</a>
+        <Button href="/" variant="secondary-dark">Voltar ao início</Button>
       </div>
     </section>
   </div>

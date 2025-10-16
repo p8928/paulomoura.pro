@@ -1,4 +1,5 @@
 ---
+import Button from '../../ui/Button.astro';
 import InteractiveServices from './InteractiveServices.astro';
 
 // Combinations data - can be moved or fetched from a CMS later
@@ -179,10 +180,10 @@ const combinations = [
     <p class="final-cta-description">
       Agende uma conversa para desenharmos a estratégia ideal para o seu negócio.
     </p>
-    <a href="/contato" class="btn btn-secondary">
-      Iniciar Conversa
+    <Button href="/contato" variant="secondary">
+      Iniciar conversa
       <span class="arrow">→</span>
-    </a>
+    </Button>
   </div>
 </section>
 

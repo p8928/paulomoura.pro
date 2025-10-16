@@ -1,5 +1,6 @@
 ---
 import './css/expertise.css';
+import Button from '../../ui/Button.astro';
 
 // Industry data
 const industries = [
@@ -209,10 +210,10 @@ const industries = [
             </div>
             
             <div class="industry-cta">
-              <a href="/contato" class="cta-link">
-                DESCUBRA MAIS DETALHES
+              <Button href="/contato" variant="secondary">
+                Descubra mais detalhes
                 <span class="arrow">→</span>
-              </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -238,10 +239,10 @@ const industries = [
   </div>
   
   <div class="final-cta">
-    <a href="/contato" class="cta-button">
-      AGENDAR CONVERSA
+    <Button href="/contato" variant="primary">
+      Agendar conversa
       <span class="arrow">→</span>
-    </a>
+    </Button>
   </div>
   
   <script>

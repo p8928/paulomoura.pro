@@ -1,0 +1,76 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'primary-dark' | 'secondary-dark';
+  class?: string;
+  'aria-label'?: string;
+}
+
+const { href, variant = 'primary', class: className, 'aria-label': ariaLabel } = Astro.props;
+
+// Mapeia as variantes para as classes CSS globais existentes
+const variantClasses = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  tertiary: 'btn-ghost', // Usando 'btn-ghost' para a variante terciária
+  'primary-dark': 'btn-primary-dark',
+  'secondary-dark': 'btn-secondary-dark'
+};
+---
+
+<a href={href} class:list={['btn', variantClasses[variant], className]} aria-label={ariaLabel}>
+  <slot />
+</a>
+
+<style>
+  /*
+    Os estilos base para .btn, .btn-primary, .btn-secondary, e .btn-ghost
+    agora vêm de /public/styles/global.css.
+    
+    Ajustes específicos ou overrides para o componente podem ser adicionados aqui.
+  */
+  .btn {
+    font-family: 'Outfit', var(--font-family-primary); /* Garante a fonte correta */
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-ghost {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    letter-spacing: 0.15em;
+  }
+
+  .btn-ghost:hover {
+    color: var(--color-accent-accessible);
+    background-color: transparent;
+  }
+
+  .btn-primary-dark {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 2px solid var(--color-white);
+  }
+
+  .btn-primary-dark:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+  }
+
+  .btn-secondary-dark {
+    background: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+  }
+
+  .btn-secondary-dark:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+  }
+</style>

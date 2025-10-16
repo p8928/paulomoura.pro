@@ -1,4 +1,5 @@
 ---
+import Button from '../../ui/Button.astro';
 ---
 
 <section class="branding-section animate-on-scroll">
@@ -23,10 +24,10 @@
         </div>
         
         <div class="cta-section">
-          <a href="#" class="cta-link desktop-cta">
-            VEJA COMO ISSO TRANSFORMA NEGÓCIOS
+          <Button href="#" variant="secondary" class="desktop-cta">
+            Veja como isso transforma negócios
             <span class="arrow">→</span>
-          </a>
+          </Button>
         </div>
       </div>
       
@@ -46,6 +47,14 @@
             <div class="element-dot"></div>
             <div class="element-bar"></div>
           </div>
+          
+          <div class="cta-section-mob">
+            <Button href="#" variant="secondary" class="desktop-cta">
+              Veja como isso transforma negócios
+              <span class="arrow">→</span>
+            </Button>
+          </div>
+      </div>
         </div>
       </div>
     </div>
@@ -220,6 +229,10 @@
   .cta-section {
     margin-top: var(--space-xl);
   }
+  
+  .cta-section-mob {
+      display: none;
+  }
 
   .desktop-cta {
     display: inline-flex;
@@ -268,12 +281,21 @@
     .right-column {
       padding-top: var(--space-lg);
     }
+    
   }
 
   @media (max-width: 768px) {
     .branding-section {
       padding: var(--space-4xl) var(--space-lg);
     }
+    
+    .cta-section {
+      display:none;
+    }
+
+     .cta-section-mob {
+       display: flex;
+   }
 
     .content-wrapper {
       grid-template-columns: 1fr;
@@ -302,6 +324,7 @@
     
     .right-content {
       align-items: center;
+      margin-bottom: 4rem;
     }
     
     .desktop-cta {
@@ -328,6 +351,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 4rem;
     }
   }
 

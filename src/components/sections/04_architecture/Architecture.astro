@@ -1,4 +1,5 @@
 ---
+import Button from '../../ui/Button.astro';
 ---
 
 <section class="architecture-section animate-on-scroll">
@@ -24,10 +25,10 @@
         <div class="spacing-divider"></div>
         
         <div class="cta-section">
-          <a href="#" class="cta-link">
-            NAVEGUE PELOS NOSSOS TEMPLATES
-            <span class="arrow">→</span>
-          </a>
+          <Button href="#" variant="secondary">
+            Confira o nosso manifesto
+            <span class="arrow" style="margin-left: var(--space-sm); transition: transform 0.3s ease;">→</span>
+          </Button>
         </div>
       </div>
       
@@ -67,7 +68,7 @@
     align-items: center;
     position: relative;
     scroll-snap-align: start;
-    overflow: hidden;
+    overflow-x: hidden;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 
@@ -273,6 +274,10 @@
     .left-content {
       max-width: 100%;
     }
+
+    .description-block {
+      margin: 3rem 0;
+    }
   }
 
   @media (max-width: 768px) {
@@ -287,16 +292,11 @@
     }
     
     .right-content {
-      justify-content: center;
-      margin-top: 3rem;
+      display: none;
     }
     
     .typographic-art {
-      align-items: center;
-    }
-
-    .description-block {
-      margin: 2rem 0;
+      display: none;
     }
 
     .cta-section {

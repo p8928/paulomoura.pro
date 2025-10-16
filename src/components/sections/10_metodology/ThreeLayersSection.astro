@@ -1,5 +1,6 @@
 ---
 import './css/three_layers_section.css';
+import Button from '../../ui/Button.astro';
 ---
 
 <section class="three-layers-section">
@@ -49,7 +50,7 @@ import './css/three_layers_section.css';
     
     <!-- Framework CTA Button -->
     <div class="framework-cta">
-      <a href="#" class="cta-link desktop-cta">EXPLORAR FRAMEWORK →</a>
+      <Button href="#" variant="secondary" class="desktop-cta">Explorar framework →</Button>
     </div>
     
     <div class="layers-explanation">
@@ -63,9 +64,9 @@ import './css/three_layers_section.css';
   
   <!-- CTA Button -->
   <div class="cta-section">
-    <a href="/contato" class="cta-button desktop-cta">
-      DÊ O PRIMEIRO PASSO AGORA MESMO
+    <Button href="/contato" variant="primary" class="desktop-cta">
+      Dê o primeiro passo agora mesmo
       <span class="arrow">→</span>
-    </a>
+    </Button>
   </div>
 </section>
