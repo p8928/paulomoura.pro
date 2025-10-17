@@ -1,11 +1,11 @@
-# MANIFESTO: BRAND-LED DESIGN
+# MANIFESTO: BRAND-DRIVEN DESIGN
 
 ---
 
 ## HERO
 
 ### Título Principal
-**Brand-Led Design: Quando Arte Encontra Ciência**
+**Brand-Driven Design: Quando Arte Encontra Ciência**
 
 ### Subtítulo
 Design não é decoração. É comunicação estruturada, fundamentada em décadas de evolução das mais importantes escolas europeias — aplicada com propósito, não com excesso.
@@ -36,7 +36,7 @@ Nós fazemos diferente.
 
 ### Texto
 
-Brand-Led Design parte de um princípio simples: **o visual serve à mensagem, nunca o contrário.**
+Brand-Driven Design parte de um princípio simples: **o visual serve à mensagem, nunca o contrário.**
 
 Cada escolha — da tipografia à interação, da cor ao espaçamento — é deliberada. Não porque seguimos tendências, mas porque compreendemos o que décadas de evolução do design europeu nos ensinaram sobre comunicação visual eficaz.
 
@@ -133,7 +133,7 @@ Design italiano nos ensina que **racionalidade não exclui emoção.** Há momen
 ## SEÇÃO 4: O MÉTODO
 
 ### Título
-**Da Análise à Execução: O Processo Brand-Led Design**
+**Da Análise à Execução: O Processo Brand-Driven Design**
 
 ### Texto
 
@@ -225,7 +225,7 @@ Parallax, scroll-triggered animations, hover effects — cada um tem seu lugar. 
 Design bonito que carrega devagar é design ruim. Ponto final. Otimização não é "depois", é parte do processo.
 
 **Não copiamos concorrentes**  
-Se seu site parece com outros 50 do seu segmento, você é invisível. Brand-Led Design busca distinção, não conformidade.
+Se seu site parece com outros 50 do seu segmento, você é invisível. Brand-Driven Design busca distinção, não conformidade.
 
 **Não separamos design de conteúdo**  
 Layout que não considera texto real é exercício de fantasia. Projetamos com conteúdo verdadeiro desde o início.
@@ -235,7 +235,7 @@ Layout que não considera texto real é exercício de fantasia. Projetamos com c
 ## SEÇÃO 6: RESULTADOS
 
 ### Título
-**O Que Você Ganha com Brand-Led Design**
+**O Que Você Ganha com Brand-Driven Design**
 
 ### Texto
 
@@ -266,7 +266,7 @@ Você não parece com ninguém — porque seu design nasce da sua identidade, n�
 
 ### Texto
 
-Brand-Led Design exige:
+Brand-Driven Design exige:
 
 **Clareza de Identidade**  
 Se você não sabe quem é, não conseguimos projetar quem você parece ser. Trabalho de design começa com trabalho de branding.
@@ -282,7 +282,7 @@ Design desse nível não é barato. Porque não é apenas "fazer um site." É ar
 
 ---
 
-Se você quer um site "moderno e clean," há milhares de templates. Se você quer presença visual que **carrega sua identidade de forma indelével**, Brand-Led Design é para você.
+Se você quer um site "moderno e clean," há milhares de templates. Se você quer presença visual que **carrega sua identidade de forma indelével**, Brand-Driven Design é para você.
 
 ---
 
@@ -292,7 +292,7 @@ Se você quer um site "moderno e clean," há milhares de templates. Se você que
 **Vamos Projetar Sua Identidade Visual**
 
 ### Texto
-Agende uma conversa para entendermos se Brand-Led Design faz sentido para o momento da sua marca.
+Agende uma conversa para entendermos se Brand-Driven Design faz sentido para o momento da sua marca.
 
 ### Botão
 **Entrar em Contato →**
@@ -326,9 +326,9 @@ Agende uma conversa para entendermos se Brand-Led Design faz sentido para o mome
 - Europeu em sensibilidade (contenção, profundidade)
 
 ### SEO:
-- Título: "Brand-Led Design: Manifesto | Moura"
+- Título: "Brand-Driven Design: Manifesto | Moura"
 - Meta: "Design fundamentado nas escolas europeias: minimalismo alemão, interatividade dinamarquesa, sofisticação francesa. Comunicação visual com propósito."
-- Keywords: brand-led design, web design europeu, design com propósito, análise semiótica em design
+- Keywords: brand-driven design, web design europeu, design com propósito, análise semiótica em design
 
 ### Extras:
 - Considere galeria visual mostrando exemplos de cada escola

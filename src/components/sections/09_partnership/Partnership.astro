@@ -11,13 +11,12 @@ import Button from '../../ui/Button.astro';
         <h2 class="main-title">TRANSFORME VISITANTES EM CLIENTES LEAIS À SUA MARCA</h2>
         <div class="divider"></div>
         
+        <blockquote class="highlight-text quote-element static-quote">
+          Estratégias brand-led consideram percepções, momento e contexto das pessoas — tornando sua comunicação digital eficiente em qualquer situação, não apenas quando tudo está perfeito.
+        </blockquote>
+        
         <div class="horizontal-scroll-container" id="horizontal-scroll-container">
           <div class="scroll-content-wrapper">
-            <div class="scroll-item quote-item">
-              <blockquote class="highlight-text quote-element">
-                Estratégias brand-led consideram percepções, momento e contexto das pessoas — tornando sua comunicação digital eficiente em qualquer situação, não apenas quando tudo está perfeito.
-              </blockquote>
-            </div>
             <div class="scroll-item description-item">
               <p class="description description-element">
                 Ingressar em um futuro no qual suas estratégias funcionem só depende de você.
@@ -26,10 +25,12 @@ import Button from '../../ui/Button.astro';
           </div>
         </div>
         
-        <Button href="/contato" variant="primary-dark">
-          Converse com a gente
-          <span class="arrow">→</span>
-        </Button>
+        <div class="cta-wrapper">
+          <Button href="/contato" variant="primary-dark">
+            Converse com a gente
+            <span class="arrow">→</span>
+          </Button>
+        </div>
       </div>
     </div>
   </div>
@@ -55,56 +56,6 @@ import Button from '../../ui/Button.astro';
             invalidateOnRefresh: true
           }
         });
-      }
-      
-      // Add subtle hover effect to the quote element using GPU-accelerated transforms
-      // Only apply on non-mobile devices or with touch-friendly fallback
-      const quoteElement = document.querySelector('.quote-element');
-      if (quoteElement) {
-        // Use a touch-friendly approach for mobile devices
-        if (window.innerWidth <= 768) {
-          quoteElement.addEventListener('touchstart', () => {
-            gsap.to(quoteElement, {
-              '--quote-glow': '0 0 10px rgba(255, 255, 255, 0.3)',
-              duration: 0.5,
-              ease: "sine.out"
-            });
-          });
-          
-          quoteElement.addEventListener('touchend', () => {
-            gsap.to(quoteElement, {
-              '--quote-glow': '0 0 0 rgba(255, 255, 255, 0)',
-              duration: 0.5,
-              ease: "sine.out"
-            });
-          });
-          
-          // Prevent long press from causing issues
-          quoteElement.addEventListener('touchcancel', () => {
-            gsap.to(quoteElement, {
-              '--quote-glow': '0 0 0 rgba(255, 255, 255, 0)',
-              duration: 0.5,
-              ease: "sine.out"
-            });
-          });
-        } else {
-          // For desktop, use mouse events
-          quoteElement.addEventListener('mouseenter', () => {
-            gsap.to(quoteElement, {
-              '--quote-glow': '0 0 10px rgba(255, 255, 255, 0.3)',
-              duration: 0.5,
-              ease: "sine.out"
-            });
-          });
-          
-          quoteElement.addEventListener('mouseleave', () => {
-            gsap.to(quoteElement, {
-              '--quote-glow': '0 0 0 rgba(255, 255, 255, 0)',
-              duration: 0.5,
-              ease: "sine.out"
-            });
-          });
-        }
       }
       
       // Add a resize listener to handle orientation changes on mobile devices

@@ -98,6 +98,11 @@
     box-shadow: var(--quote-glow, 0 0 0 rgba(255, 255, 255, 0));
     width: 100%;
   }
+  
+  .static-quote {
+    position: static;
+    margin: var(--space-xl) 0;
+  }
 
   .highlight-text:hover {
     border-left-width: 4px;
@@ -120,6 +125,29 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow-x: hidden;
+    z-index: 1; /* Ensure it stays behind other content when needed */
+  }
+  
+  /* Ensure proper vertical spacing between elements */
+  .horizontal-scroll-container {
+    margin: var(--space-xl) 0;
+  }
+  
+  .cta-wrapper {
+    position: relative;
+    z-index: 10; /* Higher z-index to ensure CTA button is above the animated content */
+    margin-top: var(--space-3xl); /* Ensure the CTA button is well below other content */
+  }
+  
+  /* Specific mobile handling */
+  @media (max-width: 768px) {
+    .horizontal-scroll-container {
+      margin: var(--space-lg) 0;
+    }
+    
+    .cta-wrapper {
+      margin-top: var(--space-2xl);
+    }
   }
 
   .scroll-content-wrapper {

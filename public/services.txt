@@ -9,7 +9,7 @@
 **Serviços que Constroem Autoridade Digital Sustentável**
 
 ### Subtítulo
-Cada serviço integra a metodologia Brand-Led para garantir que sua presença online reflita autenticidade, gere resultados mensuráveis e resista às mudanças do mercado.
+Cada serviço integra a metodologia Brand-Driven para garantir que sua presença online reflita autenticidade, gere resultados mensuráveis e resista às mudanças do mercado.
 
 ---
 
@@ -138,10 +138,10 @@ Sites personalizados com tecnologias usadas por Google, Visa e Microsoft. Entreg
 
 ---
 
-## SERVIÇO 3: BRAND-LED SEO
+## SERVIÇO 3: BRAND-DRIVEN SEO
 
 ### Card (Versão Resumida)
-**Brand-Led SEO**
+**Brand-Driven SEO**
 
 SEO que coloca sua marca em evidência, não apenas suas palavras-chave. Trabalhamos visibilidade orgânica sustentável alinhada com quem você realmente é — construindo autoridade que resiste a mudanças de algoritmo e tendências passageiras.
 
@@ -347,7 +347,7 @@ Consultoria estratégica para quando você precisa de um parceiro que entende o 
 **Nossa Abordagem**
 
 ### Texto
-Cada projeto começa com diagnóstico profundo da sua identidade, desafios e objetivos. A partir daí, combinamos os serviços necessários — sempre com a metodologia Brand-Led como fundação.
+Cada projeto começa com diagnóstico profundo da sua identidade, desafios e objetivos. A partir daí, combinamos os serviços necessários — sempre com a metodologia Brand-Driven como fundação.
 
 **Processo Típico:**
 1. **Descoberta** - Entendemos seu negócio e contexto
@@ -369,11 +369,11 @@ Cada projeto começa com diagnóstico profundo da sua identidade, desafios e obj
 - Base sólida de identidade + presença digital
 
 **Para Crescimento Orgânico:**
-- Brand-Led SEO + Growth Strategy
+- Brand-Driven SEO + Growth Strategy
 - Visibilidade sustentável + roadmap de crescimento
 
 **Para Transformação Completa:**
-- Branding Digital + Web Experience + Brand-Led SEO
+- Branding Digital + Web Experience + Brand-Driven SEO
 - Identidade + presença técnica + autoridade orgânica
 
 **Para Decisões Estratégicas:**
@@ -385,7 +385,7 @@ Cada projeto começa com diagnóstico profundo da sua identidade, desafios e obj
 ## SEÇÃO FINAL: AUTORIDADE DIGITAL QUE RESISTE AO TEMPO
 
 ### Texto
-Enquanto táticas obsoletas exigem reinvenção constante, a metodologia Brand-Led constrói presença que evolui com seu negócio — porque está fundamentada em quem você é, não em truques temporários.
+Enquanto táticas obsoletas exigem reinvenção constante, a metodologia Brand-Driven constrói presença que evolui com seu negócio — porque está fundamentada em quem você é, não em truques temporários.
 
 Sua identidade não muda com updates de algoritmo. Sua autoridade digital também não deveria.
 
@@ -425,7 +425,7 @@ Agende uma conversa de 30 minutos para entendermos seu contexto e desenharmos a 
 
 ### SEO:
 - Título da página: "Serviços de Branding Digital e SEO | Moura"
-- Meta description: "Branding Digital, Web Experience e Brand-Led SEO. Construímos autoridade digital sustentável com metodologia que resiste a mudanças de algoritmo."
+- Meta description: "Branding Digital, Web Experience e Brand-Driven SEO. Construímos autoridade digital sustentável com metodologia que resiste a mudanças de algoritmo."
 - Schema markup: Service schema para cada serviço
 
 ### Responsividade:
