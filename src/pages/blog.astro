@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BlogCard from '../components/blog/BlogCard.astro';
-import Sidebar from '../components/blog/Sidebar.astro';
+
 import Navigation from '../components/nav/Navigation.astro';
 import Footer from '../components/footer/Footer.astro';
 
@@ -79,7 +79,7 @@ const postsToShow = initialPostsToShow;
           <p id="search-results-count"></p>
         </div>
       </main>
-      <Sidebar class="sidebar" />
+
     </div>
   </div>
   <Footer slot="rest-content" />
@@ -169,11 +169,11 @@ const postsToShow = initialPostsToShow;
 
 .blog-main-content {
   display: grid;
-  grid-template-columns: minmax(0, 1200px) minmax(280px, 320px);
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 2rem;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -181,9 +181,7 @@ const postsToShow = initialPostsToShow;
   width: 100%;
 }
 
-.sidebar {
-  grid-column: 2;
-}
+
 
 .search-header {
   display: flex;
@@ -360,20 +358,9 @@ const postsToShow = initialPostsToShow;
   grid-column: 1 / -1;
 }
 
-@media (max-width: 1200px) {
-  .blog-main-content {
-    grid-template-columns: 1fr 280px;
-  }
-}
-
 @media (max-width: 992px) {
   .blog-main-content {
     grid-template-columns: 1fr;
-  }
-  .sidebar {
-    grid-column: 1;
-    order: 2;
-    margin-top: 2rem;
   }
 }
 

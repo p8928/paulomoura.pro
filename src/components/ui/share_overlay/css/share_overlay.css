@@ -38,6 +38,7 @@
 }
 
 .share-options a {
+  position: relative;
   transition: transform 0.3s ease;
 }
 
@@ -48,4 +49,25 @@
 .share-options img {
   width: 60px;
   height: 60px;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.share-options a:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }

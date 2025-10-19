@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Sidebar from './Sidebar.astro';
+
 import Navigation from '../nav/Navigation.astro';
 import Footer from '../footer/Footer.astro';
 import ReadingProgressBar from './ReadingProgressBar.astro';
@@ -80,75 +80,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
         <slot name="content" />
       </div>
 
-
-      {/* Botão de compartilhamento que abre o overlay */}
-      <div class="share-trigger-container share-overlay-btn">
-        <Button variant="minimal" aria-label="Compartilhar conteúdo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-          </svg>
-          <span>Compartilhar</span>
-        </Button>
-      </div>
-
-      {/* Overlay de compartilhamento */}
-      <div class="share-overlay" id="shareOverlay" style="display: none;">
-        <div class="share-overlay-content">
-          <div class="share-overlay-header">
-            <h3>Compartilhe este conteúdo</h3>
-            <button class="close-share-overlay" aria-label="Fechar">&times;</button>
-          </div>
-          <div class="social-share-options">
-            <Button 
-              variant="secondary"
-              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${Astro.url.href}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Compartilhar no WhatsApp"
-              class="share-option-btn"
-            >
-              <img src="/img/icons/whatsapp-circle.png" alt="WhatsApp" width="24" height="24" loading="lazy"/>
-              <span>WhatsApp</span>
-            </Button>
-            <Button 
-              variant="secondary"
-              href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(title)}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Compartilhar no LinkedIn"
-              class="share-option-btn"
-            >
-              <img src="/img/icons/linkedin-circle.png" alt="LinkedIn" width="24" height="24" loading="lazy"/>
-              <span>LinkedIn</span>
-            </Button>
-            <Button 
-              variant="secondary"
-              href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(title)}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Compartilhar no Twitter"
-              class="share-option-btn"
-            >
-              <img src="/img/icons/twitter-alt-circle.png" alt="Twitter" width="24" height="24" loading="lazy"/>
-              <span>Twitter</span>
-            </Button>
-            <Button 
-              variant="secondary"
-              href={`mailto:?subject=${encodeURIComponent(title)}&body=${Astro.url.href}`}
-              aria-label="Compartilhar por Email"
-              class="share-option-btn"
-            >
-              <img src="/img/icons/circle-envelope.png" alt="Email" width="24" height="24" loading="lazy"/>
-              <span>Email</span>
-            </Button>
-          </div>
-        </div>
-      </div>
-
       {/* Próximo conteúdo - somente se houver artigos relacionados */}
       {relatedPosts && relatedPosts.length > 0 && (
         <section class="next-content">
@@ -176,9 +107,7 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
       </footer>
     </article>
 
-    <aside class="blog-sidebar">
-      <Sidebar class="sidebar" />
-    </aside>
+
   </div>
 
     {relatedPosts && relatedPosts.length > 0 && (
@@ -228,46 +157,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 
 </Layout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const shareTriggerBtn = document.querySelector('.share-trigger-container button');
-    const shareOverlay = document.getElementById('shareOverlay');
-    const closeBtn = document.querySelector('.close-share-overlay');
-    
-    // Only proceed if all elements exist
-    if (shareTriggerBtn && shareOverlay && closeBtn) {
-      // Abrir o overlay
-      shareTriggerBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        shareOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Evita scroll do conteúdo de fundo
-      });
-      
-      // Fechar o overlay
-      closeBtn.addEventListener('click', function() {
-        shareOverlay.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      });
-      
-      // Fechar o overlay ao clicar fora do conteúdo
-      shareOverlay.addEventListener('click', function(e) {
-        if (e.target === shareOverlay) {
-          shareOverlay.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }
-      });
-      
-      // Fechar com a tecla ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && shareOverlay.style.display === 'flex') {
-          shareOverlay.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }
-      });
-    }
-  });
-</script>
-
 <style>
 .blog-post-page {
   display: grid;
@@ -281,55 +170,22 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 }
 
 .main-content-area {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px; /* Mantém a estrutura de conteúdo + sidebar */
-  gap: 3rem;
+  display: block;
+  padding: 0 1rem;
 }
 
-/* Garantir que a sidebar fique na lateral direita */
-.blog-sidebar {
-  grid-column: 2; /* Força a sidebar a ficar na segunda coluna (lado direito) */
-  align-self: start; /* Alinha ao topo da grade */
-  position: sticky; /* Mantém a sidebar visível ao rolar */
-  top: 100px; /* Distância do topo para não sobrepor a navbar */
-  height: fit-content; /* Permite que a sidebar ocupe apenas o espaço necessário */
-  z-index: 1; /* Menor z-index para não sobrepor conteúdo principal */
-}
-
-/* Ocultar sidebar em dispositivos móveis para focar na leitura */
-@media (max-width: 768px) {
-  .blog-sidebar {
-    display: none;
-  }
-}
-
-/* Garantir que o conteúdo principal fique na primeira coluna */
+/* Garantir que o conteúdo principal ocupe toda a largura disponível */
 article.blog-post-content {
-  grid-column: 1; /* Força o conteúdo a ficar na primeira coluna (lado esquerdo) */
-  min-width: 0; /* Permite que a coluna encolha corretamente */
+  max-width: 720px; /* Largura otimizada para leitura */
+  margin: 0 auto;
+  width: 100%;
   position: relative;
-  z-index: 2; /* Maior z-index para garantir que fique sobre a sidebar */
 }
 
-/* Garantir que os artigos relacionados fiquem abaixo do conteúdo principal e sidebar */
-.related-posts {
-  grid-column: 1; /* Faz com que a seção de artigos relacionados ocupe toda a largura */
-  margin-top: 3rem; /* Espaçamento superior para separar do conteúdo principal */
-}
-
-/* Reset para o comportamento em dispositivos móveis */
+/* Ajustar layout para dispositivos móveis */
 @media (max-width: 992px) {
   .blog-post-page {
-    grid-template-columns: 1fr;
     padding: 0 1.5rem;
-  }
-
-  .main-content-area {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-sidebar {
-    display: none; /* Ocultar sidebar completamente em mobile */
   }
   
   .related-posts {
@@ -859,15 +715,10 @@ article.blog-post-content {
     padding: 0 1.5rem;
   }
 
-  .blog-sidebar {
-    grid-column: 1;
-    grid-row: 2; /* Coloca a sidebar após o conteúdo do post */
-    position: static; /* Remove o sticky em dispositivos móveis */
-    margin-top: 3rem;
-  }
+
   
   .related-posts {
-    grid-row: 3; /* Ajusta a ordem para após a sidebar */
+    grid-row: 2; /* Ajusta a ordem para após o conteúdo principal */
   }
   
   article.blog-post-content {
@@ -920,10 +771,7 @@ article.blog-post-content {
     margin-bottom: 1.2rem;
   }
 
-  /* Ocultar sidebar em mobile */
-  .blog-sidebar {
-    display: none;
-  }
+
 
   /* Ajustar layout principal para conteúdo único */
   .main-content-area {
@@ -931,7 +779,6 @@ article.blog-post-content {
   }
 
   article.blog-post-content {
-    grid-column: auto;
     max-width: 100%;
   }
 

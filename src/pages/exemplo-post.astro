@@ -194,7 +194,9 @@ const relatedPosts = allPosts
   </div>
 </BlogPost>
 
-<ShareOverlay post={post} url={Astro.url.href} />
+<div slot="overlay">
+  <ShareOverlay post={post} url={Astro.url.href} />
+</div>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
@@ -202,25 +204,16 @@ const relatedPosts = allPosts
     const shareOverlay = document.getElementById('shareOverlay');
     const closeShareBtn = document.getElementById('closeShareBtn');
 
-    console.log('Share Button:', shareBtn);
-    console.log('Share Overlay:', shareOverlay);
-    console.log('Close Share Button:', closeShareBtn);
-
     if (shareBtn && shareOverlay && closeShareBtn) {
-      console.log('Attaching event listeners...');
       shareBtn.addEventListener('click', () => {
-        console.log('Share button clicked!');
         shareOverlay.classList.add('open');
         document.body.classList.add('overlay-open');
       });
 
       closeShareBtn.addEventListener('click', () => {
-        console.log('Close button clicked!');
         shareOverlay.classList.remove('open');
         document.body.classList.remove('overlay-open');
       });
-    } else {
-      console.error('One or more elements for the share overlay were not found.');
     }
   });
 </script>
