@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
 import Navigation from '../nav/Navigation.astro';
 import Footer from '../footer/Footer.astro';
 import ReadingProgressBar from './ReadingProgressBar.astro';
@@ -24,7 +23,7 @@ const featuredImage = image && image.url ? image.url : `/img/thumbs/branding_pos
 const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o artigo: ${title}`;
 ---
 
-<Layout title={`${title} - Blog - Moura | Marketing e Comunicação Digital`}>
+<Layout title={`${title} - Blog - Moura | Marketing e Comunicação Digital}`}>
 
   <Navigation slot="nav" />
 
@@ -42,9 +41,12 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 
     <ReadingProgressBar />
     
-    <div class="main-content-area">
-      <article class="blog-post-content">
-      <header class="post-header">
+          <div class="main-content-area">
+          <div class="toc-container">
+            <slot name="toc" />
+          </div>
+          
+          <article class="blog-post-content">      <header class="post-header">
         <h1 class="post-title">{title}</h1>
         <div class="post-meta-top hygge-meta">
           <div class="post-date-author">
@@ -106,8 +108,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
         </section>
       </footer>
     </article>
-
-
   </div>
 
     {relatedPosts && relatedPosts.length > 0 && (
@@ -170,16 +170,22 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 }
 
 .main-content-area {
-  display: block;
-  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 280px 1fr; /* Estrutura para sumário + conteúdo principal */
+  gap: 3rem;
 }
 
-/* Garantir que o conteúdo principal ocupe toda a largura disponível */
-article.blog-post-content {
-  max-width: 720px; /* Largura otimizada para leitura */
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
+.toc-container {
+  position: sticky;
+  top: 100px; /* Adjust this value based on your header's height */
+  align-self: start;
+}
+
+/* Garantir que o conteúdo principal tenha largura total em mobile */
+@media (max-width: 768px) {
+  .main-content-area {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Ajustar layout para dispositivos móveis */
@@ -377,8 +383,8 @@ article.blog-post-content {
     font-size: 1.15rem; /* Levemente maior para melhor legibilidade */
     line-height: 1.75; /* Ajuste para espaçamento vertical */
     max-width: 720px; /* Limita a largura para melhor leitura */
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     hyphens: auto; /* Adiciona hifenização para melhor leitura */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -599,39 +605,6 @@ article.blog-post-content {
   margin-top: 2.5rem;
 }
 
-
-
-
-
-
-
-@media (max-width: 768px) {
-  .hygge-related-posts {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    border-radius: var(--radius-lg);
-  }
-  
-  .related-posts-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-  
-  .related-posts-header h2 {
-    padding-right: 0;
-  }
-  
-  .related-posts-divider {
-    width: 100%;
-    height: 1px;
-  }
-  
-  .view-all-posts {
-    margin-top: 2rem;
-  }
-}
-
 .related-post-card {
   background: var(--color-background);
   border-radius: 8px;
@@ -701,102 +674,6 @@ article.blog-post-content {
   letter-spacing: 1.2px;
   font-weight: 300;
   display: inline-block;
-}
-
-
-
-
-
-
-
-@media (max-width: 992px) {
-  .blog-post-page {
-    grid-template-columns: 1fr;
-    padding: 0 1.5rem;
-  }
-
-
-  
-  .related-posts {
-    grid-row: 2; /* Ajusta a ordem para após o conteúdo principal */
-  }
-  
-  article.blog-post-content {
-    grid-column: 1;
-    grid-row: 1; /* Conteúdo do post vem primeiro */
-  }
-}
-
-@media (max-width: 768px) {
-  .blog-post-page {
-    padding: 0 1rem;
-  }
-
-  .post-title {
-    font-size: 1.8rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-
-  .post-meta-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-
-  .post-meta-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  /* Otimização da tipografia para leitura */
-  .post-body {
-    font-size: 1.15rem; /* Aumenta levemente o tamanho da fonte */
-    line-height: 1.7; /* Ajusta o espaçamento entre linhas para melhor leitura */
-    margin-bottom: 2rem;
-  }
-
-  .post-body h2 {
-    font-size: 1.5rem;
-    margin: 2rem 0 1rem;
-  }
-
-  .post-body h3 {
-    font-size: 1.3rem;
-    margin: 1.7rem 0 0.8rem;
-  }
-
-  .post-body p {
-    margin-bottom: 1.2rem;
-  }
-
-
-
-  /* Ajustar layout principal para conteúdo único */
-  .main-content-area {
-    display: block;
-  }
-
-  article.blog-post-content {
-    max-width: 100%;
-  }
-
-  /* Ajustar imagem para mobile */
-  .post-featured-image img {
-    height: 50vh;
-  }
-
-  /* Simplificar compartilhamento */
-  .share-buttons {
-    gap: 0.75rem;
-  }
-
-  .related-posts-grid {
-    grid-template-columns: 1fr;
-  }
-
-
 }
 
 /* Updated Post Meta Top */
@@ -1338,4 +1215,37 @@ article.blog-post-content {
     height: 180px;
   }
 }
+
+/* Script para destacar o item ativo no sumário */
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocLinks = document.querySelectorAll('.table-of-contents-list a');
+    const headings = document.querySelectorAll('.post-body h2[id]');
+
+    if (tocLinks.length === 0 || headings.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const tocLink = document.querySelector(`.table-of-contents-list a[href="#${id}"]`);
+
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => link.classList.remove('active'));
+          if (tocLink) {
+            tocLink.classList.add('active');
+          }
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -80% 0px', // Ativa quando o título está no topo da tela
+      threshold: 1.0
+    });
+
+    headings.forEach(heading => {
+      observer.observe(heading);
+    });
+  });
+</script>
 </style>

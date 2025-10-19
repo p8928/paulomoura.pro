@@ -20,15 +20,6 @@ const relatedPosts = allPosts
 
 <BlogPost post={post} relatedPosts={relatedPosts}>
   <div class="post-content" slot="content">
-    <TableOfContents>
-      <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
-      <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
-      <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
-      <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
-      <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
-      <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
-      <li><a href="#conclusao">Conclusão</a></li>
-    </TableOfContents>
 
     <p>
       O design digital evoluiu drasticamente nas últimas décadas, transformando-se de uma disciplina 
@@ -45,8 +36,8 @@ const relatedPosts = allPosts
 
     <h2 id="evolucao-design-digital" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">A Evolução do Design Digital</h2>
     <p>
-      A trajetória do design digital começou com interfaces rudimentares em computadores pessoais 
-      da década de 1980. Naquela época, os designers lidavam com limitações técnicas severas, como 
+      A trajetória do design digital começou com interfaces rudimentares em computadores 
+      pessoais da década de 1980. Naquela época, os designers lidavam com limitações técnicas severas, como 
       resoluções de tela baixas, paletas de cores restritas e tipografia limitada. Apesar dessas 
       restrições, pioneiros como Susan Kare, responsável pelo design dos ícones do Macintosh, 
       estabeleceram fundamentos que ainda influenciam o design contemporâneo.
@@ -183,7 +174,7 @@ const relatedPosts = allPosts
         Tudo o que você acabou de ler reflete minha filosofia de que o futuro do SEO está atrelado à força da sua marca.
       </p>
       <p style="margin-bottom: 0; color: var(--color-text-secondary); line-height: 1.7;">
-        Quem busca por hacks e atalhos a fim de "jogar damas" contra algoritmos indecifráveis que "jogam xadrez" está fechando as próprias portas para um ecossistema que valoriza o que é autêntico e genuíno.
+        Quem busca por hacks e atalhos a fim de \"jogar damas\" contra algoritmos indecifráveis que \"jogam xadrez\" está fechando as próprias portas para um ecossistema que valoriza o que é autêntico e genuíno.
       </p>
       <div style="text-align: center; margin-top: 2rem;">
         <Button variant="secondary" href="/metodologia" style="padding: 0.8rem 2rem;">
@@ -191,7 +182,17 @@ const relatedPosts = allPosts
         </Button>
       </div>
     </div>
-  </div>
+  </div> <!-- Fecha o slot content -->
+  
+  <TableOfContents slot="toc">
+    <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
+    <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
+    <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
+    <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
+    <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
+    <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
+  </TableOfContents>
+  
 </BlogPost>
 
 <div slot="overlay">
