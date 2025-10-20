@@ -5,6 +5,111 @@
   </ul>
 </div>
 
+<script is:inline>
+  // Função para atualizar o TOC ativo usando Intersection Observer
+  function setupTocObserver() {
+    // Espera um pequeno atraso para garantir que os elementos estejam carregados
+    setTimeout(() => {
+      // Pega todos os links do TOC
+      const tocLinks = document.querySelectorAll('.table-of-contents-list a');
+      
+      // Verifica se há links no TOC
+      if (tocLinks.length === 0) {
+        console.log('Nenhum link encontrado no TOC');
+        return;
+      }
+      
+      // Extrai os IDs dos cabeçalhos dos links do TOC
+      const headerIds = Array.from(tocLinks).map(link => {
+        const href = link.getAttribute('href');
+        return href ? href.substring(1) : null; // Remove o # do início
+      }).filter(id => id !== null);
+      
+      // Pega os elementos de cabeçalho correspondentes
+      const headers = headerIds.map(id => document.getElementById(id)).filter(header => header !== null);
+      
+      console.log('TOC Observer configurado:', {
+        headerIds: headerIds,
+        headersEncontrados: headers.length,
+        linksEncontrados: tocLinks.length
+      });
+
+      // Limpa a classe 'active' de todos os links e list items
+      function clearActiveClasses() {
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          console.log('Removendo classe active de:', link.getAttribute('href'));
+        });
+        document.querySelectorAll('.table-of-contents-list li').forEach(li => {
+          li.classList.remove('active');
+          console.log('Removendo classe active de:', li);
+        });
+      }
+
+      // Configura o Intersection Observer
+      // rootMargin: valores negativos reduzem a área de detecção, positivos aumentam
+      // Exemplo: '-20% 0% -80% 0%' significa: 20% do topo e 80% da base da viewport não são considerados
+      // Vamos usar um valor mais amplo para facilitar a detecção: '0% 0% -90% 0%'
+      // Isso significa que o elemento é considerado visível quando entra no topo da viewport até 90% da base
+      const observerOptions = {
+        root: null, // viewport padrão
+        rootMargin: '0% 0% -90% 0%', // Ajuste este valor para controlar quando o elemento é considerado visível
+        threshold: 0.0 // O quanto do elemento precisa estar visível para acionar o callback
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        // Encontra o primeiro cabeçalho que está visível
+        console.log('Intersection Observer callback executado');
+        let visibleHeader = null;
+        for (const entry of entries) {
+          console.log('Entry:', entry, 'isIntersecting:', entry.isIntersecting);
+          if (entry.isIntersecting) {
+            visibleHeader = entry.target;
+            console.log('Header visível:', visibleHeader);
+            break;
+          }
+        }
+
+        // Limpa as classes ativas
+        clearActiveClasses();
+
+        // Atualiza o link correspondente ao cabeçalho visível
+        if (visibleHeader) {
+          const activeLink = document.querySelector(`.table-of-contents-list a[href="#${visibleHeader.id}"]`);
+          console.log('Link encontrado para o header:', activeLink);
+          if (activeLink) {
+            activeLink.classList.add('active');
+            console.log('Adicionando classe active ao link:', activeLink);
+            // Adiciona a classe active também ao elemento li pai
+            if (activeLink.parentElement) {
+              activeLink.parentElement.classList.add('active');
+              console.log('Adicionando classe active ao li pai:', activeLink.parentElement);
+            }
+          }
+        }
+      }, observerOptions);
+
+      // Observa cada cabeçalho
+      headers.forEach(header => {
+        if (header) {
+          observer.observe(header);
+          console.log('Observando header:', header);
+        }
+      });
+
+      console.log('Intersection Observer configurado');
+    }, 100); // Pequeno atraso para garantir o carregamento
+  }
+  
+  // Configura o observer quando o DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTocObserver);
+  } else {
+    // DOM já está carregado
+    setupTocObserver();
+  }
+</script>
+
 <style>
   .table-of-contents {
     background: rgba(192, 178, 131, 0.03);
@@ -45,18 +150,30 @@
     text-decoration: none;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
-    transition: color var(--transition-fast);
+    transition: all var(--transition-fast);
     display: block;
-    padding: var(--space-xs) 0;
+    padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+    position: relative;
+    border-left: 2px solid transparent;
   }
 
   .table-of-contents-list a:hover {
     color: var(--color-accent-accessible);
+    transform: translateX(4px);
   }
 
-  /* Estilo para o link ativo (requer JS para adicionar a classe 'active') */
-  .table-of-contents-list a.active {
-    color: var(--color-accent-accessible);
-    font-weight: var(--font-weight-medium);
+  .table-of-contents .table-of-contents-list li.active {
+    background-color: yellow !important;
+    border: 5px solid red !important;
+    border-radius: var(--radius-sm) !important;
+    padding: var(--space-xs) 0 !important;
+    transform: translateX(5px) !important;
+  }
+  
+  .table-of-contents .table-of-contents-list li.active a {
+    color: var(--color-accent-accessible) !important;
+    font-weight: var(--font-weight-medium) !important;
+    border-left-color: var(--color-accent-accessible) !important;
+    transform: translateX(2px) !important;
   }
 </style>

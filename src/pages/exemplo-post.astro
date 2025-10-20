@@ -199,26 +199,6 @@ const relatedPosts = allPosts
   <ShareOverlay post={post} url={Astro.url.href} />
 </div>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const shareBtn = document.getElementById('shareBtn');
-    const shareOverlay = document.getElementById('shareOverlay');
-    const closeShareBtn = document.getElementById('closeShareBtn');
-
-    if (shareBtn && shareOverlay && closeShareBtn) {
-      shareBtn.addEventListener('click', () => {
-        shareOverlay.classList.add('open');
-        document.body.classList.add('overlay-open');
-      });
-
-      closeShareBtn.addEventListener('click', () => {
-        shareOverlay.classList.remove('open');
-        document.body.classList.remove('overlay-open');
-      });
-    }
-  });
-</script>
-
 <style>
   @media (max-width: 768px) {
     .share-section {
@@ -226,3 +206,7 @@ const relatedPosts = allPosts
     }
   }
 </style>
+
+<!-- Script para destaque do TOC -->
+
+</script></script>

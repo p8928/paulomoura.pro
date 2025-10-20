@@ -1216,7 +1216,51 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   }
 }
 
-</style>    // DOM is already loaded, run setup immediately
+/* Script para destacar o item ativo no sumário */
+<script is:inline>
+  function setupTocObserver() {
+    console.log('TOC script setup function running.');
+    const tocLinks = document.querySelectorAll('.table-of-contents-list a');
+    const headings = document.querySelectorAll('.post-body h2[id], .post-body h3[id]');
+    console.log('Found', tocLinks.length, 'TOC links.');
+    console.log('Found', headings.length, 'headings to observe.');
+
+    if (tocLinks.length > 0 && headings.length > 0) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute('id');
+          if (entry.isIntersecting) {
+            console.log('Heading intersecting:', id);
+            const tocLink = document.querySelector(`.table-of-contents-list a[href="#${id}"]`);
+
+            tocLinks.forEach(link => link.classList.remove('active'));
+            if (tocLink) {
+              console.log('Activating link:', tocLink);
+              tocLink.classList.add('active');
+            } else {
+              console.log('Could not find a matching TOC link for id:', id);
+            }
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 1.0
+      });
+
+      headings.forEach(heading => {
+        observer.observe(heading);
+      });
+      console.log('Observer is now watching headings.');
+    } else {
+      console.log('Aborting TOC script: links or headings not found.');
+    }
+  }
+
+  // Wait for the DOM to be fully loaded before setting up the observer
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTocObserver);
+  } else {
+    // DOM is already loaded, run setup immediately
     setupTocObserver();
   }
 </script>
