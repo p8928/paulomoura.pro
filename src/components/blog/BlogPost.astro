@@ -1216,8 +1216,42 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   }
 }
 
-</style>    // DOM is already loaded, run setup immediately
+</style>
+<script>
+  function setupTocObserver() {
+    const tocLinks = document.querySelectorAll('.toc-container a');
+    const headings = Array.from(tocLinks).map(link => {
+      const id = link.getAttribute('href').substring(1);
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const correspondingLink = document.querySelector(`.toc-container a[href="#${id}"]`);
+        if (correspondingLink) {
+          if (entry.isIntersecting) {
+            correspondingLink.classList.add('active');
+          } else {
+            correspondingLink.classList.remove('active');
+          }
+        }
+      });
+    }, {
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    });
+
+    headings.forEach(heading => observer.observe(heading));
+  }
+
+  if (document.readyState === 'loading') {
+    // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', setupTocObserver);
+  } else {
+    // DOM is already loaded, run setup immediately
     setupTocObserver();
   }
 </script>
-</style>

@@ -28,6 +28,10 @@ Este arquivo contém informações sobre os pontos de restauração (commits) cr
    - ID do Commit: 8602e93b21d6ebcfa554fd6528700424449b31d8
    - Descrição: Otimização do componente de sumário nas páginas
 
+7. **Otimização do sumário - 2**
+   - ID do Commit: 1b1a92b9fe63d443c73e2b267f49e6e526f8bf51
+   - Descrição: Segunda otimização do componente de sumário nas páginas
+
 ## Comandos para Ativar os Pontos de Restauração
 
 Para retornar a qualquer um desses estados, utilize o seguinte comando Git substituindo <ID_DO_COMMIT> pelo ID correspondente:
@@ -66,6 +70,11 @@ git checkout 2ae9b20e073c9f4bd23f9ecaf6fa85c321c6ebbd
 Para retornar à otimização do sumário:
 ```bash
 git checkout 8602e93b21d6ebcfa554fd6528700424449b31d8
+```
+
+Para retornar à otimização do sumário - 2:
+```bash
+git checkout 1b1a92b9fe63d443c73e2b267f49e6e526f8bf51
 ```
 
 ## Dicas Adicionais
