@@ -1,0 +1,31 @@
+  .about-content {
+    background: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3xl);
+    position: relative;
+  }
+
+  .about__strong {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    text-align: end;
+    height: fit-content;
+    margin: 0;
+  }
+  
+  .line-wrapper {
+    width: 100%;
+    margin: var(--space-5xl) 0; 
+  }
+  
+    #line__x-2 {
+    background: var(--color-text-secondary);
+    width: 30%;
+    height: 2px;
+    margin: 0 auto;
+    align-self: center;
+  }

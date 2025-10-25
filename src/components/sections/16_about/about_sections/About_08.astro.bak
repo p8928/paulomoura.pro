@@ -1,0 +1,22 @@
+---
+import '../css/about_08.css';
+---
+
+<section class="about-content" id="about-content-6" slot="snap-content">
+  <div class="container">
+    <div class="article__container">
+
+	<blockquote class="about__quote">
+        "Marca é o que o cliente sente, de forma instintiva, sobre um produto, serviço ou empresa."
+        </blockquote>
+      
+        <p class="about-content__p" style:"align-items: center;">
+        Essas palavras são de Marty Neumeier, responsável por ajudar empresas como Apple e Google a construírem suas marcas. Enquanto a marca é consequência de sentimentos despertados no cliente, branding significa construir uma reputação cuja consistência reforça a percepção das pessoas sobre a marca de forma autêntica.
+        </p>
+    </div>
+    
+        <div class="svg__container" id="svg__container" style="align-items: end; padding: 0;">
+    	<img class="svg__img" src="/img/svg/eye-svgrepo-com.svg" style="width: 32%;">
+    	</div>
+  </div>
+</section>

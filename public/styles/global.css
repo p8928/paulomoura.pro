@@ -106,6 +106,10 @@ body {
   --font-size-3xl: 1.875rem;    /* 30px */
   --font-size-4xl: 2.25rem;     /* 36px */
   --font-size-5xl: 3rem;        /* 48px */
+  --font-size-6xl: 4rem;        /* 64px */
+  --font-size-7xl: 5rem;        /* 80px */
+  --font-size-8xl: 6rem;        /* 96px */
+  --font-size-9xl: 7rem;        /* 112px */
   --font-size-hero: clamp(8rem, 15vw, 18rem);
 
   /* Line Heights */
