@@ -1,0 +1,75 @@
+---
+import Navigation from '../../components/nav/Navigation.astro';
+import Footer from '../../components/footer/Footer.astro';
+
+// Desktop components
+import AboutDesktop_01 from '../../components/sections/16_about/about_sections/AboutDesktop_01.astro';
+import AboutDesktop_02 from '../../components/sections/16_about/about_sections/AboutDesktop_02.astro';
+import AboutDesktop_03 from '../../components/sections/16_about/about_sections/AboutDesktop_03.astro';
+import AboutDesktop_04 from '../../components/sections/16_about/about_sections/AboutDesktop_04.astro';
+import AboutDesktop_05 from '../../components/sections/16_about/about_sections/AboutDesktop_05.astro';
+import AboutDesktop_06 from '../../components/sections/16_about/about_sections/AboutDesktop_06.astro';
+import AboutDesktop_07 from '../../components/sections/16_about/about_sections/AboutDesktop_07.astro';
+import AboutDesktop_08 from '../../components/sections/16_about/about_sections/AboutDesktop_08.astro';
+import AboutDesktop_09 from '../../components/sections/16_about/about_sections/AboutDesktop_09.astro';
+
+// Mobile components
+import AboutMobile_01 from '../../components/sections/16_about/about_sections/AboutMobile_01.astro';
+import AboutMobile_02 from '../../components/sections/16_about/about_sections/AboutMobile_02.astro';
+import AboutMobile_03 from '../../components/sections/16_about/about_sections/AboutMobile_03.astro';
+import AboutMobile_04 from '../../components/sections/16_about/about_sections/AboutMobile_04.astro';
+import AboutMobile_05 from '../../components/sections/16_about/about_sections/AboutMobile_05.astro';
+import AboutMobile_06 from '../../components/sections/16_about/about_sections/AboutMobile_06.astro';
+import AboutMobile_07 from '../../components/sections/16_about/about_sections/AboutMobile_07.astro';
+import AboutMobile_08 from '../../components/sections/16_about/about_sections/AboutMobile_08.astro';
+import AboutMobile_09 from '../../components/sections/16_about/about_sections/AboutMobile_09.astro';
+---
+
+<!-- Desktop Version -->
+<div class="responsive-layout desktop-version">
+  <Navigation slot="nav" />
+  <AboutDesktop_01 slot="hero" />
+  <AboutDesktop_02 slot="snap-content" />
+  <AboutDesktop_03 slot="snap-content" />
+  <AboutDesktop_04 slot="snap-content" />
+  <AboutDesktop_05 slot="snap-content" />
+  <AboutDesktop_06 slot="snap-content" />
+  <AboutDesktop_07 slot="snap-content" />
+  <AboutDesktop_08 slot="snap-content" />
+  <AboutDesktop_09 slot="snap-content" />
+  <Footer slot="rest-content" />
+</div>
+
+<!-- Mobile Version -->
+<div class="responsive-layout mobile-version">
+  <Navigation slot="nav" />
+  <AboutMobile_01 slot="hero" />
+  <AboutMobile_02 slot="snap-content" />
+  <AboutMobile_03 slot="snap-content" />
+  <AboutMobile_04 slot="snap-content" />
+  <AboutMobile_05 slot="snap-content" />
+  <AboutMobile_06 slot="snap-content" />
+  <AboutMobile_07 slot="snap-content" />
+  <AboutMobile_08 slot="snap-content" />
+  <AboutMobile_09 slot="snap-content" />
+  <Footer slot="rest-content" />
+</div>
+
+<style>
+  .responsive-layout.desktop-version {
+    display: block;
+  }
+  
+  .responsive-layout.mobile-version {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .responsive-layout.desktop-version {
+      display: none;
+    }
+    .responsive-layout.mobile-version {
+      display: block;
+    }
+  }
+</style>

@@ -68,6 +68,30 @@
     line-height: var(--line-height-tight);
   }
   
+  
+  @media (max-width: 768px) {
+
+    .about__title, .line__x {
+    	display: none;
+    }
+    
+    .about__sub {
+    	text-align: center;
+    	margin: 0 auto;
+    	width: 100%;
+    	font-size: var(--font-size-5xl);
+    	line-height: var(--line-height-tight);
+    }
+    
+    .about__slogan {
+    	font-weight: var(--font-weight-regular);
+    	text-align: center;
+    	margin: 0 auto;
+    	width: 100%;
+    	font-size: var(--font-size-xl);
+    }
+  }
+  
   @keyframes line-grow {
   from {
     /* Começa com escala zero na horizontal */

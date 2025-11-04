@@ -77,7 +77,7 @@ body {
   --color-text-tertiary: hsl(0, 0%, 40%);
   --color-border: hsla(0, 0%, 0%, 0.1);
   --color-shadow: hsla(0, 0%, 0%, 0.05);
-  --color-accent: hsl(46, 33%, 63%); /* Cor de destaque */
+  --color-accent: hsl(45, 33%, 63%); /* Cor de destaque */
   --color-accent-accessible: hsl(45, 37%, 46%); /* Cor de destaque com melhor contraste */
   --color-white: hsl(0, 0%, 100%);
   --color-light-gray: hsl(0, 0%, 72%);

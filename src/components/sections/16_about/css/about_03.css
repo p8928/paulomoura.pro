@@ -18,3 +18,31 @@
     width: 60%;
     line-height: var(--line-height-tight);
   }
+  
+  .about__title__02 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-9xl);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    text-align: start;
+    height: fit-content;
+    margin: 0;  
+  }
+  
+  @media (max-width: 768px) {
+
+    .about__title__02 {
+    	font-size: var(--font-size-4xl);
+    	text-align: center;
+    	line-height: var(--line-height-tight);
+    	margin: 0 auto;
+    }
+    
+    #acp-2 {
+    	font-size: var(--font-size-lg);
+    	text-align: center;
+    	width: 100%;
+    	margin: auto;
+  }
+ 
