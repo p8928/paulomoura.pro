@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
+    "@astrojs/mdx": "^4.3.9",
     "@swup/astro": "^1.7.0",
     "@types/three": "^0.180.0",
     "animejs": "^4.1.3",

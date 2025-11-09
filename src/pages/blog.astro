@@ -27,7 +27,7 @@ const postsToShow = initialPostsToShow;
           <span class="title-dash-container">
             <span class="title-dash"></span>
           </span>
-          <span class="title-part">LED</span>
+          <span class="title-part">DRIVEN</span>
           <span class="title-blog">BLOG</span>
         </h1>
       </div>
@@ -102,6 +102,7 @@ const postsToShow = initialPostsToShow;
   background-color: var(--color-background);
   position: relative;
   overflow: hidden;
+  margin-top: calc(-1 * (var(--space-lg) + var(--space-lg)));
 }
 
 .hero-content {
@@ -260,7 +261,7 @@ const postsToShow = initialPostsToShow;
   font-weight: 200;
   letter-spacing: 3px;
   display: block;
-  color: #d0d0d0; /* Prateado mais claro */
+  color: var(--color-accent);
   text-transform: uppercase;
   display: flex;
   justify-content: center;
@@ -547,80 +548,104 @@ const postsToShow = initialPostsToShow;
 </style>
 
 <script is:inline type="module">
-  (async () => {
+  // Ensure DOM is ready before initializing animations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeBlogAnimations);
+  } else {
+    initializeBlogAnimations();
+  }
+
+  async function initializeBlogAnimations() {
     try {
       // Import GSAP dynamically
       const gsapModule = await import('https://esm.sh/gsap@3.13.0');
       const gsap = gsapModule.default || gsapModule;
       
-      document.addEventListener('DOMContentLoaded', () => {
-        // Wait for a bit to ensure elements are rendered
-        setTimeout(() => {
-          // Animate the main title with stagger effect
-          gsap.to(".title-part", {
-            duration: 1.2,
-            y: 0,
-            opacity: 1,
-            stagger: 0.3,
-            ease: "power3.out",
-            delay: 0.2
-          });
-          
-          // Animate the dash with a scale effect
-          gsap.to(".title-dash-container", {
-            duration: 1,
-            opacity: 1,
-            ease: "power2.out",
+      // Wait a bit more to ensure all elements are rendered properly
+      setTimeout(() => {
+        // Set initial state for all elements first
+        gsap.set(".title-part", { y: 150, opacity: 0 });
+        gsap.set(".title-dash-container", { opacity: 0 });
+        gsap.set(".title-dash", { scaleX: 0, opacity: 0 });
+        gsap.set(".title-blog", { y: 150, opacity: 0 });
+
+        // Animate the main title with stagger effect
+        gsap.to(".title-part", {
+          duration: 1.2,
+          y: 0,
+          opacity: 1,
+          stagger: 0.3,
+          ease: "power3.out",
+          delay: 0.2
+        });
+        
+        // Animate the dash with a scale effect
+        gsap.to(".title-dash-container", {
+          duration: 1,
+          opacity: 1,
+          ease: "power2.out",
+          delay: 0.7
+        });
+        
+        gsap.to(".title-dash", 
+          { 
+            scaleX: 1, 
+            opacity: 1, 
+            duration: 0.8, 
+            ease: "power3.inOut",
             delay: 0.7
-          });
-          
-          gsap.to(".title-dash", 
-            { 
-              scaleX: 1, 
-              opacity: 1, 
-              duration: 0.8, 
-              ease: "power3.inOut",
-              delay: 0.7
-            }
-          );
-          
-          // Animate the "BLOG" with a different effect
-          gsap.to(".title-blog", {
-            duration: 1.2,
-            y: 0,
-            opacity: 1,
-            ease: "back.out(1.7)",
-            delay: 1
-          });
-        }, 100); // Small delay to ensure DOM is ready
-      });
+          }
+        );
+        
+        // Animate the "BLOG" with a different effect
+        gsap.to(".title-blog", {
+          duration: 1.2,
+          y: 0,
+          opacity: 1,
+          ease: "back.out(1.7)",
+          delay: 1
+        });
+      }, 150); // Slightly longer delay to ensure DOM is ready
+      
     } catch (err) {
       console.warn('GSAP could not be loaded. Using fallback animations.', err);
       // Simple fallback animation using CSS classes
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          document.querySelectorAll('.title-part').forEach((part, index) => {
-            setTimeout(() => {
-              part.style.opacity = '1';
-              part.style.transform = 'translateY(0)';
-            }, 300 * index);
-          });
-          
+      setTimeout(() => {
+        document.querySelectorAll('.title-part').forEach((part, index) => {
           setTimeout(() => {
-            document.querySelector('.title-dash-container').style.opacity = '1';
-            const dash = document.querySelector('.title-dash');
+            part.style.opacity = '1';
+            part.style.transform = 'translateY(0)';
+            part.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+          }, 300 * index);
+        });
+        
+        setTimeout(() => {
+          const dashContainer = document.querySelector('.title-dash-container');
+          const dash = document.querySelector('.title-dash');
+          
+          if (dashContainer) {
+            dashContainer.style.opacity = '1';
+            dashContainer.style.transition = 'opacity 1s ease';
+          }
+          
+          if (dash) {
             dash.style.transform = 'scaleX(1)';
             dash.style.opacity = '1';
-          }, 600);
-          
-          setTimeout(() => {
-            document.querySelector('.title-blog').style.opacity = '1';
-            document.querySelector('.title-blog').style.transform = 'translateY(0)';
-          }, 900);
-        }, 100);
-      });
+            dash.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+          }
+        }, 600);
+        
+        setTimeout(() => {
+          const blogTitle = document.querySelector('.title-blog');
+          if (blogTitle) {
+            blogTitle.style.opacity = '1';
+            blogTitle.style.transform = 'translateY(0)';
+            blogTitle.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+          }
+        }, 900);
+      }, 150);
     }
-  })();
+  }
 </script>
 
 <script is:inline>

@@ -1,0 +1,196 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/nav/Navigation.astro';
+import Footer from '../../components/footer/Footer.astro';
+import BlogPost from '../../components/blog/BlogPost.astro';
+import HighlightedContent from '../../components/blog/HighlightedContent.astro';
+import TableOfContents from '../../components/blog/TableOfContents.astro';
+import Button from '../../components/ui/Button.astro';
+import ShareOverlay from '../../components/ui/share_overlay/ShareOverlay.astro';
+import ReadingProgressBar from '../../components/blog/ReadingProgressBar.astro';
+import BackToTopButton from '../../components/blog/BackToTopButton.astro';
+
+// Metadata for this specific post
+const post = {
+  data: {
+    title: "Autenticidade é o novo SEO",
+    description: "A intersecção entre branding e experiência do cliente na construção de relacionamentos duradouros.",
+    publishDate: new Date('2024-02-12'),
+    tags: ["Branding", "Experiência do Cliente"],
+    author: "Paulo Moura",
+    image: {
+      url: "/img/thumbs/001_authenticity_2560x800_test.webp", // Replace with actual image
+      alt: "Autenticidade e SEO"
+    }
+  },
+  slug: 'autenticidade-e-o-novo-seo'
+};
+
+// For a standalone post, we'll get related posts from collection
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .slice(0, 3);
+---
+
+<Layout title={`${post.data.title} - Blog - Moura | Marketing e Comunicação Digital`}>
+
+  <BlogPost post={post} relatedPosts={relatedPosts} slot="rest-content">
+  <div class="post-content" slot="content">
+
+    <p>
+      Em um mundo onde os algoritmos evoluem constantemente e as estratégias de marketing digital se tornam cada vez mais sofisticadas, a busca por resultados imediatos pode obscurecer um princípio fundamental: a autenticidade como base para um SEO duradouro. Este artigo explora por que a autenticidade não é apenas uma tendência passageira, mas sim a nova base do SEO eficaz.
+    </p>
+
+    <HighlightedContent type="tip">
+      A autenticidade não é apenas uma questão de valores; é uma estratégia de negócios que impacta diretamente a performance orgânica.
+    </HighlightedContent>
+
+    <h2 id="autenticidade-e-seo" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">A Conexão entre Autenticidade e SEO</h2>
+    <p>
+      A autenticidade no contexto do SEO vai além de criar conteúdo original. Trata-se de alinhar sua identidade de marca com o que você comunica, produz e oferece. Quando sua marca é autêntica, ela naturalmente atrai um público que compartilha dos mesmos valores, aumentando a probabilidade de engajamento, tempo de permanência e conversões.
+    </p>
+
+    <p>
+      Com a evolução dos algoritmos de busca, especialmente do Google, torna-se cada vez mais evidente que métricas de qualidade e autoridade pesam mais do que técnicas de manipulação. A experiência do usuário (UX) é um fator crítico, e quando sua marca é autêntica, a experiência tende a ser mais coesa e significativa, refletindo positivamente no desempenho SEO.
+    </p>
+
+    <ul>
+      <li>Conteúdo que reflete os verdadeiros valores da marca</li>
+      <li>Experiência do usuário alinhada com as promessas da marca</li>
+      <li>Engajamento natural sem a necessidade de estratégias artificiais</li>
+      <li>Construção de autoridade baseada em autenticidade</li>
+      <li>Reputação duradoura que resiste a mudanças algorítmicas</li>
+    </ul>
+
+    <HighlightedContent type="highlight">
+      A autenticidade é um investimento de longo prazo que fortalece sua posição no ecossistema digital.
+    </HighlightedContent>
+
+    <h2 id="principios-autenticidade" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Princípios da Autenticidade no SEO</h2>
+    <p>
+      Para implementar a autenticidade como base da sua estratégia SEO, é importante seguir alguns princípios fundamentais:
+    </p>
+
+    <p>
+      Transparência é o primeiro passo. Ser claro sobre quem você é, quais são seus valores e o que realmente oferece ajuda a construir confiança com seu público. Isso inclui informações precisas sobre sua empresa, seus produtos e serviços, e também sobre eventuais limitações.
+    </p>
+
+    <p>
+      Consistência é outro pilar fundamental. A mensagem da marca precisa ser coesa em todos os canais e toques com o cliente. Isso não significa ser repetitivo, mas sim manter a essência da marca em todas as comunicações.
+    </p>
+
+    <HighlightedContent type="caution">
+      Táticas de SEO que tentam manipular algoritmos podem funcionar a curto prazo, mas trazem riscos significativos de penalização no longo prazo.
+    </HighlightedContent>
+
+    <h2 id="estrategias-autenticas" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Estratégias Autênticas de SEO</h2>
+    <p>
+      Existem várias estratégias autênticas que podem fortalecer sua presença orgânica:
+    </p>
+
+    <ol>
+      <li>Criação de conteúdo baseado em necessidades reais do público</li>
+      <li>Utilização de testemunhos e cases reais</li>
+      <li>Desenvolvimento de uma voz de marca consistente</li>
+      <li>Construção de comunidades baseadas em valores compartilhados</li>
+      <li>Foco em experiência do usuário e qualidade do conteúdo</li>
+    </ol>
+
+    <h2 id="tendencias-autenticidade" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Tendências da Autenticidade Digital</h2>
+    <p>
+      As tendências atuais refletem uma crescente ênfase na transparência e conexão humana. Pessoas físicas como porta-vozes das marcas, conteúdo gerado pelo usuário e comunicação mais direta estão substituindo estratégias excessivamente polidas e distantes. A utilização de inteligência artificial para auxiliar, mas não substituir, a criatividade humana cria experiências mais autênticas sem perder eficiência.
+    </p>
+
+    <p>
+      O foco em comunidades e relacionamentos de longo prazo está se sobressaindo em relação a estratégias de aquisição imediata. Esta abordagem não apenas melhora a retenção, mas também fortalece o valor percebido da marca.
+    </p>
+
+    <HighlightedContent type="note">
+      A autenticidade está se tornando um diferencial competitivo em um mercado saturado de conteúdo digital.
+    </HighlightedContent>
+
+    <h2 id="casos-sucesso" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Casos de Sucesso e Exemplos Práticos</h2>
+    <p>
+      Empresas como Patagonia, Ben & Jerry's e Dove demonstram consistentemente como princípios autênticos de marca podem diferenciar e criar vantagens competitivas duradouras. A comunicação transparente e alinhada com valores reais não apenas aumenta a lealdade do cliente, mas também melhora a performance orgânica ao gerar engajamento natural.
+    </p>
+
+    <h2 id="desafios-oportunidades" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Desafios e Oportunidades Futuras</h2>
+    <p>
+      À medida que avançamos para um futuro cada vez mais digital, marcas enfrentam novos desafios éticos e estratégicos. Questões como privacidade de dados, fake news e manipulação digital exigem uma abordagem mais consciente e responsável. Ao mesmo tempo, tecnologias emergentes como inteligência artificial e metaverso oferecem oportunidades inexploradas para expandir a conexão autêntica entre marcas e consumidores.
+    </p>
+
+    <h2 id="conclusao" style="margin-top: 4rem !important; font-size: 1.8rem !important; color: #000000 !important;">Conclusão</h2>
+    <p>
+      A autenticidade evoluiu de uma característica desejável para um componente essencial de estratégias de SEO eficazes. Sua importância continuará crescendo à medida que a linha entre experiências online e offline se torna cada vez mais tênue. Marcas que abraçarem essa autenticidade com empatia, transparência e responsabilidade estarão bem posicionadas para liderar o próximo capítulo do marketing digital.
+    </p>
+
+    <p>
+      Investir em autenticidade não é apenas uma questão de ética – é um compromisso com um SEO mais sustentável em um mundo cada vez mais digital e consciente.
+    </p>
+
+    <div class="share-section" style="margin-top: var(--space-3xl); text-align: center; padding: var(--space-lg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--color-background) 0%, rgba(192, 178, 131, 0.05) 100%); max-width: 600px; margin-left: auto; margin-right: auto; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--color-accent), #000000, var(--color-accent));"></div>
+      <h3 class="text-label" style="color: var(--color-accent); margin-bottom: var(--space-sm);">Compartilhe</h3>
+      <p class="text-intro" style="max-width: none; margin-top: var(--space-sm); margin-bottom: var(--space-lg); color: var(--color-text-tertiary); font-size: var(--font-size-base);">
+        Achou este conteúdo útil? Compartilhe com sua rede.
+      </p>
+      <Button id="shareBtn" variant="secondary">Compartilhar</Button>
+    </div>
+    
+    <!-- Seção de chamada para a Metodologia -->
+    <div style="margin-top: 4rem; padding: 2.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--color-background) 0%, rgba(192, 178, 131, 0.08) 100%); max-width: 800px; margin-left: auto; margin-right: auto; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--color-accent), #000000, var(--color-accent));"></div>
+      <h3 style="color: var(--color-accent); margin-bottom: 1.5rem; font-size: 1.4rem;">Nossa filosofia de SEO</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary); line-height: 1.7;">
+        Tudo o que você acabou de ler reflete minha filosofia de que o futuro do SEO está atrelado à força da sua marca.
+      </p>
+      <p style="margin-bottom: 0; color: var(--color-text-secondary); line-height: 1.7;">
+        Quem busca por hacks e atalhos a fim de "jogar damas" contra algoritmos indecifráveis que \"jogam xadrez\" está fechando as próprias portas para um ecossistema que valoriza o que é autêntico e genuíno.
+      </p>
+      <div style="text-align: center; margin-top: 2rem;">
+        <Button variant="secondary" href="/metodologia" style="padding: 0.8rem 2rem;">
+          Conheça a metodologia brand-led
+        </Button>
+      </div>
+    </div>
+  </div> <!-- Fecha o slot content -->
+  
+  <TableOfContents slot="toc">
+    <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
+    <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
+    <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
+    <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
+    <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
+    <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
+  </TableOfContents>
+  
+    <TableOfContents slot="toc">
+      <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
+      <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
+      <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
+      <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
+      <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
+      <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
+    </TableOfContents>
+    
+  </BlogPost>
+
+  <div slot="overlay">
+    <ShareOverlay post={post} url={Astro.url.href} />
+  </div>
+
+  <Footer slot="rest-content" />
+
+</Layout>
+
+<style>
+  @media (max-width: 768px) {
+    .share-section {
+      /* Mantém a seção visível em mobile, mas o botão já substituiu os ícones */
+    }
+  }
+</style>
+
+<!-- Script para destaque do TOC -->
