@@ -41,11 +41,7 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 
     <ReadingProgressBar />
     
-          <div class="main-content-area">
-          <div class="toc-container">
-            <slot name="toc" />
-          </div>
-          
+          <div class="main-content-area-full">
           <article class="blog-post-content">      <header class="post-header">
         <h1 class="post-title">{title}</h1>
         <div class="post-meta-top hygge-meta">
@@ -162,29 +158,42 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  padding: 0 2rem;
-  max-width: 1500px;
+  padding: 0 5vw; /* Ajusta padding para ser proporcional à tela */
+  max-width: 100%; /* Remove limitação de largura máxima */
   margin: 0 auto;
   width: 100%;
   padding-top: 2rem; /* Adiciona espaçamento no topo para evitar sobreposição com navbar */
 }
 
-.main-content-area {
-  display: grid;
-  grid-template-columns: 280px 1fr; /* Estrutura para sumário + conteúdo principal */
-  gap: 3rem;
+.main-content-area-full {
+  width: 100%;
+  padding: 0 5vw; /* Usando viewport width para padding mais responsivo */
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.toc-container {
-  position: sticky;
-  top: 100px; /* Adjust this value based on your header's height */
-  align-self: start;
+.blog-post-content {
+  width: 100%;
+  max-width: 1100px; /* Largura aumentada para leitura de texto */
+  margin: 0 auto; /* Centraliza o conteúdo */
 }
 
 /* Garantir que o conteúdo principal tenha largura total em mobile */
 @media (max-width: 768px) {
-  .main-content-area {
-    grid-template-columns: 1fr;
+  .main-content-area-full {
+    padding: 0 1.5rem;
+  }
+
+  .blog-post-content {
+    max-width: 100%;
+    padding: 0 1rem; /* Adiciona um pequeno padding nas laterais em mobile */
+  }
+}
+
+/* Para telas maiores */
+@media (min-width: 1400px) {
+  .blog-post-content {
+    max-width: 1200px; /* Aumenta ainda mais em telas grandes */
   }
 }
 
@@ -203,6 +212,8 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
     max-width: 100%;
     margin: 0 auto;
   }
+  
+
 
   .share-section {
     display: none;
@@ -318,6 +329,11 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   line-height: 1.8;
   color: var(--color-text-secondary);
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 1100px; /* Mantém alinhamento com o conteúdo principal */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem; /* Adiciona algum espaçamento lateral */
 }
 
 /* Estilo otimizado para leitura tipo Kindle */
@@ -328,6 +344,7 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
     color: var(--color-text-secondary);
     margin-bottom: 2rem;
     max-width: 100%;
+    padding: 0 1rem; /* Mantém o espaçamento em telas menores */
     hyphens: auto; /* Adiciona hifenização para melhor leitura */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -382,9 +399,9 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   .post-body {
     font-size: 1.15rem; /* Levemente maior para melhor legibilidade */
     line-height: 1.75; /* Ajuste para espaçamento vertical */
-    max-width: 720px; /* Limita a largura para melhor leitura */
-    margin-left: 0;
-    margin-right: 0;
+    max-width: 1100px; /* Largura aumentada para melhor aproveitamento de espaço */
+    margin-left: auto; /* Centraliza o conteúdo */
+    margin-right: auto;
     hyphens: auto; /* Adiciona hifenização para melhor leitura */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -459,10 +476,12 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 
 .newsletter-cta {
   padding: 2.5rem;
-  margin: 3rem 0;
+  margin: 3rem auto; /* Centraliza a seção */
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   text-align: center;
+  width: 100%;
+  max-width: 660px; /* 60% de 1100px (redução de 40%) */
 }
 
 .newsletter-content p {
@@ -603,6 +622,7 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 .view-all-posts {
   text-align: center;
   margin-top: 2.5rem;
+  margin-bottom: 8rem; /* Adicionando uma margem inferior considerável para criar espaço entre o botão e o footer */
 }
 
 .related-post-card {
@@ -939,9 +959,9 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   
   /* Estilos para o componente de newsletter em mobile */
   .newsletter-cta {
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
+    margin: 2.5rem auto; /* Centraliza a seção */
     padding: 1.8rem;
+    max-width: 90%; /* Usa porcentagem em mobile para manter a proporção */
   }
   
   .newsletter-content p {

@@ -4,7 +4,6 @@ import Navigation from '../../components/nav/Navigation.astro';
 import Footer from '../../components/footer/Footer.astro';
 import BlogPost from '../../components/blog/BlogPost.astro';
 import HighlightedContent from '../../components/blog/HighlightedContent.astro';
-import TableOfContents from '../../components/blog/TableOfContents.astro';
 import Button from '../../components/ui/Button.astro';
 import ShareOverlay from '../../components/ui/share_overlay/ShareOverlay.astro';
 import ReadingProgressBar from '../../components/blog/ReadingProgressBar.astro';
@@ -157,31 +156,13 @@ const relatedPosts = allPosts
     </div>
   </div> <!-- Fecha o slot content -->
   
-  <TableOfContents slot="toc">
-    <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
-    <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
-    <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
-    <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
-    <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
-    <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
-  </TableOfContents>
   
-    <TableOfContents slot="toc">
-      <li><a href="#evolucao-design-digital">A Evolução do Design Digital</a></li>
-      <li><a href="#principios-fundamentais">Princípios Fundamentais do Design Digital</a></li>
-      <li><a href="#ferramentas-tecnologias">Ferramentas e Tecnologias Modernas</a></li>
-      <li><a href="#tendencias-atuais">Tendências Atuais em Design Digital</a></li>
-      <li><a href="#casos-sucesso">Casos de Sucesso e Estudos de Caso</a></li>
-      <li><a href="#desafios-oportunidades">Desafios e Oportunidades Futuras</a></li>
-    </TableOfContents>
     
   </BlogPost>
 
   <div slot="overlay">
     <ShareOverlay post={post} url={Astro.url.href} />
   </div>
-
-  <Footer slot="rest-content" />
 
 </Layout>
 
