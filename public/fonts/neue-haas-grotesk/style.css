@@ -2,34 +2,54 @@
   font-family: 'Neue Haas Grotesk';
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: local('NeueHaasGrotesk-Light'),
        local('Neue Haas Grotesk Light'),
        url('neue-haas-grotesk-light.woff2') format('woff2');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }
 
 @font-face {
   font-family: 'Neue Haas Grotesk';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local('NeueHaasGrotesk-Regular'),
        local('Neue Haas Grotesk Regular'),
        url('neue-haas-grotesk-regular.woff2') format('woff2');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }
 
 @font-face {
   font-family: 'Neue Haas Grotesk';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: local('NeueHaasGrotesk-Medium'),
        local('Neue Haas Grotesk Medium'),
        url('neue-haas-grotesk-medium.woff2') format('woff2');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }
 
 @font-face {
   font-family: 'Neue Haas Grotesk';
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: local('NeueHaasGrotesk-Bold'),
        local('Neue Haas Grotesk Bold'),
        url('neue-haas-grotesk-bold.woff2') format('woff2');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }

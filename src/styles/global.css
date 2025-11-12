@@ -134,8 +134,8 @@ body::-webkit-scrollbar {
   --color-medium-gray: hsl(0, 0%, 42%);
 
   /* Typography */
-  --font-family-primary: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-heading: 'Neue Haas Grotesk', sans-serif;
+  --font-family-primary: 'Outfit', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-heading: 'Outfit', 'Neue Haas Grotesk', sans-serif;
   
   /* Font Weights */
   --font-weight-light: 300;

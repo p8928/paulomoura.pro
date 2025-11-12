@@ -85,8 +85,8 @@ body {
   --color-medium-gray: hsl(0, 0%, 42%);
 
   /* Typography */
-  --font-family-primary: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-heading: 'Neue Haas Grotesk', sans-serif;
+  --font-family-primary: 'Outfit', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-heading: 'Outfit', 'Neue Haas Grotesk', sans-serif;
   
   /* Font Weights */
   --font-weight-light: 300;
@@ -318,14 +318,21 @@ img {
 }
 
 /* Scroll snapping container */
+/* Scroll snapping container */
 .snap-container {
   scroll-snap-type: y mandatory;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal overflow */
   height: 100vh;
-  
+  width: 100vw; /* Make sure it doesn't exceed viewport width */
+
   /* Ocultar scrollbar no Chrome, Safari, Edge */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE e Edge */
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .snap-container::-webkit-scrollbar {
@@ -345,22 +352,6 @@ img {
   z-index: 1;
 }
 
-/* Ajustar o snap container para manter a altura completa */
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: auto;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  height: calc(100vh - 100px); /* Subtrair o espaço ocupado pela navegação */
-  width: 100vw; /* Make sure it doesn't exceed viewport width */
-  
-  /* Ocultar scrollbar no Chrome, Safari, Edge */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE e Edge */
-}
-
-.snap-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
 
 /* Wrapper para layout geral */
 .layout-wrapper {
