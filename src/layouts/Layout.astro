@@ -66,9 +66,168 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
     </script>
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2D2D2D">
-    <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/fonts/outfit-v14-latin/style.css" />
     
+    <!-- Inline critical CSS to prevent render blocking -->
+    <style is:global>
+      /* CSS Reset & Base Styles - Critical for initial render */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-family-primary);
+        line-height: 1.6;
+        color: #000000;
+        background: #ffffff;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #000000 rgba(0, 0, 0, 0.05);
+      }
+
+      /* CSS Custom Properties (Design Tokens) - Critical if used in initial render */
+      :root {
+        --color-primary: hsl(0, 0%, 0%);
+        --color-secondary: hsl(0, 0%, 20%);
+        --color-tertiary: hsl(0, 0%, 40%);
+        --color-background: hsl(0, 0%, 100%);
+        --color-text-primary: hwb(0 0% 100%);
+        --color-text-secondary: #333333;
+        --color-text-tertiary: hsl(0, 0%, 40%);
+        --color-border: hsla(0, 0%, 0%, 0.1);
+        --color-shadow: hsla(0, 0%, 0%, 0.05);
+        --color-accent: hsl(45, 33%, 63%);
+        --color-accent-accessible: hsl(45, 37%, 46%);
+        --color-white: hsl(0, 0%, 100%);
+        --color-light-gray: hsl(0, 0%, 72%);
+        --color-dark-gray: hsl(0, 0%, 18%);
+        --color-medium-gray: hsl(0, 0%, 42%);
+        --font-family-primary: 'Outfit', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-family-heading: 'Outfit', 'Neue Haas Grotesk', sans-serif;
+        --font-weight-light: 300;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+        --font-weight-black: 900;
+        --font-size-xs: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-lg: 1.125rem;
+        --font-size-xl: 1.25rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-3xl: 1.875rem;
+        --font-size-4xl: 2.25rem;
+        --font-size-5xl: 3rem;
+        --font-size-hero: clamp(8rem, 15vw, 18rem);
+        --line-height-tight: 1.25;
+        --line-height-normal: 1.5;
+        --line-height-relaxed: 1.75;
+        --letter-spacing-tight: -0.02em;
+        --letter-spacing-normal: 0;
+        --letter-spacing-wide: 0.05em;
+        --letter-spacing-wider: 0.1em;
+        --space-xs: 0.5rem;
+        --space-sm: 0.75rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+        --space-5xl: 8rem;
+        --radius-sm: 2px;
+        --radius-md: 4px;
+        --radius-lg: 8px;
+        --radius-xl: 12px;
+        --radius-2xl: 16px;
+        --radius-full: 9999px;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        --shadow-inset: inset 0 0 0 5px var(--color-accent);
+        --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        --z-dropdown: 1000;
+        --z-sticky: 1020;
+        --z-fixed: 1030;
+        --z-modal-backdrop: 1040;
+        --z-modal: 1050;
+        --z-popover: 1060;
+        --z-tooltip: 1070;
+        --size-icon-sm: 24px;
+        --size-icon-md: 32px;
+        --size-icon-lg: 50px;
+        --size-control-xs: 40px;
+        --size-max-height: 500px;
+        --transform-translateY-5px: translateY(-5px);
+        --transform-translateY-20px: translateY(20px);
+        --transform-translateX-10px: translateX(10px);
+        --transform-translateX-neg-10px: translateX(-10px);
+      }
+
+      /* Typography */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-family-heading);
+        font-weight: var(--font-weight-light);
+        line-height: var(--line-height-tight);
+        color: var(--color-text-primary);
+        margin: 0 0 var(--space-md) 0;
+        letter-spacing: var(--letter-spacing-tight);
+      }
+
+      /* Focus styles for accessibility - Critical for accessibility */
+      *:focus {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+
+      *:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      *:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+    </style>
+
+    <!-- Load non-critical CSS asynchronously to prevent render blocking -->
+    <script>
+      // Function to load CSS asynchronously
+      function loadCSS(href) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+      
+      // Load CSS files after critical content is rendered
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          loadCSS('/styles/global.css');
+          loadCSS('/fonts/outfit-v14-latin/style.css');
+        });
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        window.addEventListener('load', function() {
+          loadCSS('/styles/global.css');
+          loadCSS('/fonts/outfit-v14-latin/style.css');
+        });
+      }
+    </script>
+
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
   </head>
