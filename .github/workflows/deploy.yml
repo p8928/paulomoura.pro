@@ -27,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Ensure submodules are checked out if any exist
+          lfs: false             # Git LFS not needed for this project
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -36,7 +39,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          rm -rf node_modules package-lock.json
+          rm -rf node_modules
+          if [ -f package-lock.json ]; then rm package-lock.json; fi
           npm install
 
       - name: Build site
