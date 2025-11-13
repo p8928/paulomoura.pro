@@ -237,8 +237,8 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
       }
     </script>
 
-    <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="script">
-    <script async src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <!-- Preload key resources but defer non-critical 3rd party scripts -->
+    <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="fetch" crossorigin>
     <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
   </head>
   <body>
@@ -283,6 +283,20 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
         animatedElements.forEach(element => {
           observer.observe(element);
         });
+        
+        // Load HTMX after main content has loaded for better Core Web Vitals
+        if (document.querySelector('[hx-get], [hx-post], [hx-put], [hx-delete]')) {
+          const htmxScript = document.createElement('script');
+          htmxScript.src = 'https://unpkg.com/htmx.org@1.9.10';
+          htmxScript.async = true;
+          htmxScript.onload = function() {
+            // Ensure HTMX is properly initialized after loading
+            if (typeof htmx !== 'undefined') {
+              htmx.process(document.body);
+            }
+          };
+          document.head.appendChild(htmxScript);
+        }
       });
     </script>
   </body>
