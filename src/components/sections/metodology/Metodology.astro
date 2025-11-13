@@ -20,48 +20,24 @@ import './css/metodology.css';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Store ScrollTrigger instances to properly clean them up
-  let scrollTriggerInstances = [];
+  let ctx;
 
   function initAnimations() {
-    // Limpar triggers anteriores para evitar duplicação
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    // Clear our local array as well
-    scrollTriggerInstances.forEach(trigger => trigger.kill());
-    scrollTriggerInstances = [];
+    // If a context from a previous run exists, kill it
+    if (ctx) {
+      ctx.revert();
+    }
 
-    // Use requestAnimationFrame to ensure animations run in the next frame
-    requestAnimationFrame(() => {
-      // Coreografia do Título - Now using opacity and transform properties that match the CSS
-      const tl = gsap.timeline({ 
-        delay: 0.2,
-        onStart: () => {
-          // Make the entire title visible when animation starts
-          const title = document.querySelector('.metodology-title');
-          if (title) {
-            title.style.opacity = '1';
-            title.style.visibility = 'visible';
-          }
-        }
-      });
-      
-      tl.fromTo(".title-brand", 
-        { x: -50, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 1, ease: "power3.out" }
-      )
-      .fromTo(".title-led", 
-        { x: 50, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
-        "-=0.8"
-      )
-      .fromTo(".title-dash", 
-        { scaleX: 0, opacity: 0, transformOrigin: "center" }, 
-        { scaleX: 1, opacity: 1, duration: 0.8, ease: "power3.inOut" }, 
-        "-=0.8"
-      );
+    // Create a new GSAP context
+    ctx = gsap.context(() => {
+      // Title animation timeline
+      const tl = gsap.timeline({ delay: 0.2 });
+      tl.fromTo(".title-brand", { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out" })
+        .fromTo(".title-led", { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.8")
+        .fromTo(".title-dash", { scaleX: 0, transformOrigin: "center" }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, "-=0.8");
 
-      // Animação de Parallax para as formas
-      const shape1Trigger = gsap.to(".shape-1", {
+      // Parallax animations for shapes
+      gsap.to(".shape-1", {
         y: -150,
         ease: "none",
         scrollTrigger: {
@@ -71,9 +47,8 @@ import './css/metodology.css';
           scrub: 0.4,
         },
       });
-      scrollTriggerInstances.push(shape1Trigger.scrollTrigger);
 
-      const shape2Trigger = gsap.to(".shape-2", {
+      gsap.to(".shape-2", {
         y: 200,
         ease: "none",
         scrollTrigger: {
@@ -83,32 +58,26 @@ import './css/metodology.css';
           scrub: 0.6,
         },
       });
-      scrollTriggerInstances.push(shape2Trigger.scrollTrigger);
 
-      // Animação de Fade-in para os textos
-      const fadeElements = document.querySelectorAll(".animate-fade-in");
-      fadeElements.forEach(el => {
-        const fadeTrigger = gsap.fromTo(el,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            }
+      // Fade-in animations for text elements
+      document.querySelectorAll(".animate-fade-in").forEach(el => {
+        gsap.fromTo(el, { opacity: 0, y: 30 }, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
           }
-        );
-        scrollTriggerInstances.push(fadeTrigger.scrollTrigger);
+        });
       });
 
-      // Animação para o Pull Quote
+      // Animation for the pull quote
       const blockquote = document.querySelector('.animate-pull-quote');
       if (blockquote) {
-        const quoteTrigger = gsap.from(blockquote, {
+        gsap.from(blockquote, {
           opacity: 0,
           scale: 0.95,
           duration: 1.2,
@@ -119,21 +88,17 @@ import './css/metodology.css';
             toggleActions: "play none none none",
           }
         });
-        scrollTriggerInstances.push(quoteTrigger.scrollTrigger);
       }
     });
   }
 
-  // Executar na carga inicial da página
-  document.addEventListener('DOMContentLoaded', initAnimations);
-
-  // Executar em navegações subsequentes do Astro
+  // Run animations on initial page load and subsequent Astro navigations
   document.addEventListener('astro:page-load', initAnimations);
   
-  // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
+  // Clean up the GSAP context before the page is swapped
   document.addEventListener('astro:before-swap', () => {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    scrollTriggerInstances.forEach(trigger => trigger.kill());
-    scrollTriggerInstances = [];
+    if (ctx) {
+      ctx.revert();
+    }
   });
 </script>

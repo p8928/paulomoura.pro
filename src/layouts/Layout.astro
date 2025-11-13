@@ -32,6 +32,12 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
     <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-platinum.png">
     
+    <!-- Preload Key Fonts -->
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-100.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Android e outros dispositivos -->
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
@@ -220,16 +226,17 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
       if ('requestIdleCallback' in window) {
         requestIdleCallback(function() {
           loadCSS('/styles/global.css');
-          loadCSS('/fonts/outfit-v14-latin/style.css');
         });
       } else {
         // Fallback for browsers that don't support requestIdleCallback
         window.addEventListener('load', function() {
           loadCSS('/styles/global.css');
-          loadCSS('/fonts/outfit-v14-latin/style.css');
         });
       }
     </script>
+
+    <!-- Load Font CSS Directly -->
+    <link rel="stylesheet" href="/fonts/outfit-v14-latin/style.css">
 
     <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="script">
     <script async src="https://unpkg.com/htmx.org@1.9.10"></script>

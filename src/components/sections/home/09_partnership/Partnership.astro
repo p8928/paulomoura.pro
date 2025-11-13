@@ -38,47 +38,54 @@ import Button from '../../../ui/Button.astro';
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Initialize GSAP horizontal scroll animation when the component is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      // Check if the device is mobile (screen width less than 769px)
+
+    // Use gsap.context() for proper cleanup in Astro
+    const ctx = gsap.context(() => {
+      // Check if the device is not mobile (screen width greater than 768px)
       if (window.innerWidth > 768) {
-        // Calculate dimensions once and cache them to avoid repeated queries during scroll
         let containerWidth, wrapperWidth;
-        
+
         const updateDimensions = () => {
-          containerWidth = window.innerWidth;
-          wrapperWidth = document.querySelector(".scroll-content-wrapper").offsetWidth;
+          const wrapper = document.querySelector(".scroll-content-wrapper");
+          if (wrapper) {
+            containerWidth = window.innerWidth;
+            wrapperWidth = wrapper.offsetWidth;
+          }
         };
-        
-        // Initialize dimensions
+
         updateDimensions();
-        
-        // Use GSAP's built-in measurement optimization
+
         gsap.to(".scroll-content-wrapper", {
           xPercent: () => -100 * (wrapperWidth / containerWidth) + 100,
           ease: "power1.out",
           scrollTrigger: {
             trigger: "#horizontal-scroll-container",
             pin: true,
-            scrub: 0.8, // Smoother scrubbing effect
+            scrub: 0.8,
             start: "top top",
             end: () => "+=" + wrapperWidth,
             invalidateOnRefresh: true,
-            onRefresh: updateDimensions, // Update dimensions when layout changes
-            onRefreshInit: updateDimensions // Initial measurement
+            onRefresh: updateDimensions,
+            onRefreshInit: updateDimensions
           }
         });
       }
-      
-      // Add a resize listener to handle orientation changes on mobile devices
-      window.addEventListener('resize', () => {
-        // Debounce resize events to avoid excessive refresh calls
-        clearTimeout(window.resizeTimeout);
-        window.resizeTimeout = setTimeout(() => {
+
+      // Debounced resize listener for refreshing ScrollTrigger
+      let resizeTimeout;
+      const debouncedRefresh = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
           ScrollTrigger.refresh();
         }, 250);
-      });
+      };
+
+      window.addEventListener('resize', debouncedRefresh);
+
+      // Return a cleanup function to remove the event listener
+      return () => {
+        window.removeEventListener('resize', debouncedRefresh);
+      };
     });
   </script>
 </section>
