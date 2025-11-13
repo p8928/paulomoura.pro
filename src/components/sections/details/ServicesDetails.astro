@@ -32,76 +32,7 @@ const combinations = [
   </header>
 </div>
 
-<script is:inline type="module">
-  let ctx;
-
-  const initServiceAnimations = async () => {
-    try {
-      // Dynamically import GSAP and ScrollTrigger
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import('https://esm.sh/gsap@3.13.0'),
-        import('https://esm.sh/gsap/ScrollTrigger?bundle=esm')
-      ]);
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      // If a context from a previous run exists, revert it
-      if (ctx) {
-        ctx.revert();
-      }
-
-      // Create a new GSAP context
-      ctx = gsap.context(() => {
-        const title = document.querySelector('.metodology-title');
-        if (title) {
-          // Entrance animation
-          gsap.fromTo(title, 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 }
-          );
-
-          // Parallax effect
-          gsap.to(title, {
-            y: "30%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".metodology-hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            }
-          });
-        }
-
-        // Overview section title line animation
-        const overviewTitle = document.querySelector('.overview-title');
-        if (overviewTitle) {
-          gsap.to(overviewTitle, { 
-            scrollTrigger: {
-              trigger: ".services-overview",
-              start: "top 80%",
-              toggleActions: "play none none none",
-              onEnter: () => overviewTitle.classList.add('animate-line'),
-              onLeaveBack: () => overviewTitle.classList.remove('animate-line') // Optional: reverse animation on scroll up
-            }
-          });
-        }
-      });
-    } catch (err) {
-      console.warn('GSAP or ScrollTrigger could not be loaded. Animations will not run.', err);
-    }
-  };
-
-  // Run animations on initial page load and subsequent Astro navigations
-  document.addEventListener('astro:page-load', initServiceAnimations);
-  
-  // Clean up the GSAP context before the page is swapped
-  document.addEventListener('astro:before-swap', () => {
-    if (ctx) {
-      ctx.revert();
-    }
-  });
-</script>
+<!-- GSAP animations have been replaced with pure CSS animations -->
 
 <!-- Services Overview Section -->
 <section class="services-overview">
@@ -185,7 +116,68 @@ const combinations = [
 
 
 <style>
-/* Hero Section */
+/* Keyframes for animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes parallaxMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(30%);
+  }
+}
+
+/* Hero Section with CSS animations */
 .metodology-hero {
   display: flex;
   align-items: center;
@@ -193,9 +185,11 @@ const combinations = [
   height: 100vh;
   background-color: var(--color-background);
   overflow: hidden;
-  position: relative; /* Needed for ScrollTrigger */
+  position: relative;
   margin-top: calc(-3 * (var(--space-lg) + var(--space-lg)));
   padding-top: calc(8rem + var(--space-lg) + var(--space-lg));
+  perspective: 1px;
+  transform-style: preserve-3d;
 }
 
 main > .metodology-hero {
@@ -205,101 +199,102 @@ main > .metodology-hero {
 
 .metodology-header {
   text-align: center;
-  position: relative; /* Needed for Parallax */
+  position: relative;
   z-index: 1;
 }
 
+.metodology-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  /* Pure CSS entrance animation */
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInFromLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
+  will-change: transform;
+}
 
-  .metodology-title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-hero);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    line-height: 1;
-    margin: 0;
-    will-change: transform; /* Performance hint for animations */
-  }
+/* Overview Section - Asymmetric Grid */
+.services-overview {
+  padding: var(--space-5xl) var(--space-lg);
+  background-color: var(--color-background);
+  position: relative;
+  z-index: 2;
+}
 
-  /* Overview Section - Asymmetric Grid */
-  .services-overview {
-    padding: var(--space-5xl) var(--space-lg);
-    background-color: var(--color-background);
-    position: relative;
-    z-index: 2;
-  }
+.overview-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Asymmetric ratio */
+  gap: var(--space-4xl);
+  align-items: start;
+}
 
+.overview-title-container {
+  position: relative;
+  padding-bottom: var(--space-md);
+}
+
+.overview-title {
+  font-size: var(--font-size-4xl);
+  text-align: left;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.5s forwards;
+}
+
+.overview-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: drawLine 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.3s forwards;
+}
+
+.overview-description-container {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-4xl);
+}
+
+.overview-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 65ch;
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 1.2s forwards;
+}
+
+@media (max-width: 768px) {
   .overview-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Asymmetric ratio */
-    gap: var(--space-4xl);
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
   }
-
-  .overview-title-container {
-    position: relative;
-    padding-bottom: var(--space-md);
-  }
-
-  .overview-title {
-    font-size: var(--font-size-4xl);
-    text-align: left;
-  }
-
-  .overview-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-accent);
-    transform-origin: left;
-    transform: scaleX(0); /* Initially hidden for animation */
-    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* Smooth cubic-bezier for the line animation */
-  }
-  
-  .overview-title.animate-line::after {
-    transform: scaleX(1);
-  }
-
   .overview-description-container {
-    border-left: 1px solid var(--color-border);
-    padding-left: var(--space-4xl);
+    border-left: none;
+    padding-left: 0;
   }
-
+  .overview-title {
+    text-align: center;
+  }
+   .overview-title::after {
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+  }
   .overview-description {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    max-width: 65ch;
-    line-height: var(--line-height-relaxed);
-    text-align: left;
-    margin: 0;
+    text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .overview-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-    }
-    .overview-description-container {
-      border-left: none;
-      padding-left: 0;
-    }
-    .overview-title {
-      text-align: center;
-    }
-     .overview-title::after {
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-    }
-    .overview-description {
-      text-align: center;
-    }
-  }
-
-
+}
 
 /* Architectural Wrapper */
 .architectural-wrapper {
@@ -351,11 +346,31 @@ main > .metodology-hero {
   display: flex;
   flex-direction: column;
   gap: var(--space-3xl);
+  opacity: 0;
+  animation: fadeIn 0.8s ease 1.5s forwards;
 }
 
 .step {
   border-left: 2px solid var(--color-border);
   padding-left: var(--space-xl);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.step:nth-child(1) {
+  animation: slideInUp 0.6s ease 1.8s forwards;
+}
+
+.step:nth-child(2) {
+  animation: slideInUp 0.6s ease 2.0s forwards;
+}
+
+.step:nth-child(3) {
+  animation: slideInUp 0.6s ease 2.2s forwards;
+}
+
+.step:nth-child(4) {
+  animation: slideInUp 0.6s ease 2.4s forwards;
 }
 
 .step-number {
@@ -383,7 +398,7 @@ main > .metodology-hero {
 .combinations-list {
   list-style: none;
   padding: 0;
-  margifn: 0;
+  margin: 0;
   border-top: 1px solid var(--color-border);
 }
 

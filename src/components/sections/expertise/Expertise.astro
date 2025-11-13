@@ -91,50 +91,7 @@ const industries = [
   </header>
 </div>
 
-<script is:inline type="module">
-  let ctx;
-
-  const initAnimations = async () => {
-    try {
-      // Dynamically import GSAP and ScrollTrigger
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import('https://esm.sh/gsap@3.13.0'),
-        import('https://esm.sh/gsap/ScrollTrigger?bundle=esm')
-      ]);
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      // If a context from a previous run exists, revert it
-      if (ctx) {
-        ctx.revert();
-      }
-
-      // Create a new GSAP context
-      ctx = gsap.context(() => {
-        const title = document.querySelector('.metodology-title');
-        if (title) {
-          // Entrance animation for the title
-          gsap.fromTo(title, 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 }
-          );
-        }
-      });
-    } catch (err) {
-      console.warn('GSAP or ScrollTrigger could not be loaded. Animations will not run.', err);
-    }
-  };
-
-  // Run animations on initial page load and subsequent Astro navigations
-  document.addEventListener('astro:page-load', initAnimations);
-  
-  // Clean up the GSAP context before the page is swapped
-  document.addEventListener('astro:before-swap', () => {
-    if (ctx) {
-      ctx.revert();
-    }
-  });
-</script>
+<!-- GSAP animations have been replaced with pure CSS animations -->
 
 <!-- Industries Overview Section -->
 <section class="industries-overview">
