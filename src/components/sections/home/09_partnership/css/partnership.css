@@ -344,7 +344,6 @@
     /* Mobile-specific optimizations */
     .horizontal-scroll-container {
       height: auto;
-      min-height: 350px;
       display: flex;
       flex-direction: column;
       overflow: visible; /* Changed from hidden to visible to prevent horizontal scroll */

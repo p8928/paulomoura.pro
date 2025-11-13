@@ -388,115 +388,62 @@ const services = [
 </div>
 
 <script is:inline>
-  // Dynamically load GSAP
-  (async () => {
-    try {
-      const gsapModule = await import('https://esm.sh/gsap@3.13.0');
-      const gsap = gsapModule.default || gsapModule;
+  // Function to initialize interactive services functionality
+  function setupInteractiveServices() {
+    const navLinks = document.querySelectorAll('.services-nav-list a');
+    const articles = document.querySelectorAll('.service-article');
 
-      function initInteractiveServices() {
-        const navLinks = document.querySelectorAll('.services-nav-list a');
-        const articles = document.querySelectorAll('.service-article');
+    // Ensure the first article is shown and first link is active by default
+    const firstArticle = articles[0];
+    if (firstArticle) {
+      firstArticle.classList.remove('is-hidden');
+    }
 
-        // Ensure the first article is shown and first link is active by default
-        document.addEventListener('DOMContentLoaded', () => {
-          // Make sure the first article is shown (in case it wasn't already)
-          const firstArticle = articles[0];
-          if (firstArticle) {
-            firstArticle.classList.remove('is-hidden');
-          }
-        });
-
-        navLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const targetId = link.getAttribute('data-target');
-            const targetArticle = document.getElementById(targetId);
-
-            if (!targetArticle) {
-              console.warn(`Target article with id "${targetId}" not found`);
-              return;
-            }
-
-            // Update active link
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-
-            // Hide all articles first to avoid multiple visible articles
-            articles.forEach(article => {
-              article.classList.add('is-hidden');
-            });
-
-            // Show the target article with animation
-            gsap.fromTo(targetArticle, 
-              { opacity: 0, y: 20 },
-              { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.4, 
-                ease: 'power2.out',
-                onStart: () => {
-                  targetArticle.classList.remove('is-hidden');
-                },
-                onComplete: () => {
-                  // Scroll to the service content after animation completes
-                  setTimeout(() => {
-                    targetArticle.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                      inline: "nearest"
-                    });
-                  }, 50); // Small delay to ensure rendering is complete
-                }
-              }
-            );
-          });
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', initInteractiveServices);
-      document.addEventListener('astro:page-load', initInteractiveServices);
-    } catch (err) {
-      console.warn('GSAP could not be loaded. Service animations will not run.', err);
+    // Process each navigation link
+    navLinks.forEach(link => {
+      const targetId = link.getAttribute('data-target');
       
-      // Fallback without animations
-      document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('.services-nav-list a');
-        const articles = document.querySelectorAll('.service-article');
+      // Remove any existing listeners to prevent duplicates
+      if (link._hasClickListener) return;
+      
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
 
-        navLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Remove active class from all links
-            navLinks.forEach(l => l.classList.remove('active'));
-            // Add active class to clicked link
-            link.classList.add('active');
-            
-            // Hide all articles
-            articles.forEach(article => {
-              article.classList.add('is-hidden');
-            });
-            
-            // Show target article
-            const targetId = link.getAttribute('data-target');
-            const targetArticle = document.getElementById(targetId);
-            if (targetArticle) {
-              targetArticle.classList.remove('is-hidden');
-              
-              // Scroll to the service content
-              targetArticle.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-                inline: "nearest"
-              });
-            }
-          });
+        const targetArticle = document.getElementById(targetId);
+
+        if (!targetArticle) {
+          console.warn(`Target article with id "${targetId}" not found`);
+          return;
+        }
+
+        // Update active link
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // Hide all articles first to avoid multiple visible articles
+        articles.forEach(article => {
+          article.classList.add('is-hidden');
+        });
+
+        // Show the target article with smooth transition
+        targetArticle.classList.remove('is-hidden');
+        targetArticle.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest"
         });
       });
-    }
-  })();
+      
+      // Mark that this link has a listener to avoid duplicates
+      link._hasClickListener = true;
+    });
+  }
+
+  // Setup the interactive services on initial load
+  document.addEventListener('DOMContentLoaded', setupInteractiveServices);
+
+  // Setup the interactive services when navigating with Astro
+  document.addEventListener('astro:page-load', setupInteractiveServices);
 </script>
 
 <style>

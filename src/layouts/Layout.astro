@@ -67,6 +67,9 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2D2D2D">
     
+    <!-- Preconnect to external origins to improve performance -->
+    <link rel="preconnect" href="https://unpkg.com">
+    
     <!-- Inline critical CSS to prevent render blocking -->
     <style is:global>
       /* CSS Reset & Base Styles - Critical for initial render */
@@ -228,7 +231,8 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
       }
     </script>
 
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="script">
+    <script async src="https://unpkg.com/htmx.org@1.9.10"></script>
     <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
   </head>
   <body>

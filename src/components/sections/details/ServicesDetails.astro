@@ -44,7 +44,15 @@ const combinations = [
 
       gsap.registerPlugin(ScrollTrigger);
 
+      // Track if animations have already been initialized to prevent duplication
+      let animationsInitialized = false;
+      
       const initServiceHeroAnimations = () => {
+        // Don't reinitialize if already done
+        if (animationsInitialized) {
+          return;
+        }
+        
         const title = document.querySelector('.metodology-title');
         if (title) {
           // Entrance animation
@@ -53,35 +61,42 @@ const combinations = [
             { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 }
           );
 
-          // Parallax effect
-          gsap.to(title, {
-            y: "30%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".metodology-hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: true
-            }
-          });
+          // Parallax effect - only create if not already created
+          if (!title.dataset.parallaxInitialized) {
+            gsap.to(title, {
+              y: "30%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".metodology-hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                id: "services-hero-parallax"  // Add ID to prevent duplicates
+              }
+            });
+            title.dataset.parallaxInitialized = "true";
+          }
         }
 
         // Overview section title line animation
         const overviewTitle = document.querySelector('.overview-title');
-        if (overviewTitle) {
-          // Add a CSS class to trigger the pseudo-element animation using CSS
+        if (overviewTitle && !overviewTitle.dataset.lineAnimationApplied) {
           gsap.to(overviewTitle, { 
             scrollTrigger: {
               trigger: ".services-overview",
               start: "top 80%", // Trigger when 80% of the section is visible
-              toggleActions: "play none none none"
+              toggleActions: "play none none none",
+              id: "services-overview-line"  // Add ID to prevent duplicates
             },
             onComplete: () => {
               // Add a class to trigger the pseudo-element animation
               overviewTitle.classList.add('animate-line');
+              overviewTitle.dataset.lineAnimationApplied = "true";
             }
           });
         }
+        
+        animationsInitialized = true;
       };
 
       // Execute immediately when DOM is ready
@@ -91,12 +106,26 @@ const combinations = [
         initServiceHeroAnimations();
       }
 
-      // Executar em navegações subsequentes do Astro
-      document.addEventListener('astro:page-load', initServiceHeroAnimations);
+      // Executar em navegações subsequentes do Astro - reset flag when new page loads
+      document.addEventListener('astro:page-load', () => {
+        animationsInitialized = false;
+        // Reset data attributes to allow animations again
+        const title = document.querySelector('.metodology-title');
+        if (title) {
+          delete title.dataset.parallaxInitialized;
+        }
+        const overviewTitle = document.querySelector('.overview-title');
+        if (overviewTitle) {
+          delete overviewTitle.dataset.lineAnimationApplied;
+        }
+        initServiceHeroAnimations();
+      });
       
       // Limpar os ScrollTriggers ao sair da página (importante para navegação do Astro)
       document.addEventListener('astro:before-swap', () => {
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        // Reset the initialization flag when leaving the page
+        animationsInitialized = false;
       });
     } catch (err) {
       console.warn('GSAP or ScrollTrigger could not be loaded. Animations will not run.', err);

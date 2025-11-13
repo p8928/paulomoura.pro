@@ -318,21 +318,14 @@ img {
 }
 
 /* Scroll snapping container */
-/* Scroll snapping container */
 .snap-container {
   scroll-snap-type: y mandatory;
   overflow-y: auto;
-  overflow-x: hidden; /* Prevent horizontal overflow */
   height: 100vh;
-  width: 100vw; /* Make sure it doesn't exceed viewport width */
-
+  
   /* Ocultar scrollbar no Chrome, Safari, Edge */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE e Edge */
-}
-
-.snap-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
 }
 
 .snap-container::-webkit-scrollbar {
@@ -434,9 +427,9 @@ img {
 .text-intro {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-light);
+  font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
   max-width: 65ch; /* Optimal line length for readability */
   margin-bottom: var(--space-xl);
 }
@@ -445,7 +438,7 @@ img {
 .text-body {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-light);
+  font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-md);
@@ -455,7 +448,7 @@ img {
 .text-quote {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-light);
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
   border-left: 4px solid var(--color-accent);
