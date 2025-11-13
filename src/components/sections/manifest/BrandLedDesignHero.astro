@@ -282,76 +282,8 @@ import './css/brand-led-design-hero.css';
       
     </div>
   </section>
+  
+  <!-- GSAP animations have been replaced with pure CSS animations -->
+  
 </div>
 
-<script is:inline type="module">
-  let ctx;
-
-  const initAnimations = async () => {
-    try {
-      // Dynamically import GSAP and ScrollTrigger
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import('https://esm.sh/gsap@3.13.0'),
-        import('https://esm.sh/gsap/ScrollTrigger?bundle=esm')
-      ]);
-      
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // If a context from a previous run exists, revert it
-      if (ctx) {
-        ctx.revert();
-      }
-
-      // Create a new GSAP context
-      ctx = gsap.context(() => {
-        // Animate the full screen title
-        gsap.from('.full-screen-title', {
-          opacity: 0,
-          y: 50,
-          duration: 1.2,
-          ease: "power3.out"
-        });
-        
-        // Add noise overlay animation
-        gsap.to('.noise-overlay', {
-          yPercent: 7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: '.brand-led-design-hero',
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8
-          }
-        });
-        
-        // Add scroll-triggered animations for manifesto content sections
-        const manifestoSections = document.querySelectorAll('.manifesto-content h2, .manifesto-content h3, .manifesto-content .school-section, .manifesto-content .method-step, .manifesto-content .non-negotiable-item, .manifesto-content p, .manifesto-content ul');
-        
-        manifestoSections.forEach((section) => {
-          gsap.from(section, {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 85%",
-              toggleActions: "play none none reverse"
-            }
-          });
-        });
-      });
-    } catch (err) {
-      console.warn('GSAP or ScrollTrigger could not be loaded. Animations will not run.', err);
-    }
-  };
-
-  // Run animations on initial page load and subsequent Astro navigations
-  document.addEventListener('astro:page-load', initAnimations);
-  
-  // Clean up the GSAP context before the page is swapped
-  document.addEventListener('astro:before-swap', () => {
-    if (ctx) {
-      ctx.revert();
-    }
-  });
-</script>

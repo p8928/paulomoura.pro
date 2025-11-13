@@ -152,6 +152,81 @@
 
   
 
+  /* Keyframes for animations */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-8%) scale(0.97);
+      opacity: 0.3;
+    }
+    to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(8%) scale(0.97);
+      opacity: 0.3;
+    }
+    to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawPath {
+    from {
+      stroke-dashoffset: 100;
+      opacity: 0.3;
+    }
+    to {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes noiseOverlayMove {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(7%);
+    }
+  }
+
+  .brand-part, .led-part {
+    display: inline-block;
+    background: linear-gradient(316deg, #272525, #b3b3b3);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    transform-origin: center;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    opacity: 0.3;
+    transform: translateX(-8%) scale(0.97);
+  }
+
+  .brand-part {
+    animation: slideInFromLeft 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards 0.2s;
+  }
+
+  .led-part {
+    animation: slideInFromRight 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards 1.1s;
+  }
+
+  .dash-path {
+    stroke: #b3b3b3;
+    stroke-width: 4;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: 0.3;
+    animation: drawPath 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards 0.6s;
+  }
+
   .noise-overlay {
     position: absolute;
     top: 0;
@@ -162,6 +237,7 @@
     z-index: 1;
     pointer-events: none;
     mix-blend-mode: overlay;
+    animation: noiseOverlayMove 10s ease-in-out infinite alternate;
   }
 
   /* Animação de entrada do texto */

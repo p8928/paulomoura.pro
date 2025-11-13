@@ -13,80 +13,13 @@ import './css/brandled.css';
     </h1>
   </div>
   <div class="noise-overlay"></div>
+  
+  <!-- GSAP animations have been replaced with pure CSS animations -->
+  
   <div class="container">
     <div class="hero-text">
       <span class="hero-text-first-line">Autoridade digital que algoritmos compreendem, </span> 
       <span class="highlight">clientes reconhecem.</span>
     </div>
   </div>
-  <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-
-    gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
-
-    // Use gsap.context() for proper cleanup in Astro
-    const ctx = gsap.context(() => {
-      // Noise overlay animation
-      gsap.to('.noise-overlay', {
-        yPercent: 7,
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.hero-section',
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.8
-        }
-      });
-
-      // Timeline for the main "BRAND-LED" animation
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.hero-section',
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      });
-
-      tl.fromTo('.brand-part', 
-        { xPercent: -8, opacity: 0.3, scale: 0.97 },
-        { 
-          xPercent: 0, 
-          opacity: 1,
-          scale: 1,
-          duration: 1.2, 
-          ease: "sine.out"
-        }
-      );
-
-      tl.fromTo('.dash-path', 
-        { drawSVG: "0%", opacity: 0.3 },
-        { 
-          drawSVG: "100%", 
-          opacity: 1,
-          duration: 0.8, 
-          ease: "sine.out"
-        },
-        "-=0.6"
-      );
-
-      tl.fromTo('.led-part', 
-        { xPercent: 8, opacity: 0.3, scale: 0.97 },
-        { 
-          xPercent: 0, 
-          opacity: 1,
-          scale: 1,
-          duration: 1.2, 
-          ease: "sine.out"
-        },
-        "-=0.5"
-      );
-    });
-
-    // The return value of gsap.context() is a cleanup function.
-    // Astro doesn't have a built-in unmount hook for this script,
-    // but this structure is the correct pattern for frameworks that do.
-    // In Astro, GSAP's automatic cleanup with Astro's view transitions is sufficient here.
-  </script>
 </section>
