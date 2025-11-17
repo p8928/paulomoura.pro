@@ -1,5 +1,5 @@
 ---
-const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
+const { title = "Moura | Marketing e Comunicação Digital", description = "Modernize sua presença digital com agência brand-driven que trata autenticidade como estratégia, não como discurso. Sua marca precisa ser reconhecível, não replicável." } = Astro.props;
 ---
 
 <html lang="pt-BR">
@@ -7,7 +7,7 @@ const { title = "Moura | Marketing e Comunicação Digital" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content="Moura " />
+    <meta name="description" content={description} />
     <!-- Favicon padrão -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
     
