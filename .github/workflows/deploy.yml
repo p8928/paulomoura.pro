@@ -21,43 +21,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout your repository using git
         uses: actions/checkout@v4
-        with:
-          submodules: recursive  # Ensure submodules are checked out if any exist
-          lfs: false             # Git LFS not needed for this project
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        # Optional configuration:
+        # with:
+          # path: . # Root location of your Astro project (optional)
+          # node-version: 20 # Node version to use (default is 20)
+          # package-manager: pnpm@latest # Force specific package manager (optional)
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-
-      - name: Install dependencies
-        run: |
-          rm -rf node_modules
-          if [ -f package-lock.json ]; then rm package-lock.json; fi
-          npm install
-
-      - name: Build site
-        run: npm run build
-
-      - name: Upload build output
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/
-
-  # Deployment job
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
