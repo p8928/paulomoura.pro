@@ -1,5 +1,11 @@
 ---
 const { title = "Moura | Marketing e Comunicação Digital", description = "Modernize sua presença digital com agência brand-driven que trata autenticidade como estratégia, não como discurso. Sua marca precisa ser reconhecível, não replicável." } = Astro.props;
+
+// Criar uma URL base para as tags sociais
+const baseUrl = "https://paulomoura.com";
+const defaultImage = `${baseUrl}/images/og-image-default.jpg`; // Esta imagem deve existir no diretório public
+// Para desenvolvimento local, também definir uma URL local
+const localImageUrl = `/images/og-image-default.jpg`;
 ---
 
 <html lang="pt-BR">
@@ -8,6 +14,20 @@ const { title = "Moura | Marketing e Comunicação Digital", description = "Mode
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={baseUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={defaultImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={baseUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={defaultImage} />
     <!-- Favicon padrão -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
     

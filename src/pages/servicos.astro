@@ -3,9 +3,12 @@ import Layout from '../layouts/Layout.astro'
 import Navigation from '../components/nav/Navigation.astro'
 import ServicesDetails from '../components/sections/details/ServicesDetails.astro'
 import Footer from '../components/footer/Footer.astro'
+
+const pageTitle = "Serviços | Moura";
+const pageDescription = "Começamos por onde as agências param: a sua identidade. Construímos presença digital inconfundível que coloca sua marca em destaque no Google.";
 ---
 
-<Layout title="Serviços | Moura">
+<Layout title={pageTitle} description={pageDescription}>
   <Navigation slot="nav" />
   <ServicesDetails slot="rest-content" />
   <Footer slot="rest-content" />
