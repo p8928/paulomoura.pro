@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   output: 'static', // For static site generation
-  site: 'https://paulomoura.com',
+  site: 'https://paulomoura.pro',
   integrations: [mdx(), sitemap()],
   vite: {
     resolve: {
