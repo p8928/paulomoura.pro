@@ -1,0 +1,33 @@
+---
+import './css/about_intro.css';
+---
+
+<section class="about-intro" id="about-intro">
+  <div class="title-container">
+    <h2 class="about-title">SOBRE</h2>
+    <div class="line-x"></div>
+  </div>
+  <p class="about-sub">Uma agência brand-driven</p>
+  <p class="about-slogan">Movemos empresas da presença online obsoleta para o digital moderno.</p>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const line = document.querySelector('#about-intro .line-x');
+    
+    if (line) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            line.classList.add('is-visible');
+            observer.unobserve(line);
+          }
+        });
+      }, {
+        rootMargin: '0px',
+        threshold: 0.1
+      });
+      observer.observe(line);
+    }
+  });
+</script>

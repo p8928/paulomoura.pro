@@ -1,0 +1,20 @@
+.about-responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .about-responsive-container {
+    padding: 0 var(--space-sm);
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .about-responsive-container {
+    padding: 0 var(--space-lg);
+  }
+}

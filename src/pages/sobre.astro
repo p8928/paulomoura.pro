@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/nav/Navigation.astro';
+import AboutHero from '../components/sections/about/AboutHero.astro';
+import AboutIntro from '../components/sections/about/AboutIntro.astro';
+import AboutContent from '../components/sections/about/AboutContent.astro';
+import AboutMethod from '../components/sections/about/AboutMethod.astro';
+import AboutApproach from '../components/sections/about/AboutApproach.astro';
+import AboutFinal from '../components/sections/about/AboutFinal.astro';
+import Footer from '../components/footer/Footer.astro';
+---
+
+<Layout title="Sobre | Moura — Marketing e Comunicação Digital">
+  <Navigation slot="nav" />
+  <AboutHero slot="hero" />
+  <AboutIntro slot="snap-content" />
+  <AboutContent slot="snap-content" />
+  <AboutMethod slot="snap-content" />
+  <AboutApproach slot="snap-content" />
+  <AboutFinal slot="snap-content" />
+  <Footer slot="rest-content" />
+</Layout>
