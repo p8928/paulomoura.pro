@@ -1,0 +1,18 @@
+19:53:16 [types] Generated 1ms
+19:53:17 [content] Syncing content
+19:53:17 [content] Synced content
+
+ astro  v5.15.3 ready in 1301 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:53:17 watching for file changes...
+=== Nova API de busca sendo chamada ===
+request.url original: http://localhost:4321/api/search-posts
+URL construída com URL(): http://localhost:4321/api/search-posts
+url.search: 
+url.searchParams.entries(): []
+Tentativa 1 - searchQuery:  limit: 12
+Nenhum termo de busca fornecido após todas as tentativas
+19:53:54 [200] /api/search-posts 21ms

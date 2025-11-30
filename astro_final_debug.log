@@ -1,0 +1,12 @@
+19:56:30 [types] Generated 1ms
+19:56:31 [content] Syncing content
+19:56:31 [content] Synced content
+
+ astro  v5.15.3 ready in 1330 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:56:31 watching for file changes...
+19:57:11 [200] / 106ms
+19:57:26 [200] /blog/ 43ms

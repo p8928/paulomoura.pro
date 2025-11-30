@@ -1,0 +1,18 @@
+19:42:01 [types] Generated 1ms
+19:42:02 [content] Syncing content
+19:42:02 [content] Synced content
+
+ astro  v5.15.3 ready in 1267 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:42:02 watching for file changes...
+19:42:38 [200] HEAD / 93ms
+=== SEARCH API DEBUG INFO ===
+Full request URL: http://localhost:4321/api/search-posts
+Parsed URL: http://localhost:4321/api/search-posts
+Search query received: 
+All search params: {}
+No query provided, returning empty results
+19:44:33 [200] /api/search-posts 6ms
