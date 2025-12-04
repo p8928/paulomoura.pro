@@ -29,9 +29,13 @@ const allPostsData = sortedPosts.map(post => ({
 ---
 <Layout title="Brand-Driven Blog | Moura">
   <Navigation slot="nav" />
+  <script type="application/json" id="blog-data" style="display: none;">
+    {{ JSON.stringify(allPostsData) }}
+  </script>
   <script>
-    // Dados de todos os posts para busca no cliente
-    window.allBlogPosts = JSON.parse('{{ JSON.stringify(allPostsData) }}'.replace(/\\n/g, '\\n').replace(/\\'/g, '\\\'').replace(/\\"/g, '\\"').replace(/\\&/g, '\\&').replace(/\\r/g, '\\r').replace(/\\t/g, '\\t').replace(/\\b/g, '\\b').replace(/\\f/g, '\\f'));
+    // Carregar os dados dos posts do DOM
+    const blogDataEl = document.getElementById('blog-data');
+    window.allBlogPosts = JSON.parse(blogDataEl.textContent);
   </script>
   <div slot="rest-content" class="blog-page">
     <section class="blog-hero">
@@ -973,7 +977,6 @@ const allPostsData = sortedPosts.map(post => ({
             // Show loading state
             blogGrid.innerHTML = '<div class="search-loading">Buscando...</div>';
 
-            // Filter posts locally
             const filteredPosts = window.allBlogPosts.filter(post => {
               const title = post.title ? post.title.toLowerCase() : '';
               const description = post.description ? post.description.toLowerCase() : '';
