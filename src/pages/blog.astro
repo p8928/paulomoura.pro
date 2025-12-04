@@ -16,9 +16,23 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.dat
 // Define initial posts to show
 const initialPostsToShow = 6;
 const postsToShow = initialPostsToShow;
+
+// Format posts data for client-side search
+const allPostsData = sortedPosts.map(post => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  publishDate: post.data.publishDate,
+  tags: post.data.tags,
+  image: post.data.image || null,
+}));
 ---
 <Layout title="Brand-Driven Blog | Moura">
   <Navigation slot="nav" />
+  <script>
+    // Dados de todos os posts para busca no cliente
+    window.allBlogPosts = JSON.parse('{{ JSON.stringify(allPostsData) }}'.replace(/\\n/g, '\\n').replace(/\\'/g, '\\\'').replace(/\\"/g, '\\"').replace(/\\&/g, '\\&').replace(/\\r/g, '\\r').replace(/\\t/g, '\\t').replace(/\\b/g, '\\b').replace(/\\f/g, '\\f'));
+  </script>
   <div slot="rest-content" class="blog-page">
     <section class="blog-hero">
       <div class="hero-content">
@@ -939,64 +953,77 @@ const postsToShow = initialPostsToShow;
       searchInput.addEventListener('input', (e) => {
         // Clear the previous timeout
         clearTimeout(searchTimeout);
-        
+
         // Set a new timeout to delay the search
-        searchTimeout = setTimeout(async () => {
+        searchTimeout = setTimeout(() => {
           const query = e.target.value.trim();
-          
+
           if (query.length === 0) {
             // If search is empty, show all posts again
             showAllPosts();
             return;
           }
-          
+
           if (query.length < 2) {
             // Don't search if query is too short
             return;
           }
-          
+
           try {
             // Show loading state
             blogGrid.innerHTML = '<div class="search-loading">Buscando...</div>';
-            
-            // Fetch search results
-            const response = await fetch(`/api/search-posts?q=${encodeURIComponent(query)}&limit=12`);
-            const data = await response.json();
-            
-            if (data.posts) {
-              displaySearchResults(data.posts, data.query, data.total);
-            } else {
-              blogGrid.innerHTML = '<div class="no-results">Nenhum resultado encontrado.</div>';
-            }
+
+            // Filter posts locally
+            const filteredPosts = window.allBlogPosts.filter(post => {
+              const title = post.title ? post.title.toLowerCase() : '';
+              const description = post.description ? post.description.toLowerCase() : '';
+              const tags = post.tags ? post.tags.map(tag => tag.toLowerCase()) : [];
+
+              const searchQuery = query.toLowerCase();
+
+              return (
+                title.includes(searchQuery) ||
+                description.includes(searchQuery) ||
+                tags.some(tag => tag.includes(searchQuery))
+              );
+            });
+
+            // Sort posts by date (newest first)
+            const sortedFilteredPosts = filteredPosts.sort((a, b) =>
+              new Date(b.publishDate) - new Date(a.publishDate)
+            );
+
+            // Display search results
+            displaySearchResults(sortedFilteredPosts, query, sortedFilteredPosts.length);
           } catch (error) {
             console.error('Error searching posts:', error);
             blogGrid.innerHTML = '<div class="search-error">Erro ao buscar posts. Tente novamente.</div>';
           }
         }, 500); // Delay the search by 500ms to avoid too many requests
       });
-      
+
       function displaySearchResults(posts, query, total) {
         // Clear the main blog grid
         blogGrid.innerHTML = '';
-        
+
         // Update search results info
         searchQueryDisplay.textContent = query;
         searchResultsCount.textContent = `Foram encontrados ${total} resultados`;
         searchResultsInfo.style.display = 'block';
-        
+
         // Hide the load more button when showing search results
         if (loadMoreButton && loadMoreContainer) {
           loadMoreButton.style.display = 'none';
         }
-        
+
         if (posts.length === 0) {
           blogGrid.innerHTML = '<div class="no-results">Nenhum resultado encontrado.</div>';
           return;
         }
-        
+
         // Find a reference blog card to get the Astro CID for styling
         const referenceCard = document.querySelector('.blog-card');
-        const astroCid = referenceCard ? referenceCard.getAttributeNames().find(attr => attr.startsWith('data-astro-cid-')) : null;
+        const astroCid = referenceCard ? referenceCard.getAttribute('class').split(' ').map(cn => referenceCard.getAttributeNames().find(attr => attr.startsWith('data-astro-cid-'))).filter(Boolean)[0] : null;
         
         // Create blog cards for search results
         posts.forEach(post => {
