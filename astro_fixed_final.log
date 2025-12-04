@@ -1,0 +1,25 @@
+21:27:44 [types] Generated 1ms
+21:27:45 [content] Syncing content
+21:27:45 [content] Synced content
+
+ astro  v5.15.3 ready in 1327 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+21:27:45 watching for file changes...
+21:27:48 [200] /blog 72ms
+21:28:17 [200] /blog/ 24ms
+21:28:40 [200] /blog/ 12ms
+21:29:04 [200] /blog/ 12ms
+21:29:26 [200] /blog/ 12ms
+21:29:46 [200] /blog/ 9ms
+21:30:20 [200] /blog/ 12ms
+21:30:46 [200] /blog/ 12ms
+21:31:14 [200] /blog/ 13ms
+21:32:15 [200] /blog/ 14ms
+21:32:42 [200] /blog/ 11ms
+22:17:01 [200] /blog/ 11ms
+22:17:59 [200] /blog/ 11ms
+22:19:14 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+22:19:15 [200] /blog 36ms

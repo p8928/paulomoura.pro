@@ -1,0 +1,14 @@
+20:09:46 [types] Generated 1ms
+20:09:47 [content] Syncing content
+20:09:47 [content] Synced content
+20:09:47 [vite] Re-optimizing dependencies because vite config has changed
+20:09:47 [vite] Port 4321 is in use, trying another one...
+20:09:47 [vite] Port 4322 is in use, trying another one...
+
+ astro  v5.15.3 ready in 1494 ms
+
+┃ Local    http://localhost:4323/
+┃ Network  use --host to expose
+
+20:09:47 watching for file changes...
+20:10:14 [200] /api/search-posts 18ms

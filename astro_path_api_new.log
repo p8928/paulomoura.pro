@@ -1,0 +1,38 @@
+20:49:06 [types] Generated 1ms
+20:49:06 [content] Syncing content
+20:49:07 [content] Synced content
+
+ astro  v5.15.3 ready in 1309 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+20:49:07 watching for file changes...
+20:49:44 [200] / 144ms
+20:49:46 [200] /blog 85ms
+20:49:47 [404] /favicon/favicon.ico 5ms
+20:50:02 [ERROR] [GetStaticPathsRequired] `getStaticPaths()` function is required for dynamic routes. Make sure that you `export` a `getStaticPaths` function from your dynamic route.
+  Hint:
+    See https://docs.astro.build/en/guides/routing/#dynamic-routes for more information on dynamic routes.
+    
+    	If you meant for this route to be server-rendered, set `export const prerender = false;` in the page.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/get-static-paths-required/
+  Stack trace:
+    at /home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/src/pages/api/blog-search/[query].ts
+    [...] See full stack trace in the browser, or rerun with --verbose.
+20:50:02 [200] /blog 16ms
+20:50:08 [ERROR] [GetStaticPathsRequired] `getStaticPaths()` function is required for dynamic routes. Make sure that you `export` a `getStaticPaths` function from your dynamic route.
+  Hint:
+    See https://docs.astro.build/en/guides/routing/#dynamic-routes for more information on dynamic routes.
+    
+    	If you meant for this route to be server-rendered, set `export const prerender = false;` in the page.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/get-static-paths-required/
+  Stack trace:
+    at /home/p8928/Documents/projects/web_dev/paulomoura_pro/site/main/src/pages/api/blog-search/[query].ts
+    [...] See full stack trace in the browser, or rerun with --verbose.
+20:50:08 [200] /blog 43ms
+20:50:45 [200] /blog 19ms
+20:51:24 [watch] /src/pages/blog.astro?astro&type=style&index=0&lang.css
+20:51:24 [200] /blog 24ms
