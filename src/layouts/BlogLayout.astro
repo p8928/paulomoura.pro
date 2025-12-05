@@ -1,0 +1,623 @@
+---
+const { title = "Moura | Marketing e Comunicação Digital", description = "Modernize sua presença digital com agência brand-driven que trata autenticidade como estratégia, não como discurso. Sua marca precisa ser reconhecível, não replicável." } = Astro.props;
+
+// Criar uma URL base para as tags sociais
+const baseUrl = "https://paulomoura.com";
+const defaultImage = baseUrl + '/images/og-image-default.jpg'; // Esta imagem deve existir no diretório public
+// Para desenvolvimento local, também definir uma URL local
+const localImageUrl = '/images/og-image-default.jpg';
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={baseUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={defaultImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={baseUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={defaultImage} />
+    <!-- Favicon padrão -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+
+    <!-- Favicon SVG para temas claro/escuro -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" id="favicon">
+
+    <!-- Favicon em diferentes tamanhos para dispositivos -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16-platinum.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32-platinum.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon/favicon-128x128.png">
+
+    <!-- Apple Touch Icons para dispositivos iOS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-platinum.png">
+
+    <!-- Preload Key Fonts -->
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-100.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-v14-latin/outfit-v14-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Android e outros dispositivos -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Moura">
+    <meta name="application-name" content="Moura">
+
+    <script>
+      // Função para detectar o modo do sistema e atualizar a favicon
+      function setFaviconBasedOnSystem() {
+        // Verifica se o objeto matchMedia existe para evitar erros
+        if (window.matchMedia) {
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const favicon = document.getElementById('favicon');
+
+          if (favicon) {
+            if (isDarkMode) {
+              // Modo escuro - usar favicon com design claro
+              favicon.href = '/favicon-dark.svg';
+            } else {
+              // Modo claro - usar favicon com design escuro
+              favicon.href = '/favicon-light.svg';
+            }
+          }
+        }
+      }
+
+      // Chamar na carga da página e quando o tema muda
+      if (window.matchMedia) {
+        setFaviconBasedOnSystem();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFaviconBasedOnSystem);
+      }
+    </script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2D2D2D">
+
+    <!-- Preconnect to external origins to improve performance -->
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- Inline critical CSS to prevent render blocking -->
+    <!-- Critical CSS inlined to prevent FOUC -->
+    <style is:global>
+      /* CSS Reset & Base Styles - Critical for initial render */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-family-primary);
+        line-height: 1.6;
+        color: #000000;
+        background: linear-gradient(135deg, #fbf7f0 0%, #f9f3e9 50%, #f3eada 100%) !important; /* Gradiente específico para posts do blog */
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #000000 rgba(0, 0, 0, 0.05);
+      }
+
+      /* CSS Custom Properties (Design Tokens) - Critical if used in initial render */
+      :root {
+        --color-primary: hsl(0, 0%, 0%);
+        --color-secondary: hsl(0, 0%, 20%);
+        --color-tertiary: hsl(0, 0%, 40%);
+        --color-background: hsl(0, 0%, 100%);
+        --color-text-primary: hwb(0 0% 100%);
+        --color-text-secondary: #333333;
+        --color-text-tertiary: hsl(0, 0%, 40%);
+        --color-border: hsla(0, 0%, 0%, 0.1);
+        --color-shadow: hsla(0, 0%, 0%, 0.05);
+        --color-accent: hsl(45, 33%, 63%);
+        --color-accent-accessible: hsl(45, 37%, 46%);
+        --color-white: hsl(0, 0%, 100%);
+        --color-light-gray: hsl(0, 0%, 72%);
+        --color-dark-gray: hsl(0, 0%, 18%);
+        --color-medium-gray: hsl(0, 0%, 42%);
+        --font-family-primary: 'Outfit', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-family-heading: 'Outfit', 'Neue Haas Grotesk', sans-serif;
+        --font-weight-light: 300;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+        --font-weight-black: 900;
+        --font-size-xs: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-lg: 1.125rem;
+        --font-size-xl: 1.25rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-3xl: 1.875rem;
+        --font-size-4xl: 2.25rem;
+        --font-size-5xl: 3rem;
+        --font-size-hero: clamp(8rem, 15vw, 18rem);
+        --line-height-tight: 1.25;
+        --line-height-normal: 1.5;
+        --line-height-relaxed: 1.75;
+        --letter-spacing-tight: -0.02em;
+        --letter-spacing-normal: 0;
+        --letter-spacing-wide: 0.05em;
+        --letter-spacing-wider: 0.1em;
+        --space-xs: 0.5rem;
+        --space-sm: 0.75rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+        --space-5xl: 8rem;
+        --radius-sm: 2px;
+        --radius-md: 4px;
+        --radius-lg: 8px;
+        --radius-xl: 12px;
+        --radius-2xl: 16px;
+        --radius-full: 9999px;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        --shadow-inset: inset 0 0 0 5px var(--color-accent);
+        --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        --z-dropdown: 1000;
+        --z-sticky: 1020;
+        --z-fixed: 1030;
+        --z-modal-backdrop: 1040;
+        --z-modal: 1050;
+        --z-popover: 1060;
+        --z-tooltip: 1070;
+        --size-icon-sm: 24px;
+        --size-icon-md: 32px;
+        --size-icon-lg: 50px;
+        --size-control-xs: 40px;
+        --size-max-height: 500px;
+        --transform-translateY-5px: translateY(-5px);
+        --transform-translateY-20px: translateY(20px);
+        --transform-translateX-10px: translateX(10px);
+        --transform-translateX-neg-10px: translateX(-10px);
+      }
+
+      /* Typography */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-family-heading);
+        font-weight: var(--font-weight-light);
+        line-height: var(--line-height-tight);
+        color: var(--color-text-primary);
+        margin: 0 0 var(--space-md) 0;
+        letter-spacing: var(--letter-spacing-tight);
+      }
+
+      /* Focus styles for accessibility - Critical for accessibility */
+      *:focus {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+
+      *:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      *:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+
+      /* Basic Link styles - Critical for initial render */
+      a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        transition: color var(--transition-normal);
+      }
+    </style>
+
+    <!-- Load non-critical CSS asynchronously to prevent render blocking -->
+    <script>
+      // Function to load CSS asynchronously
+      function loadCSS(href) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.onload = function() {
+          // Aplicar novamente o background após carregar o CSS para garantir que não seja sobrescrito
+          document.body.style.background = 'linear-gradient(135deg, #fbf7f0 0%, #f9f3e9 50%, #f3eada 100%) !important';
+        };
+        document.head.appendChild(link);
+      }
+
+      // Load CSS files after critical content is rendered
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          loadCSS('/styles/global.css');
+          loadCSS('/fonts/outfit-v14-latin/style.css');
+        });
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        window.addEventListener('load', function() {
+          loadCSS('/styles/global.css');
+          loadCSS('/fonts/outfit-v14-latin/style.css');
+        });
+      }
+    </script>
+
+    <!-- Preload key resources but defer non-critical 3rd party scripts -->
+    <!-- Preload critical CSS to prevent FOUC -->
+    <link rel="preload" href="/styles/global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/fonts/outfit-v14-latin/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="fetch" crossorigin>
+    <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20J3VL797V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-20J3VL797V');
+    </script>
+    {
+      Astro.url.pathname === '/' && (
+        <script type="application/ld+json" set:html={`
+          {
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "MarketingAgency",
+                "@id": "https://paulomoura.pro/#organization",
+                "name": "Moura",
+                "legalName": "Paulo Moura Marketing e Comunicação",
+                "alternateName": [
+                  "Moura Brand-Driven Strategy",
+                  "Paulo Moura Pro",
+                  "Agência Moura Digital"
+                ],
+                "url": "https://paulomoura.pro/",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://paulomoura.pro/img/logo/main_logo_black.svg",
+                  "width": "600",
+                  "height": "60"
+                },
+                "slogan": "Presença digital que transcende algoritmos e tecnologias.",
+                "description": "Agência de estratégia digital global especializada na metodologia Brand-Driven. Unimos análise semiótica, design e desenvolvimento web de alta performance (Astro Framework) para criar marcas que não dependem apenas de algoritmos. Atendemos online para todo o mundo e com consultoria presencial no cluster Jundiaí-Sorocaba-SP.",
+                "disambiguatingDescription": "Agência de consultoria em marketing digital e tecnologia web liderada pelo estrategista Paulo Moura. Entidade distinta e sem relação com a fabricante de acumuladores elétricos e baterias automotivas Moura.",
+                "email": "contato@paulomoura.pro",
+                "telephone": "+55-11-98689-3005",
+                "priceRange": "$$$$",
+                "image": "https://paulomoura.pro/og-image.jpg",
+                "sameAs": [
+                  "https://substack.com/@brandledseo"
+                ],
+                "areaServed": [
+                  { "@type": "Country", "name": "Worldwide" },
+                  { "@type": "City", "name": "Jundiaí", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Sorocaba", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Campinas", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Itu", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Cabreúva", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Salto", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Porto Feliz", "addressRegion": "SP", "addressCountry": "BR" },
+                  { "@type": "City", "name": "Indaiatuba", "addressRegion": "SP", "addressCountry": "BR" }
+                ],
+                "knowsAbout": [
+                  "Brand-Driven SEO",
+                  "Marketing para Restaurantes e Gastronomia",
+                  "Estratégia B2B para Empresas de TI",
+                  "Marketing para Arquitetura",
+                  "Desenvolvimento Web Astro",
+                  "Core Web Vitals Optimization",
+                  "Semiótica Digital"
+                ],
+                "founder": {
+                  "@type": "Person",
+                  "@id": "https://paulomoura.pro/#paulo",
+                  "name": "Paulo Moura",
+                  "jobTitle": "Estrategista de Marketing Digital, Branding e SEO",
+                  "description": "Expert em comunicação digital com background em Content Marketing e passagens por gigantes de Edge Computing como a Azion. Perito na construção de ecossistemas digitais ultrarrápidos, seguros e de alta performance em SEO e vendas.",
+                  "alumniOf": [
+                    { "@type": "Organization", "name": "Azion" }
+                  ],
+                  "knowsAbout": ["SEO", "Branding", "Semiótica", "Full Stack Development", "Marketing Estratégico", "Marketing de Conteúdo", "Cibersegurança", "Web Design"]
+                },
+                "hasOfferCatalog": {
+                  "@type": "OfferCatalog",
+                  "name": "Serviços Brand-Driven",
+                  "itemListElement": [
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Brand-Driven SEO",
+                        "description": "SEO focado na construção de autoridade de marca resiliente a atualizações de algoritmo, não apenas palavras-chave."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Estratégia B2B para Tech",
+                        "description": "Consultoria especializada que equilibra linguagem de negócios para C-Level e conceitos técnicos profundos. Traduzimos complexidade tecnológica em valor comercial claro."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing para Restaurantes",
+                        "description": "Consultoria especializada para o setor gastronômico: experiência digital projetada para user experience para atrair e fidelizar clientes qualificados."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing para Arquitetos",
+                        "description": "Consultoria especializada para o setor de arquitetura: experiência digital que eleva a percepção de valor sobre projetos arquitetônicos e portfólio por meio de design sofisticado e storytelling."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing para Escritórios de Advocacia",
+                        "description": "Consultoria especializada para o setor jurídico: experiência digital centrada no cliente com branding e design alinhados com as normas e diretrizes da OAB."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing para E-Commerce",
+                        "description": "Consultoria especializada para comércio eletrônico: experiência digital que oferece ao comprador informação de qualidade e altamente detalhada que contribui para sua tomada de decisão e aumento de confiabilidade na marca."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing para Clínicas",
+                        "description": "Consultoria especializada para clínicas médicas e estéticas: experiência digital que transmite alto valor e sofisticação para clínicas que oferecem serviços de qualidade superior, premium."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Web Experience High-Performance",
+                        "description": "Sites desenvolvidos em Astro com pontuação Core Web Vitals garantida (95+ Mobile / 100 Desktop) e design baseado nas mais importantes escolas europeias que reúnem minimalismo, funcionalidade e profundidade, ampliando o impacto da mensagem."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Trust Advisement",
+                        "description": "Consultoria estratégica para tomada de decisão em tecnologia e posicionamento digital."
+                      }
+                    },
+                    {
+                      "@type": "Offer",
+                      "itemOffered": {
+                        "@type": "Service",
+                        "name": "Growth Strategy",
+                        "description": "Análise profunda de negócio, concorrência e audiência para traçar um roadmap de crescimento em longo prazo. Ações baseadas em dados e metodologias científicas, com resultados mensuráveis e execução simplificada."
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://paulomoura.pro/#website",
+                "url": "https://paulomoura.pro/",
+                "name": "Moura - Brand-Driven Strategy",
+                "description": "Presença digital que transcende algoritmos. Agência especializada em SEO, Branding e Sites de Alta Performance.",
+                "publisher": { "@id": "https://paulomoura.pro/#organization" },
+                "inLanguage": "pt-BR",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://paulomoura.pro/search?q={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              },
+              {
+                "@type": "FAQPage",
+                "@id": "https://paulomoura.pro/#faq",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "A Moura Agência tem relação com a Moura Baterias?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Não. Somos uma agência de inteligência digital e desenvolvimento web. Nosso foco é construir autoridade para marcas através de tecnologia e estratégia, sem nenhuma ligação com o setor automotivo."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "O que diferencia a metodologia Brand-Driven da Moura?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Diferente do marketing tradicional que persegue algoritmos, a metodologia brand-driven da Moura coloca a essência da sua marca como norte estratégico. Usamos semiótica e dados para criar uma comunicação que funciona para humanos e é tecnicamente perfeita para robôs."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Onde a Agência Moura atende presencialmente?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Embora nossa atuação seja global (online), mantemos atenção presencial estratégica nas cidades de Jundiaí, Sorocaba, Campinas, Itu, Salto, Cabreúva, Porto Feliz, Indaiatuba e São Paulo capital."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Por que vocês usam tecnologia Astro nos sites?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Para garantir velocidade extrema. Com a expertise do fundador em Cibersegurança e Edge Computing (ex-Azion), entregamos sites com pontuação 100 no Google, o que reduz custos com anúncios e aumenta conversão orgânica."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Como funciona o conceito brand-driven na prática?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Nós aprofundamos a construção do branding começando pelos aspectos offline do negócio (inclusive para empresas digitais), a fim de transpor valores genuínos, condizentes com a real experiência oferecida. Isso garante a consistência necessária entre marca, oferta e provas sociais para que os mecanismos de busca reconheçam a sua relevância."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Quanto custa um projeto com a Moura?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "O custo de investimento varia por se tratar de serviços 100% personalizados. Um serviço básico de Branding, Web Experience e Brand-Driven SEO requer investimento mínimo de R\$ 50 mil."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Qual o ROI esperado?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Os resultados são imprevisíveis, mas projetáveis. Se fizer os cálculos com base no ticket médio e na conversão de um site de alta performance, perceberá que o investimento tende a se pagar entre seis e doze meses."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "A Moura substitui minha equipe de marketing ou agência atual?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Não. Atuamos em nível estratégico, de forma consultiva e colaborativa. Inclusive, recomendamos que a empresa tenha equipe dedicada e qualificada para participar das implementações e dar continuidade ao trabalho sob novas diretrizes."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Preciso migrar meu site atual para trabalhar com vocês?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Sim, para projetos de performance. Nossos serviços propõem transformação, reunindo branding, web design e performance em Core Web Vitals. Branding e design em um site WordPress lento é como trabalhar apenas a funilaria do veículo deixando de lado aspectos mecânicos: se o cliente vai usar, precisa funcionar. Porém, também atuamos consultivamente na parte estratégica sem migração, elaborando diagnósticos completos e planos de ação para sua equipe técnica."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Como funciona o suporte após a entrega do projeto?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Procuramos por parceria, não projetos genéricos que as agências engavetam após a conclusão. Continuaremos com você ao longo do primeiro semestre pós-implementação, recalibrando o que for necessário, acompanhando os resultados e sugerindo os próximos passos."
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        `} />
+      )
+    }
+  </head>
+  <body id="blog-post-body">
+    <main id="main-content">
+      <slot name="nav" />
+      <slot name="hero" />
+      <slot name="snap-content" />
+      <div class="rest-content-wrapper">
+        <slot name="rest-content" />
+      </div>
+    </main>
+
+    <slot name="overlay" />
+
+    <script>
+      // Ensure HTMX is properly initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof htmx !== 'undefined') {
+          // Process any HTMX elements that might not have been processed
+          htmx.process(document.body);
+        }
+      });
+    </script>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+        if (!animatedElements.length) return;
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1 // Triggers when 10% of the element is visible
+        });
+
+        animatedElements.forEach(element => {
+          observer.observe(element);
+        });
+
+        // Load HTMX after main content has loaded for better Core Web Vitals
+        if (document.querySelector('[hx-get], [hx-post], [hx-put], [hx-delete]')) {
+          const htmxScript = document.createElement('script');
+          htmxScript.src = 'https://unpkg.com/htmx.org@1.9.10';
+          htmxScript.async = true;
+          htmxScript.onload = function() {
+            // Ensure HTMX is properly initialized after loading
+            if (typeof htmx !== 'undefined') {
+              htmx.process(document.body);
+            }
+          };
+          document.head.appendChild(htmxScript);
+        }
+
+        // Garantir que o background correto seja aplicado após carregamento de estilos
+        setTimeout(() => {
+          document.body.style.background = 'linear-gradient(135deg, #fbf7f0 0%, #f9f3e9 50%, #f3eada 100%) !important';
+        }, 100);
+      });
+    </script>
+
+    <style is:inline>
+      #blog-post-body {
+        background: linear-gradient(135deg, #fbf7f0 0%, #f9f3e9 50%, #f3eada 100%) !important;
+      }
+
+      #blog-post-body .blog-post-page,
+      #blog-post-body .main-content-area-full,
+      #blog-post-body .rest-content-wrapper,
+      #blog-post-body main#main-content {
+        background: transparent !important;
+      }
+    </style>
+  </body>
+</html>
