@@ -47,15 +47,12 @@
       <!-- Mobile Minimalist Footer (Visible on small screens) -->
       <div class="mobile-footer-minimal">
         <div class="mobile-footer-content">
-          <div class="mobile-social-section">
-            <h3 class="mobile-social-title">Siga-nos</h3>
-            <div class="mobile-social-links">
-              <a href="#" class="mobile-social-link">LinkedIn</a>
-              <a href="https://substack.com/@brandledseo" class="mobile-social-link">Substack</a>
-              <a href="#" class="mobile-social-link">YouTube</a>
-            </div>
+
+          <!-- Mobile Bible Verse -->
+          <div class="mobile-bible-verse">
+            <p class="mobile-bible-verse-text">"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim." — Gálatas 2:20</p>
           </div>
-          
+
           <!-- Mobile Language Selector -->
           <div class="mobile-language-selector">
             <div class="mobile-lang-options" id="mobileFooterLanguageDropdown">
@@ -69,7 +66,7 @@
                 <span>Español</span>
               </a>
             </div>
-            
+
             <button class="mobile-lang-btn" id="mobileFooterLanguageBtn" aria-label="Selecionar idioma">
               <span id="mobileFooterCurrentLanguage">pt-BR</span>
               <svg class="lang-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;">
@@ -86,10 +83,8 @@
       <div class="footer-legal">
         <p>&copy; {new Date().getFullYear()} Moura. Todos os direitos reservados.</p>
       </div>
-      <div class="footer-social-links">
-        <a href="#" class="footer-bottom-link">LinkedIn</a>
-        <a href="https://substack.com/@brandledseo" class="footer-bottom-link">Substack</a>
-        <a href="#" class="footer-bottom-link">YouTube</a>
+      <div class="footer-bible-verse">
+        <p class="bible-verse-text">"Fui crucificado com Cristo. Assim, já não sou eu quem vive, mas Cristo vive em mim." — Gálatas 2:20</p>
       </div>
       <div class="footer-bottom-links">
         <a href="/privacidade" class="footer-bottom-link">Privacidade</a>
@@ -361,54 +356,6 @@
     width: 100%;
   }
 
-  .mobile-social-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: var(--space-lg);
-  }
-
-  .mobile-social-title {
-    color: var(--color-accent);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-sm);
-    text-align: center;
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-  }
-
-  .mobile-social-title::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 2px;
-    background: var(--color-accent);
-  }
-
-  .mobile-social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-lg);
-    justify-content: center;
-  }
-
-  .mobile-social-link {
-    color: var(--color-light-gray);
-    font-size: var(--font-size-sm);
-    text-decoration: none;
-    transition: color var(--transition-normal);
-  }
-
-  .mobile-social-link:hover {
-    color: var(--color-accent-accessible);
-  }
 
   /* Mobile Language Selector Styles */
   .mobile-language-selector {
@@ -534,10 +481,6 @@
     font-weight: var(--font-weight-light);
   }
 
-  .footer-social-links {
-    display: flex;
-    gap: var(--space-xl);
-  }
 
   .footer-bottom-links {
     display: flex;
@@ -554,6 +497,23 @@
 
   .footer-bottom-link:hover {
     color: var(--color-accent-accessible);
+  }
+
+  .footer-bible-verse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 var(--space-md);
+  }
+
+  .bible-verse-text {
+    color: var(--color-medium-gray);
+    font-size: var(--font-size-xs);
+    font-style: italic;
+    margin: 0;
+    font-weight: var(--font-weight-light);
+    text-align: center;
   }
 
   /* Responsive adjustments */
@@ -651,13 +611,25 @@
     .mobile-social-link {
       font-size: var(--font-size-sm);
     }
-    
+
     .new-footer {
       padding: var(--space-4xl) var(--space-md) var(--space-md);
     }
   }
-  
+
   @media (max-width: 768px) {
+    .mobile-bible-verse {
+      order: -1;
+      margin-bottom: var(--space-md);
+      padding: 0 var(--space-2xl);
+    }
+
+    .mobile-bible-verse-text {
+      font-size: var(--font-size-xs);
+      text-align: center;
+      line-height: var(--line-height-relaxed);
+    }
+
     .mobile-language-selector {
       flex-direction: column;
       align-items: center;
