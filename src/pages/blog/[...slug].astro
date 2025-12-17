@@ -1,17 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
+import BlogPostGradientLayout from '../../layouts/BlogPostGradientLayout.astro';
 import BlogPost from '../../components/blog/BlogPost.astro';
 import TableOfContents from '../../components/blog/TableOfContents.astro';
-
-export async function getStaticPaths() {
-  const blogPosts = await getCollection('blog');
-  return blogPosts.map(post => ({
-    params: { slug: post.slug },
-    props: { post }
-  }));
-}
+import ShareOverlay from '../../components/ui/share_overlay/ShareOverlay.astro';
 
 // Obter o slug do parâmetro de rota
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  // Excluir posts que já têm arquivos individuais
+  const excludedSlugs = ['o-que-e-branding', 'autenticidade-e-o-novo-seo', 'conteudo-precisa-ser-util'];
+  return blogPosts
+    .filter(post => !excludedSlugs.includes(post.slug))
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
+}
+
 const { slug } = Astro.params;
 
 // Obter a coleção de posts do blog
@@ -20,26 +26,30 @@ const post = blogPosts.find(p => p.slug === slug);
 
 // Obter posts relacionados com base nas tags
 const relatedPosts = blogPosts
-  .filter(p => 
-    p.data.tags.some((tag: string) => post?.data.tags.includes(tag)) && 
+  .filter(p =>
+    p.data.tags.some((tag: string) => post?.data.tags.includes(tag)) &&
     p.slug !== post?.slug
   )
   .slice(0, 3); // Pegar até 3 posts relacionados
-
-// Extract headings from the post body to generate table of contents
-// In a real implementation, you'd parse the markdown to extract headings
-// For now, we'll leave the TOC empty, but each markdown file could include its own TOC
 ---
 
-{post ? 
-  <BlogPost post={post} relatedPosts={relatedPosts}>
-    <div class="post-content" slot="content">
-      <article set:html={post.body} />
+{post ?
+  <BlogPostGradientLayout title={`${post.data.title} - Blog - Moura | Marketing e Comunicação Digital`}>
+
+    <BlogPost post={post} relatedPosts={relatedPosts} slot="rest-content">
+      <div class="post-content" slot="content">
+        <article set:html={post.body} />
+      </div>
+      <TableOfContents slot="toc">
+        <!-- This would be populated with actual TOC items based on the content's headings -->
+        <!-- For now, it's empty, but the structure is available -->
+      </TableOfContents>
+    </BlogPost>
+    
+    <div slot="overlay">
+      <ShareOverlay post={post} url={Astro.url.href} />
     </div>
-    <TableOfContents slot="toc">
-      <!-- This would be populated with actual TOC items based on the content's headings -->
-      <!-- For now, it's empty, but the structure is available -->
-    </TableOfContents>
-  </BlogPost>
+
+  </BlogPostGradientLayout>
   : <p>Post não encontrado</p>
 }

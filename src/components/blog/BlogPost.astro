@@ -424,12 +424,65 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 }
 
 .post-body ul, .post-body ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-left: 0;
+  margin: 1.5rem 0 1.5rem 1.5rem;
+  list-style-type: none;
+  position: relative;
 }
 
-.post-body li {
+.post-body ul li, .post-body ol li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.7;
+  list-style: none;
+}
+
+.post-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.4em;
+  height: 0.4em;
+  background: linear-gradient(to bottom, #a0a0a0, #888888);
+  border-radius: 0.05em;
+  display: block;
+}
+
+.post-body ol li {
+  padding-left: 0;
+}
+
+.post-body ol li::before {
+  content: counter(list-counter) '.';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  color: var(--color-accent);
+  font-weight: var(--font-weight-light);
+  width: 20px;
+}
+
+/* Estilo específico para listas aninhadas */
+.post-body ul ul,
+.post-body ol ol,
+.post-body ul ol,
+.post-body ol ul {
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.post-body ul ul li,
+.post-body ol ol li,
+.post-body ul ol li,
+.post-body ol ul li {
+  padding-left: 1.3rem;
+}
+
+.post-body ul ul li::before {
+  background: linear-gradient(to bottom, #b0b0b0, #989898);
 }
 
 .post-footer {

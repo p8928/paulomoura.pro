@@ -552,7 +552,7 @@ img {
   margin: var(--space-lg) 0;
   padding-left: var(--space-xl);
   position: relative;
-}
+  max-width: 65ch;
 
 .blog-post-content ul li,
 .blog-post-content ol li {
@@ -563,7 +563,7 @@ img {
 }
 
 .blog-post-content ul li {
-  list-style-type: disc; /* Usando estilo padrão de lista */
+  list-style-type: square; /* Usando estilo padrão de lista */
   margin-left: var(--space-md);
 }
 

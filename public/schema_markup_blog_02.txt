@@ -1,0 +1,162 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://paulomoura.pro/blog/o-que-e-branding/#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://paulomoura.pro/blog/o-que-e-branding/"
+      },
+      "headline": "Branding: você provavelmente está fazendo errado",
+      "alternativeHeadline": "Por que sua marca precisa ir além do logotipo e abraçar a realidade operacional",
+      "description": "Branding não é sobre cores ou logotipos, é sobre o que o cliente sente instintivamente. Descubra como marcas como Ferrari e Chanel usam autenticidade e rejeição estratégica para construir impérios, e por que sua operação define sua marca mais do que seu marketing.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://paulomoura.pro/img/thumbs/002_branding_2560x800.webp",
+        "width": 2560,
+        "height": 800
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://paulomoura.pro/#paulo",
+        "name": "Paulo Moura",
+        "url": "https://paulomoura.pro/sobre",
+        "jobTitle": "Estrategista de Marketing Digital, Branding e SEO"
+        "description": "Expert em comunicação digital com background em Content Marketing e passagens por gigantes de Edge Computing como a Azion. Perito na construção de ecossistemas digitais ultrarrápidos, seguros e de alta performance em SEO e vendas.",
+                  "alumniOf": [
+                    { "@type": "Organization", "name": "Azion" }
+                  ],
+                  "knowsAbout": ["SEO", "Branding", "Semiótica", "Full Stack Development", "Marketing Estratégico", "Marketing de Conteúdo", "Cibersegurança", "Web Design"]
+                },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://paulomoura.pro/sobre",
+        "name": "Moura",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://paulomoura.pro/img/logo/main_logo_black.svg"
+        }
+      },
+      "datePublished": "2025-11-04T08:00:00-03:00", 
+      "dateModified": "2025-11-04T08:00:00-03:00",
+      "inLanguage": "pt-BR",
+      "genre": "Marketing Strategy",
+      "keywords": [
+        "Branding Estratégico",
+        "Brand-Driven",
+        "Marty Neumeier",
+        "Posicionamento de Marca",
+        "Gestão de Crise de Marca",
+        "Marcas de Luxo"
+      ],
+      "articleSection": "Branding",
+      "wordCount": 2001,
+      "mentions": [
+        {
+          "@type": "Person",
+          "name": "Marty Neumeier",
+          "description": "Autor e especialista em branding, citado como referência na definição de marca.",
+          "sameAs": "https://linkedin.com/in/martyneumeier"
+        },
+        {
+          "@type": "Person",
+          "name": "André Gide",
+          "description": "Autor da frase sobre ser odiado pelo que se é.",
+          "sameAs": "https://fr.wikipedia.org/wiki/Andr%C3%A9_Gide"
+        },
+        {
+          "@type": "Organization",
+          "name": "Ferrari",
+          "description": "Exemplo de marca que vende um mito e exclusividade, não apenas carros."
+        },
+        {
+          "@type": "Organization",
+          "name": "Chanel",
+          "description": "Exemplo de marca que seleciona estrategicamente seu público."
+        },
+        {
+          "@type": "Organization",
+          "name": "Google"
+        },
+        {
+          "@type": "Organization",
+          "name": "Adobe"
+        },
+        {
+          "@type": "Organization",
+          "name": "Apple"
+        }
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Branding",
+          "sameAs": "https://en.wikipedia.org/wiki/Brand"
+        },
+        {
+          "@type": "Thing",
+          "name": "Rebranding"
+        },
+        {
+          "@type": "Thing",
+          "name": "Customer Experience"
+        }
+      ],
+      "isAccessibleForFree": true,
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".intro-text", ".faq-section"]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://paulomoura.pro/blog/o-que-e-branding/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Branding é apenas criar um logotipo e escolher cores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Definitivamente não. Logotipo, paleta de cores e tom de voz são apenas a superfície e o acabamento. Segundo a metodologia Brand-Driven e especialistas como Marty Neumeier, marca é o que o cliente sente instintivamente sobre seu produto. Se a estratégia foca apenas no visual e ignora a operação, ela não é branding, é apenas decoração."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que são 'Marcas Zumbis'?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marcas Zumbis são empresas que não possuem autenticidade própria. Elas vivem de causar impressões superficiais, apoiam causas sociais apenas por conveniência (sem crença real da liderança) e copiam movimentos de concorrentes maiores. O resultado é uma comunicação sem paixão, pasteurizada e irrelevante."
+          }
+        },
+        {
+{
+          "@type": "Question",
+          "name": "Por que a autenticidade é mais importante que a aceitação geral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tentar agradar a todos torna uma marca genérica. A estratégia de branding de alto nível (como na Ferrari ou Chanel) aceita a rejeição de quem não é o público-alvo para fortalecer a conexão com quem realmente importa. É a aplicação da ideia de que é melhor ser fiel à sua essência, mesmo que isso restrinja o seu público, do que ser uma 'marca zumbi' sem personalidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como consertar um branding que não funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não se conserta branding inventando uma nova identidade visual, mas revelando a verdade operacional. O processo deve começar 'na cozinha', ou seja, na operação da empresa. É preciso alinhar o que a empresa realmente entrega (sua essência, defeitos e qualidades) com o que ela comunica. Branding autêntico nasce do que você faz quando ninguém está olhando, não do que você diz nos anúncios."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre identidade visual e estratégia de marca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Identidade visual é o pacote gráfico (logo, fontes). Estratégia de marca é a definição de como você quer ser percebido e como sua operação sustenta essa promessa. Muitas agências erram ao entregar o visual sem entender o negócio, criando uma dissonância onde a empresa promete inovação (no logo) mas entrega apenas suporte básico (na realidade)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

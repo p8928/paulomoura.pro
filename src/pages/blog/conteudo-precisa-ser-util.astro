@@ -1,0 +1,344 @@
+---
+import BlogPostGradientLayout from '../../layouts/BlogPostGradientLayout.astro';
+import Navigation from '../../components/nav/Navigation.astro';
+import Footer from '../../components/footer/Footer.astro';
+import BlogPost from '../../components/blog/BlogPost.astro';
+import HighlightedContent from '../../components/blog/HighlightedContent.astro';
+import TableOfContents from '../../components/blog/TableOfContents.astro';
+import Button from '../../components/ui/Button.astro';
+import ShareOverlay from '../../components/ui/share_overlay/ShareOverlay.astro';
+import ReadingProgressBar from '../../components/blog/ReadingProgressBar.astro';
+import BackToTopButton from '../../components/blog/BackToTopButton.astro';
+
+// Metadata for this specific post
+const post = {
+  data: {
+    title: "Conteúdo precisa ser (realmente) útil",
+    description: "Descubra por que o conteúdo precisa ir além das palavras-chave e verdadeiramente resolver problemas reais do seu público-alvo.",
+    publishDate: new Date('2025-12-16'),
+    tags: ["Conteúdo", "Marketing", "Estratégia"],
+    author: "Paulo Moura",
+    image: {
+      url: "/img/thumbs/003_content_2560x800.webp",
+      alt: "Conteúdo precisa ser útil"
+    }
+  },
+  slug: 'conteudo-precisa-ser-util'
+};
+
+// For a standalone post, we'll get related posts from collection
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .slice(0, 3);
+---
+
+<BlogPostGradientLayout title={`${post.data.title} - Blog - Moura | Marketing e Comunicação Digital`}>
+
+  <BlogPost post={post} relatedPosts={relatedPosts} slot="rest-content">
+  <div class="post-content" slot="content">
+
+    <p>
+      Conteúdo é minha especialidade. Estou nessa área desde 2015, quando alguém me pagava R$ 3,70 por artigos de 500 palavras, e nela atuei profissionalmente até 2023 — ganhando um salário decente como redator Sênior. Vi toda a evolução do marketing de conteúdo, uma área que, a exemplo de muitas outras, <strong>adquiriu complexidade e valor estratégico absurdo.</strong>
+    </p>
+
+    <p>
+      Lá atrás, o entendimento geral era o seguinte: publicar conteúdo correspondente às palavras-chave mais recorrentes para atrair usuários e ganhar pontos de autoridade com o Google. Esse jeito simplório de pensar se arrastou por tanto tempo e, na real, ele ainda orbita a maioria dos profissionais e agências. Vou te explicar por que esse negócio é triste.
+    </p>
+
+    <p>
+      Quando expliquei a <a href="/blog/autenticidade-e-o-novo-seo" target="_blank"><strong>relação entre autenticidade e SEO</strong></a>, falei sobre as novas capacidades do Google, que hoje interpreta o abstrato. Antes, o usuário pesquisava e o Google trazia como resultado as páginas que melhor exploraram o termo buscado. Hoje, ele está se formando perito em retornar a melhor experiência, expertise, autoridade e confiabilidade.
+    </p>
+
+    <p>
+      Isso é maravilhoso! Finalmente, os geradores de lero-lero com seus conteúdos rasos e enfadonhos perderão espaço. E não apenas os fazedores de volume, mas também quem se baseia em palavras-chave para criar o calendário editorial e esquece que existe um negócio ao qual o conteúdo serve. Sem profundidade e autenticidade, não vai mais rolar.
+    </p>
+
+    <HighlightedContent type="highlight">
+      Mas já tenho falado bastante sobre Google e sua relação com branding e autenticidade. Conteúdo tem tudo a ver com essas coisas, só que ele tem uma função importante a ponto de determinar a sua qualidade nesses outros critérios, que é a conexão com o leitor — única opinião que está acima do que pensam os mecanismos de buscas e as IAs, simplesmente.
+    </HighlightedContent>
+
+    <h2>
+      Conteúdo é estratégia minuciosa
+    </h2>
+    <p>
+      Pensar em palavras-chave é tão fora de moda que estratégia praticamente inexiste, é apenas presunção. É presumir que um volume maior de pessoas pesquisará pelo termo sobre o qual se pretende escrever, e sobre o qual muitos outros escrevem. É a exploração do oceano vermelho combinada com achismo e um desespero para publicar o quanto antes possível.
+    </p>
+
+    <p>
+      "Oras, mas a equipe construiu personas", um ofendido me rebateria. <i>So it's time for fun!</i> Vamos criar conteúdo que Cinderela, 28, diretora de alguma coisa em empresa multinacional que lê artigos do mundo da economia e procura por soluções que ajudem a aumentar a produtividade da equipe e reduzir custos. Fonte: Águas de Lindoya, ou o imaginário do Analista de Marketing Júnior IV.
+    </p>
+
+    <p>
+      Sinto verdadeiro asco por aquelas fichinhas de persona que incluem esse tipo de informação e avatar com desenhinho. Na época que isso virou moda, a autoridade máxima no assunto buyer personas, Adele Revella, já havia publicado seu livro <cite>Buyer Personas: How to Gain Insight into Your Customer's Expectations, Align your Marketing Strategies, and Win More Business</cite>.
+    </p>
+
+    <p>
+      Nele, a autora explica o verdadeiro processo de construção de persona, o qual consiste em <strong>entrevistas com clientes reais e muito estudo em cima das informações até alcançar perfis condizentes com o cliente </strong>. Não é para amadores. Não é trabalho de um só profissional, nem mesmo de uma só equipe. É estratégia empresarial do mais alto nível, não essa brincadeirinha criativa feita por quem não respira a empresa.
+    </p>
+
+    <p>
+      Significa que buyer persona não é para a sua empresa? Sim. Essa estratégia requer uma substância que dá muito trabalho obter, porque envolve conversar com clientes reais, coletar amostra significativa de informação acompanhada de análises profundas. Diria até que as empresas deveriam encomendar um estudo científico com base nas amostras antes de planejar qualquer ação em cima disso.
+    </p>
+
+    <p>
+      Porém, não estou dizendo para abrir mão da estratégia. Pelo contrário! Vou te mostrar como a comunicação pode ser estratégica e <i>customer-centric</i> adotando uma abordagem simplificada.
+    </p>
+
+    <h2>
+      Persona é conversinha na maioria dos casos
+    </h2>
+    <p>
+      O lado estratégico reside além do buyer personas. Como expliquei, nem sempre a persona é parte da estratégia, justamente porque deixa de fazer sentido construí-la superficialmente. Muitas das vezes, a mensagem e as soluções são tão amplas que modular a comunicação é o suficiente.
+    </p>
+
+    <p>
+      Por exemplo, se estou falando com executivos, a linguagem deve ser superobjetiva e o conteúdo, sustentado por dados e números. Repare: o executivo aqui não é persona (indivíduo fictício detalhado). É audiência (grupo com necessidades comuns).
+    </p>
+
+    <p>
+      Um bilionário que deseja construir sua mansão está buscando as mesmas habilidades técnicas que alguém de classe média reformando apartamento. Ambos querem: <strong>profissional que entende de projeto, cumpre prazo, resolve problemas estruturais com rigor técnico</strong>. O que muda: orçamento e escala. O que não muda: critérios de escolha. Por isso persona (Bilionário Beto, 55 anos, tem iate) é inútil. Audiência (clientes de arquitetura residencial) basta, não há segredo e nem método aqui.
+    </p>
+
+    <p>
+      A comunicação é simples, o que não a torna menos estratégica. Até porque não se trata somente de como falamos, mas do que falamos e por que falamos. No fim, você verá que tudo leva para o caminho da autenticidade e da autoridade. É o branding entrando em ação.
+    </p>
+
+    <h2>
+      A comunicação começa por quem fala, não para quem
+    </h2>
+    <p>
+      Antes de virar-se para o leitor, vire-se para a empresa. Ela tem produtos e serviços que rodam dentro de um negócio e compreender este ecossistema é o dever Nº 1 do responsável pelo planejamento e produção de conteúdo. Sem isso, você simplesmente não obtém a visão <strong>centrada no cliente</strong> que muitos prometem entregar.
+    </p>
+
+    <p>
+      Tudo muda quando se tem informação e conhecimento. O redator entende o que a empresa faz, como opera, como ganha dinheiro, o que ela desenvolveu e o porquê, e o posicionamento que deseja alcançar no mercado, sabe exatamente por que está escrevendo.
+    </p>
+
+    <p>
+      Logo, ele se vê mais engajado e ciente das razões pelas quais está escrevendo um blog, por exemplo. É diferente de quem trabalha no modo padrão, sem iniciativa. Vi de perto várias pessoas que estavam numa mesma empresa há anos e não dominavam conceitos básicos do negócio. Era um "marketing sem conteúdo".
+    </p>
+
+    <p>
+      O que estou explicando é algo que quase ninguém faz. E olha que me refiro a profissionais <i>in-house</i>. Então o que posso dizer a quem terceiriza a produção de conteúdo ou, pior ainda, todo o marketing de conteúdo? É um tremendo tiro no pé. Raciocine comigo:
+    </p>
+
+    <ul>
+      <li>você contrata uma empresa que trabalha com volume, portanto o seu negócio é só mais um projeto;</li>
+      <li>a equipe deles fará algumas perguntas padronizadas para ter uma noção do que sua empresa faz;</li>
+      <li>as informações superficiais tomam forma genérica e passam a compor o briefing;</li>
+      <li>a terceirizada contrata o freelancer para escrever em nome de uma empresa com a qual jamais conversou.</li>
+    </ul>
+
+    <p>
+      <strong>É a terceirização da terceirização</strong>. Quem deveria garantir conteúdo alinhado com seus objetivos e as características da sua marca é nada mais que um intermediador desnecessário. É melhor contratar um freelancer diretamente e dar a ele as coordenadas, assim a informação chega sem ruído e os custos são infinitamente menores.
+    </p>
+
+    <HighlightedContent type="caution">
+      Conteúdo útil, relevante e impactante demanda conhecimento dos negócios da empresa. É de dentro para fora. É o fundamental para criar um mindset que remete o conceito de Product-led Growth (PLG), que é a base para criar conteúdo que vende e o Google valoriza.
+    </HighlightedContent>
+
+    <h2>
+      Os problemas que você resolve são o conteúdo
+    </h2>
+    <p>
+      Quem pesquisa por um assunto está em busca de resolver um problema. Harry Browne dizia que estamos em uma busca contínua pela felicidade, o que nos leva a comprar coisas. Mesmo que seja para presentear alguém, fazemos porque nos deixa mais felizes. Soa egoísta, mas é como funcionamos.
+    </p>
+
+    <p>
+      Esse é um princípio que coloca contra a parede a ideia de que o bom vendedor é persuasivo e manipulador. Na verdade, esse é o pior vendedor que existe, pois ele trava uma batalha com o cliente e não mede esforços para levar vantagem, mesmo que precise enganá-lo. <strong>Gente trambiqueira coleciona vítimas, não clientes.</strong>
+    </p>
+
+    <p>
+      As pessoas compram porque querem; não se trata de convencer ou motivar, e sim de educar e apresentar a solução de forma honesta, ainda que isso signifique dizer que o seu produto ou serviço não é a melhor opção para resolver determinado problema.
+    </p>
+
+    <p>
+      Parece loucura à primeira vista, mas os valores éticos ajudam a construir relacionamentos sólidos e confiança mútua, o que é muito mais benéfico em longo prazo do que empurrar uma venda que resultará em insatisfação e laços rompidos. Um cliente detrator sai mais caro do que a receita por ele gerada.
+    </p>
+
+    <p>
+      O que Browne ensina é um requisito importante para o que veremos daqui em diante, que é a incorporação do PLG ao marketing de conteúdo. É quando a função do conteúdo é apresentar soluções para problemas que o seu próprio produto ou serviço resolve.
+    </p>
+
+    <h3>
+      Product-led Growth é o seu novo motor de relevância
+    </h3>
+    <p>
+      O conceito em questão não é exatamente novidade. Digo "necessariamente" porque até hoje a sua aplicação é culturalmente restrita a empresas de tecnologia. Basicamente, o PLG tem como objetivo fazer com que o usuário perceba o valor do produto antes de comprá-lo.
+    </p>
+
+    <p>
+      Quando você usa ou testa gratuitamente um aplicativo ou plataforma, como ChatGPT, Spotify e Canva, é concedida a você a oportunidade de sentir a experiência. Caso goste e ache viável, você naturalmente contratará um plano sem falar com um vendedor. Por si só, isso reduz pra caramba o custo por aquisição de cliente.
+    </p>
+
+    <p>
+      A ideia começou a se expandir para conteúdo com a metodologia Product-led SEO que Eli Schwartz ensina no livro <cite>Product-Led SEO: The Why Behind Building Your Organic Growth Strategy</cite>. Com isso, em vez de competir por palavras-chave, empresas como Dropbox e Slack transformaram seus próprios produtos em SEO.
+    </p>
+
+    <p>
+      Vamos simplificar com o caso da Slack Technologies. Em vez de pensar em palavras-chave como "aplicativo de mensagens para empresas", a Slack criou um site cujo conteúdo explica como o seu produto facilita a vida do usuário, e o coloca à disposição para uso. As features, os recursos e os benefícios já cumprem o papel das palavras-chave, enquanto o acesso rápido faz a parte das vendas.
+    </p>
+
+    <p>
+      Repare o quanto as descobertas de Schwartz transformaram o mercado entrando no site de QUALQUER ferramenta ou plataforma online. Todas usam a mesma estratégia baseada no product-led SEO. O método funciona, pois o que as pessoas procuram vai ao encontro do que esses produtos oferecem. É o SEO orgânico manifestado, sem marketing pastelão.
+    </p>
+
+    <p>
+      Lembra do que falei sobre conhecimento dos negócios como requisito para escrever conteúdo? Agora fica ainda mais clara essa necessidade. Ao saber a fundo o que a empresa entrega ao cliente, é possível enumerar os pain points do público-alvo e descobrá-los, gerando casos de uso e novas soluções para apresentar. Resultado: os conteúdos ficam nativamente centrados no cliente.
+    </p>
+
+    <p>
+      Resumindo a obra, se você investe em marketing de conteúdo, está na hora de rever <strong>o quanto as publicações atacam as dores do seu público-alvo</strong> em vez de palavras-chave. Aquele tipo de conteúdo no qual a empresa tenta disfarçar a intenção de vender não cola mais; da mesma forma, não se trata de transformar cada post em uma abordagem de vendas. É autoridade, autenticidade, valores genuínos, confiabilidade. É ser útil, parágrafo a parágrafo, a fim de demonstrar que você é a escolha certa.
+    </p>
+
+    <p>
+      Agora, diz aí: seu conteúdo está resolvendo problemas ou enchendo calendário editorial?
+    </p>
+
+    <p>
+      Se você publica religiosamente, mas não vê resultado. Tráfego cresce e as conversões, não. Público lê, mas não compra. O problema não é volume, é relevância.
+    </p>
+
+    <p>
+      <strong>Conteúdo útil nasce de dentro</strong> (conhecimento profundo do negócio) para fora (problemas reais do cliente). Não de pesquisas de keywords para calendário. Conteúdo não é linha de montagem.
+    </p>
+
+    <p>
+      Quer construir estratégia de conteúdo que vende? <a href="https://api.whatsapp.com/send?phone=5511922305905"><strong>Me chame no WhatsApp</strong></a> ou <a href="/contato"><strong>clique aqui</strong></a>.
+    </p>
+  </div> <!-- Fecha o slot content -->
+
+  <TableOfContents slot="toc">
+    <li><a href="#conteudo-e-estrategia-minuciosa">Conteúdo é estratégia minuciosa</a></li>
+    <li><a href="#persona-e-conversinha-na-maioria-dos-casos">Persona é conversinha na maioria dos casos</a></li>
+    <li><a href="#a-comunicacao-comeca-por-quem-fala-nao-para-quem">A comunicação começa por quem fala, não para quem</a></li>
+    <li><a href="#os-problemas-que-voce-resolve-sao-o-conteudo">Os problemas que você resolve são o conteúdo</a></li>
+    <li><a href="#product-led-growth-e-o-seu-novo-motor-de-relevancia">Product-led Growth é o seu novo motor de relevância</a></li>
+  </TableOfContents>
+
+  </BlogPost>
+
+  <div slot="overlay">
+    <ShareOverlay post={post} url={Astro.url.href} />
+  </div>
+
+</BlogPostGradientLayout>
+
+<style>
+  @media (max-width: 768px) {
+    .share-section {
+      /* Mantém a seção visível em mobile, mas o botão já substituiu os ícones */
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://paulomoura.pro/blog/conteudo-precisa-ser-util/#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://paulomoura.pro/blog/conteudo-precisa-ser-util/"
+      },
+      "headline": "Conteúdo precisa ser (realmente) útil",
+      "alternativeHeadline": "Descubra por que o conteúdo precisa ir além das palavras-chave e verdadeiramente resolver problemas reais do seu público-alvo.",
+      "description": "Descubra por que o conteúdo precisa ir além das palavras-chave e verdadeiramente resolver problemas reais do seu público-alvo.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "/img/thumbs/003_conent_2560x800.webp",
+        "width": 2560,
+        "height": 800
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://paulomoura.pro/#paulo",
+        "name": "Paulo Moura",
+        "url": "https://paulomoura.pro/sobre",
+        "jobTitle": "Estrategista de Conteúdo e Tech Lead",
+        "knowsAbout": ["Product-Led SEO", "Content Marketing", "Buyer Personas", "PLG"]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://paulomoura.pro/#organization",
+        "name": "Moura",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://paulomoura.pro/img/logo/main_logo_black.svg"
+        }
+      },
+      "datePublished": "2025-12-16T00:00:00-03:00",
+      "dateModified": "2025-12-16T00:00:00-03:00",
+      "inLanguage": "pt-BR",
+      "genre": "Content Marketing",
+      "articleSection": "Marketing Digital",
+      "wordCount": 2145,
+      "mentions": [
+        {
+          "@type": "Person",
+          "name": "Adele Revella",
+          "description": "Autora de 'Buyer Personas: How to Gain Insight into Your Customer's Expectations, Align your Marketing Strategies, and Win More Business', especialista em construção de personas baseadas em dados reais."
+        },
+        {
+          "@type": "Person",
+          "name": "Eli Schwartz",
+          "description": "Especialista em Product-Led SEO e autor de 'Product-Led SEO: The Why Behind Building Your Organic Growth Strategy'."
+        },
+        {
+          "@type": "Person",
+          "name": "Harry Browne",
+          "description": "Autor de 'The Secret of Selling Anything', que explora a busca pela felicidade como base para decisões de compra."
+        }
+      ],
+      "about": [
+        { "@type": "Thing", "name": "Product-led Growth", "sameAs": "https://en.wikipedia.org/wiki/Product-led_growth" },
+        { "@type": "Thing", "name": "Search Engine Optimization", "sameAs": "https://en.wikipedia.org/wiki/Search_engine_optimization" },
+        { "@type": "Thing", "name": "Marketing de Conteúdo" }
+      ],
+      "isAccessibleForFree": true,
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "p"]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://paulomoura.pro/blog/conteudo-precisa-ser-util/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Por que o conteúdo precisa ir além das palavras-chave?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque o marketing de conteúdo evoluiu. Antes, bastava publicar conteúdo correspondente às palavras-chave mais recorrentes para atrair usuários e ganhar pontos de autoridade com o Google. Hoje, o Google interpreta o abstrato e busca retornar a melhor experiência, expertise, autoridade e confiabilidade. Conteúdo útil, relevante e impactante demanda conhecimento dos negócios da empresa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é Product-Led SEO e como ele difere do SEO tradicional?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Product-Led SEO é uma metodologia que transforma os próprios produtos ou soluções em estratégias de SEO. Em vez de competir por palavras-chave, empresas como Dropbox e Slack utilizam seus produtos como base para o conteúdo, facilitando a experiência do usuário e gerando conversões naturais, reduzindo o custo por aquisição de cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Terceirizar a produção de conteúdo é sempre um erro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é sempre um erro, mas representa um desafio. O conteúdo de alta performance exige conhecimento profundo do negócio ('de dentro para fora'). Quando terceirizado, especialmente para agências de volume, cria-se um intermediário que pode não compreender profundamente a empresa, resultando em conteúdo raso que não reflete a cultura e os diferenciais reais da marca."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+<!-- Script para destaque do TOC -->
