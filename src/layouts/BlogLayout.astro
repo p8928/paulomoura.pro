@@ -276,14 +276,35 @@ const localImageUrl = '/images/og-image-default.jpg';
 
     <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="fetch" crossorigin>
     <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20J3VL797V"></script>
+    <!-- Google tag (gtag.js) - deferred loading to reduce unused JavaScript -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      // Function to load Google Analytics script after page load
+      function loadGtag() {
+        // Create script element
+        const gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-20J3VL797V';
 
-      gtag('config', 'G-20J3VL797V');
+        // Append to head
+        document.head.appendChild(gtagScript);
+
+        // Initialize gtag after script loads
+        gtagScript.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-20J3VL797V');
+        };
+      }
+
+      // Load after page is fully loaded to avoid render blocking
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGtag);
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(loadGtag, 1000); // Wait 1 second after load
+        });
+      }
     </script>
     {
       Astro.url.pathname === '/' && (
