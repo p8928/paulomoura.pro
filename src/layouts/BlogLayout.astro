@@ -276,9 +276,9 @@ const localImageUrl = '/images/og-image-default.jpg';
 
     <link rel="preload" href="https://unpkg.com/htmx.org@1.9.10" as="fetch" crossorigin>
     <!-- GSAP and ScrollTrigger loaded conditionally in individual components to avoid window property errors -->
-    <!-- Google tag (gtag.js) - deferred loading to reduce unused JavaScript -->
+    <!-- Google tag (gtag.js) - further optimized to reduce long tasks -->
     <script>
-      // Function to load Google Analytics script after page load
+      // Function to load Google Analytics script with microtask scheduling to reduce long tasks
       function loadGtag() {
         // Create script element
         const gtagScript = document.createElement('script');
@@ -288,21 +288,26 @@ const localImageUrl = '/images/og-image-default.jpg';
         // Append to head
         document.head.appendChild(gtagScript);
 
-        // Initialize gtag after script loads
+        // Initialize gtag after script loads using microtasks to reduce blocking
         gtagScript.onload = function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-20J3VL797V');
+          // Use a microtask to defer initialization and reduce long task duration
+          Promise.resolve().then(function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-20J3VL797V');
+          });
         };
       }
 
-      // Load after page is fully loaded to avoid render blocking
+      // Use more aggressive deferral to reduce main thread impact
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadGtag);
+        // Use requestIdleCallback with a timeout to ensure it runs eventually
+        requestIdleCallback(loadGtag, { timeout: 5000 });
       } else {
+        // Fallback: use setTimeout with a longer delay to ensure main content is loaded
         window.addEventListener('load', function() {
-          setTimeout(loadGtag, 1000); // Wait 1 second after load
+          setTimeout(loadGtag, 2000); // Wait 2 seconds after load to further reduce impact
         });
       }
     </script>
