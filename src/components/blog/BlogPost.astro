@@ -44,18 +44,16 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
           <div class="main-content-area-full">
           <article class="blog-post-content">      <header class="post-header">
         <h1 class="post-title">{title}</h1>
-        <div class="post-meta-top hygge-meta">
-          <div class="post-date-author">
-            <time class="post-date" datetime={publishDate.toISOString()}>
-              {publishDate.toLocaleDateString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-              })}
-            </time>
-            <span class="post-author-divider" aria-hidden="true">•</span>
-            <span class="post-author">Paulo Moura</span>
-          </div>
+        <div class="post-meta-top editorial-meta">
+          <time class="post-date" datetime={publishDate.toISOString()}>
+            {publishDate.toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })}
+          </time>
+          <span class="post-author-divider" aria-hidden="true">•</span>
+          <span class="post-author">Paulo Moura</span>
         </div>
       </header>
 
@@ -161,6 +159,27 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   width: 100%;
   max-width: 1100px; /* Largura aumentada para leitura de texto */
   margin: 0 auto; /* Centraliza o conteúdo */
+  background-color: var(--color-background);
+}
+
+/* Estilo editorial refinado para data e autor */
+.post-meta-top.editorial-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem auto;
+  font-size: 0.95rem;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1rem;
+  max-width: 800px;
+}
+
+.post-meta-top.editorial-meta time,
+.post-meta-top.editorial-meta span {
+  margin: 0;
+  font-weight: var(--font-weight-light);
 }
 
 /* Reader mode for mobile - optimized for reading */
@@ -182,9 +201,16 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
     padding: 2rem 1.5rem;
     font-size: 1.2rem; /* Slightly larger font for better readability */
     line-height: 1.8; /* Increased line height for easier reading */
-    background: var(--color-background);
-    box-shadow: none;
+    background: transparent; /* Remove white background to match off-white page */
   }
+
+  /* Estilo editorial refinado para mobile */
+  .post-meta-top.editorial-meta {
+    padding: 0 1.5rem;
+    margin: 1.5rem auto;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
 
   /* Hide featured image on mobile */
   .post-featured-image {
