@@ -254,6 +254,11 @@ const relatedPosts = allPosts
 </BlogPostGradientLayout>
 
 <style>
+  /* Remove any potential white backgrounds */
+  .post-content {
+    background: transparent !important;
+  }
+
   @media (max-width: 768px) {
     .share-section {
       /* Mantém a seção visível em mobile, mas o botão já substituiu os ícones */
