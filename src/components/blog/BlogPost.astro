@@ -371,8 +371,13 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 
   /* Melhora a legibilidade dos parágrafos */
   .post-body p {
-    text-align: left; /* Changed from justify to left for better mobile readability */
+    text-align: left !important; /* Changed from justify to left for better mobile readability */
     margin-bottom: 1.2rem;
+  }
+
+  /* Override global styles for mobile */
+  .blog-post-content p {
+    text-align: left !important;
   }
   
   /* Ajusta bloco de citações para leitura móvel */
