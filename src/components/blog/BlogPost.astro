@@ -30,32 +30,41 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   <div slot="rest-content" class="blog-post-page">
     
     <div class="post-featured-image">
-      <img 
-        src={featuredImage} 
+      <img
+        src={featuredImage}
         alt={imageAlt}
         loading="eager"
         width="1200"
-        height="600"
+        height="auto"
       />
     </div>
 
     <ReadingProgressBar />
-    
-          <div class="main-content-area-full">
+
+    <div class="main-content-area-full">
           <article class="blog-post-content">      <header class="post-header">
-        <h1 class="post-title">{title}</h1>
-        <div class="post-meta-top editorial-meta">
-          <time class="post-date" datetime={publishDate.toISOString()}>
-            {publishDate.toLocaleDateString('pt-BR', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric'
-            })}
-          </time>
-          <span class="post-author-divider" aria-hidden="true">•</span>
-          <span class="post-author">Paulo Moura</span>
+        <h1 class="post-title" style="font-size: 2.5rem;">{title}</h1>
+
+        <!-- Mostrar metadados apenas em telas maiores -->
+        <div class="post-meta-top-desktop">
+          <div class="post-date-author">
+            <time class="post-date" datetime={publishDate.toISOString()}>
+              {publishDate.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+              })}
+            </time>
+            <span class="post-author-divider" aria-hidden="true">•</span>
+            <span class="post-author">Paulo Moura | Fundador e Estrategista em SEO e Marketing Digital</span>
+          </div>
         </div>
+
       </header>
+
+      <div class="info-content-gap">
+        <hr class="title-divider" />
+      </div>
 
       <div class="post-body">
         <slot name="content" />
@@ -159,27 +168,18 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   width: 100%;
   max-width: 1100px; /* Largura aumentada para leitura de texto */
   margin: 0 auto; /* Centraliza o conteúdo */
-  background-color: var(--color-background);
+  background: transparent; /* Remove o fundo branco */
 }
 
-/* Estilo editorial refinado para data e autor */
+/* Remover qualquer fundo branco do corpo do post */
+.post-body {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove estilos editoriais que não são mais necessários */
 .post-meta-top.editorial-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 1.5rem auto;
-  font-size: 0.95rem;
-  color: var(--color-text-tertiary);
-  font-style: italic;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 1rem;
-  max-width: 800px;
-}
-
-.post-meta-top.editorial-meta time,
-.post-meta-top.editorial-meta span {
-  margin: 0;
-  font-weight: var(--font-weight-light);
+  display: none; /* Esconde os metadados de data e autor */
 }
 
 /* Reader mode for mobile - optimized for reading */
@@ -204,29 +204,98 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
     background: transparent; /* Remove white background to match off-white page */
   }
 
-  /* Estilo editorial refinado para mobile */
+  /* Esconde metadados em mobile, mostra em desktop */
   .post-meta-top.editorial-meta {
-    padding: 0 1.5rem;
-    margin: 1.5rem auto;
-    border-bottom: 1px solid var(--color-border);
+    display: none;
   }
+
+  .post-meta-top-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1.5rem auto;
+    font-size: 0.95rem;
+    color: var(--color-text-tertiary);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.25rem;
+    max-width: 800px;
+  }
+
+  .post-date {
+    font-weight: var(--font-weight-light);
+    font-style: normal;
+    color: var(--color-text-secondary);
+  }
+
+  .post-date-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .post-date {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  .post-author {
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-secondary);
+    font-style: normal;
+  }
+
+  .post-meta-top-desktop time,
+  .post-meta-top-desktop span {
+    margin: 0;
+    font-weight: var(--font-weight-light);
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
 }
 
-  /* Hide featured image on mobile */
-  .post-featured-image {
-    display: none;
+  /* Show featured image on desktop, hide on mobile */
+  @media (min-width: 769px) {
+    .post-featured-image {
+      display: block;
+    }
+
+    .post-meta-top-desktop {
+      display: flex;
+    }
+
+    /* Hide decorative line on desktop */
+    .title-divider {
+      display: none;
+    }
+  }
+
+  /* Hide featured image and metadata on mobile */
+  @media (max-width: 768px) {
+    .post-featured-image {
+      display: none;
+    }
+
+    .post-meta-top-desktop {
+      display: none;
+    }
   }
 
   /* Improve header layout for reader mode */
   .post-header {
     padding: 1.5rem;
-    background: var(--color-background);
+    background: transparent; /* Remove background to match off-white page */
   }
 
   .post-meta-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    display: none; /* Completely hide metadata */
   }
 
   /* Reader toolbar specific styles */
@@ -234,6 +303,41 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+
+  /* Specific styles for Astro-generated classes */
+  [data-astro-cid-*] {
+    background: transparent !important;
+  }
+
+  /* Generous spacing between post info and content */
+  .info-content-gap {
+    margin: 3rem 0;
+  }
+
+  /* Decorative line between title and content with progression animation */
+  .title-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #000000 60%, transparent 60%);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    margin: 0 auto;
+    width: 70%;
+    animation: progressLine 2s ease-out forwards;
+    max-width: 65ch; /* Limita a largura para alinhar com o conteúdo do texto */
+  }
+
+  @keyframes progressLine {
+    0% { background-position: 100% 0%; }
+    100% { background-position: 0% 0%; }
+  }
+
+  /* Mobile-specific adjustment for the divider line */
+  @media (max-width: 768px) {
+    .title-divider {
+      margin-left: 28px;
+    }
   }
 }
 
@@ -356,7 +460,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 .post-featured-image img {
   width: 100%;
   height: auto; /* Changed from fixed height to auto */
-  max-height: 60vh; /* Added max-height to prevent overly tall images */
   display: block;
   object-fit: cover;
   border: none;
