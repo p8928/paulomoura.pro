@@ -47,29 +47,14 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
         <div class="post-meta-top hygge-meta">
           <div class="post-date-author">
             <time class="post-date" datetime={publishDate.toISOString()}>
-              {publishDate.toLocaleDateString('pt-BR', { 
-                day: 'numeric', 
-                month: 'long', 
-                year: 'numeric' 
+              {publishDate.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
               })}
             </time>
             <span class="post-author-divider" aria-hidden="true">•</span>
-            <a href="/author/paulo-moura" class="post-author">Paulo Moura | Fundador e Estrategista em SEO e Marketing Digital</a>
-          </div>
-          <div class="post-stats">
-            <span class="reading-time">
-              {/* TODO: Implement reading time calculation */}
-              <span>10 min de leitura</span>
-            </span>
-          </div>
-        </div>
-        <div class="post-meta-bottom">
-          <div class="post-tags">
-            {tags.map(tag => (
-              <a href={`/tags/${tag.toLowerCase()}/`} class="post-tag">
-                {tag}
-              </a>
-            ))}
+            <span class="post-author">Paulo Moura</span>
           </div>
         </div>
       </header>
