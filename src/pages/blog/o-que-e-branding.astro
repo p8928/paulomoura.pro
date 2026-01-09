@@ -37,7 +37,17 @@ const relatedPosts = allPosts
 <BlogPostGradientLayout title={`${post.data.title} - Blog - Moura | Marketing e Comunicação Digital`}>
 
   <BlogPost post={post} relatedPosts={relatedPosts} slot="rest-content">
-  <div class="post-content" slot="content">
+    <div class="reader-controls" slot="content">
+      <div class="reader-toolbar">
+        <button class="reader-btn" onclick="adjustFontSize(1)">A+</button>
+        <button class="reader-btn" onclick="adjustFontSize(-1)">A-</button>
+        <button class="reader-btn" onclick="toggleTheme()">☀️/🌙</button>
+        <button class="reader-btn" onclick="adjustLineHeight(1)">LH+</button>
+        <button class="reader-btn" onclick="adjustLineHeight(-1)">LH-</button>
+      </div>
+    </div>
+
+    <div class="post-content" slot="content">
 
     <p>
       <strong>Branding (e rebranding)</strong>. Termos que entraram no vocabulário de influenciadores digitais nos últimos meses. Para muitos, a criação de um logotipo, paleta de cores, tom e voz, entre outras coisas que até são incorporadas ao branding, porém são apenas a superfície. <strong>Marca é mais do que se vê, é o que se sente</strong>.
@@ -251,9 +261,75 @@ const relatedPosts = allPosts
     <ShareOverlay post={post} url={Astro.url.href} />
   </div>
 
+  <div class="reader-js" slot="rest-content">
+    <script is:inline>
+      let fontSize = 1.15;
+      let lineHeight = 1.7;
+      let isDarkMode = false;
+
+      function adjustFontSize(change) {
+        fontSize += change * 0.1;
+        if(fontSize < 0.9) fontSize = 0.9;
+        if(fontSize > 1.5) fontSize = 1.5;
+        document.querySelector('.post-content').style.fontSize = fontSize + 'rem';
+      }
+
+      function adjustLineHeight(change) {
+        lineHeight += change * 0.1;
+        if(lineHeight < 1.4) lineHeight = 1.4;
+        if(lineHeight > 2.0) lineHeight = 2.0;
+        document.querySelector('.post-content').style.lineHeight = lineHeight;
+      }
+
+      function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        if(isDarkMode) {
+          document.body.style.backgroundColor = '#1a1a1a';
+          document.body.style.color = '#e0e0e0';
+          document.querySelector('.post-content').style.backgroundColor = '#2a2a2a';
+          document.querySelector('.post-content').style.color = '#e0e0e0';
+        } else {
+          document.body.style.backgroundColor = '#ffffff';
+          document.body.style.color = '#000000';
+          document.querySelector('.post-content').style.backgroundColor = 'transparent';
+          document.querySelector('.post-content').style.color = '#333333';
+        }
+      }
+    </script>
+  </div>
+
 </BlogPostGradientLayout>
 
 <style>
+  .reader-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .reader-btn {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .reader-btn:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+
   @media (max-width: 768px) {
     .share-section {
       /* Mantém a seção visível em mobile, mas o botão já substituiu os ícones */
