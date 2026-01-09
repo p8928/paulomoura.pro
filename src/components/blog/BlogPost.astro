@@ -316,22 +316,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   box-shadow: none;
 }
 
-/* Mobile-specific image adjustments */
-@media (max-width: 768px) {
-  .post-featured-image {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .post-featured-image img {
-    height: auto;
-    max-height: 40vh; /* Reduced max-height for mobile */
-    width: 100%;
-  }
-}
 
 .image-caption {
   padding: 0.75rem 1rem;
@@ -508,33 +492,6 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
   background: linear-gradient(to bottom, #b0b0b0, #989898);
 }
 
-/* Mobile heading improvements */
-@media (max-width: 768px) {
-  .post-body h2 {
-    font-size: 1.6rem !important;
-    margin: 3rem 0 1.5rem 0 !important;
-  }
-
-  .post-body h3 {
-    font-size: 1.4rem !important;
-    margin: 2.5rem 0 1rem 0 !important;
-  }
-
-  .post-body h4 {
-    font-size: 1.2rem !important;
-    margin: 2rem 0 0.8rem 0 !important;
-  }
-
-  .post-body h5 {
-    font-size: 1.1rem !important;
-    margin: 1.8rem 0 0.6rem 0 !important;
-  }
-
-  .post-body h6 {
-    font-size: 1rem !important;
-    margin: 1.5rem 0 0.5rem 0 !important;
-  }
-}
 
 .post-footer {
   padding-top: 2.5rem;
