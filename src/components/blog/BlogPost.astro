@@ -181,12 +181,19 @@ const imageAlt = image && image.alt ? image.alt : `Imagem de destaque para o art
 /* Garantir que o conteúdo principal tenha largura total em mobile */
 @media (max-width: 768px) {
   .main-content-area-full {
-    padding: 0 1.5rem;
+    padding: 0;
   }
 
   .blog-post-content {
     max-width: 100%;
-    padding: 0 1rem; /* Adiciona um pequeno padding nas laterais em mobile */
+    padding: 0;
+  }
+
+  /* Kindle-like reading experience */
+  .post-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
   }
 }
 
