@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import Navigation from '../components/nav/Navigation.astro'
 import ServicesDetails from '../components/sections/details/ServicesDetails.astro'
 import Footer from '../components/footer/Footer.astro'
+import ServiceSchema from '../components/schema/ServiceSchema.astro'
+import HomeSchema from '../components/schema/HomeSchema.astro'
 
 const pageTitle = "Serviços | Moura";
 const pageDescription = "Começamos por onde as agências param: a sua identidade. Construímos presença digital inconfundível que coloca sua marca em destaque no Google.";
@@ -10,6 +12,8 @@ const pageDescription = "Começamos por onde as agências param: a sua identidad
 
 <Layout title={pageTitle} description={pageDescription}>
   <Navigation slot="nav" />
+  <HomeSchema />
+  <ServiceSchema />
   <ServicesDetails slot="rest-content" />
   <Footer slot="rest-content" />
 </Layout>
