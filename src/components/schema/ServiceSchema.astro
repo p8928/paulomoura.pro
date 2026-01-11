@@ -1,0 +1,98 @@
+---
+// src/components/schema/ServicesPageSchema.astro
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://paulomoura.pro/servicos/#webpage",
+      "url": "https://paulomoura.pro/servicos",
+      "name": "Serviços Brand-Driven | MOURA — Branding & Marketing Digital",
+      "description": "Portfólio de soluções de vanguarda: Branding Digital, Web Experience com Astro e SEO focado em autoridade de marca.",
+      "breadcrumb": { "@id": "https://paulomoura.pro/servicos/#breadcrumb" },
+      "isPartOf": { "@id": "https://paulomoura.pro/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://paulomoura.pro/servicos/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://paulomoura.pro/" },
+        { "@type": "ListItem", "position": 2, "name": "Serviços" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "provider": { "@id": "https://paulomoura.pro/#organization" },
+      "name": "Metodologia Brand-Driven",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catálogo de Soluções MOURA",
+        "itemListElement": [
+          // 1. BRANDING DIGITAL
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Branding Digital",
+              "description": "Construção de identidade e tom de voz para reconhecimento instantâneo.",
+              "audience": { "@type": "Audience", "audienceType": "Empresas iniciando presença digital ou buscando reposicionamento" },
+              "serviceOutput": "Guia de Identidade Digital (Brand Book), Sistema visual completo e Assets prontos."
+            }
+          },
+          // 2. WEB EXPERIENCE
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Web Experience (Astro/Next.js)",
+              "description": "Sites ultrarrápidos com nota 100 no PageSpeed. Design contemporâneo e arquitetura escalável.",
+              "offers": {
+                "@type": "Offer",
+                "description": "Desenvolvimento em 8 a 16 semanas"
+              },
+              "serviceOutput": "Site de alta performance, Documentação técnica e 30 dias de suporte."
+            }
+          },
+          // 3. SEO
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brand-Driven SEO",
+              "description": "Visibilidade orgânica sustentável através de E-E-A-T e autoridade temática.",
+              "serviceType": "Consultoria Contínua",
+              "review": {
+                "@type": "Review",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "author": { "@type": "Organization", "name": "MOURA" }
+              }
+            }
+          },
+          // 4. GROWTH STRATEGY
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Growth Strategy",
+              "description": "Roadmap estratégico baseado em dados e metodologias científicas (OKRs, ICE framework).",
+              "serviceOutput": "Documento estratégico (50-80 páginas), Roadmap visual e 6 meses de suporte."
+            }
+          },
+          // 5. TRUST ADVISEMENT
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Trust Advisement",
+              "description": "Consultoria estratégica 'on demand' para CMOs e CTOs.",
+              "audience": { "@type": "Audience", "audienceType": "Lideranças C-Level e donos de empresas em transição digital" }
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />

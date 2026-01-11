@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is an Astro-based website for "Moura | Marketing e Comunicação Digital". The site is built using the Astro framework, which generates static HTML, CSS, and JavaScript. It utilizes several modern web technologies for enhanced interactivity and visual appeal.
+This is an Astro-based website for "Moura | Branding & Marketing Digital". The site is built using the Astro framework, which generates static HTML, CSS, and JavaScript. It utilizes several modern web technologies for enhanced interactivity and visual appeal.
 
 ### Core Technologies
 
