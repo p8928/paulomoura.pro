@@ -1,0 +1,737 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/nav/Navigation.astro';
+import Footer from '../components/footer/Footer.astro';
+
+const domain = 'kloutseguros.com.br';
+const pageSpeedUrl = 'https://pagespeed.web.dev/analysis/https-kloutseguros-com-br/13e65x8sxl?form_factor=mobile';
+
+const scores = [
+  { label: 'Desempenho', value: '99,25', progress: '99.25' },
+  { label: 'Acessibilidade', value: '100', progress: '100' },
+  { label: 'Práticas recomendadas', value: '100', progress: '100' },
+  { label: 'SEO', value: '100', progress: '100' }
+];
+---
+
+<Layout
+  title={`M-HS validado para ${domain} | Moura High Standards`}
+  description={`Confirmação do selo M-HS, o selo High Standards de Paulo Moura, emitido para ${domain}. Entenda as tecnologias e metodologias Brand-Driven aplicadas ao site.`}
+>
+  <Navigation slot="nav" />
+
+  <div slot="rest-content">
+    <main class="mhs-page">
+      <section class="mhs-hero">
+        <div class="noise-overlay"></div>
+        <div class="mhs-watermark" aria-hidden="true">M-HS</div>
+        <div class="mhs-hero__content">
+          <p class="mhs-label">Moura High Standards</p>
+          <h1>Selo M-HS validado para {domain}</h1>
+          <p class="mhs-hero__intro">
+            Esta página confirma que o badge M-HS exibido em {domain} pertence a esse projeto e está vinculado aos critérios Moura High Standards de Paulo Moura: tecnologia moderna, direção estratégica de marca, performance e prontidão para o SEO moderno.
+          </p>
+        </div>
+      </section>
+
+      <section class="mhs-confirmation" aria-label="Confirmação do selo">
+        <div class="mhs-confirmation__item">
+          <span>Status</span>
+          <strong>Selo M-HS ativo e verificável</strong>
+        </div>
+        <div class="mhs-confirmation__item">
+          <span>Domínio validado</span>
+          <strong>{domain}</strong>
+        </div>
+        <div class="mhs-confirmation__item">
+          <span>Origem do clique</span>
+          <strong>Badge M-HS exibido em {domain}</strong>
+        </div>
+        <div class="mhs-confirmation__item">
+          <span>Padrão aplicado</span>
+          <strong>Moura High Standards</strong>
+        </div>
+      </section>
+
+      <section class="mhs-badge-identification" aria-label="Identificação visual do badge M-HS">
+        <div class="mhs-badge-copy">
+          <p class="mhs-label">Badge verificado</p>
+          <h2>Este é o selo que identifica um projeto Moura High Standards.</h2>
+          <p>
+            Em sites desenvolvidos ou auditados por Paulo Moura, o badge aparece no footer como assinatura técnica. Ao ser clicado, ele deve conduzir a uma página de validação como esta, vinculada ao domínio específico do cliente.
+          </p>
+        </div>
+
+        <div class="mhs-badge-showcase">
+          <div class="footer-credit-demo" aria-label="Exemplo do badge M-HS no footer">
+            <div class="credit-badge">
+              <div class="hs-badge" role="img" aria-label="Moura High Standards">
+                <div class="hs-content-wrap">
+                  <div class="hs-content">
+                    <div class="hs-text">HS</div>
+                    <div class="hs-divider"></div>
+                  </div>
+                  <p class="high-standards">High<br />Standards</p>
+                </div>
+              </div>
+            </div>
+            <span class="credit-text">MOURA</span>
+          </div>
+        </div>
+      </section>
+
+      <article class="mhs-content">
+        <section class="mhs-section">
+          <p class="mhs-lead">
+            Em termos simples: o M-HS não é apenas uma assinatura visual no footer. Ele é uma confirmação verificável de que {domain} passou por um processo de desenvolvimento orientado por performance, experiência do usuário, consistência de marca e clareza de comunicação.
+          </p>
+        </section>
+
+        <section class="mhs-section mhs-grid">
+          <div>
+            <p class="mhs-label">O que o selo confirma</p>
+            <h2>Uma camada técnica e estratégica acima do comum.</h2>
+          </div>
+          <div class="mhs-copy">
+            <p>
+              O selo High Standards identifica projetos digitais criados ou auditados dentro dos padrões de Paulo Moura. Ele indica que {domain} recebeu uma camada técnica e estratégica orientada por qualidade superior: estrutura moderna, interface pensada para pessoas reais, performance como critério de valor e conteúdo organizado para ser compreendido por usuários, motores de busca e sistemas de inteligência artificial.
+            </p>
+            <p>
+              Ao clicar no badge e chegar aqui, você confirma que o selo exibido pertence ao projeto específico que redirecionou você para esta página de verificação em paulomoura.pro.
+            </p>
+          </div>
+        </section>
+
+        <section class="mhs-section mhs-grid">
+          <div>
+            <p class="mhs-label">Tecnologia aplicada</p>
+            <h2>Arquitetura leve, interatividade precisa e experiência refinada.</h2>
+          </div>
+          <div class="mhs-copy">
+            <p>
+              O site foi construído com Astro, um framework moderno voltado para sites rápidos, leves e bem estruturados. O Astro permite entregar grande parte do conteúdo como HTML otimizado, reduzindo a quantidade de JavaScript enviada ao navegador.
+            </p>
+            <p>
+              Nas partes que exigem interatividade real, o projeto utiliza Svelte. A experiência também aplica GSAP, ScrollTrigger e Lenis com critério, criando movimento, ritmo e fluidez sem transformar o site em uma aplicação pesada.
+            </p>
+            <p>
+              O conjunto inclui TypeScript, Tailwind CSS, fontes locais otimizadas, preload de recursos críticos, componentes reutilizáveis e uma estrutura que separa conteúdo, layout, componentes e comportamento.
+            </p>
+          </div>
+        </section>
+
+        <section class="mhs-section mhs-performance">
+          <div class="mhs-performance__header">
+            <p class="mhs-label">Core Web Vitals</p>
+            <h2>Performance como evidência de qualidade.</h2>
+            <p>
+              Um bom site precisa abrir rápido, responder sem atrito, manter estabilidade visual e conduzir a pessoa com clareza. Estes indicadores simulam a leitura do PageSpeed Insights para o projeto validado.
+            </p>
+          </div>
+
+          <div class="mhs-score-grid" aria-label="Pontuações do PageSpeed Insights">
+            {scores.map((score) => (
+              <div class="mhs-score-card">
+                <div
+                  class="mhs-score-ring"
+                  style={`--score:${score.progress}`}
+                  aria-label={`${score.label}: ${score.value}`}
+                >
+                  <svg viewBox="0 0 120 120" aria-hidden="true">
+                    <circle class="mhs-score-track" cx="60" cy="60" r="52" pathLength="100"></circle>
+                    <circle class="mhs-score-progress" cx="60" cy="60" r="52" pathLength="100"></circle>
+                  </svg>
+                  <span>{score.value}</span>
+                </div>
+                <h3>{score.label}</h3>
+              </div>
+            ))}
+          </div>
+
+          <a class="mhs-pagespeed-link" href={pageSpeedUrl} target="_blank" rel="noopener noreferrer">
+            Verificável via Google PageSpeed Insights
+          </a>
+        </section>
+
+        <section class="mhs-section mhs-grid">
+          <div>
+            <p class="mhs-label">Metodologia Brand-Driven</p>
+            <h2>O site como ativo central de presença digital.</h2>
+          </div>
+          <div class="mhs-copy">
+            <p>
+              O M-HS também confirma a aplicação de metodologias Brand-Driven. Isso significa que escolhas técnicas, visuais e de conteúdo partem da marca: seu posicionamento, público, autoridade, tom de voz, percepção de valor e ação que o usuário precisa conseguir realizar.
+            </p>
+            <p>
+              Para o SEO moderno, esse ponto é decisivo. Motores de busca e IAs procuram sinais de clareza, consistência, utilidade, confiabilidade e contexto. Um site Brand-Driven organiza esses sinais com mais força, especialmente quando a marca precisa sustentar uma percepção premium sem depender de excesso visual.
+            </p>
+          </div>
+        </section>
+
+        <section class="mhs-section mhs-closing">
+          <blockquote>
+            O selo M-HS em {domain} confirma a aplicação do padrão High Standards de Paulo Moura: tecnologia moderna, experiência pensada para pessoas, performance orientada por Core Web Vitals e metodologia Brand-Driven para transformar o site em um ativo real de comunicação, autoridade e percepção premium.
+          </blockquote>
+        </section>
+      </article>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .mhs-page {
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    overflow: hidden;
+  }
+
+  .mhs-hero {
+    min-height: 78vh;
+    padding: 8rem var(--space-2xl) var(--space-4xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #111 100%);
+    color: var(--color-white);
+  }
+
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .mhs-watermark {
+    position: absolute;
+    inset: auto 0 6%;
+    text-align: center;
+    font-family: var(--font-family-heading);
+    font-size: clamp(4rem, 12vw, 12rem);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+    color: rgba(255, 255, 255, 0.035);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .mhs-hero__content {
+    width: min(760px, 100%);
+    margin-inline: auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mhs-label {
+    color: var(--color-accent);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wider);
+    line-height: var(--line-height-normal);
+    margin: 0 0 var(--space-lg);
+    text-transform: uppercase;
+  }
+
+  .mhs-hero h1 {
+    color: var(--color-white);
+    font-size: clamp(2rem, 4.2vw, 3.7rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    margin: 0 auto var(--space-xl);
+    text-transform: uppercase;
+    max-width: 18ch;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    text-wrap: balance;
+  }
+
+  .mhs-hero__intro {
+    color: #d8d8d8;
+    font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-relaxed);
+    margin: 0 auto;
+    max-width: 64ch;
+  }
+
+  .mhs-confirmation {
+    width: min(1080px, calc(100% - 2rem));
+    margin: calc(-1 * var(--space-3xl)) auto var(--space-5xl);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    z-index: 3;
+  }
+
+  .mhs-confirmation__item {
+    padding: var(--space-xl);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .mhs-confirmation__item:last-child {
+    border-right: 0;
+  }
+
+  .mhs-confirmation__item span {
+    display: block;
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+  }
+
+  .mhs-confirmation__item strong {
+    display: block;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+  }
+
+  .mhs-badge-identification {
+    width: min(1080px, calc(100% - 2rem));
+    margin: 0 auto var(--space-5xl);
+    padding: var(--space-2xl);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+    gap: var(--space-3xl);
+    align-items: center;
+    background: linear-gradient(135deg, #101010 0%, #050505 100%);
+    border: 1px solid rgba(192, 178, 131, 0.22);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mhs-badge-identification::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 100% 9px;
+    pointer-events: none;
+    opacity: 0.35;
+  }
+
+  .mhs-badge-copy,
+  .mhs-badge-showcase {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mhs-badge-copy h2 {
+    color: var(--color-white);
+    font-size: clamp(1.45rem, 3vw, 2.35rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    margin: 0 0 var(--space-lg);
+    text-transform: uppercase;
+  }
+
+  .mhs-badge-copy p:not(.mhs-label) {
+    color: #cfcfcf;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .mhs-badge-showcase {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-credit-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .credit-badge {
+    margin-bottom: 0;
+  }
+
+  .hs-badge {
+    position: relative;
+    width: 56px;
+    padding: 4px 6px;
+    background: linear-gradient(to bottom, #0a0a0a, #000, #0a0a0a);
+    color: #fff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    border-radius: 6px;
+    transition: all 0.4s ease;
+  }
+
+  .hs-badge::before {
+    content: "M";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    font-size: 280px;
+    font-weight: 700;
+    line-height: 1;
+    user-select: none;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 2px), linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.1) 100%);
+    -webkit-background-clip: text, text;
+    background-clip: text, text;
+    box-shadow: inset 0 0 60px rgba(220, 38, 38, 0.15);
+    filter: drop-shadow(0 0 40px rgba(220, 38, 38, 0.4));
+    opacity: 1;
+    transition: box-shadow 0.4s ease, filter 0.4s ease;
+  }
+
+  .hs-badge:hover {
+    border-color: rgba(220, 38, 38, 0.4);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 8px 20px rgba(220, 38, 38, 0.1);
+  }
+
+  .hs-content-wrap {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .hs-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hs-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.5), 0 4px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: -0.05em;
+    font-family: var(--font-family-primary);
+    line-height: 1;
+  }
+
+  .hs-divider {
+    width: 24px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #dc2626, transparent);
+    box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+    transition: all 0.4s ease;
+  }
+
+  .high-standards {
+    font-size: 5px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+    color: #e4e4e7;
+    margin: 0;
+  }
+
+  .credit-text {
+    font-family: var(--font-family-primary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: hsl(0, 0%, 88%);
+    background: linear-gradient(180deg, hsl(0, 0%, 96%) 0%, hsl(0, 0%, 82%) 48%, hsl(214, 10%, 68%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.28em;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 0 0 14px hsla(0, 0%, 100%, 0.08), 0 0 28px hsla(214, 18%, 82%, 0.08);
+  }
+
+  .mhs-content {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding-bottom: var(--space-5xl);
+  }
+
+  .mhs-section {
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .mhs-section:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .mhs-lead {
+    max-width: 34ch;
+    margin: 0 auto;
+    color: var(--color-text-primary);
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.45rem, 2.8vw, 2.55rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.04em;
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .mhs-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  .mhs-grid h2,
+  .mhs-performance h2 {
+    font-size: clamp(1.55rem, 3.2vw, 2.9rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .mhs-copy p,
+  .mhs-performance__header p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-relaxed);
+    margin: 0 0 var(--space-lg);
+  }
+
+  .mhs-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mhs-performance {
+    text-align: center;
+  }
+
+  .mhs-performance__header {
+    max-width: 760px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .mhs-performance__header .mhs-label {
+    margin-bottom: var(--space-md);
+  }
+
+  .mhs-performance__header h2 {
+    margin-bottom: var(--space-xl);
+  }
+
+  .mhs-score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin: 0 auto var(--space-xl);
+  }
+
+  .mhs-score-card {
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(192, 178, 131, 0.24);
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.045);
+    transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  }
+
+  .mhs-score-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(192, 178, 131, 0.58);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.07);
+  }
+
+  .mhs-score-ring {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto var(--space-md);
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  .mhs-score-ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    overflow: visible;
+  }
+
+  .mhs-score-track,
+  .mhs-score-progress {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .mhs-score-track {
+    stroke: rgba(192, 178, 131, 0.18);
+    stroke-width: 1.25;
+  }
+
+  .mhs-score-progress {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    filter: drop-shadow(0 0 4px rgba(192, 178, 131, 0.28));
+    animation: drawScore 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  }
+
+  .mhs-score-ring::after {
+    content: "";
+    position: absolute;
+    inset: 13px;
+    border: 1px solid rgba(192, 178, 131, 0.12);
+    border-radius: 50%;
+  }
+
+  .mhs-score-ring span {
+    color: var(--color-accent-accessible);
+    font-family: var(--font-family-heading);
+    font-size: 1.55rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes drawScore {
+    to {
+      stroke-dashoffset: calc(100 - var(--score));
+    }
+  }
+
+  .mhs-score-card:nth-child(2) .mhs-score-progress { animation-delay: 0.08s; }
+
+  .mhs-score-card:nth-child(3) .mhs-score-progress { animation-delay: 0.16s; }
+
+  .mhs-score-card:nth-child(4) .mhs-score-progress { animation-delay: 0.24s; }
+
+  .mhs-score-card h3 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wider);
+    line-height: var(--line-height-normal);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .mhs-pagespeed-link {
+    display: inline-block;
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-wide);
+    text-decoration: none;
+  }
+
+  .mhs-pagespeed-link:hover {
+    color: var(--color-accent-accessible);
+  }
+
+  .mhs-closing {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mhs-closing blockquote {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 0 0 var(--space-xl);
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.03em;
+    line-height: var(--line-height-normal);
+  }
+
+  @media (max-width: 980px) {
+    .mhs-confirmation,
+    .mhs-score-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mhs-confirmation__item:nth-child(2) {
+      border-right: 0;
+    }
+
+    .mhs-confirmation__item:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .mhs-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .mhs-hero {
+      min-height: 84vh;
+      padding: 7rem var(--space-md) var(--space-4xl);
+    }
+
+    .mhs-hero h1 {
+      font-size: clamp(1.85rem, 8vw, 2.7rem);
+      max-width: 16ch;
+    }
+
+    .mhs-confirmation,
+    .mhs-score-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mhs-confirmation__item {
+      border-right: 0;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-lg);
+    }
+
+    .mhs-confirmation__item:last-child {
+      border-bottom: 0;
+    }
+
+    .mhs-section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .mhs-score-ring {
+      width: 104px;
+      height: 104px;
+    }
+  }
+</style>
