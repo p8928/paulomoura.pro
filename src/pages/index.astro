@@ -1,9 +1,11 @@
 ---
 import HomeHero from '@components/sections/home/HomeHero.astro';
+import OffWhiteSection from '@components/sections/home/OffWhiteSection.astro';
 import { brand } from '@data/brand';
 import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Brand-Driven boutique digital" description={brand.promise} showChrome={false}>
   <HomeHero />
+  <OffWhiteSection />
 </BaseLayout>
