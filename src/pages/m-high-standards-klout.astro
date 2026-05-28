@@ -725,6 +725,35 @@ const scores = [
       border-bottom: 0;
     }
 
+    .mhs-badge-identification {
+      width: min(100% - 1rem, 34rem);
+      padding: var(--space-xl) var(--space-lg);
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: stretch;
+    }
+
+    .mhs-badge-copy h2 {
+      font-size: clamp(1.55rem, 8vw, 2.15rem);
+      line-height: 1.05;
+      margin-bottom: var(--space-md);
+    }
+
+    .mhs-badge-copy p:not(.mhs-label) {
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-relaxed);
+      max-width: none;
+    }
+
+    .mhs-badge-showcase {
+      justify-content: flex-start;
+    }
+
+    .footer-credit-demo {
+      width: 100%;
+      padding: var(--space-lg);
+    }
+
     .mhs-section {
       padding: var(--space-3xl) 0;
     }
