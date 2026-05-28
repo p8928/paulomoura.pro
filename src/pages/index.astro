@@ -1,4 +1,5 @@
 ---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import HomeHero from '@components/sections/home/HomeHero.astro';
 import OffWhiteSection from '@components/sections/home/OffWhiteSection.astro';
 import { brand } from '@data/brand';
@@ -6,6 +7,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Brand-Driven boutique digital" description={brand.promise} showChrome={false}>
-  <HomeHero />
-  <OffWhiteSection />
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <div class="relative h-[200vh] bg-ivory">
+    <div class="sticky top-0 z-0 h-screen overflow-hidden">
+      <OffWhiteSection />
+    </div>
+    <div class="absolute inset-x-0 top-0 z-20 h-screen overflow-hidden">
+      <HomeHero />
+    </div>
+  </div>
 </BaseLayout>

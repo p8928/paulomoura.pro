@@ -3,13 +3,30 @@
 
   let open = $state(false);
   let lightSurface = $state(false);
+  let logoLink: HTMLAnchorElement;
+  let menuButton: HTMLButtonElement;
 
   onMount(() => {
     let frame = 0;
+    const hero = document.querySelector<HTMLElement>('[data-hero-surface]');
 
     const updateTheme = () => {
       frame = 0;
-      lightSurface = window.scrollY >= window.innerHeight - 96;
+
+      if (!hero || !logoLink || !menuButton) {
+        lightSurface = false;
+        return;
+      }
+
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const logoBox = logoLink.getBoundingClientRect();
+      const menuBox = menuButton.getBoundingClientRect();
+      const switchLine = Math.max(
+        logoBox.top + logoBox.height / 2,
+        menuBox.top + menuBox.height / 2
+      );
+
+      lightSurface = heroBottom <= switchLine;
     };
 
     const requestThemeUpdate = () => {
@@ -33,6 +50,7 @@
 </script>
 
 <a
+  bind:this={logoLink}
   href="/"
   aria-label="Moura - pagina inicial"
   class="fixed left-6 top-6 z-50 block transition duration-500 lg:left-10 lg:top-8"
@@ -41,6 +59,7 @@
 </a>
 
 <button
+  bind:this={menuButton}
   class="group fixed right-6 top-6 z-50 grid h-11 w-14 place-items-center lg:right-10 lg:top-8"
   type="button"
   aria-label={open ? 'Fechar menu' : 'Abrir menu'}
