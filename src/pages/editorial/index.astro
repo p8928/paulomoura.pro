@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('editorial', ({ data }) => !data.draft);
+---
+
+<BaseLayout title="Editorial">
+  <section class="mx-auto max-w-6xl px-5 pb-20 pt-32 lg:px-8">
+    <p class="text-sm uppercase tracking-[0.22em] text-wine">Editorial</p>
+    <h1 class="mt-5 font-serif text-6xl leading-tight">Ideias sobre marca, busca e presenca.</h1>
+    <div class="mt-12 grid gap-6">
+      {posts.length === 0 ? (
+        <p class="text-muted">Os primeiros textos editoriais serao publicados aqui.</p>
+      ) : (
+        posts.map((post) => (
+          <a class="border-t border-line py-6" href={`/editorial/${post.id}/`}>
+            <h2 class="font-serif text-3xl">{post.data.title}</h2>
+            <p class="mt-2 text-muted">{post.data.description}</p>
+          </a>
+        ))
+      )}
+    </div>
+  </section>
+</BaseLayout>

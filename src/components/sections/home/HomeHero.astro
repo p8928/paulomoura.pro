@@ -1,0 +1,11 @@
+---
+import HamburgerOverlay from '@components/navigation/HamburgerOverlay.svelte';
+---
+<section class="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(112,112,112,0.18),transparent_34%),radial-gradient(circle_at_82%_72%,rgba(111,38,61,0.16),transparent_30%),linear-gradient(135deg,#050505_0%,#101010_46%,#060606_100%)]">
+  <nav class="absolute left-6 top-6 z-10 flex items-center justify-start lg:left-10 lg:top-8" aria-label="Principal">
+    <a href="/" aria-label="Moura - pagina inicial" class="block">
+      <img src="/images/logo/main_logo_white.svg" alt="Moura" class="h-auto w-20 lg:w-24" />
+    </a>
+  </nav>
+  <HamburgerOverlay client:load />
+</section>

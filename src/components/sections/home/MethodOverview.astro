@@ -1,0 +1,23 @@
+---
+const methodSteps = [
+  'Diagnostico presencial e leitura de negocio',
+  'Branding e comunicacao estrategica',
+  'Site de alta performance',
+  'Google Business Profile otimizado',
+];
+---
+
+<section class="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:py-24">
+  <div>
+    <p class="text-sm uppercase tracking-[0.22em] text-wine">Metodo</p>
+    <h2 class="mt-4 font-serif text-5xl leading-tight">Quatro frentes, uma unica leitura de marca.</h2>
+  </div>
+  <div class="grid gap-6 md:grid-cols-2">
+    {methodSteps.map((item) => (
+      <article class="border-t border-line pt-5">
+        <h3 class="font-serif text-2xl">{item}</h3>
+        <p class="mt-3 text-sm leading-6 text-muted">Etapa integrada ao sistema Brand-Driven, evitando decisoes isoladas, genericas ou puramente esteticas.</p>
+      </article>
+    ))}
+  </div>
+</section>

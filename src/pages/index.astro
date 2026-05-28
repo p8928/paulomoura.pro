@@ -1,0 +1,9 @@
+---
+import HomeHero from '@components/sections/home/HomeHero.astro';
+import { brand } from '@data/brand';
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Brand-Driven boutique digital" description={brand.promise} showChrome={false}>
+  <HomeHero />
+</BaseLayout>

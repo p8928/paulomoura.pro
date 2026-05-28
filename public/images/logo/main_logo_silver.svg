@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="185.9034mm"
+   height="146.35657mm"
+   viewBox="0 0 185.9034 146.35657"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient1">
+      <stop
+         style="stop-color:#f7f7f7;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#ededed;stop-opacity:0.93118554;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="56.910126"
+       y1="104.59323"
+       x2="242.81351"
+       y2="104.59323"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,1.796371)" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-56.910125,-31.41494)">
+    <path
+       style="font-size:192px;font-family:Plaster;-inkscape-font-specification:Plaster;white-space:pre;fill:url(#linearGradient2);stroke-width:1.0558"
+       d="m 192.39439,33.211311 h 8.20564 q 33.55196,0 40.11647,26.864274 2.097,8.704024 2.097,20.094476 v 99.397819 h -50.41911 z m -67.65096,0 h 50.69263 V 179.56788 h -50.69263 z m -67.833304,0 H 107.60276 V 179.56788 H 56.910126 Z"
+       id="text1"
+       aria-label="M" />
+  </g>
+</svg>
