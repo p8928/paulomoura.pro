@@ -46,7 +46,7 @@
   });
 
   const darkMode = $derived(open || lightSurface);
-  const logoSrc = $derived(darkMode ? '/images/logo/main_logo_dark.svg' : '/images/logo/main_logo_white.svg');
+  const logoSrc = $derived(darkMode ? '/images/logo/main_logo_dark.svg' : '/images/logo/main_logo_silver.svg');
 </script>
 
 <a
@@ -69,13 +69,13 @@
 >
   <span class="relative block h-5 w-10" aria-hidden="true">
     <span
-      class={`absolute right-0 top-0 h-px transition-all duration-500 ease-out ${darkMode ? 'bg-moura-black' : 'bg-ivory'} ${open ? 'w-10 translate-y-[9px] rotate-45' : 'w-10 group-hover:w-8'}`}
+      class={`absolute right-0 top-0 h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-10 translate-y-[9px] rotate-45' : 'w-10 group-hover:w-8'}`}
     ></span>
     <span
-      class={`absolute right-0 top-[9px] h-px transition-all duration-500 ease-out ${darkMode ? 'bg-moura-black' : 'bg-ivory'} ${open ? 'w-0 opacity-0' : 'w-6 group-hover:w-10'}`}
+      class={`absolute right-0 top-[9px] h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-0 opacity-0' : 'w-6 group-hover:w-10'}`}
     ></span>
     <span
-      class={`absolute right-0 top-[18px] h-px transition-all duration-500 ease-out ${darkMode ? 'bg-moura-black' : 'bg-ivory'} ${open ? 'w-10 -translate-y-[9px] -rotate-45' : 'w-8 group-hover:w-5'}`}
+      class={`absolute right-0 top-[18px] h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-10 -translate-y-[9px] -rotate-45' : 'w-8 group-hover:w-5'}`}
     ></span>
   </span>
 </button>
@@ -85,3 +85,16 @@
   class={`fixed inset-0 z-40 bg-ivory transition duration-700 ease-out ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
   aria-hidden={!open}
 ></div>
+
+
+<style>
+  .hamburger-line-silver {
+    background: linear-gradient(105deg, #d2cec5 0%, #eee9df 42%, #c7c2b9 100%);
+    background-size: 120% 100%;
+    background-position: 50% 50%;
+  }
+
+  .hamburger-line-dark {
+    background: #090909;
+  }
+</style>

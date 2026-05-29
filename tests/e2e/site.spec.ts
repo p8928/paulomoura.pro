@@ -14,9 +14,9 @@ const routes = [
   { path: '/diagnostico', heading: 'Diagnostico inicial' },
 ];
 
-test('home renders as a blank reconstruction canvas', async ({ page }) => {
+test('home renders the hero wordmark', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveTitle(/Paulo Moura/);
+  await expect(page.getByRole('heading', { name: 'Moura' })).toBeVisible();
 });
 
 test.describe('site routes', () => {
