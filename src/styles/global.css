@@ -248,7 +248,7 @@ textarea {
 
 
 .hero-tagline {
-  margin-top: clamp(1.4rem, 2.8vw, 2.4rem);
+  margin-top: clamp(2rem, 4vw, 3.4rem);
   max-width: min(92vw, 58rem);
   font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
   font-size: clamp(0.72rem, 1.12vw, 1rem);
@@ -273,5 +273,88 @@ textarea {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+.moura-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.92rem 1.35rem;
+  border: 1px solid currentColor;
+  font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    background-color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.moura-button:hover {
+  transform: translateY(-1px);
+}
+
+.moura-button-light {
+  border-color: rgba(232, 227, 218, 0.46);
+  color: rgba(244, 239, 231, 0.88);
+  background-color: rgba(244, 239, 231, 0.045);
+}
+
+.moura-button-light:hover {
+  border-color: rgba(244, 239, 231, 0.82);
+  color: #080808;
+  background-color: rgba(244, 239, 231, 0.92);
+}
+
+.moura-button-dark {
+  border-color: rgba(8, 8, 8, 0.48);
+  color: rgba(8, 8, 8, 0.86);
+  background-color: rgba(8, 8, 8, 0.035);
+}
+
+.moura-button-dark:hover {
+  border-color: rgba(8, 8, 8, 0.9);
+  color: var(--moura-ivory);
+  background-color: rgba(8, 8, 8, 0.9);
+}
+
+.hero-cta {
+  margin-top: clamp(2rem, 3.6vw, 3rem);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: hero-cta-enter 1300ms cubic-bezier(0.16, 1, 0.3, 1) 1250ms forwards;
+}
+
+@keyframes hero-cta-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moura-button,
+  .moura-button:hover,
+  .hero-cta {
+    transform: none;
+  }
+
+  .hero-cta {
+    animation: none;
+    opacity: 1;
+    filter: none;
   }
 }
