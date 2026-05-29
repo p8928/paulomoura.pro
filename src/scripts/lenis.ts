@@ -16,5 +16,13 @@ if (!prefersReducedMotion) {
     window.requestAnimationFrame(raf);
   };
 
+  window.addEventListener('moura:scroll-lock', ((event: CustomEvent<boolean>) => {
+    if (event.detail) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }) as EventListener);
+
   window.requestAnimationFrame(raf);
 }
