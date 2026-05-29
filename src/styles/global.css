@@ -744,3 +744,213 @@ body.is-overlay-open {
     max-width: 10ch;
   }
 }
+
+
+.method-stack-section {
+  position: relative;
+  min-height: 340vh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(111, 38, 61, 0.18), transparent 34%),
+    radial-gradient(circle at 82% 70%, rgba(167, 124, 61, 0.08), transparent 30%),
+    linear-gradient(145deg, #050505 0%, #10100f 48%, #060606 100%);
+  color: var(--moura-ivory);
+  padding: clamp(5.5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(6rem, 10vw, 10rem);
+}
+
+.method-stack-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(21rem, 0.78fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+}
+
+.method-stack-intro {
+  position: sticky;
+  top: clamp(6.5rem, 10vw, 9rem);
+  display: grid;
+  align-content: start;
+  gap: clamp(1rem, 2vw, 1.8rem);
+  height: fit-content;
+  padding-bottom: 20vh;
+}
+
+.method-stack-kicker {
+  margin: 0;
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 231, 0.42);
+}
+
+.method-stack-intro h2 {
+  max-width: 9.5ch;
+  margin: 0;
+  font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: clamp(4rem, 9.6vw, 10.8rem);
+  font-weight: 100;
+  line-height: 0.9;
+  letter-spacing: 0;
+  color: rgba(244, 239, 231, 0.92);
+}
+
+.method-stack-intro p:not(.method-stack-kicker) {
+  max-width: min(86vw, 34rem);
+  margin: 0;
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(1.02rem, 1.32vw, 1.32rem);
+  font-weight: 300;
+  line-height: 1.52;
+  letter-spacing: 0.01em;
+  color: rgba(244, 239, 231, 0.62);
+}
+
+.method-stack-track {
+  display: grid;
+  gap: clamp(1.4rem, 2.8vw, 2.4rem);
+  padding-top: 26vh;
+  padding-bottom: 118vh;
+}
+
+.method-stack-layer {
+  position: sticky;
+  top: clamp(5rem, 7vw, 6.5rem);
+  display: grid;
+  min-height: clamp(21rem, 40vh, 29rem);
+  align-content: end;
+  gap: clamp(1.15rem, 1.9vw, 1.65rem);
+  border: 1px solid rgba(244, 239, 231, 0.14);
+  border-top-color: rgba(244, 239, 231, 0.26);
+  padding: clamp(1.9rem, 3.3vw, 3.1rem);
+  background:
+    linear-gradient(180deg, rgba(244, 239, 231, 0.045), rgba(244, 239, 231, 0.014)),
+    linear-gradient(145deg, rgba(18, 18, 17, 0.98), rgba(6, 6, 6, 0.99));
+  box-shadow:
+    0 -1.25rem 3.25rem rgba(0, 0, 0, 0.38),
+    0 1.5rem 4rem rgba(0, 0, 0, 0.24);
+}
+
+.method-stack-layer:first-child {
+  z-index: 1;
+}
+
+.method-stack-layer:nth-child(2) {
+  top: calc(clamp(5rem, 7vw, 6.5rem) + 4.5rem);
+  z-index: 2;
+}
+
+.method-stack-layer:nth-child(3) {
+  top: calc(clamp(5rem, 7vw, 6.5rem) + 9rem);
+  z-index: 3;
+}
+
+.method-stack-layer:nth-child(4) {
+  top: calc(clamp(5rem, 7vw, 6.5rem) + 13.5rem);
+  z-index: 4;
+}
+
+.method-stack-layer span {
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: rgba(167, 124, 61, 0.7);
+}
+
+.method-stack-layer h3 {
+  margin: 0;
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: rgba(244, 239, 231, 0.9);
+}
+
+.method-stack-layer p {
+  max-width: min(100%, 31rem);
+  margin: 0;
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(0.94rem, 1.02vw, 1.08rem);
+  font-weight: 300;
+  line-height: 1.62;
+  letter-spacing: 0.01em;
+  color: rgba(244, 239, 231, 0.58);
+}
+
+.method-stack-footer {
+  position: absolute;
+  inset-inline: clamp(1.5rem, 4vw, 4.5rem);
+  bottom: clamp(4rem, 7vw, 7rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 88rem;
+  margin-inline: auto;
+}
+
+.method-stack-footer p {
+  max-width: min(72vw, 34rem);
+  margin: 0;
+  border-left: 1px solid rgba(167, 124, 61, 0.34);
+  padding-left: clamp(1rem, 1.8vw, 1.5rem);
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(1rem, 1.24vw, 1.22rem);
+  font-weight: 300;
+  line-height: 1.52;
+  letter-spacing: 0.01em;
+  color: rgba(244, 239, 231, 0.64);
+}
+
+@media (max-width: 980px) {
+  .method-stack-section {
+    min-height: auto;
+  }
+
+  .method-stack-shell {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .method-stack-intro,
+  .method-stack-layer {
+    position: static;
+  }
+
+  .method-stack-intro {
+    padding-bottom: 0;
+  }
+
+  .method-stack-track {
+    padding-block: 0;
+  }
+
+  .method-stack-layer {
+    min-height: auto;
+    padding: 1.75rem;
+    box-shadow: none;
+  }
+
+  .method-stack-footer {
+    position: static;
+    display: grid;
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .method-stack-section {
+    padding-block: 6.5rem;
+  }
+
+  .method-stack-intro h2 {
+    max-width: 8.5ch;
+  }
+}

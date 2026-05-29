@@ -3,6 +3,7 @@
 
   let open = $state(false);
   let lightSurface = $state(false);
+  let darkSurface = $state(true);
   let logoLink: HTMLAnchorElement;
   let menuButton: HTMLButtonElement;
 
@@ -33,25 +34,33 @@
 
   onMount(() => {
     let frame = 0;
-    const hero = document.querySelector<HTMLElement>('[data-hero-surface]');
+    const getSurface = (x: number, y: number) => {
+      for (const element of document.elementsFromPoint(x, y)) {
+        const surface = element.closest<HTMLElement>('[data-nav-surface]');
+        if (surface) return surface;
+      }
+
+      return null;
+    };
 
     const updateTheme = () => {
       frame = 0;
 
-      if (!hero || !logoLink || !menuButton) {
+      if (!logoLink || !menuButton) {
+        darkSurface = true;
         lightSurface = false;
         return;
       }
 
-      const heroBottom = hero.getBoundingClientRect().bottom;
       const logoBox = logoLink.getBoundingClientRect();
       const menuBox = menuButton.getBoundingClientRect();
-      const switchLine = Math.max(
-        logoBox.top + logoBox.height / 2,
-        menuBox.top + menuBox.height / 2
-      );
+      const logoSurface = getSurface(logoBox.left + logoBox.width / 2, logoBox.top + logoBox.height / 2);
+      const menuSurface = getSurface(menuBox.left + menuBox.width / 2, menuBox.top + menuBox.height / 2);
+      const surface = menuSurface || logoSurface;
+      const navSurface = surface?.dataset.navSurface;
 
-      lightSurface = heroBottom <= switchLine;
+      darkSurface = navSurface !== 'light';
+      lightSurface = navSurface === 'light';
     };
 
     const requestThemeUpdate = () => {
@@ -71,6 +80,7 @@
   });
 
   const darkMode = $derived(open || lightSurface);
+  const lightMode = $derived(!open && darkSurface);
   const logoSrc = $derived(darkMode ? '/images/logo/main_logo_dark.svg' : '/images/logo/main_logo_silver.svg');
 
   $effect(() => {
@@ -106,13 +116,13 @@
 >
   <span class="relative block h-5 w-10" aria-hidden="true">
     <span
-      class={`absolute right-0 top-0 h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-10 translate-y-[9px] rotate-45' : 'w-10 group-hover:w-8'}`}
+      class={`absolute right-0 top-0 h-px transition-all duration-500 ease-out ${lightMode ? 'hamburger-line-silver' : 'hamburger-line-dark'} ${open ? 'w-10 translate-y-[9px] rotate-45' : 'w-10 group-hover:w-8'}`}
     ></span>
     <span
-      class={`absolute right-0 top-[9px] h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-0 opacity-0' : 'w-6 group-hover:w-10'}`}
+      class={`absolute right-0 top-[9px] h-px transition-all duration-500 ease-out ${lightMode ? 'hamburger-line-silver' : 'hamburger-line-dark'} ${open ? 'w-0 opacity-0' : 'w-6 group-hover:w-10'}`}
     ></span>
     <span
-      class={`absolute right-0 top-[18px] h-px transition-all duration-500 ease-out ${darkMode ? 'hamburger-line-dark' : 'hamburger-line-silver'} ${open ? 'w-10 -translate-y-[9px] -rotate-45' : 'w-8 group-hover:w-5'}`}
+      class={`absolute right-0 top-[18px] h-px transition-all duration-500 ease-out ${lightMode ? 'hamburger-line-silver' : 'hamburger-line-dark'} ${open ? 'w-10 -translate-y-[9px] -rotate-45' : 'w-8 group-hover:w-5'}`}
     ></span>
   </span>
 </button>
