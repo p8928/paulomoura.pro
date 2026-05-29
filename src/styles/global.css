@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: "Neue Haas Display";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/neue-haas-grotesk/woff2/haas-grot-disp-trial-45-light.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Outfit";
   font-style: normal;
   font-weight: 100;
@@ -219,7 +227,8 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-wordmark,
-  .hero-wordmark::after {
+  .hero-wordmark::after,
+  .hero-tagline {
     animation: none;
   }
 
@@ -228,5 +237,41 @@ textarea {
     transform: none;
     filter: none;
     background-position: 58% 50%;
+  }
+
+  .hero-tagline {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+
+.hero-tagline {
+  margin-top: clamp(1.4rem, 2.8vw, 2.4rem);
+  max-width: min(92vw, 58rem);
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-size: clamp(0.72rem, 1.12vw, 1rem);
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: clamp(0.18em, 0.42vw, 0.42em);
+  text-transform: uppercase;
+  color: rgba(232, 227, 218, 0.72);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hero-tagline-enter 1400ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards;
+}
+
+@keyframes hero-tagline-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 }
