@@ -427,7 +427,54 @@ body.is-overlay-open {
   overflow: hidden;
 }
 
+.brand-atmosphere {
+  position: relative;
+  overflow: clip;
+  background: var(--moura-ivory);
+}
+
+.brand-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(244, 239, 231, 0.9) 0%, rgba(244, 239, 231, 0.58) 44%, rgba(244, 239, 231, 0.24) 100%),
+    linear-gradient(180deg, rgba(244, 239, 231, 0.58) 0%, rgba(244, 239, 231, 0.08) 46%, rgba(244, 239, 231, 0.62) 100%);
+  pointer-events: none;
+}
+
+.brand-atmosphere > :not(.brand-atmosphere-image) {
+  position: relative;
+  z-index: 1;
+}
+
+.brand-atmosphere-image {
+  position: absolute;
+  z-index: 0;
+  top: clamp(42rem, 56vw, 58rem);
+  right: clamp(-16rem, -8vw, -6rem);
+  width: clamp(40rem, 56vw, 64rem);
+  height: clamp(118rem, 152vw, 172rem);
+  object-fit: cover;
+  opacity: 0.58;
+  filter: saturate(0.58) contrast(0.86) brightness(1.1);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .brand-atmosphere-image {
+    top: 48rem;
+    right: -18rem;
+    width: 34rem;
+    height: 96rem;
+    opacity: 0.22;
+  }
+}
+
 .brand-driven-shell {
+  position: relative;
+  z-index: 2;
   display: grid;
   width: 100%;
   max-width: 88rem;
@@ -604,8 +651,7 @@ body.is-overlay-open {
 
 .comprehension-section {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(244, 239, 231, 1) 0%, rgba(247, 244, 239, 1) 58%, rgba(239, 233, 224, 1) 100%);
+  background: transparent;
   color: var(--moura-black);
   padding: clamp(7rem, 11vw, 11rem) clamp(1.5rem, 4vw, 4.5rem);
 }
