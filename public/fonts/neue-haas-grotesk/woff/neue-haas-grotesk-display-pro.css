@@ -1,0 +1,129 @@
+/* neue-haas-grotesk-display-pro-95-black */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 900;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Black"), url(neue-haas-grotesk-display-pro-95-black.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-96-black-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 900;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-BlackItalic"), url(neue-haas-grotesk-display-pro-96-black-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-75-bold */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Bold"), url(neue-haas-grotesk-display-pro-75-bold.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-76-bold-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-BoldItalic"), url(neue-haas-grotesk-display-pro-76-bold-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-45-light */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 300;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Light"), url(neue-haas-grotesk-display-pro-45-light.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-46-light-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 300;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-LightItalic"), url(neue-haas-grotesk-display-pro-46-light-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-65-medium */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 500;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Mediu"), url(neue-haas-grotesk-display-pro-65-medium.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-66-medium-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 500;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-MediumItalic"), url(neue-haas-grotesk-display-pro-66-medium-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-55-roman */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Roman"), url(neue-haas-grotesk-display-pro-55-roman.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-56-roman-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-RomanItalic"), url(neue-haas-grotesk-display-pro-56-roman-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-35-thin */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 100;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-Thin"), url(neue-haas-grotesk-display-pro-35-thin.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-36-thin-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 100;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-ThinItalic"), url(neue-haas-grotesk-display-pro-36-thin-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-25-xthin */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-XThin"), url(neue-haas-grotesk-display-pro-25-xthin.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-26-xthin-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-XThinItalic"), url(neue-haas-grotesk-display-pro-26-xthin-italic.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-15-xxthin */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-XXThin"), url(neue-haas-grotesk-display-pro-15-xxthin.woff) format("woff");
+}
+/* neue-haas-grotesk-display-pro-16-xxthin-italic */
+@font-face {
+	font-family: "Neue Haas Grotesk Display Pro";
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("NeueHaasDisplay-XXThinItalic"), url(neue-haas-grotesk-display-pro-16-xxthin-italic.woff) format("woff");
+}
+
