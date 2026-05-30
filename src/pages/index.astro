@@ -4,6 +4,7 @@ import HomeHero from '@components/sections/home/HomeHero.astro';
 import OffWhiteSection from '@components/sections/home/OffWhiteSection.astro';
 import ComprehensionSection from '@components/sections/home/ComprehensionSection.astro';
 import MethodStackSection from '@components/sections/home/MethodStackSection.svelte';
+import QualifiedPresenceSection from '@components/sections/home/QualifiedPresenceSection.astro';
 import { brand } from '@data/brand';
 import BaseLayout from '@layouts/BaseLayout.astro';
 ---
@@ -38,4 +39,5 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     <ComprehensionSection />
   </div>
   <MethodStackSection client:load />
+  <QualifiedPresenceSection />
 </BaseLayout>

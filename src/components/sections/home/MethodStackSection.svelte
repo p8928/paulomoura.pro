@@ -93,7 +93,7 @@
         <p class="method-scroll-kicker">Método</p>
         <h2 id="method-stack-title">Da substância ao sistema.</h2>
         <p>
-          Brand-Driven organiza o que existe de verdadeiro no negócio e transforma essa substância em direção, linguagem, presença e performance.
+          Brand-Driven é um método para organizar o que existe de verdadeiro no negócio e fazer dessa substância a base da sua presença digital.
         </p>
       </div>
 
@@ -112,7 +112,7 @@
 
 <section data-nav-surface="dark" class="method-scroll-outro">
   <div class="method-scroll-outro-shell">
-    <p>O método não adiciona uma camada de comunicação sobre o negócio. Ele organiza o negócio para ser entendido com mais precisão.</p>
+    <p>Em vez de adicionar uma camada artificial de comunicação, o método organiza o negócio para ser compreendido com mais precisão e fidelidade pelo cliente certo.</p>
     <a class="moura-button moura-button-light" href="/diagnostico">Iniciar diagnóstico</a>
   </div>
 </section>
