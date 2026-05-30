@@ -113,7 +113,7 @@
 <section data-nav-surface="dark" class="method-scroll-outro">
   <div class="method-scroll-outro-shell">
     <p>Em vez de adicionar uma camada artificial de comunicação, o método organiza o negócio para ser compreendido com mais precisão e fidelidade pelo cliente certo.</p>
-    <a class="moura-button moura-button-light" href="/diagnostico">Iniciar diagnóstico</a>
+    <a class="moura-button moura-button-light" href="/diagnostico">Iniciar candidatura</a>
   </div>
 </section>
 
