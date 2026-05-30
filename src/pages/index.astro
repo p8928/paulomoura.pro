@@ -1,10 +1,10 @@
 ---
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
-import HomeHero from '@components/sections/home/HomeHero.astro';
-import OffWhiteSection from '@components/sections/home/OffWhiteSection.astro';
-import ComprehensionSection from '@components/sections/home/ComprehensionSection.astro';
-import MethodStackSection from '@components/sections/home/MethodStackSection.svelte';
-import QualifiedPresenceSection from '@components/sections/home/QualifiedPresenceSection.astro';
+import HomeSection01Hero from '@components/sections/home/HomeSection01Hero.astro';
+import HomeSection02BrandDriven from '@components/sections/home/HomeSection02BrandDriven.astro';
+import HomeSection03ValueCriteria from '@components/sections/home/HomeSection03ValueCriteria.astro';
+import HomeSection04MethodStack from '@components/sections/home/HomeSection04MethodStack.svelte';
+import HomeSection05QualifiedPresence from '@components/sections/home/HomeSection05QualifiedPresence.astro';
 import { brand } from '@data/brand';
 import BaseLayout from '@layouts/BaseLayout.astro';
 ---
@@ -29,15 +29,15 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     />
     <div class="relative h-[200vh]">
       <div class="sticky top-0 z-0 h-screen overflow-hidden">
-        <OffWhiteSection />
+        <HomeSection02BrandDriven />
       </div>
       <div class="absolute inset-x-0 top-0 z-20 h-screen overflow-hidden">
-        <HomeHero />
+        <HomeSection01Hero />
       </div>
     </div>
 
-    <ComprehensionSection />
+    <HomeSection03ValueCriteria />
   </div>
-  <MethodStackSection client:load />
-  <QualifiedPresenceSection />
+  <HomeSection04MethodStack client:load />
+  <HomeSection05QualifiedPresence />
 </BaseLayout>
