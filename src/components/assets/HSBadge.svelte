@@ -12,13 +12,11 @@
   $: badgeScale = sizeScale[size] * scale;
 </script>
 
-<div class="hs-badge" style={'--hs-scale: ' + badgeScale}>
-  <div class="hs-content-wrap">
-    <div class="hs-content">
-      <div class="hs-text">HS</div>
-      <div class="hs-divider"></div>
-    </div>
-    <p class="high-standards">High<br />Standards</p>
+<div class="hs-badge" style={'--hs-scale: ' + badgeScale} role="img" aria-label="Moura High Standards">
+  <div class="hs-badge-inner">
+    <div class="hs-mark">HS</div>
+    <div class="hs-divider"></div>
+    <p>High<br />Standards</p>
   </div>
 </div>
 
@@ -26,92 +24,96 @@
   .hs-badge {
     position: relative;
     width: calc(56px * var(--hs-scale));
-    padding: calc(4px * var(--hs-scale)) calc(6px * var(--hs-scale));
+    min-height: calc(60px * var(--hs-scale));
+    display: grid;
+    place-items: center;
     overflow: hidden;
-    border: 1px solid rgba(220, 38, 38, 0.58);
+    border: 1px solid rgba(220, 38, 38, 0.64);
     border-radius: calc(6px * var(--hs-scale));
-    background: linear-gradient(to bottom, #0a0a0a, #000, #0a0a0a);
+    background:
+      radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.12), transparent 28%),
+      radial-gradient(circle at 18% 82%, rgba(220, 38, 38, 0.2), transparent 34%),
+      linear-gradient(180deg, #101010 0%, #020202 50%, #0b0304 100%);
     color: #fff;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow:
+      0 26px 58px rgba(0, 0, 0, 0.26),
+      inset 0 0 42px rgba(220, 38, 38, 0.14);
     transition: all 0.4s ease;
   }
 
-  .hs-badge::before {
-    content: "M";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: transparent;
-    font-size: calc(280px * var(--hs-scale));
-    font-weight: 700;
-    line-height: 1;
-    user-select: none;
-    background:
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 2px),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.1) 100%);
-    -webkit-background-clip: text, text;
-    background-clip: text, text;
-    box-shadow: inset 0 0 60px rgba(220, 38, 38, 0.24);
-    filter: drop-shadow(0 0 40px rgba(220, 38, 38, 0.58));
-    opacity: 1;
-    transition: box-shadow 0.4s ease, filter 0.4s ease;
-  }
-
   .hs-badge:hover {
-    border-color: rgba(220, 38, 38, 0.58);
+    border-color: rgba(220, 38, 38, 0.86);
     transform: translateY(-2px) scale(1.03);
     box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.25),
-      0 8px 20px rgba(220, 38, 38, 0.18);
+      0 8px 20px rgba(220, 38, 38, 0.2),
+      inset 0 0 48px rgba(220, 38, 38, 0.18);
   }
 
-  .hs-content-wrap {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: calc(6px * var(--hs-scale));
+  .hs-badge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(118deg, transparent 0%, rgba(255, 255, 255, 0.1) 44%, transparent 56%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 2px);
+    opacity: 0.7;
   }
 
-  .hs-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(4px * var(--hs-scale));
-  }
-
-  .hs-text {
+  .hs-badge::after {
+    content: "M";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
     font-family: "Outfit", "Avenir Next", sans-serif;
-    font-size: calc(28px * var(--hs-scale));
+    font-size: calc(250px * var(--hs-scale) / 2.15);
     font-weight: 700;
     line-height: 1;
+    color: transparent;
+    background: linear-gradient(180deg, rgba(220, 38, 38, 0.18), rgba(244, 239, 231, 0.025));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .hs-badge-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    gap: calc(5px * var(--hs-scale));
+    padding: calc(5px * var(--hs-scale));
+  }
+
+  .hs-mark {
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: calc(28px * var(--hs-scale));
+    font-weight: 100;
+    line-height: 0.9;
     letter-spacing: -0.05em;
     color: #fff;
     text-shadow:
-      0 0 40px rgba(255, 255, 255, 0.3),
-      0 0 10px rgba(255, 255, 255, 0.5),
-      0 4px 8px rgba(0, 0, 0, 0.8);
+      0 0 20px rgba(255, 255, 255, 0.24),
+      0 0 16px rgba(220, 38, 38, 0.28),
+      0 5px 14px rgba(0, 0, 0, 0.78);
   }
 
   .hs-divider {
     width: calc(24px * var(--hs-scale));
-    height: calc(2px * var(--hs-scale));
+    height: 1px;
     background: linear-gradient(to right, transparent, #dc2626, transparent);
     box-shadow: 0 0 10px rgba(220, 38, 38, 0.72);
-    transition: all 0.4s ease;
   }
 
-  .high-standards {
+  .hs-badge p {
     margin: 0;
-    color: #e4e4e7;
-    font-size: calc(5px * var(--hs-scale));
-    line-height: 1.25;
-    letter-spacing: 0.35em;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: calc(5.3px * var(--hs-scale));
+    font-weight: 300;
+    line-height: 1.18;
+    letter-spacing: 0.34em;
     text-align: center;
     text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.84);
   }
 </style>

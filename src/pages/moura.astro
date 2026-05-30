@@ -1,0 +1,166 @@
+---
+import FooterCreditBadge from '@components/assets/FooterCreditBadge.svelte';
+import MSupremeBadge from '@components/assets/MSupremeBadge.svelte';
+import MStarBadge from '@components/assets/MStarBadge.svelte';
+import MIDBadge from '@components/assets/MIDBadge.svelte';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Moura"
+  description="Página institucional de Paulo Moura."
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main>
+    <section class="moura-blank-section" data-nav-surface="light" aria-label="Moura">
+    </section>
+
+    <section class="moura-badges-section" data-nav-surface="light" aria-labelledby="moura-badges-title">
+      <div class="moura-badges-shell">
+        <div class="moura-badges-heading">
+          <p>Badges provisórias</p>
+          <h2 id="moura-badges-title">Padrões de assinatura Moura.</h2>
+        </div>
+
+        <div class="moura-badges-grid">
+          <div class="moura-badge-card">
+            <span>M-HS</span>
+            <div class="moura-badge-stage">
+              <FooterCreditBadge
+                href="https://paulomoura.pro/m-high-standards-klout/"
+                label="MOURA High Standards"
+                text="MOURA"
+                badgeSize="large"
+                scale={1.08}
+                showText={false}
+              />
+            </div>
+          </div>
+
+          <div class="moura-badge-card">
+            <span>M-Supreme</span>
+            <div class="moura-badge-stage">
+              <MSupremeBadge scale={1.08} />
+            </div>
+          </div>
+
+          <div class="moura-badge-card">
+            <span>M-Star</span>
+            <div class="moura-badge-stage">
+              <MStarBadge scale={1.08} />
+            </div>
+          </div>
+
+          <div class="moura-badge-card">
+            <span>M-ID</span>
+            <div class="moura-badge-stage">
+              <MIDBadge scale={1.08} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .moura-blank-section {
+    min-height: 100vh;
+    background: var(--moura-paper);
+  }
+
+  .moura-badges-section {
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    background: var(--moura-paper);
+    padding: clamp(6rem, 11vw, 11rem) clamp(1.5rem, 4vw, 4.5rem);
+  }
+
+  .moura-badges-shell {
+    display: grid;
+    gap: clamp(3rem, 6vw, 5.5rem);
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+  }
+
+  .moura-badges-heading {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .moura-badges-heading p,
+  .moura-badge-card > span {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.46);
+  }
+
+  .moura-badges-heading h2 {
+    max-width: 12ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.1rem, 7vw, 8rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .moura-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid rgba(8, 8, 8, 0.1);
+    background: rgba(8, 8, 8, 0.1);
+  }
+
+  .moura-badge-card {
+    min-height: clamp(24rem, 36vw, 36rem);
+    display: grid;
+    align-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(167, 124, 61, 0.1), transparent 34%),
+      rgba(255, 253, 248, 0.68);
+  }
+
+  .moura-badge-stage {
+    display: grid;
+    min-height: 18rem;
+    place-items: center;
+  }
+
+  @media (max-width: 1180px) {
+    .moura-badges-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .moura-badges-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .moura-badge-card {
+      min-height: 22rem;
+    }
+  }
+</style>
