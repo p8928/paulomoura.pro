@@ -1,0 +1,827 @@
+---
+import FooterCreditBadge from '@components/assets/FooterCreditBadge.svelte';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const domain = 'kloutseguros.com.br';
+const pageSpeedUrl = 'https://pagespeed.web.dev/analysis/https-kloutseguros-com-br/13e65x8sxl?form_factor=mobile';
+
+const verificationItems = [
+  ['Status', 'Selo M-HS ativo e verificável'],
+  ['Domínio validado', domain],
+  ['Origem do clique', 'Badge M-HS exibido no site validado'],
+  ['Padrão aplicado', 'Moura High Standards'],
+];
+
+const accordionItems = [
+  {
+    number: '01',
+    label: 'Autenticidade',
+    title: 'O selo pertence ao domínio que trouxe você até aqui.',
+    copy: [
+      'Esta página confirma que o badge M-HS exibido em kloutseguros.com.br está vinculado a este projeto específico.',
+      'O clique no selo deve conduzir a uma página de validação em paulomoura.pro, com domínio, status e padrão aplicado claramente identificados.',
+    ],
+  },
+  {
+    number: '02',
+    label: 'Padrão técnico',
+    title: 'Estrutura moderna, leve e preparada para performance real.',
+    copy: [
+      'O projeto foi desenvolvido com Astro, entregando grande parte do conteúdo como HTML otimizado e reduzindo a dependência de JavaScript no navegador.',
+      'Nas áreas que exigem interatividade, o site utiliza Svelte, GSAP, ScrollTrigger e Lenis com critério, preservando fluidez sem comprometer velocidade.',
+    ],
+  },
+  {
+    number: '03',
+    label: 'Brand-Driven',
+    title: 'Decisões técnicas, visuais e editoriais partem da marca.',
+    copy: [
+      'O M-HS confirma uma lógica de construção orientada por posicionamento, público, autoridade, tom de voz, percepção de valor e ação esperada do usuário.',
+      'Para SEO moderno e sistemas de IA, isso organiza sinais de clareza, consistência, utilidade, confiabilidade e contexto.',
+    ],
+  },
+  {
+    number: '04',
+    label: 'Experiência',
+    title: 'Interface pensada para pessoas reais, não apenas para aparência.',
+    copy: [
+      'O selo indica que a experiência foi tratada como parte do valor do projeto: leitura, ritmo, estabilidade visual, responsividade e clareza de navegação.',
+      'O objetivo é transformar o site em um ativo de comunicação e confiança, não em uma vitrine isolada.',
+    ],
+  },
+];
+
+const scores = [
+  { label: 'Desempenho', value: '99,86', progress: '99.86' },
+  { label: 'Acessibilidade', value: '100', progress: '100' },
+  { label: 'Práticas recomendadas', value: '100', progress: '100' },
+  { label: 'SEO', value: '100', progress: '100' },
+];
+---
+
+<BaseLayout
+  title="M-HS validado para kloutseguros.com.br"
+  description="Confirmação do selo Moura High Standards emitido para kloutseguros.com.br. Verifique status, domínio, critérios técnicos e metodologia aplicada."
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="mhs-page">
+    <section class="mhs-hero" data-nav-surface="dark" aria-labelledby="mhs-title">
+      <div class="mhs-shell mhs-hero-shell">
+        <div class="mhs-hero-copy">
+          <p class="mhs-kicker">Moura High Standards</p>
+          <h1 id="mhs-title">Autenticidade validada.</h1>
+        </div>
+
+        <div class="mhs-hero-verification" aria-label="Confirmação do selo">
+          {verificationItems.map(([label, value]) => (
+            <div class="mhs-hero-verification-item">
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mhs-badge-section" data-nav-surface="light" aria-labelledby="badge-title">
+      <div class="mhs-shell mhs-badge-layout">
+        <div class="mhs-badge-copy">
+          <p class="mhs-kicker mhs-kicker-dark">Badge verificado</p>
+          <h2 id="badge-title">Uma assinatura técnica, não um ornamento.</h2>
+          <p>
+            Em sites desenvolvidos ou auditados por Paulo Moura, o badge aparece como assinatura verificável. Ao ser clicado, ele deve conduzir a uma página de validação como esta, vinculada ao domínio específico do cliente.
+          </p>
+        </div>
+
+        <div class="mhs-badge-stage">
+          <FooterCreditBadge
+            href="https://paulomoura.pro/m-high-standards-klout/"
+            label="MOURA High Standards"
+            text="MOURA"
+            badgeSize="large"
+            scale={1.08}
+            showText={false}
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="mhs-accordion-section" data-nav-surface="dark" aria-labelledby="accordion-title">
+      <div class="mhs-shell mhs-accordion-layout">
+        <div class="mhs-accordion-heading">
+          <p class="mhs-kicker">O que o selo confirma</p>
+          <h2 id="accordion-title">Critérios reunidos em um único padrão.</h2>
+        </div>
+
+        <div class="mhs-accordion-list">
+          {accordionItems.map((item, index) => (
+            <details class="mhs-accordion-item" open={index === 0}>
+              <summary>
+                <span>{item.number}</span>
+                <div>
+                  <small>{item.label}</small>
+                  <strong>{item.title}</strong>
+                </div>
+                <i class="mhs-accordion-indicator" aria-hidden="true"></i>
+              </summary>
+              <div class="mhs-accordion-content">
+                {item.copy.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mhs-performance" data-nav-surface="light" aria-labelledby="performance-title">
+      <div class="mhs-shell">
+        <div class="mhs-performance-header">
+          <p class="mhs-kicker mhs-kicker-dark">Core Web Vitals</p>
+          <h2 id="performance-title">Performance como evidência de qualidade.</h2>
+          <p>
+            Um bom site precisa abrir rápido, responder sem atrito, manter estabilidade visual e conduzir a pessoa com clareza. Estes indicadores registram a leitura de performance do projeto validado.
+          </p>
+        </div>
+
+        <div class="mhs-score-grid" aria-label="Pontuações do PageSpeed Insights">
+          {scores.map((score) => (
+            <div class="mhs-score-card">
+              <div class="mhs-score-ring" style={'--score: ' + score.progress} aria-label={score.label + ': ' + score.value}>
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <circle class="mhs-score-track" cx="60" cy="60" r="52" pathLength="100"></circle>
+                  <circle class="mhs-score-progress" cx="60" cy="60" r="52" pathLength="100"></circle>
+                </svg>
+                <span>{score.value}</span>
+              </div>
+              <h3>{score.label}</h3>
+            </div>
+          ))}
+        </div>
+
+        <a class="mhs-proof-link" href={pageSpeedUrl} target="_blank" rel="noopener noreferrer">
+          Verificável via Google PageSpeed Insights
+        </a>
+      </div>
+    </section>
+
+    <section class="mhs-closing" data-nav-surface="dark" aria-label="Síntese da validação">
+      <div class="mhs-shell mhs-closing-layout">
+        <div class="mhs-closing-copy">
+          <p class="mhs-kicker">Síntese</p>
+          <blockquote>
+            O selo M-HS em {domain} confirma a aplicação do padrão High Standards de Paulo Moura: tecnologia moderna, experiência pensada para pessoas, performance orientada por Core Web Vitals e metodologia Brand-Driven.
+          </blockquote>
+        </div>
+
+        <div class="mhs-closing-status" aria-label="Status da validação">
+          <span>Status</span>
+          <strong>Verificação ativa em paulomoura.pro</strong>
+          <a href="#badge-title">Conhecer o padrão M-HS</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .mhs-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .mhs-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .mhs-kicker {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .mhs-kicker-dark {
+    color: rgba(8, 8, 8, 0.45);
+  }
+
+  .mhs-hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    padding-block: clamp(8rem, 12vw, 11rem) clamp(4.5rem, 8vw, 7.5rem);
+    background:
+      radial-gradient(circle at 78% 20%, rgba(167, 124, 61, 0.15), transparent 28%),
+      radial-gradient(circle at 18% 78%, rgba(111, 38, 61, 0.2), transparent 34%),
+      linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
+    color: var(--moura-ivory);
+  }
+
+  .mhs-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(244, 239, 231, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 239, 231, 0.025) 1px, transparent 1px);
+    background-size: 100% 9rem, 12rem 100%;
+    opacity: 0.22;
+  }
+
+  .mhs-hero-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4.75rem);
+  }
+
+  .mhs-hero-copy {
+    display: grid;
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+  }
+
+  .mhs-hero h1 {
+    max-width: 12ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(4.1rem, 9.6vw, 11.4rem);
+    font-weight: 100;
+    line-height: 0.9;
+    letter-spacing: 0;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .mhs-hero-verification {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(1.25rem, 3vw, 3.5rem);
+    row-gap: 1px;
+    border-top: 1px solid rgba(244, 239, 231, 0.16);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.1);
+  }
+
+  .mhs-hero-verification-item {
+    position: relative;
+    min-height: clamp(5.25rem, 6.4vw, 6.5rem);
+    display: grid;
+    align-content: space-between;
+    gap: 0.9rem;
+    padding: clamp(0.9rem, 1.2vw, 1.1rem) 0;
+  }
+
+  .mhs-hero-verification-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: clamp(0.9rem, 1.2vw, 1.1rem);
+    right: calc(clamp(1.25rem, 3vw, 3.5rem) * -0.5);
+    bottom: clamp(0.9rem, 1.2vw, 1.1rem);
+    width: 1px;
+    background: rgba(244, 239, 231, 0.1);
+  }
+
+  .mhs-hero-verification-item span,
+  .mhs-proof-link {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mhs-hero-verification-item span {
+    color: rgba(244, 239, 231, 0.38);
+  }
+
+  .mhs-hero-verification-item strong {
+    max-width: 16rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.88rem, 0.98vw, 0.98rem);
+    font-weight: 300;
+    line-height: 1.24;
+    color: rgba(244, 239, 231, 0.78);
+    overflow-wrap: anywhere;
+  }
+
+  .mhs-badge-section {
+    padding-block: clamp(6.5rem, 11vw, 11rem);
+    background: var(--moura-paper);
+  }
+
+  .mhs-badge-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.62fr);
+    gap: clamp(3rem, 9vw, 9rem);
+    align-items: center;
+  }
+
+  .mhs-badge-copy h2,
+  .mhs-accordion-heading h2,
+  .mhs-performance h2 {
+    max-width: 12ch;
+    margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.1rem, 7vw, 8rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .mhs-badge-copy p:not(.mhs-kicker) {
+    max-width: 40rem;
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.02rem, 1.22vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.68;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .mhs-badge-stage {
+    min-height: clamp(26rem, 40vw, 38rem);
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(8, 8, 8, 0.1);
+    background:
+      radial-gradient(circle at 50% 40%, rgba(167, 124, 61, 0.11), transparent 36%),
+      linear-gradient(145deg, rgba(255, 253, 248, 0.72), rgba(244, 239, 231, 0.92));
+  }
+
+  .mhs-accordion-section {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background:
+      radial-gradient(circle at 15% 22%, rgba(111, 38, 61, 0.16), transparent 28%),
+      linear-gradient(145deg, #060606 0%, #10100f 58%, #050505 100%);
+    color: var(--moura-ivory);
+  }
+
+  .mhs-accordion-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.16fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .mhs-accordion-heading {
+    position: sticky;
+    top: clamp(7rem, 12vw, 9rem);
+  }
+
+  .mhs-accordion-heading h2 {
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .mhs-accordion-list {
+    display: grid;
+    border-top: 1px solid rgba(244, 239, 231, 0.16);
+  }
+
+  .mhs-accordion-item {
+    border-bottom: 1px solid rgba(244, 239, 231, 0.16);
+  }
+
+  .mhs-accordion-item summary {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) clamp(2rem, 3vw, 2.75rem);
+    gap: clamp(1.25rem, 2vw, 2rem);
+    align-items: start;
+    padding-block: clamp(1.5rem, 3vw, 2.6rem);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mhs-accordion-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mhs-accordion-item summary > span {
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.35rem, 2.5vw, 2.6rem);
+    font-weight: 100;
+    line-height: 1;
+    color: rgba(167, 124, 61, 0.9);
+  }
+
+  .mhs-accordion-item small {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .mhs-accordion-item strong {
+    display: block;
+    max-width: 19ch;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 4.7rem);
+    font-weight: 100;
+    line-height: 0.98;
+    color: rgba(244, 239, 231, 0.9);
+    transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mhs-accordion-item summary:hover strong,
+  .mhs-accordion-item[open] strong {
+    color: rgba(244, 239, 231, 1);
+  }
+
+  .mhs-accordion-indicator {
+    position: relative;
+    display: inline-grid;
+    width: clamp(1.85rem, 2.6vw, 2.35rem);
+    height: clamp(1.85rem, 2.6vw, 2.35rem);
+    place-self: start end;
+    border: 1px solid rgba(244, 239, 231, 0.22);
+    border-radius: 999px;
+    transition:
+      border-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mhs-accordion-indicator::before,
+  .mhs-accordion-indicator::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.72rem;
+    height: 1px;
+    background: rgba(167, 124, 61, 0.92);
+    transform: translate(-50%, -50%);
+    transition:
+      opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mhs-accordion-indicator::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .mhs-accordion-item summary:hover .mhs-accordion-indicator,
+  .mhs-accordion-item[open] .mhs-accordion-indicator {
+    border-color: rgba(167, 124, 61, 0.58);
+    transform: translateY(-1px);
+  }
+
+  .mhs-accordion-item[open] .mhs-accordion-indicator::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scaleX(0.2);
+  }
+
+  .mhs-accordion-content {
+    display: grid;
+    gap: 1rem;
+    max-width: 40rem;
+    padding: 0 0 clamp(1.8rem, 3vw, 2.8rem) calc(4rem + clamp(1.25rem, 2vw, 2rem));
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.18rem);
+    font-weight: 300;
+    line-height: 1.66;
+    color: rgba(244, 239, 231, 0.62);
+  }
+
+  .mhs-accordion-content p {
+    margin: 0;
+  }
+
+  .mhs-performance {
+    padding-block: clamp(6rem, 11vw, 11rem);
+    background:
+      linear-gradient(180deg, rgba(247, 244, 239, 0.98), rgba(255, 253, 248, 0.94)),
+      var(--moura-paper);
+  }
+
+  .mhs-performance-header {
+    display: grid;
+    justify-items: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    max-width: 58rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .mhs-performance h2 {
+    margin-top: 0;
+    margin-inline: auto;
+  }
+
+  .mhs-performance-header p {
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.25vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.62;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .mhs-score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    width: min(100%, 72rem);
+    margin: clamp(3rem, 6vw, 6rem) auto 0;
+    border: 1px solid rgba(8, 8, 8, 0.12);
+    background: rgba(8, 8, 8, 0.12);
+  }
+
+  .mhs-score-card {
+    min-height: clamp(13rem, 18vw, 17rem);
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 1.1rem;
+    padding: clamp(1.1rem, 2vw, 1.7rem);
+    background: var(--moura-panel);
+    text-align: center;
+  }
+
+  .mhs-score-ring {
+    position: relative;
+    display: grid;
+    width: 112px;
+    height: 112px;
+    place-items: center;
+  }
+
+  .mhs-score-ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform: rotate(-90deg);
+  }
+
+  .mhs-score-track,
+  .mhs-score-progress {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .mhs-score-track {
+    stroke: rgba(111, 38, 61, 0.14);
+    stroke-width: 1.25;
+  }
+
+  .mhs-score-progress {
+    stroke: var(--moura-wine);
+    stroke-width: 2;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    filter: drop-shadow(0 0 4px rgba(111, 38, 61, 0.22));
+    animation: drawScore 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  }
+
+  .mhs-score-ring::after {
+    content: "";
+    position: absolute;
+    inset: 13px;
+    border: 1px solid rgba(111, 38, 61, 0.08);
+    border-radius: 50%;
+  }
+
+  .mhs-score-ring span {
+    position: relative;
+    z-index: 1;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: 1.55rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--moura-wine);
+  }
+
+  @keyframes drawScore {
+    to {
+      stroke-dashoffset: calc(100 - var(--score));
+    }
+  }
+
+  .mhs-score-card:nth-child(2) .mhs-score-progress {
+    animation-delay: 0.08s;
+  }
+
+  .mhs-score-card:nth-child(3) .mhs-score-progress {
+    animation-delay: 0.16s;
+  }
+
+  .mhs-score-card:nth-child(4) .mhs-score-progress {
+    animation-delay: 0.24s;
+  }
+
+  .mhs-score-card h3 {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .mhs-proof-link {
+    display: flex;
+    width: fit-content;
+    margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
+    color: rgba(111, 38, 61, 0.88);
+    transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mhs-proof-link:hover {
+    color: var(--moura-gold);
+  }
+
+  .mhs-closing {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background:
+      radial-gradient(circle at 82% 20%, rgba(167, 124, 61, 0.14), transparent 26%),
+      linear-gradient(145deg, #050505 0%, #11100f 56%, #060606 100%);
+    color: var(--moura-ivory);
+  }
+
+  .mhs-closing-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.38fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .mhs-closing-copy {
+    display: grid;
+    gap: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .mhs-closing blockquote {
+    max-width: 58rem;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.7rem, 3.15vw, 3.45rem);
+    font-weight: 100;
+    line-height: 1.08;
+    letter-spacing: 0;
+    color: rgba(244, 239, 231, 0.88);
+  }
+
+  .mhs-closing-status {
+    display: grid;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: clamp(1rem, 1.6vw, 1.35rem);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+  }
+
+  .mhs-closing-status span {
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.42);
+  }
+
+  .mhs-closing-status strong {
+    max-width: 18rem;
+    font-size: clamp(1rem, 1.2vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.35;
+    color: rgba(244, 239, 231, 0.76);
+  }
+
+  .mhs-closing-status a {
+    width: fit-content;
+    margin-top: clamp(0.75rem, 1.2vw, 1rem);
+    border-bottom: 1px solid rgba(167, 124, 61, 0.58);
+    padding-bottom: 0.28rem;
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.78);
+    transition:
+      border-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mhs-closing-status a:hover {
+    border-color: rgba(167, 124, 61, 0.98);
+    color: rgba(244, 239, 231, 0.96);
+    transform: translateX(0.18rem);
+  }
+
+  @media (max-width: 980px) {
+    .mhs-hero-shell,
+    .mhs-badge-layout,
+    .mhs-accordion-layout,
+    .mhs-closing-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .mhs-accordion-heading {
+      position: static;
+    }
+
+    .mhs-hero-verification,
+    .mhs-score-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mhs-badge-copy p:not(.mhs-kicker) {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .mhs-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .mhs-hero {
+      min-height: 92vh;
+      padding-block: 7rem 4rem;
+    }
+
+    .mhs-hero h1 {
+      font-size: clamp(3.4rem, 18vw, 6rem);
+    }
+
+    .mhs-hero-verification {
+      grid-template-columns: 1fr;
+      border-bottom-color: rgba(244, 239, 231, 0.16);
+    }
+
+    .mhs-hero-verification-item:not(:last-child)::after {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      height: 1px;
+    }
+
+    .mhs-hero-verification,
+    .mhs-score-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mhs-hero-verification-item,
+    .mhs-score-card {
+      min-height: 7rem;
+    }
+
+    .mhs-badge-copy h2,
+    .mhs-accordion-heading h2,
+    .mhs-performance h2 {
+      font-size: clamp(2.65rem, 15vw, 4.8rem);
+    }
+
+    .mhs-closing blockquote {
+      font-size: clamp(1.75rem, 9vw, 3.4rem);
+    }
+
+    .mhs-badge-stage {
+      min-height: 20rem;
+    }
+
+
+    .mhs-accordion-item summary {
+      grid-template-columns: 2.6rem minmax(0, 1fr) 2rem;
+    }
+
+    .mhs-accordion-content {
+      padding-left: 0;
+    }
+
+    .mhs-score-ring {
+      width: 104px;
+      height: 104px;
+    }
+  }
+</style>
