@@ -1,0 +1,742 @@
+---
+import FooterCreditBadge from '@components/assets/FooterCreditBadge.svelte';
+import MIDBadge from '@components/assets/MIDBadge.svelte';
+import MStarBadge from '@components/assets/MStarBadge.svelte';
+import MSupremeBadge from '@components/assets/MSupremeBadge.svelte';
+import type { BadgeStandard } from '@data/badgeStandards';
+
+interface Props {
+  standard: BadgeStandard;
+}
+
+const { standard } = Astro.props;
+const heroItems = [
+  ['Selo', standard.seal],
+  ['Expansão', standard.expansion],
+  ['Categoria', standard.category],
+  ['Registro', 'Critérios públicos Moura'],
+];
+const heroInsignia = {
+  mhs: { mark: 'HS', label: ['High', 'Standards'] },
+  mstar: { mark: '★', label: ['M-Star'] },
+  mid: { mark: 'ID', label: ['Moura', 'Identity'] },
+  msupreme: { mark: 'M', label: ['Supreme'] },
+}[standard.kind];
+const catalogItems = standard.notItems.map((item) => {
+  const normalized = item.replace(/\.$/, '');
+  const withoutPrefix = normalized.replace(/^Não é\s+/i, '');
+
+  if (withoutPrefix.includes(':')) {
+    const [head, ...rest] = withoutPrefix.split(/:\s+/);
+    return {
+      title: 'Não é ' + head,
+      detail: rest.join(': '),
+    };
+  }
+
+  return {
+    title: 'Não é ' + withoutPrefix,
+    detail: 'Fora do padrão certificado por este selo.',
+  };
+});
+---
+
+<main class="badge-standard-page">
+  <section class="badge-standard-hero" data-nav-surface="dark" aria-labelledby="badge-standard-title">
+    <div class="badge-standard-shell badge-standard-hero-shell">
+      <div class="badge-standard-hero-top">
+        <div class="badge-standard-copy">
+          <p class="badge-kicker">{standard.seal} — {standard.expansion}</p>
+          <h1 id="badge-standard-title">{standard.heroTitle}</h1>
+        </div>
+
+        <div class={`badge-standard-hero-insignia badge-standard-hero-insignia--${standard.kind}`} aria-label={standard.seal + ' insígnia'}>
+          <strong>{heroInsignia.mark}</strong>
+          <i aria-hidden="true"></i>
+          <span>
+            {heroInsignia.label[0]}
+            {heroInsignia.label[1] && <><br />{heroInsignia.label[1]}</>}
+          </span>
+        </div>
+      </div>
+
+      <div class="badge-standard-hero-verification" aria-label="Informações do selo">
+        {heroItems.map(([label, value]) => (
+          <div class="badge-standard-hero-verification-item">
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="badge-standard-intro" data-nav-surface="light" aria-label="Definição do selo">
+    <div class="badge-standard-shell badge-standard-intro-grid">
+      <div class="badge-standard-intro-copy">
+        <p class="badge-kicker badge-kicker-dark">{standard.category}</p>
+        <h2>O que o selo representa.</h2>
+        <div class="badge-standard-text">
+          {standard.definition.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+
+      <div class={`badge-standard-seal-stage badge-standard-seal-stage--${standard.kind}`} aria-label={standard.seal + ' badge'}>
+        {standard.kind === 'mhs' && (
+          <FooterCreditBadge href={'/' + standard.slug + '/'} label={standard.expansion} text="MOURA" badgeSize="large" scale={1.2} showText={false} />
+        )}
+        {standard.kind === 'mstar' && <MStarBadge scale={1.2} />}
+        {standard.kind === 'mid' && <MIDBadge scale={1.2} />}
+        {standard.kind === 'msupreme' && <MSupremeBadge scale={1.2} />}
+      </div>
+    </div>
+  </section>
+
+  <section class="badge-standard-criteria" data-nav-surface="dark" aria-labelledby="badge-criteria-title">
+    <div class="badge-standard-shell badge-standard-two-column">
+      <div class="badge-standard-sticky">
+        <p class="badge-kicker">Critérios públicos</p>
+        <h2 id="badge-criteria-title">{standard.criteriaTitle}</h2>
+      </div>
+
+      <div class="badge-criteria-list">
+        {standard.criteria.map((criterion, index) => (
+          <article class="badge-criteria-item">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{criterion.title}</h3>
+              <p>{criterion.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="badge-standard-audience" data-nav-surface="light" aria-label="Público e limites do selo">
+    <div class="badge-standard-shell badge-standard-audience-editorial">
+      <div class="badge-standard-audience-heading">
+        <p class="badge-kicker badge-kicker-dark">Destinação</p>
+        <h2>Para quem este selo existe.</h2>
+      </div>
+
+      <div class="badge-standard-audience-copy">
+        {standard.audience.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <aside class="badge-standard-audience-catalog" aria-label={standard.notTitle}>
+        <p class="badge-kicker badge-kicker-dark">{standard.notTitle}</p>
+        <div class="badge-standard-catalog-list">
+          {catalogItems.map((item, index) => (
+            <article class="badge-standard-catalog-item">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<style>
+  .badge-standard-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .badge-standard-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .badge-kicker {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .badge-kicker-dark {
+    color: rgba(8, 8, 8, 0.45);
+  }
+
+  .badge-standard-hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    padding-block: clamp(8rem, 12vw, 11rem) clamp(4.5rem, 8vw, 7.5rem);
+    background:
+      radial-gradient(circle at 78% 20%, rgba(167, 124, 61, 0.15), transparent 28%),
+      radial-gradient(circle at 18% 78%, rgba(111, 38, 61, 0.2), transparent 34%),
+      linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
+    color: var(--moura-ivory);
+  }
+
+  .badge-standard-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(244, 239, 231, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 239, 231, 0.025) 1px, transparent 1px);
+    background-size: 100% 9rem, 12rem 100%;
+    opacity: 0.22;
+  }
+
+  .badge-standard-hero-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4.75rem);
+  }
+
+  .badge-standard-hero-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, clamp(15rem, 22vw, 22rem));
+    gap: clamp(2.5rem, 6vw, 7rem);
+    align-items: end;
+  }
+
+  .badge-standard-copy {
+    display: grid;
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+  }
+
+  .badge-standard-hero-insignia {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    display: grid;
+    justify-items: center;
+    gap: clamp(0.75rem, 1.4vw, 1.2rem);
+    place-self: end center;
+    min-width: clamp(10rem, 18vw, 17rem);
+    padding: clamp(1.7rem, 2.8vw, 2.7rem) clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .badge-standard-hero-insignia::before,
+  .badge-standard-hero-insignia::after {
+    content: '';
+    position: absolute;
+    width: clamp(2.7rem, 5vw, 4.8rem);
+    height: clamp(2.7rem, 5vw, 4.8rem);
+    pointer-events: none;
+    opacity: 0.72;
+  }
+
+  .badge-standard-hero-insignia::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid rgba(244, 239, 231, 0.2);
+    border-left: 1px solid rgba(244, 239, 231, 0.14);
+  }
+
+  .badge-standard-hero-insignia::after {
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid rgba(244, 239, 231, 0.16);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.2);
+  }
+
+  .badge-standard-hero-insignia strong {
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(4.4rem, 9vw, 8.8rem);
+    font-weight: 100;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: rgba(244, 239, 231, 0.94);
+    text-shadow: 0 0 24px rgba(244, 239, 231, 0.12);
+  }
+
+  .badge-standard-hero-insignia--mstar strong {
+    color: #d8c59a;
+    font-size: clamp(4rem, 8vw, 7.8rem);
+  }
+
+  .badge-standard-hero-insignia--mid strong {
+    color: #edf6f7;
+  }
+
+  .badge-standard-hero-insignia--msupreme strong {
+    color: #f5ead3;
+  }
+
+  .badge-standard-hero-insignia i {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: clamp(3rem, 5vw, 5rem);
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(220, 38, 38, 0.88), transparent);
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.42);
+  }
+
+  .badge-standard-hero-insignia--mstar i {
+    background: linear-gradient(to right, transparent, #a52232 44%, #d8c59a 56%, transparent);
+    box-shadow: 0 0 12px rgba(165, 34, 50, 0.42);
+  }
+
+  .badge-standard-hero-insignia--mid i {
+    background: linear-gradient(to right, transparent, rgba(134, 181, 194, 0.95), transparent);
+    box-shadow: 0 0 12px rgba(92, 132, 146, 0.42);
+  }
+
+  .badge-standard-hero-insignia--msupreme i {
+    background: linear-gradient(to right, transparent, rgba(167, 124, 61, 0.95), transparent);
+    box-shadow: 0 0 12px rgba(167, 124, 61, 0.42);
+  }
+
+  .badge-standard-hero-insignia span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.72rem, 0.95vw, 0.95rem);
+    font-weight: 300;
+    line-height: 1.16;
+    letter-spacing: 0.28em;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.72);
+  }
+
+  .badge-standard-hero h1 {
+    max-width: 10ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.2rem, 7.4vw, 8.8rem);
+    font-weight: 100;
+    line-height: 0.9;
+    letter-spacing: 0;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .badge-standard-hero-verification {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(1.25rem, 3vw, 3.5rem);
+    row-gap: 1px;
+    border-top: 1px solid rgba(244, 239, 231, 0.16);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.1);
+  }
+
+  .badge-standard-hero-verification-item {
+    position: relative;
+    min-height: clamp(5.25rem, 6.4vw, 6.5rem);
+    display: grid;
+    align-content: space-between;
+    gap: 0.9rem;
+    padding: clamp(0.9rem, 1.2vw, 1.1rem) 0;
+  }
+
+  .badge-standard-hero-verification-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: clamp(0.9rem, 1.2vw, 1.1rem);
+    right: calc(clamp(1.25rem, 3vw, 3.5rem) * -0.5);
+    bottom: clamp(0.9rem, 1.2vw, 1.1rem);
+    width: 1px;
+    background: rgba(244, 239, 231, 0.1);
+  }
+
+  .badge-standard-hero-verification-item span {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.38);
+  }
+
+  .badge-standard-hero-verification-item strong {
+    max-width: 16rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.88rem, 0.98vw, 0.98rem);
+    font-weight: 300;
+    line-height: 1.24;
+    color: rgba(244, 239, 231, 0.78);
+    overflow-wrap: anywhere;
+  }
+
+  .badge-standard-intro,
+  .badge-standard-audience {
+    padding-block: clamp(6rem, 11vw, 11rem);
+    background: var(--moura-paper);
+  }
+
+  .badge-standard-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .badge-standard-intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(18rem, 0.74fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: center;
+  }
+
+  .badge-standard-intro-copy {
+    display: grid;
+    align-content: start;
+  }
+
+  .badge-standard-two-column h2,
+  .badge-standard-intro-copy h2,
+  .badge-standard-sticky h2 {
+    max-width: 12ch;
+    margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.1rem, 7vw, 8rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .badge-standard-text {
+    display: grid;
+    gap: clamp(1rem, 1.6vw, 1.35rem);
+    margin-top: clamp(2rem, 3.5vw, 3.25rem);
+    max-width: clamp(24rem, 34vw, 39rem);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.96rem, 1.04vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.78;
+    color: rgba(8, 8, 8, 0.56);
+  }
+
+  .badge-standard-seal-stage {
+    --seal-light: rgba(167, 124, 61, 0.18);
+    --seal-glow: rgba(167, 124, 61, 0.14);
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(22rem, 34vw, 34rem);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(8, 8, 8, 0.08);
+    background:
+      radial-gradient(circle at 50% 42%, rgba(255, 253, 248, 0.92) 0%, rgba(255, 253, 248, 0.54) 31%, transparent 58%),
+      radial-gradient(circle at 50% 44%, var(--seal-light), transparent 38%),
+      linear-gradient(145deg, rgba(255, 253, 248, 0.88) 0%, rgba(239, 233, 223, 0.62) 52%, rgba(255, 253, 248, 0.74) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      inset 0 -42px 80px rgba(8, 8, 8, 0.035),
+      0 24px 70px rgba(8, 8, 8, 0.055);
+  }
+
+  .badge-standard-seal-stage::before {
+    content: '';
+    position: absolute;
+    inset: clamp(1.1rem, 2vw, 1.8rem);
+    border: 1px solid rgba(8, 8, 8, 0.055);
+    background:
+      linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.42) 42%, transparent 57%),
+      radial-gradient(circle at 50% 52%, var(--seal-glow), transparent 45%);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .badge-standard-seal-stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 48%, transparent 0 28%, rgba(8, 8, 8, 0.025) 72%, rgba(8, 8, 8, 0.05) 100%),
+      linear-gradient(rgba(8, 8, 8, 0.025) 1px, transparent 1px);
+    background-size: auto, 100% 4.5rem;
+    opacity: 0.72;
+    pointer-events: none;
+  }
+
+  .badge-standard-seal-stage > * {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 28px 34px rgba(8, 8, 8, 0.2));
+  }
+
+  .badge-standard-seal-stage--mhs {
+    --seal-light: rgba(111, 38, 61, 0.18);
+    --seal-glow: rgba(220, 38, 38, 0.13);
+  }
+
+  .badge-standard-seal-stage--mstar {
+    --seal-light: rgba(216, 197, 154, 0.2);
+    --seal-glow: rgba(165, 34, 50, 0.12);
+  }
+
+  .badge-standard-seal-stage--mid {
+    --seal-light: rgba(134, 181, 194, 0.2);
+    --seal-glow: rgba(92, 132, 146, 0.12);
+  }
+
+  .badge-standard-seal-stage--msupreme {
+    --seal-light: rgba(167, 124, 61, 0.22);
+    --seal-glow: rgba(167, 124, 61, 0.16);
+  }
+
+  .badge-standard-text p,
+  .badge-standard-audience p,
+  .badge-standard-audience li {
+    margin: 0;
+  }
+
+  .badge-standard-criteria {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background:
+      radial-gradient(circle at 15% 22%, rgba(111, 38, 61, 0.14), transparent 28%),
+      linear-gradient(145deg, #060606 0%, #10100f 58%, #050505 100%);
+    color: var(--moura-ivory);
+  }
+
+  .badge-standard-sticky {
+    position: sticky;
+    top: clamp(7rem, 12vw, 9rem);
+  }
+
+  .badge-standard-sticky h2 {
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .badge-criteria-list {
+    display: grid;
+    border-top: 1px solid rgba(244, 239, 231, 0.16);
+  }
+
+  .badge-criteria-item {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: clamp(1.25rem, 2vw, 2rem);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.16);
+    padding-block: clamp(1.5rem, 3vw, 2.6rem);
+  }
+
+  .badge-criteria-item > span {
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.35rem, 2.5vw, 2.6rem);
+    font-weight: 100;
+    line-height: 1;
+    color: rgba(167, 124, 61, 0.9);
+  }
+
+  .badge-criteria-item h3 {
+    max-width: 20ch;
+    margin: 0 0 1rem;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 4.7rem);
+    font-weight: 100;
+    line-height: 0.98;
+    color: rgba(244, 239, 231, 0.9);
+  }
+
+  .badge-criteria-item p {
+    max-width: 42rem;
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.18rem);
+    font-weight: 300;
+    line-height: 1.66;
+    color: rgba(244, 239, 231, 0.62);
+  }
+
+  .badge-standard-audience-editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.08fr);
+    grid-template-areas:
+      "heading catalog"
+      "copy catalog";
+    column-gap: clamp(3rem, 8vw, 8rem);
+    row-gap: clamp(2rem, 4vw, 3.75rem);
+    align-items: start;
+  }
+
+  .badge-standard-audience-heading {
+    grid-area: heading;
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .badge-standard-audience-heading h2 {
+    max-width: 11ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.15rem, 7.2vw, 8.4rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .badge-standard-audience-copy {
+    grid-area: copy;
+    max-width: 34rem;
+    display: grid;
+    gap: clamp(1rem, 1.8vw, 1.45rem);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.03rem, 1.2vw, 1.18rem);
+    font-weight: 300;
+    line-height: 1.66;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .badge-standard-audience-catalog {
+    grid-area: catalog;
+    display: grid;
+    gap: clamp(1.5rem, 2.8vw, 2.5rem);
+    padding-top: clamp(0.25rem, 0.8vw, 0.75rem);
+  }
+
+  .badge-standard-catalog-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.8rem, 1.4vw, 1.25rem);
+  }
+
+  .badge-standard-catalog-item {
+    position: relative;
+    min-height: clamp(11.5rem, 15.5vw, 14.5rem);
+    display: grid;
+    align-content: space-between;
+    gap: clamp(1.8rem, 3vw, 2.8rem);
+    overflow: hidden;
+    padding: clamp(1.45rem, 2.3vw, 2.1rem);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.88), rgba(242, 236, 226, 0.62)),
+      radial-gradient(circle at 88% 4%, rgba(167, 124, 61, 0.13), transparent 36%);
+    box-shadow:
+      inset 0 0 0 1px rgba(8, 8, 8, 0.07),
+      0 18px 44px rgba(8, 8, 8, 0.035);
+  }
+
+  .badge-standard-catalog-item::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(111, 38, 61, 0.72), rgba(167, 124, 61, 0.34));
+  }
+
+  .badge-standard-catalog-item span {
+    width: fit-content;
+    border-bottom: 1px solid rgba(111, 38, 61, 0.28);
+    padding-bottom: 0.38rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.7rem, 0.82vw, 0.82rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    color: rgba(111, 38, 61, 0.72);
+  }
+
+  .badge-standard-catalog-item div {
+    display: grid;
+    gap: clamp(0.75rem, 1.2vw, 1rem);
+  }
+
+  .badge-standard-catalog-item h3 {
+    max-width: 18rem;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.35rem, 2vw, 2.1rem);
+    font-weight: 100;
+    line-height: 1.05;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.86);
+  }
+
+  .badge-standard-catalog-item p {
+    max-width: 22rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.88rem, 0.98vw, 0.98rem);
+    font-weight: 300;
+    line-height: 1.58;
+    color: rgba(8, 8, 8, 0.52);
+  }
+
+  @media (max-width: 980px) {
+    .badge-standard-two-column,
+    .badge-standard-intro-grid,
+    .badge-standard-audience-editorial {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "heading"
+        "copy"
+        "catalog";
+    }
+
+    .badge-standard-sticky {
+      position: static;
+    }
+
+    .badge-standard-catalog-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .badge-standard-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .badge-standard-hero {
+      min-height: 92vh;
+      padding-block: 7rem 4rem;
+    }
+
+    .badge-standard-hero-top {
+      grid-template-columns: 1fr;
+    }
+
+    .badge-standard-hero-verification {
+      grid-template-columns: 1fr;
+      border-bottom-color: rgba(244, 239, 231, 0.16);
+    }
+
+    .badge-standard-hero-verification-item:not(:last-child)::after {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      height: 1px;
+    }
+
+    .badge-standard-hero h1 {
+      font-size: clamp(3rem, 15vw, 4.9rem);
+    }
+
+    .badge-standard-hero-insignia {
+      place-self: start center;
+      min-width: 100%;
+    }
+
+    .badge-standard-two-column h2,
+    .badge-standard-sticky h2 {
+      font-size: clamp(2.65rem, 15vw, 4.8rem);
+    }
+
+    .badge-criteria-item {
+      grid-template-columns: 2.6rem minmax(0, 1fr);
+    }
+  }
+</style>

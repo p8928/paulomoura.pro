@@ -1138,24 +1138,34 @@ body.is-overlay-open {
 }
 
 .signature-section {
+  display: grid;
+  align-items: center;
   min-height: 100vh;
   background:
     radial-gradient(circle at 78% 18%, rgba(111, 38, 61, 0.14), transparent 28%),
     linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
   color: var(--moura-ivory);
-  padding: clamp(8rem, 12vw, 12rem) clamp(1.5rem, 4vw, 4.5rem) clamp(7rem, 11vw, 11rem);
+  padding: clamp(6.25rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(5rem, 7vw, 7rem);
 }
 
 .signature-shell {
   display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 0.78fr);
+  grid-template-areas:
+    "heading body"
+    "heading line";
+  align-items: end;
   width: 100%;
   max-width: 88rem;
   margin-inline: auto;
-  gap: clamp(4rem, 8vw, 8rem);
+  column-gap: clamp(3rem, 7vw, 8rem);
+  row-gap: clamp(2rem, 4vw, 4rem);
 }
 
 .signature-heading {
+  grid-area: heading;
   display: grid;
+  align-self: start;
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -1171,60 +1181,81 @@ body.is-overlay-open {
 }
 
 .signature-heading h2 {
-  max-width: 14ch;
+  max-width: 15ch;
   margin: 0;
   font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
-  font-size: clamp(3.8rem, 8.2vw, 9.7rem);
+  font-size: clamp(3.2rem, 6.65vw, 7.65rem);
   font-weight: 100;
   line-height: 0.92;
   letter-spacing: 0;
   color: rgba(244, 239, 231, 0.92);
 }
 
+.signature-heading h2 em {
+  font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+  font-style: italic;
+  font-weight: 100;
+  color: rgba(244, 239, 231, 0.96);
+  text-shadow: 0 0 24px rgba(244, 239, 231, 0.08);
+}
+
 .signature-body {
+  grid-area: body;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2rem, 5vw, 6rem);
-  max-width: 72rem;
-  margin-left: auto;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+  max-width: 38rem;
 }
 
 .signature-body p {
   margin: 0;
   border-top: 1px solid rgba(244, 239, 231, 0.18);
-  padding-top: clamp(1rem, 1.5vw, 1.25rem);
+  padding-top: clamp(0.9rem, 1.2vw, 1.1rem);
   font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-  font-size: clamp(1rem, 1.18vw, 1.18rem);
+  font-size: clamp(0.96rem, 1.08vw, 1.08rem);
   font-weight: 300;
-  line-height: 1.62;
+  line-height: 1.58;
   letter-spacing: 0.01em;
   color: rgba(244, 239, 231, 0.62);
 }
 
 .signature-name {
-  color: rgba(111, 38, 61, 0.92);
+  color: rgba(244, 239, 231, 0.9);
+  font-weight: 400;
+  text-shadow:
+    0 0 18px rgba(244, 239, 231, 0.1),
+    0 0 26px rgba(111, 38, 61, 0.22);
 }
 
 .signature-line {
-  max-width: min(82vw, 48rem);
+  grid-area: line;
+  max-width: min(82vw, 34rem);
   margin: 0;
-  margin-left: auto;
   font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-  font-size: clamp(1.3rem, 2.5vw, 2.8rem);
+  font-size: clamp(1.25rem, 2.05vw, 2.25rem);
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: 0.01em;
   color: rgba(244, 239, 231, 0.88);
 }
 
 @media (max-width: 980px) {
-  .signature-body {
-    grid-template-columns: 1fr;
-    margin-left: 0;
+  .final-stack-sticky {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
 
-  .signature-line {
-    margin-left: 0;
+  .final-stack-sticky .signature-section {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .signature-shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "body"
+      "line";
   }
 }
 
