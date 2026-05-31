@@ -1,16 +1,68 @@
 ---
-import FooterCreditBadge from '@components/assets/FooterCreditBadge.svelte';
-import MSupremeBadge from '@components/assets/MSupremeBadge.svelte';
-import MStarBadge from '@components/assets/MStarBadge.svelte';
+import HSBadge from '@components/assets/HSBadge.svelte';
 import MIDBadge from '@components/assets/MIDBadge.svelte';
+import MStarBadge from '@components/assets/MStarBadge.svelte';
+import MSupremeBadge from '@components/assets/MSupremeBadge.svelte';
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
+import { badgeStandards } from '@data/badgeStandards';
 import BaseLayout from '@layouts/BaseLayout.astro';
+
+const qualityBadges = badgeStandards;
+
+const systemPillars = [
+  {
+    label: 'Marca',
+    title: 'Reconhecimento',
+    text: 'Traços próprios: posicionamento, linguagem, estética, promessa e forma de atender.',
+  },
+  {
+    label: 'Comunicação',
+    title: 'Compreensão',
+    text: 'Clareza sobre o que a empresa faz, para quem faz, quando importa e por que deve ser considerada.',
+  },
+  {
+    label: 'Experiência',
+    title: 'Confiança',
+    text: 'Reputação, avaliações, consistência de informações e sofisticação proporcional ao nível da entrega.',
+  },
+  {
+    label: 'Performance',
+    title: 'Demanda qualificada',
+    text: 'Menos tráfego indiferente. Mais pessoas com contexto, intenção e condições reais de avançar.',
+  },
+];
+
+const methodSteps = [
+  { title: 'Interpretar a operação', detail: 'Atendimento, entrega, reputação e provas reais.' },
+  { title: 'Distinguir verdades de impressões', detail: 'O que sustenta autoridade. O que apenas parece diferenciação.' },
+  { title: 'Transformar em presença', detail: 'Site, conteúdo, dados e experiência com a mesma lógica.' },
+  { title: 'Tornar reconhecível', detail: 'Para clientes, Google e IA entenderem por que escolher.' },
+];
+
+const distinctions = [
+  {
+    title: 'Direção autoral',
+    detail: 'A estratégia preserva a leitura central de Paulo Moura, sem linha de produção ou transferência automática de execução.',
+  },
+  {
+    title: 'Interpretação antes da técnica',
+    detail: 'Tecnologia entra para dar precisão ao que foi compreendido no negócio, na operação e na experiência real do cliente.',
+  },
+  {
+    title: 'Lógica própria de presença',
+    detail: 'Marca, conteúdo, interface, busca e reputação passam a responder ao mesmo critério, sem dependência de modelos genéricos.',
+  },
+  {
+    title: 'Profundidade proporcional',
+    detail: 'O nível de personalização acompanha exigência, maturidade e potencial real do projeto.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Moura"
-  description="Página institucional de Paulo Moura."
+  title="Moura | Assinatura e método para presença digital"
+  description="Moura é assinatura e método para presença digital de alto desempenho: marca, comunicação, experiência, busca e reputação sob uma mesma direção."
   showChrome={false}
 >
   <script>
@@ -19,52 +71,155 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
   <HeroNavigation client:load />
 
-  <main>
-    <section class="moura-blank-section" data-nav-surface="light" aria-label="Moura">
+  <main class="moura-page">
+    <section class="moura-hero" data-nav-surface="dark" aria-labelledby="moura-title">
+      <div class="moura-shell moura-hero-grid">
+        <div class="moura-hero-copy">
+          <p class="moura-kicker">Assinatura e método</p>
+          <h1 id="moura-title">Presença digital construída a partir do que torna uma empresa digna de escolha.</h1>
+        </div>
+
+        <p class="moura-hero-text">
+          Paulo Moura conduz a interpretação do negócio, identifica seus sinais reais de autoridade e organiza marca, site, conteúdo, busca e reputação para que clientes, Google e IA compreendam com mais precisão por que aquela empresa é a melhor escolha.
+        </p>
+      </div>
+    </section>
+
+    <section class="moura-system" data-nav-surface="light" aria-labelledby="moura-system-title">
+      <div class="moura-shell moura-two-column">
+        <div class="moura-section-heading">
+          <p class="moura-kicker moura-kicker-dark">Ecossistema</p>
+          <h2 id="moura-system-title">Ranking, tráfego e conversão começam antes da técnica.</h2>
+        </div>
+
+        <figure class="moura-system-visual" aria-label="Execução cuidadosa de um trabalho de alto padrão">
+          <picture>
+            <source srcset="/images/moura/ecosystem-work-excellence.webp" type="image/webp" />
+            <img
+              src="/images/moura/ecosystem-work-excellence.png"
+              alt="Profissional executando um trabalho cuidadoso sobre uma mesa com materiais, plano e anotações"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
+          <figcaption class="moura-system-copy">
+            <p>
+              Empresas querem aparecer melhor no Google, atrair pessoas qualificadas e transformar interesse em demanda real. O ponto crítico está na origem: a marca precisa deixar claro a que veio para despertar a confiança do cliente no momento decisivo.
+            </p>
+            <p>
+              Branding, site, conteúdo, busca, reputação e experiência precisam trabalhar como sinais de uma mesma empresa. Quando cada ponto de contato comunica uma versão diferente do negócio, o cliente hesita, o Google classifica com menos precisão e a IA encontra pouco motivo para recomendar.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="moura-shell moura-pillar-grid" aria-label="Pilares de presença digital">
+        {systemPillars.map((pillar, index) => (
+          <article class="moura-pillar-card">
+            <span>{String(index + 1).padStart(2, '0')} / {pillar.label}</span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="moura-method" data-nav-surface="dark" aria-labelledby="moura-method-title">
+      <div class="moura-shell moura-method-grid">
+        <div class="moura-section-heading">
+          <p class="moura-kicker">Brand-Driven</p>
+          <h2 id="moura-method-title">O método começa onde o SEO comum não consegue chegar.</h2>
+        </div>
+
+        <div class="moura-method-flow">
+          <p class="moura-method-copy">
+            Brand-Driven parte da leitura do negócio antes de qualquer decisão sobre site, conteúdo ou busca. O trabalho identifica o que sustenta a autoridade da empresa: operação, atendimento, diferenciais percebidos, linguagem, reputação e situações em que ela merece ser escolhida.
+          </p>
+
+          <aside class="moura-method-steps" aria-label="Etapas do método Brand-Driven">
+            {methodSteps.map((step, index) => (
+              <div class="moura-method-step">
+                <small>{String(index + 1).padStart(2, '0')}</small>
+                <span>{step.title}</span>
+                <p>{step.detail}</p>
+              </div>
+            ))}
+          </aside>
+
+          <p class="moura-method-copy moura-method-copy--closing">
+            Essa leitura vira estrutura digital. Páginas, conteúdo, dados estruturados, performance e experiência passam a comunicar uma mesma lógica para clientes, Google e IA. O objetivo é reduzir ruído, aumentar clareza e criar sinais fortes o suficiente para que a marca deixe de ser tratada como mais uma opção genérica.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="moura-badges-section" data-nav-surface="light" aria-labelledby="moura-badges-title">
-      <div class="moura-badges-shell">
-        <div class="moura-badges-heading">
-          <p>Badges provisórias</p>
-          <h2 id="moura-badges-title">Padrões de assinatura Moura.</h2>
+      <div class="moura-shell moura-badges-heading">
+        <p class="moura-kicker moura-kicker-dark">Selos de qualidade</p>
+        <h2 id="moura-badges-title">Padrões visíveis para critérios que costumam ficar invisíveis.</h2>
+        <p>
+          Os selos identificam o nível de exigência aplicado a cada projeto. Eles existem para tornar público aquilo que sustenta a entrega: direção estratégica, rigor técnico, leitura editorial, performance, identidade e qualidade estética.
+        </p>
+      </div>
+
+      <div class="moura-shell moura-badges-grid">
+        {qualityBadges.map((standard) => (
+          <article class={`moura-badge-card moura-badge-card--${standard.kind}`}>
+            <div class="moura-badge-card-head">
+              <span>{standard.seal}</span>
+              <h3>{standard.expansion}</h3>
+              <p>{standard.category}</p>
+            </div>
+
+            <a class="moura-badge-stage" href={`/${standard.slug}/`} aria-label={`Conhecer ${standard.seal}`}>
+              {standard.kind === 'mhs' && (
+                <HSBadge size="large" scale={1.08} />
+              )}
+              {standard.kind === 'mstar' && <MStarBadge scale={1.08} />}
+              {standard.kind === 'mid' && <MIDBadge scale={1.08} />}
+              {standard.kind === 'msupreme' && <MSupremeBadge scale={1.08} />}
+            </a>
+
+            <p class="moura-badge-description">{standard.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="moura-distinction" data-nav-surface="dark" aria-labelledby="moura-distinction-title">
+      <div class="moura-shell moura-distinction-grid">
+        <div class="moura-section-heading">
+          <p class="moura-kicker">Critério</p>
+          <h2 id="moura-distinction-title">O que diferencia a assinatura.</h2>
         </div>
 
-        <div class="moura-badges-grid">
-          <div class="moura-badge-card">
-            <span>M-HS</span>
-            <div class="moura-badge-stage">
-              <FooterCreditBadge
-                href="https://paulomoura.pro/m-high-standards-klout/"
-                label="MOURA High Standards"
-                text="MOURA"
-                badgeSize="large"
-                scale={1.08}
-                showText={false}
-              />
-            </div>
-          </div>
+        <div class="moura-distinction-list">
+          {distinctions.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
 
-          <div class="moura-badge-card">
-            <span>M-Supreme</span>
-            <div class="moura-badge-stage">
-              <MSupremeBadge scale={1.08} />
-            </div>
-          </div>
-
-          <div class="moura-badge-card">
-            <span>M-Star</span>
-            <div class="moura-badge-stage">
-              <MStarBadge scale={1.08} />
-            </div>
-          </div>
-
-          <div class="moura-badge-card">
-            <span>M-ID</span>
-            <div class="moura-badge-stage">
-              <MIDBadge scale={1.08} />
-            </div>
-          </div>
+    <section class="moura-closing" data-nav-surface="light" aria-labelledby="moura-closing-title">
+      <div class="moura-shell moura-closing-grid">
+        <div class="moura-closing-heading">
+          <p class="moura-kicker moura-kicker-dark">Candidatura</p>
+          <h2 id="moura-closing-title">Uma presença digital desse nível começa por seleção.</h2>
+        </div>
+        <div class="moura-closing-copy">
+          <p>
+            O interesse inicial abre uma análise de compatibilidade entre ambição, entrega real e nível de direção necessário. Orçamentos entram depois, quando fizerem sentido para ambos os lados.
+          </p>
+          <p>
+            A candidatura prioriza empresas e profissionais com substância, maturidade e disposição para tratar marca, site, conteúdo, busca e reputação como parte do mesmo trabalho.
+          </p>
+          <a href="/diagnostico">Enviar candidatura</a>
         </div>
       </div>
     </section>
@@ -74,34 +229,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .moura-blank-section {
-    min-height: 100vh;
+  .moura-page {
+    overflow: hidden;
     background: var(--moura-paper);
+    color: var(--moura-ink);
   }
 
-  .moura-badges-section {
-    min-height: 100vh;
-    display: grid;
-    align-items: center;
-    background: var(--moura-paper);
-    padding: clamp(6rem, 11vw, 11rem) clamp(1.5rem, 4vw, 4.5rem);
-  }
-
-  .moura-badges-shell {
-    display: grid;
-    gap: clamp(3rem, 6vw, 5.5rem);
-    width: 100%;
-    max-width: 88rem;
+  .moura-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
     margin-inline: auto;
   }
 
-  .moura-badges-heading {
-    display: grid;
-    gap: clamp(1rem, 2vw, 1.5rem);
-  }
-
-  .moura-badges-heading p,
-  .moura-badge-card > span {
+  .moura-kicker {
     margin: 0;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(0.68rem, 0.8vw, 0.82rem);
@@ -109,58 +248,630 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     line-height: 1;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.5);
+  }
+
+  .moura-kicker-dark {
     color: rgba(8, 8, 8, 0.46);
   }
 
-  .moura-badges-heading h2 {
-    max-width: 12ch;
+  .moura-hero {
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(7rem, 11vw, 10rem) clamp(4.5rem, 7vw, 6.5rem);
+    background:
+      radial-gradient(circle at 78% 20%, rgba(111, 38, 61, 0.18), transparent 30%),
+      radial-gradient(circle at 18% 78%, rgba(167, 124, 61, 0.1), transparent 32%),
+      linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
+    color: var(--moura-ivory);
+  }
+
+  .moura-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.52fr);
+    gap: clamp(3rem, 8vw, 9rem);
+    align-items: end;
+  }
+
+  .moura-hero-copy,
+  .moura-section-heading,
+  .moura-badges-heading {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .moura-hero h1,
+  .moura-section-heading h2,
+  .moura-badges-heading h2,
+  .moura-closing h2 {
     margin: 0;
     font-family: "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(3.1rem, 7vw, 8rem);
     font-weight: 100;
-    line-height: 0.92;
     letter-spacing: 0;
+  }
+
+  .moura-hero h1 {
+    max-width: 15ch;
+    font-size: clamp(2.9rem, 5.6vw, 6.55rem);
+    line-height: 0.96;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .moura-hero-text {
+    max-width: 31rem;
+    margin: 0;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: clamp(1rem, 1.8vw, 1.5rem);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.18vw, 1.18rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(244, 239, 231, 0.64);
+  }
+
+  .moura-system,
+  .moura-badges-section,
+  .moura-closing {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background: var(--moura-paper);
+  }
+
+  .moura-closing {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .moura-closing::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(8, 8, 8, 0.16), transparent);
+  }
+
+  .moura-system {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: clamp(10rem, 16vw, 17rem);
+  }
+
+  .moura-two-column,
+  .moura-method-grid,
+  .moura-distinction-grid,
+  .moura-closing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .moura-closing-grid {
+    align-items: center;
+  }
+
+  .moura-closing-heading {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .moura-section-heading h2,
+  .moura-badges-heading h2,
+  .moura-closing h2 {
+    max-width: 12ch;
+    font-size: clamp(3.1rem, 7vw, 8rem);
+    line-height: 0.92;
     color: rgba(8, 8, 8, 0.9);
+  }
+
+  .moura-system .moura-two-column {
+    align-items: center;
+  }
+
+  .moura-system .moura-section-heading {
+    align-self: center;
+  }
+
+  .moura-system-copy,
+  .moura-method-copy,
+  .moura-closing-copy {
+    display: grid;
+    gap: clamp(1.2rem, 2vw, 1.65rem);
+    max-width: 42rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.03rem, 1.22vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.68;
+    color: rgba(8, 8, 8, 0.64);
+  }
+
+  .moura-closing-copy {
+    max-width: 34rem;
+    margin-left: auto;
+    gap: clamp(1.25rem, 2vw, 1.8rem);
+    color: rgba(8, 8, 8, 0.58);
+  }
+
+  .moura-system-copy {
+    align-self: center;
+    max-width: 35rem;
+    margin-left: auto;
+    gap: clamp(1.05rem, 1.6vw, 1.45rem);
+    font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.82;
+    color: rgba(8, 8, 8, 0.54);
+  }
+
+  .moura-system-copy p,
+  .moura-method-copy p,
+  .moura-closing-copy p {
+    margin: 0;
+  }
+
+  .moura-system-visual .moura-system-copy {
+    position: absolute;
+    z-index: 3;
+    left: clamp(-5.5rem, -6vw, -2.5rem);
+    bottom: clamp(2.8rem, 5vw, 5.2rem);
+    width: min(31rem, 78%);
+    max-width: 31rem;
+    margin: 0;
+    padding: clamp(1.35rem, 2.35vw, 2.1rem);
+    border-block: 1px solid rgba(244, 239, 231, 0.24);
+    border-inline: 0;
+    background: linear-gradient(135deg, rgba(8, 8, 8, 0.62), rgba(8, 8, 8, 0.36));
+    box-shadow: 0 1.2rem 3.4rem rgba(8, 8, 8, 0.22);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: rgba(244, 239, 231, 0.78);
+    text-shadow: 0 1px 18px rgba(8, 8, 8, 0.24);
+  }
+
+  .moura-system-visual {
+    position: relative;
+    min-height: clamp(38rem, 56vw, 54rem);
+    margin: 0;
+    overflow: visible;
+  }
+
+  .moura-system-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(8, 8, 8, 0.1);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .moura-system-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8, 8, 8, 0.04), rgba(8, 8, 8, 0.34)),
+      linear-gradient(90deg, rgba(8, 8, 8, 0.22), transparent 42%, rgba(167, 124, 61, 0.05));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .moura-system-visual picture,
+  .moura-system-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .moura-system-visual picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .moura-system-visual img {
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.8) contrast(1.08) brightness(0.9);
+  }
+
+  .moura-pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(7.8rem, 14.3vw, 13rem);
+    background: rgba(8, 8, 8, 0.08);
+    border-block: 1px solid rgba(8, 8, 8, 0.1);
+  }
+
+  .moura-pillar-card {
+    min-height: clamp(13.5rem, 18vw, 17rem);
+    display: grid;
+    align-content: space-between;
+    gap: clamp(1.4rem, 2vw, 2rem);
+    padding: clamp(1.15rem, 1.7vw, 1.65rem);
+    background: rgba(255, 253, 248, 0.58);
+    transition: background 0.36s cubic-bezier(0.16, 1, 0.3, 1), color 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-pillar-card:hover {
+    background: rgba(255, 253, 248, 0.76);
+  }
+
+  .moura-pillar-card span,
+  .moura-badge-card-head span,
+  .moura-distinction-list span {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.72);
+  }
+
+  .moura-distinction-list span {
+    color: rgba(167, 124, 61, 0.88);
+    text-shadow: 0 0 18px rgba(167, 124, 61, 0.08);
+  }
+
+  .moura-pillar-card h3,
+  .moura-badge-card h3 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.45rem, 2.2vw, 2.55rem);
+    font-weight: 100;
+    line-height: 1;
+    color: rgba(8, 8, 8, 0.84);
+  }
+
+  .moura-pillar-card p,
+  .moura-badge-card p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.84rem, 0.9vw, 0.94rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(8, 8, 8, 0.54);
+  }
+
+  .moura-method,
+  .moura-distinction {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background:
+      radial-gradient(circle at 18% 20%, rgba(111, 38, 61, 0.14), transparent 28%),
+      linear-gradient(145deg, #060606 0%, #10100f 58%, #050505 100%);
+    color: var(--moura-ivory);
+  }
+
+  .moura-method .moura-section-heading h2,
+  .moura-distinction .moura-section-heading h2 {
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .moura-method {
+    position: relative;
+    align-content: center;
+    padding-block: clamp(5rem, 8vw, 9rem);
+  }
+
+  .moura-method-flow {
+    display: grid;
+    gap: clamp(2.4rem, 4vw, 4.2rem);
+    align-self: center;
+    width: min(100%, 36rem);
+    margin-left: auto;
+  }
+
+  .moura-method-flow .moura-method-copy {
+    max-width: 30rem;
+    margin: 0;
+    color: rgba(244, 239, 231, 0.62);
+  }
+
+  .moura-method-copy--closing {
+    justify-self: start;
+    color: rgba(244, 239, 231, 0.56);
+  }
+
+  .moura-method-steps {
+    width: min(100%, 26rem);
+    display: grid;
+    gap: clamp(1.15rem, 1.7vw, 1.6rem);
+    margin: 0 0 0 clamp(2rem, 4vw, 4rem);
+    padding-left: clamp(1.2rem, 2vw, 1.8rem);
+    border-left: 1px solid rgba(244, 239, 231, 0.16);
+  }
+
+  .moura-method-step {
+    position: relative;
+    display: grid;
+    gap: 0.32rem;
+  }
+
+  .moura-method-step::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * clamp(1.2rem, 2vw, 1.8rem) - 1px);
+    top: 0.4rem;
+    width: clamp(0.5rem, 0.7vw, 0.7rem);
+    height: 1px;
+    background: rgba(167, 124, 61, 0.7);
+  }
+
+  .moura-method-step small {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.66rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    color: rgba(167, 124, 61, 0.78);
+  }
+
+  .moura-method-step span {
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.05rem, 1.35vw, 1.45rem);
+    font-weight: 100;
+    line-height: 1.05;
+    color: rgba(244, 239, 231, 0.78);
+  }
+
+  .moura-method-step p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.76rem, 0.82vw, 0.86rem);
+    font-weight: 300;
+    line-height: 1.45;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .moura-badges-heading {
+    max-width: 62rem;
+  }
+
+  .moura-badges-heading p:not(.moura-kicker) {
+    max-width: 40rem;
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.18vw, 1.14rem);
+    font-weight: 300;
+    line-height: 1.62;
+    color: rgba(8, 8, 8, 0.58);
   }
 
   .moura-badges-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
-    border: 1px solid rgba(8, 8, 8, 0.1);
+    margin-top: clamp(3.2rem, 5.8vw, 5.2rem);
+    border-block: 1px solid rgba(8, 8, 8, 0.1);
     background: rgba(8, 8, 8, 0.1);
   }
 
   .moura-badge-card {
-    min-height: clamp(24rem, 36vw, 36rem);
+    min-height: clamp(25rem, 34vw, 33rem);
     display: grid;
-    align-content: space-between;
-    gap: 2rem;
-    padding: clamp(1.25rem, 2vw, 1.75rem);
+    grid-template-rows: auto 12.5rem auto;
+    align-content: start;
+    gap: clamp(1.1rem, 1.7vw, 1.65rem);
+    padding: clamp(1.15rem, 1.7vw, 1.6rem);
     background:
-      radial-gradient(circle at 50% 38%, rgba(167, 124, 61, 0.1), transparent 34%),
-      rgba(255, 253, 248, 0.68);
+      radial-gradient(circle at 50% 42%, rgba(167, 124, 61, 0.1), transparent 34%),
+      rgba(255, 253, 248, 0.72);
+  }
+
+  .moura-badge-card-head {
+    display: grid;
+    gap: 0.62rem;
+  }
+
+  .moura-badge-card-head h3 {
+    font-size: clamp(1.25rem, 1.95vw, 2.35rem);
+  }
+
+  .moura-badge-card-head p {
+    color: rgba(8, 8, 8, 0.46);
   }
 
   .moura-badge-stage {
     display: grid;
-    min-height: 18rem;
+    height: 12.5rem;
+    min-height: 12.5rem;
     place-items: center;
+    align-self: start;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .moura-badge-description {
+    align-self: start;
+  }
+
+  .moura-distinction {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    padding-block: clamp(5rem, 8vw, 9rem);
+  }
+
+  .moura-distinction-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-block: 1px solid rgba(244, 239, 231, 0.12);
+    background: rgba(244, 239, 231, 0.08);
+    gap: 1px;
+  }
+
+  .moura-distinction-list article {
+    min-height: clamp(13.5rem, 17vw, 17rem);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: clamp(0.85rem, 1.35vw, 1.2rem);
+    padding: clamp(1.35rem, 2vw, 1.85rem);
+    background:
+      linear-gradient(135deg, rgba(244, 239, 231, 0.035), transparent 46%),
+      rgba(8, 8, 8, 0.26);
+    transition: background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-distinction-list article:hover {
+    background:
+      linear-gradient(135deg, rgba(167, 124, 61, 0.06), transparent 48%),
+      rgba(8, 8, 8, 0.34);
+  }
+
+  .moura-distinction-list h3 {
+    max-width: 13ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(1.42rem, 2.35vw, 2.72rem);
+    font-weight: 100;
+    line-height: 1;
+    color: rgba(244, 239, 231, 0.84);
+  }
+
+  .moura-distinction-list p {
+    align-self: end;
+    max-width: 24rem;
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.84rem, 0.9vw, 0.95rem);
+    font-weight: 300;
+    line-height: 1.58;
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .moura-closing-copy a {
+    width: fit-content;
+    margin-top: clamp(1.2rem, 2.4vw, 2rem);
+    border: 1px solid rgba(8, 8, 8, 0.2);
+    padding: 1rem 1.25rem;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.86);
+    text-decoration: none;
+    transition: border-color 0.36s cubic-bezier(0.16, 1, 0.3, 1), color 0.36s cubic-bezier(0.16, 1, 0.3, 1), transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-closing-copy a:hover {
+    border-color: rgba(111, 38, 61, 0.62);
+    background: rgba(111, 38, 61, 0.04);
+    color: var(--moura-wine);
+    transform: translateX(0.18rem);
   }
 
   @media (max-width: 1180px) {
+    .moura-system-visual {
+      min-height: clamp(34rem, 72vw, 46rem);
+    }
+
+    .moura-system-visual .moura-system-copy {
+      left: clamp(1.25rem, 4vw, 2.5rem);
+      bottom: clamp(1.25rem, 4vw, 2.5rem);
+      width: calc(100% - clamp(2.5rem, 8vw, 5rem));
+      max-width: 36rem;
+      border-inline: 0;
+    }
+
+    .moura-system-copy,
+    .moura-closing-copy {
+      max-width: 42rem;
+      margin-left: 0;
+    }
+
+    .moura-method-flow {
+      width: min(100%, 42rem);
+      margin-left: 0;
+    }
+
+    .moura-method-flow .moura-method-copy,
+    .moura-method-copy--closing {
+      max-width: 42rem;
+      justify-self: start;
+    }
+
+    .moura-method-steps {
+      width: min(100%, 36rem);
+      margin-left: clamp(1rem, 3vw, 2rem);
+    }
+
+    .moura-pillar-grid,
     .moura-badges-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .moura-distinction-list {
+      grid-template-columns: 1fr;
+    }
+
+    .moura-hero-grid,
+    .moura-two-column,
+    .moura-method-grid,
+    .moura-distinction-grid,
+    .moura-closing-grid {
+      grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 767px) {
+    .moura-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .moura-hero h1,
+    .moura-section-heading h2,
+    .moura-badges-heading h2,
+    .moura-closing h2 {
+      font-size: clamp(2.8rem, 14vw, 4.8rem);
+    }
+
+    .moura-system-visual {
+      min-height: 42rem;
+    }
+
+    .moura-system-visual .moura-system-copy {
+      left: 1rem;
+      bottom: 1rem;
+      width: calc(100% - 2rem);
+      padding: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.68;
+      background: rgba(8, 8, 8, 0.58);
+    }
+
+    .moura-method-flow {
+      gap: 2.4rem;
+    }
+
+    .moura-method-steps {
+      width: 100%;
+      gap: 1.2rem;
+      margin-left: 0.8rem;
+    }
+
+    .moura-pillar-grid,
     .moura-badges-grid {
       grid-template-columns: 1fr;
     }
 
+    .moura-pillar-card,
     .moura-badge-card {
-      min-height: 22rem;
+      min-height: 20rem;
     }
   }
 </style>
