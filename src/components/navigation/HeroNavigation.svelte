@@ -194,7 +194,7 @@
     display: inline-block;
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
     font-size: clamp(3.05rem, 8vw, 8.4rem);
-    font-weight: 900;
+    font-weight: 700;
     line-height: 0.86;
     letter-spacing: 0;
     color: rgba(8, 8, 8, 0.9);

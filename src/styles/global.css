@@ -685,7 +685,7 @@ body.is-overlay-open {
   max-width: 13ch;
   margin: 0;
   font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
-  font-size: clamp(3.4rem, 8.6vw, 9.8rem);
+  font-size: clamp(2.9rem, 7.1vw, 8.1rem);
   font-weight: 100;
   line-height: 0.92;
   letter-spacing: 0;
@@ -1004,8 +1004,7 @@ body.is-overlay-open {
 
 .qualified-presence-section {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(6, 6, 6, 1) 0%, rgba(244, 239, 231, 1) 18%, rgba(247, 244, 239, 1) 100%);
+  background: var(--moura-paper);
   color: var(--moura-black);
   padding: clamp(8rem, 12vw, 12rem) clamp(1.5rem, 4vw, 4.5rem) clamp(7rem, 11vw, 11rem);
 }

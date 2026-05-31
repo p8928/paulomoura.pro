@@ -5,22 +5,22 @@
     {
       number: '01',
       title: 'Diagnóstico',
-      copy: 'Antes da estética, da campanha ou da otimização, existe leitura. O processo começa investigando negócio, mercado, reputação, diferenciais, público, sinais de confiança e pontos de atrito na experiência atual.',
+      copy: 'O processo começa pela leitura do negócio: operação, mercado, atendimento, reputação, diferenciais percebidos, público e pontos de atrito na experiência atual.',
     },
     {
       number: '02',
       title: 'Direção de marca',
-      copy: 'A substância identificada ganha critério: posicionamento, personalidade, linguagem, hierarquia de mensagens e parâmetros para que a marca se manifeste sem cair no genérico.',
+      copy: 'Verdades e impressões são separadas. O que sustenta autoridade vira posicionamento, linguagem, hierarquia de mensagens e critérios para a marca se manifestar sem cair no genérico.',
     },
     {
       number: '03',
       title: 'Presença digital',
-      copy: 'Site, conteúdo, SEO, GEO, AEO e presença local passam a operar como extensão da marca. Cada ponto de contato comunica, organiza e reforça aquilo que o negócio precisa tornar legível.',
+      copy: 'Site, conteúdo, SEO, GEO, AEO e presença local passam a organizar os sinais que clientes, Google e IA precisam reconhecer.',
     },
     {
       number: '04',
       title: 'Experiência e confiança',
-      copy: 'A percepção construída no digital precisa encontrar lastro na realidade: consistência de dados, reputação, avaliações, atendimento, promessa e entrega. Sofisticação só sustenta valor quando é coerente.',
+      copy: 'A percepção construída no digital precisa encontrar lastro na realidade: consistência de dados, avaliações, atendimento, promessa e entrega.',
     },
   ];
 
@@ -91,9 +91,9 @@
     <div class="method-scroll-shell">
       <div class="method-scroll-intro">
         <p class="method-scroll-kicker">Método</p>
-        <h2 id="method-stack-title">Da substância ao sistema.</h2>
+        <h2 id="method-stack-title">Da leitura à execução.</h2>
         <p>
-          Brand-Driven é um método para organizar o que existe de verdadeiro no negócio e fazer dessa substância a base da sua presença digital.
+          Depois da tese, vem o trabalho: investigar, decidir, estruturar e sustentar uma presença digital compatível com o que a empresa entrega.
         </p>
       </div>
 
@@ -112,7 +112,7 @@
 
 <section data-nav-surface="dark" class="method-scroll-outro">
   <div class="method-scroll-outro-shell">
-    <p>Em vez de adicionar uma camada artificial de comunicação, o método organiza o negócio para ser compreendido com mais precisão e fidelidade pelo cliente certo.</p>
+    <p>O método interpreta o negócio antes de organizar sua presença. A tecnologia amplia a leitura, mas a direção continua humana.</p>
     <a class="moura-button moura-button-light" href="/diagnostico">Iniciar candidatura</a>
   </div>
 </section>
@@ -121,10 +121,7 @@
   .method-scroll-section {
     position: relative;
     height: 390vh;
-    background:
-      radial-gradient(circle at 18% 14%, rgba(111, 38, 61, 0.18), transparent 34%),
-      radial-gradient(circle at 82% 70%, rgba(167, 124, 61, 0.08), transparent 30%),
-      linear-gradient(145deg, #050505 0%, #10100f 48%, #060606 100%);
+    background: #060606;
     color: var(--moura-ivory);
   }
 
@@ -203,9 +200,7 @@
     border: 1px solid rgba(244, 239, 231, 0.14);
     border-top-color: rgba(244, 239, 231, 0.26);
     padding: clamp(1.9rem, 3.3vw, 3.1rem);
-    background:
-      linear-gradient(180deg, rgba(244, 239, 231, 0.045), rgba(244, 239, 231, 0.014)),
-      linear-gradient(145deg, rgba(18, 18, 17, 0.98), rgba(6, 6, 6, 0.99));
+    background: rgba(10, 10, 10, 0.98);
     box-shadow:
       0 -1.25rem 3.25rem rgba(0, 0, 0, 0.38),
       0 1.5rem 4rem rgba(0, 0, 0, 0.24);

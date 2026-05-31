@@ -1,16 +1,16 @@
 <script lang="ts">
   const items = [
     {
-      title: 'Existe valor real para organizar?',
-      copy: 'O diagnóstico inicial existe para entender se há valor real, contexto e maturidade para um trabalho Brand-Driven. A análise considera marca, comunicação, site, busca, reputação, experiência e o nível de ambição da empresa para qualificar sua presença digital.',
+      title: 'A empresa já entrega acima da média?',
+      copy: 'A análise começa pelo que existe na prática: atendimento, reputação, diferenciais percebidos, maturidade digital e ambição. A candidatura só avança quando há base real para um trabalho Brand-Driven.',
     },
     {
-      title: 'Existe maturidade para avançar?',
-      copy: 'Por se tratar de um processo conduzido de forma próxima por Paulo Moura, a agenda é limitada. As conversas iniciais são reservadas a empresas e profissionais cuja entrega já supera o modo como são percebidos no digital.',
+      title: 'Há disponibilidade para uma revisão profunda?',
+      copy: 'O processo exige acesso ao negócio, escuta e decisões estratégicas. A agenda é limitada porque a direção é próxima e conduzida por Paulo Moura.',
     },
     {
-      title: 'Existe aderência para uma proposta?',
-      copy: 'A candidatura não garante aprovação; ela permite avaliar aderência, prioridade e potencial de transformação antes de qualquer proposta.',
+      title: 'Faz sentido avançar para uma proposta?',
+      copy: 'A candidatura não funciona como pedido automático de orçamento. Ela permite avaliar prioridade, potencial e nível de exigência antes de qualquer proposta.',
     },
   ];
 
@@ -20,10 +20,9 @@
 <section data-nav-surface="light" class="application-section" aria-labelledby="application-title">
   <div class="application-shell">
     <div class="application-heading">
-      <p class="application-kicker">Diagnóstico</p>
+      <p class="application-kicker">Candidatura</p>
       <h2 id="application-title">
-        <span>O próximo passo não é solicitar um orçamento.</span>
-        <span>É entrar em avaliação para uma parceria.</span>
+        <span>O próximo passo é uma avaliação de compatibilidade.</span>
       </h2>
     </div>
 
@@ -53,8 +52,8 @@
     </div>
 
     <div class="application-action">
-      <p class="application-action-title">Se há aderência, o diagnóstico é o primeiro movimento.</p>
-      <p class="application-action-copy">A partir dele, percepção, presença e confiança digital passam a ser tratadas com direção.</p>
+      <p class="application-action-title">Se houver aderência, o diagnóstico é o primeiro movimento.</p>
+      <p class="application-action-copy">A partir dele, marca, presença e confiança digital passam a ser tratadas sob a mesma direção.</p>
       <a class="moura-button moura-button-dark" href="/diagnostico">Iniciar candidatura</a>
     </div>
   </div>
