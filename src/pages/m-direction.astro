@@ -1,0 +1,18 @@
+---
+import BlankHero from '@components/sections/shared/BlankHero.astro';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="M-Direction" description="Direcao estrategica continuada" showChrome={false}>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+  <main>
+    <BlankHero />
+  </main>
+  <SiteFooter />
+</BaseLayout>

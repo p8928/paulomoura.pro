@@ -79,9 +79,14 @@ const distinctions = [
           <h1 id="moura-title">Presença digital construída a partir do que torna uma empresa digna de escolha.</h1>
         </div>
 
-        <p class="moura-hero-text">
-          Paulo Moura conduz a interpretação do negócio, identifica seus sinais reais de autoridade e organiza marca, site, conteúdo, busca e reputação para que clientes, Google e IA compreendam com mais precisão por que aquela empresa é a melhor escolha.
-        </p>
+        <div class="moura-hero-aside">
+          <div class="moura-hero-luxury-mark" aria-label="Monograma Moura Signature">
+            <MSupremeBadge scale={1.08} label="Signature" tone="wine" />
+          </div>
+          <p class="moura-hero-text">
+            Paulo Moura conduz a interpretação do negócio, identifica seus sinais reais de autoridade e organiza marca, site, conteúdo, busca e reputação para que clientes, Google e IA compreendam com mais precisão por que aquela empresa é a melhor escolha.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -219,7 +224,8 @@ const distinctions = [
           <p>
             A candidatura prioriza empresas e profissionais com substância, maturidade e disposição para tratar marca, site, conteúdo, busca e reputação como parte do mesmo trabalho.
           </p>
-          <a href="/diagnostico">Enviar candidatura</a>
+          <a href="/analise">
+          Enviar candidatura</a>
         </div>
       </div>
     </section>
@@ -296,6 +302,28 @@ const distinctions = [
     font-size: clamp(2.9rem, 5.6vw, 6.55rem);
     line-height: 0.96;
     color: rgba(244, 239, 231, 0.94);
+  }
+
+  .moura-hero-aside {
+    display: grid;
+    gap: clamp(0.9rem, 1.7vw, 1.45rem);
+    align-self: end;
+    justify-items: start;
+  }
+
+  .moura-hero-luxury-mark {
+    display: inline-grid;
+    place-items: center;
+    width: max-content;
+    justify-self: center;
+    padding: clamp(0.7rem, 1.2vw, 1rem);
+    border: 1px solid rgba(111, 38, 61, 0.38);
+    background:
+      linear-gradient(135deg, rgba(111, 38, 61, 0.14), transparent 38%),
+      rgba(4, 4, 4, 0.24);
+    box-shadow:
+      0 1.4rem 4rem rgba(0, 0, 0, 0.26),
+      inset 0 0 2.4rem rgba(111, 38, 61, 0.14);
   }
 
   .moura-hero-text {
@@ -817,6 +845,10 @@ const distinctions = [
 
     .moura-distinction-list {
       grid-template-columns: 1fr;
+    }
+
+    .moura-hero-aside {
+      max-width: 31rem;
     }
 
     .moura-hero-grid,
