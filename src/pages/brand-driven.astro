@@ -33,6 +33,13 @@ const directionScope = [
   'Refinamentos de linguagem, páginas, experiência e posicionamento conforme a marca amadurece.',
 ];
 
+const thesisNotes = [
+  { label: 'IA', copy: 'sintetiza a média' },
+  { label: 'Entidade', copy: 'sustenta diferença' },
+  { label: 'Fonte', copy: 'merece citação' },
+  { label: 'Autoridade', copy: 'acumula sinais' },
+];
+
 const principles = [
   'Autenticidade como dado de alta fidelidade.',
   'Marca como entidade reconhecível.',
@@ -54,17 +61,6 @@ const principles = [
 
   <main class="brand-page">
     <section class="brand-hero" data-nav-surface="dark" aria-labelledby="brand-title">
-      <div class="brand-hero-media" aria-hidden="true">
-        <img
-          src="/images/editorial/brand-driven-material.webp"
-          alt=""
-          width="1122"
-          height="1402"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-
       <div class="brand-shell brand-hero-grid">
         <div class="brand-hero-copy">
           <p class="brand-kicker">Método</p>
@@ -78,22 +74,41 @@ const principles = [
           <a class="moura-button moura-button-light" href="/analise">Iniciar análise</a>
         </div>
       </div>
+
+      <aside class="brand-hero-system" aria-label="Coordenadas do método Brand-Driven">
+        <p>01 / Método proprietário</p>
+        <span>Leitura do negócio</span>
+        <span>Entidade reconhecível</span>
+        <span>Sinais de autoridade</span>
+      </aside>
     </section>
 
     <section class="brand-thesis" data-nav-surface="light" aria-labelledby="brand-thesis-title">
-      <div class="brand-shell brand-thesis-grid">
-        <div class="brand-section-heading">
+      <div class="brand-shell brand-thesis-layout">
+        <header class="brand-thesis-header">
           <p class="brand-kicker brand-kicker-dark">Conversão</p>
-          <h2 id="brand-thesis-title">A marca decifrada se torna entidade estruturada que a coloca à parte do genérico.</h2>
-        </div>
+          <p class="brand-thesis-index" aria-hidden="true">02 / Brand-Driven</p>
+        </header>
 
-        <div class="brand-thesis-copy">
-          <p>
-            A IA sintetiza o que encontra com frequência. Quando uma empresa se apresenta com os mesmos argumentos, a mesma linguagem e os mesmos sinais dos concorrentes, ela se torna matéria-prima para uma resposta comum. A fonte desaparece porque a informação parece pertencer a todos.
-          </p>
-          <p>
-            Brand-Driven segue outro caminho: revelar a lógica própria da empresa, organizar suas provas de experiência e transformar essa diferença em presença digital legível para pessoas e sistemas. O objetivo deixa de ser apenas aparecer para uma busca e passa a ser reconhecido como referência confiável dentro de um território.
-          </p>
+        <h2 id="brand-thesis-title" class="brand-thesis-title">A marca decifrada se torna entidade estruturada que a coloca à parte do genérico.</h2>
+
+        <div class="brand-thesis-rule" aria-hidden="true"></div>
+
+        <div class="brand-thesis-body">
+          <div class="brand-thesis-copy">
+            <p>
+              A IA sintetiza o que encontra com frequência. Quando uma empresa se apresenta com os mesmos argumentos, a mesma linguagem e os mesmos sinais dos concorrentes, ela se torna matéria-prima para uma resposta comum. A fonte desaparece porque a informação parece pertencer a todos.
+            </p>
+            <p>
+              Brand-Driven segue outro caminho: revelar a lógica própria da empresa, organizar suas provas de experiência e transformar essa diferença em presença digital legível para pessoas e sistemas. O objetivo deixa de ser apenas aparecer para uma busca e passa a ser reconhecido como referência confiável dentro de um território.
+            </p>
+          </div>
+
+          <aside class="brand-thesis-notes" aria-label="Âncoras conceituais da tese Brand-Driven">
+            {thesisNotes.map((note) => (
+              <p><span>{note.label}</span>{note.copy}</p>
+            ))}
+          </aside>
         </div>
       </div>
     </section>
@@ -104,33 +119,51 @@ const principles = [
         <h2 id="brand-offers-title">Dois movimentos para uma presença que começa com precisão e continua acumulando autoridade.</h2>
       </div>
 
-      <div class="brand-shell brand-offer-grid">
-        <article class="brand-offer-card brand-offer-card-signature">
-          <span>Entrada</span>
-          <h3>M-Signature</h3>
-          <p>
-            A construção inicial da presença digital cutting-edge: leitura do negócio, direção de marca, linguagem, site, busca, IA, reputação e presença local reunidos sob uma mesma assinatura.
-          </p>
-          <a class="moura-button moura-button-light" href="/analise">Solicitar análise</a>
+      <div class="brand-shell brand-offer-flow">
+        <article class="brand-offer-row">
+          <p class="brand-offer-number">01</p>
+          <div class="brand-offer-name">
+            <span>Entrada</span>
+            <h3>M-Signature</h3>
+          </div>
+          <div class="brand-offer-copy">
+            <p>
+              A construção inicial de uma presença digital de alta precisão: leitura do negócio, direção de marca, linguagem, site, busca, IA, reputação e presença local reunidos sob uma mesma assinatura.
+            </p>
+            <a class="moura-button moura-button-light" href="/analise">Solicitar análise</a>
+          </div>
         </article>
 
-        <article class="brand-offer-card">
-          <span>Continuidade</span>
-          <h3>M-Direction</h3>
-          <p>
-            A direção estratégica depois da primeira entrega. A marca passa a ser acompanhada em conteúdo, autoridade, sinais de entidade, reputação e ajustes finos de presença digital.
-          </p>
-          <a class="moura-button moura-button-light" href="/m-direction">Ver continuidade</a>
+        <div class="brand-offer-connector" aria-hidden="true">
+          <span>continuidade</span>
+        </div>
+
+        <article class="brand-offer-row">
+          <p class="brand-offer-number">02</p>
+          <div class="brand-offer-name">
+            <span>Direção</span>
+            <h3>M-Direction</h3>
+          </div>
+          <div class="brand-offer-copy">
+            <p>
+              A direção estratégica depois da primeira entrega. A marca passa a ser acompanhada em conteúdo, autoridade, sinais de entidade, reputação e ajustes finos de presença digital.
+            </p>
+            <a class="moura-button moura-button-light" href="/m-direction">Ver continuidade</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section class="brand-signature" data-nav-surface="light" aria-labelledby="brand-signature-title">
-      <div class="brand-shell brand-signature-grid">
-        <div class="brand-section-heading">
+      <div class="brand-shell brand-signature-layout">
+        <header class="brand-signature-header">
           <p class="brand-kicker brand-kicker-dark">M-Signature</p>
-          <h2 id="brand-signature-title">A primeira entrega precisa organizar o que será reconhecido depois.</h2>
-        </div>
+          <p class="brand-signature-index" aria-hidden="true">04 / Entrada</p>
+        </header>
+
+        <h2 id="brand-signature-title" class="brand-signature-title">A primeira entrega precisa organizar o que será reconhecido depois.</h2>
+
+        <div class="brand-signature-rule" aria-hidden="true"></div>
 
         <div class="brand-signature-list">
           {signatureScope.map((item, index) => (
@@ -145,11 +178,15 @@ const principles = [
     </section>
 
     <section class="brand-principles-section" data-nav-surface="dark" aria-labelledby="brand-principles-title">
-      <div class="brand-shell brand-principles-grid">
-        <div>
+      <div class="brand-shell brand-vault-layout">
+        <header class="brand-vault-header">
           <p class="brand-kicker">Cofre técnico</p>
-          <h2 id="brand-principles-title">A parte invisível existe para que a parte visível tenha lastro.</h2>
-        </div>
+          <p class="brand-vault-index" aria-hidden="true">05 / Infraestrutura</p>
+        </header>
+
+        <h2 id="brand-principles-title" class="brand-vault-title">A parte invisível existe para que a parte visível tenha lastro.</h2>
+
+        <div class="brand-vault-rule" aria-hidden="true"></div>
 
         <div class="brand-principles" aria-label="Princípios Brand-Driven">
           {principles.map((principle, index) => (
@@ -160,19 +197,24 @@ const principles = [
     </section>
 
     <section class="brand-direction" data-nav-surface="light" aria-labelledby="brand-direction-title">
-      <div class="brand-shell brand-direction-grid">
-        <div class="brand-section-heading">
+      <div class="brand-shell brand-direction-layout">
+        <header class="brand-direction-header">
           <p class="brand-kicker brand-kicker-dark">M-Direction</p>
-          <h2 id="brand-direction-title">A autoridade não se encerra na publicação do site.</h2>
-        </div>
+          <p class="brand-direction-index" aria-hidden="true">06 / Continuidade</p>
+        </header>
+
+        <h2 id="brand-direction-title" class="brand-direction-title">A autoridade não se encerra na publicação do site.</h2>
 
         <div class="brand-direction-copy">
           <p>
             O primeiro projeto cria a base. A continuidade existe porque reputação, conteúdo, busca e IA respondem ao tempo, à consistência e à qualidade dos sinais acumulados. Uma marca que deseja permanecer relevante precisa continuar produzindo provas de experiência.
           </p>
-          <div class="brand-direction-list">
-            {directionScope.map((item) => <p>{item}</p>)}
-          </div>
+        </div>
+
+        <div class="brand-direction-list">
+          {directionScope.map((item, index) => (
+            <p><span>{item}</span><strong>{String(index + 1).padStart(2, '0')}</strong></p>
+          ))}
         </div>
       </div>
     </section>
@@ -190,6 +232,20 @@ const principles = [
           </p>
           <a class="moura-button moura-button-light" href="/analise">Iniciar análise</a>
         </div>
+
+        <figure class="brand-closing-visual" aria-label="Artefato visual de análise estratégica">
+          <picture>
+            <source srcset="/images/brand-driven/analysis-artifact.webp" type="image/webp" />
+            <img
+              src="/images/brand-driven/analysis-artifact.png"
+              alt="Papéis de análise estratégica organizados sobre uma mesa escura com linhas douradas e anotações discretas."
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
       </div>
     </section>
   </main>
@@ -232,32 +288,13 @@ const principles = [
     overflow: hidden;
     padding-block: 8rem 5.5rem;
     background:
-      radial-gradient(circle at 82% 18%, rgba(111, 38, 61, 0.26), transparent 30%),
+      radial-gradient(circle at 82% 18%, rgba(167, 124, 61, 0.16), transparent 30%),
       linear-gradient(145deg, #050505 0%, #10100f 54%, #050505 100%);
     color: var(--moura-ivory);
   }
 
-  .brand-hero-media {
-    position: absolute;
-    inset: 8vh 0 auto auto;
-    width: min(42vw, 34rem);
-    opacity: 0.2;
-    transform: translateX(12%);
-    filter: saturate(0.8) contrast(1.08);
-    pointer-events: none;
-  }
-
-  .brand-hero-media img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
 
   .brand-hero-grid,
-  .brand-thesis-grid,
-  .brand-signature-grid,
-  .brand-principles-grid,
-  .brand-direction-grid,
   .brand-closing-grid {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.68fr);
@@ -265,10 +302,19 @@ const principles = [
     align-items: end;
   }
 
+  .brand-closing-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .brand-closing-grid > div:first-child {
+    grid-column: 1 / 8;
+  }
+
   .brand-hero-copy,
   .brand-section-heading,
   .brand-offers-head,
-  .brand-principles-grid > div:first-child,
   .brand-closing-grid > div:first-child {
     display: grid;
     gap: 1.35rem;
@@ -277,7 +323,6 @@ const principles = [
   .brand-hero h1,
   .brand-section-heading h2,
   .brand-offers-head h2,
-  .brand-principles-section h2,
   .brand-closing h2 {
     margin: 0;
     font-family: "Outfit", "Avenir Next", sans-serif;
@@ -292,6 +337,37 @@ const principles = [
     color: rgba(244, 239, 231, 0.94);
   }
 
+  .brand-hero-system {
+    position: absolute;
+    right: clamp(3rem, 8vw, 9rem);
+    bottom: clamp(2rem, 4vw, 4rem);
+    left: clamp(3rem, 8vw, 9rem);
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(10rem, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+    margin: 0;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    padding-top: 1rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .brand-hero-system p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.74);
+  }
+
+  .brand-hero-system span {
+    display: block;
+    text-align: right;
+  }
+
   .brand-hero-aside,
   .brand-closing-copy {
     display: grid;
@@ -303,7 +379,7 @@ const principles = [
 
   .brand-hero-aside p,
   .brand-thesis-copy p,
-  .brand-offer-card p,
+  .brand-offer-copy p,
   .brand-signature-list p,
   .brand-direction-copy p,
   .brand-closing-copy p {
@@ -328,10 +404,96 @@ const principles = [
     background: var(--moura-paper);
   }
 
-  .brand-thesis-grid,
-  .brand-signature-grid,
-  .brand-direction-grid {
+  .brand-thesis-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.2rem, 4vw, 4rem);
+  }
+
+  .brand-thesis-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.035) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.42;
+    pointer-events: none;
+  }
+
+  .brand-thesis-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-thesis-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .brand-thesis-index {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.68);
+  }
+
+  .brand-thesis-title {
+    grid-column: 1 / 10;
+    max-width: 15ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.2rem, 7vw, 8.5rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .brand-thesis-rule {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(8, 8, 8, 0.2), rgba(111, 38, 61, 0.34), transparent);
+  }
+
+  .brand-thesis-body {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 66ch) minmax(12rem, 18rem);
+    gap: clamp(3rem, 7vw, 7rem);
     align-items: start;
+  }
+
+  .brand-thesis-notes {
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+  }
+
+  .brand-thesis-notes p {
+    display: grid;
+    grid-template-columns: 6.8rem 1fr;
+    gap: 1rem;
+    margin: 0;
+    border-bottom: 1px solid rgba(8, 8, 8, 0.16);
+    padding-block: 0.95rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: rgba(8, 8, 8, 0.58);
+  }
+
+  .brand-thesis-notes span {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.78);
   }
 
   .brand-section-heading h2 {
@@ -341,12 +503,18 @@ const principles = [
     color: rgba(8, 8, 8, 0.9);
   }
 
-  .brand-thesis-copy,
+  .brand-thesis-copy {
+    display: grid;
+    gap: clamp(1.4rem, 2.4vw, 2rem);
+    max-width: 66ch;
+  }
+
   .brand-direction-copy {
+    grid-column: 9 / -1;
     display: grid;
     gap: 1.45rem;
     max-width: 39rem;
-    margin-left: auto;
+    align-self: end;
   }
 
   .brand-thesis-copy p,
@@ -380,48 +548,51 @@ const principles = [
     color: rgba(244, 239, 231, 0.92);
   }
 
-  .brand-offer-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .brand-offer-card {
+  .brand-offer-flow {
     position: relative;
     display: grid;
-    align-content: end;
-    min-height: clamp(29rem, 48vw, 42rem);
-    gap: 1.25rem;
-    overflow: hidden;
-    border: 1px solid rgba(244, 239, 231, 0.14);
-    padding: clamp(1.8rem, 3.2vw, 3rem);
-    background:
-      radial-gradient(circle at 20% 12%, rgba(111, 38, 61, 0.26), transparent 32%),
-      linear-gradient(160deg, #111 0%, #050505 58%, #080808 100%);
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
   }
 
-  .brand-offer-card-signature {
-    border-color: rgba(111, 38, 61, 0.46);
-    box-shadow: inset 0 0 4rem rgba(111, 38, 61, 0.14);
-  }
-
-  .brand-offer-card::before {
+  .brand-offer-flow::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(115deg, transparent 0%, rgba(244, 239, 231, 0.08) 44%, transparent 58%),
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 2px);
-    opacity: 0.46;
+    background: repeating-linear-gradient(90deg, rgba(244, 239, 231, 0.035) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.42;
     pointer-events: none;
   }
 
-  .brand-offer-card > * {
+  .brand-offer-row,
+  .brand-offer-connector {
     position: relative;
     z-index: 1;
   }
 
-  .brand-offer-card span,
+  .brand-offer-row {
+    display: grid;
+    grid-template-columns: minmax(3.5rem, 0.12fr) minmax(16rem, 0.42fr) minmax(0, 0.62fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+    border-bottom: 1px solid rgba(244, 239, 231, 0.18);
+    padding-block: clamp(2.4rem, 5vw, 4.75rem);
+  }
+
+  .brand-offer-number {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 3.6rem);
+    font-weight: 300;
+    line-height: 0.9;
+    color: rgba(167, 124, 61, 0.9);
+  }
+
+  .brand-offer-name {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .brand-offer-name span,
   .brand-signature-list span,
   .brand-principles span {
     font-family: "Neue Haas Display", "Outfit", sans-serif;
@@ -429,37 +600,135 @@ const principles = [
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(111, 38, 61, 0.82);
+    color: rgba(167, 124, 61, 0.84);
   }
 
-  .brand-offer-card h3 {
+  .brand-offer-name h3 {
     margin: 0;
     font-family: "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(3.2rem, 6vw, 6.8rem);
+    font-size: clamp(3rem, 5.8vw, 6.5rem);
     font-weight: 100;
     line-height: 0.88;
     color: rgba(244, 239, 231, 0.92);
   }
 
-  .brand-signature-list {
+  .brand-offer-copy {
     display: grid;
-    border-top: 1px solid rgba(8, 8, 8, 0.14);
+    justify-items: start;
+    gap: 1.5rem;
+    max-width: 42rem;
+  }
+
+  .brand-offer-connector {
+    display: grid;
+    grid-template-columns: minmax(3.5rem, 0.12fr) minmax(16rem, 0.42fr) minmax(0, 0.62fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    min-height: clamp(3.5rem, 6vw, 5.5rem);
+    margin-block: -1px;
+    color: rgba(244, 239, 231, 0.42);
+  }
+
+  .brand-offer-connector::before {
+    content: "";
+    grid-column: 2;
+    width: 1px;
+    height: 100%;
+    margin-left: clamp(0.35rem, 1vw, 0.65rem);
+    background: linear-gradient(180deg, rgba(167, 124, 61, 0.14), rgba(167, 124, 61, 0.76), rgba(167, 124, 61, 0.14));
+  }
+
+  .brand-offer-connector span {
+    grid-column: 3;
+    align-self: center;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand-signature-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.2rem, 4vw, 4.4rem);
+  }
+
+  .brand-signature-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.032) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.46;
+    pointer-events: none;
+  }
+
+  .brand-signature-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-signature-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .brand-signature-index {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.68);
+  }
+
+  .brand-signature-title {
+    grid-column: 1 / 8;
+    max-width: 12ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3rem, 6.5vw, 7.6rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .brand-signature-rule {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(8, 8, 8, 0.2), rgba(111, 38, 61, 0.3), transparent);
+  }
+
+  .brand-signature-list {
+    grid-column: 2 / -1;
+    display: grid;
   }
 
   .brand-signature-list article {
     display: grid;
-    grid-template-columns: 4rem minmax(10rem, 0.42fr) minmax(0, 1fr);
-    gap: clamp(1.25rem, 3vw, 3rem);
+    grid-template-columns: minmax(3rem, 0.14fr) minmax(12rem, 0.34fr) minmax(0, 0.66fr);
+    gap: clamp(1.25rem, 3.6vw, 4rem);
     border-bottom: 1px solid rgba(8, 8, 8, 0.14);
-    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    padding-block: clamp(1.75rem, 3.4vw, 3rem);
+  }
+
+  .brand-signature-list article:first-child {
+    padding-top: 0;
   }
 
   .brand-signature-list h3 {
     margin: 0;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.7rem);
+    font-size: clamp(1.35rem, 2.1vw, 2.35rem);
     font-weight: 300;
-    line-height: 1;
+    line-height: 1.05;
     color: rgba(8, 8, 8, 0.84);
   }
 
@@ -471,71 +740,274 @@ const principles = [
     padding-block: clamp(7rem, 12vw, 12rem);
   }
 
-  .brand-principles {
+  .brand-vault-layout {
+    position: relative;
     display: grid;
-    align-self: center;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.3rem, 4vw, 4.5rem);
+  }
+
+  .brand-vault-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(244, 239, 231, 0.032) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.42;
+    pointer-events: none;
+  }
+
+  .brand-vault-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-vault-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .brand-vault-index {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(167, 124, 61, 0.7);
+  }
+
+  .brand-vault-title {
+    grid-column: 1 / 9;
+    max-width: 13ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3rem, 6.4vw, 7.4rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .brand-vault-rule {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(244, 239, 231, 0.22), rgba(167, 124, 61, 0.42), transparent);
+  }
+
+  .brand-principles {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     border-top: 1px solid rgba(244, 239, 231, 0.14);
+    border-left: 1px solid rgba(244, 239, 231, 0.14);
   }
 
   .brand-principles p {
     display: grid;
-    grid-template-columns: 4rem 1fr;
-    gap: 1.5rem;
+    align-content: space-between;
+    min-height: clamp(13rem, 21vw, 19rem);
+    gap: clamp(2rem, 4vw, 4rem);
     margin: 0;
+    border-right: 1px solid rgba(244, 239, 231, 0.14);
     border-bottom: 1px solid rgba(244, 239, 231, 0.14);
-    padding-block: 1.35rem;
+    padding: clamp(1.45rem, 3vw, 2.4rem);
     font-family: "Neue Haas Display", "Outfit", sans-serif;
-    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-size: clamp(1.45rem, 2.4vw, 2.65rem);
     font-weight: 300;
-    line-height: 1.15;
-    color: rgba(244, 239, 231, 0.8);
+    line-height: 1.08;
+    color: rgba(244, 239, 231, 0.82);
+  }
+
+  .brand-direction-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.2rem, 4vw, 4.5rem);
+  }
+
+  .brand-direction-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.032) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.44;
+    pointer-events: none;
+  }
+
+  .brand-direction-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-direction-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .brand-direction-index {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.68);
+  }
+
+  .brand-direction-title {
+    grid-column: 1 / 8;
+    max-width: 12ch;
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3rem, 6.5vw, 7.6rem);
+    font-weight: 100;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: rgba(8, 8, 8, 0.9);
   }
 
   .brand-direction-list {
+    grid-column: 3 / -1;
     display: grid;
-    margin-top: 1.5rem;
+    margin-top: clamp(3.5rem, 8vw, 7rem);
     border-top: 1px solid rgba(8, 8, 8, 0.14);
   }
 
   .brand-direction-list p {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 4rem;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: baseline;
+    margin: 0;
     border-bottom: 1px solid rgba(8, 8, 8, 0.14);
-    padding-block: 1.1rem;
+    padding-block: clamp(1.2rem, 2.6vw, 2.1rem);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.15rem, 2vw, 2rem);
+    font-weight: 300;
+    line-height: 1.16;
     color: rgba(8, 8, 8, 0.78);
+  }
+
+  .brand-direction-list strong {
+    font: inherit;
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+    text-align: right;
+    color: rgba(111, 38, 61, 0.72);
   }
 
   .brand-closing {
     background:
-      radial-gradient(circle at 78% 24%, rgba(111, 38, 61, 0.28), transparent 30%),
+      radial-gradient(circle at 78% 24%, rgba(167, 124, 61, 0.16), transparent 30%),
       #060606;
   }
 
   .brand-closing-copy {
-    margin-left: auto;
+    grid-column: 1 / 6;
+    margin-left: 0;
+  }
+
+  .brand-closing-visual {
+    position: relative;
+    grid-column: 8 / -1;
+    align-self: end;
+    width: min(100%, 24rem);
+    margin: clamp(2rem, 7vw, 7rem) 0 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(167, 124, 61, 0.18);
+    background: rgba(244, 239, 231, 0.028);
+    box-shadow:
+      0 2rem 4rem rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(244, 239, 231, 0.035);
+  }
+
+  .brand-closing-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(6, 6, 6, 0.22) 100%),
+      linear-gradient(115deg, rgba(167, 124, 61, 0.08), transparent 34%);
+    pointer-events: none;
+  }
+
+  .brand-closing-visual picture,
+  .brand-closing-visual img {
+    display: block;
+  }
+
+  .brand-closing-visual img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    opacity: 0.68;
+    filter: saturate(0.78) contrast(0.98);
   }
 
   @media (max-width: 980px) {
     .brand-hero-grid,
-    .brand-thesis-grid,
-    .brand-signature-grid,
-    .brand-principles-grid,
-    .brand-direction-grid,
     .brand-closing-grid {
       grid-template-columns: 1fr;
     }
 
-    .brand-hero-media {
-      width: 26rem;
-      opacity: 0.14;
+
+    .brand-closing-grid > div:first-child,
+    .brand-closing-copy,
+    .brand-closing-visual {
+      grid-column: 1;
     }
 
-    .brand-thesis-copy,
-    .brand-direction-copy,
-    .brand-closing-copy {
-      margin-left: 0;
+    .brand-closing-visual {
+      width: min(100%, 26rem);
+      margin: 1.5rem 0 0;
     }
 
-    .brand-offer-grid {
+    .brand-direction-layout {
       grid-template-columns: 1fr;
+    }
+
+    .brand-direction-title,
+    .brand-direction-copy,
+    .brand-direction-list {
+      grid-column: 1;
+    }
+
+    .brand-offer-row {
+      grid-template-columns: 4rem 1fr;
+    }
+
+    .brand-offer-copy {
+      grid-column: 2;
+    }
+
+    .brand-offer-connector {
+      grid-template-columns: 4rem 1fr;
+    }
+
+    .brand-offer-connector::before {
+      grid-column: 2;
+    }
+
+    .brand-offer-connector span {
+      display: none;
+    }
+
+    .brand-signature-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-signature-title,
+    .brand-signature-list {
+      grid-column: 1;
     }
 
     .brand-signature-list article {
@@ -544,6 +1016,28 @@ const principles = [
 
     .brand-signature-list p {
       grid-column: 2;
+    }
+
+    .brand-thesis-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-thesis-title,
+    .brand-thesis-body {
+      grid-column: 1;
+    }
+
+    .brand-thesis-body {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-vault-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-vault-title,
+    .brand-principles {
+      grid-column: 1;
     }
   }
 
@@ -556,18 +1050,55 @@ const principles = [
       padding-block: 7rem 4.5rem;
     }
 
+    .brand-hero-system {
+      display: none;
+    }
+
     .brand-hero h1,
     .brand-section-heading h2,
     .brand-offers-head h2,
-    .brand-principles-section h2,
+    .brand-vault-title,
+    .brand-direction-title,
     .brand-closing h2 {
       font-size: clamp(2.75rem, 13vw, 4.7rem);
     }
 
-    .brand-signature-list article,
-    .brand-principles p {
+    .brand-offer-row,
+    .brand-signature-list article {
       grid-template-columns: 1fr;
       gap: 0.65rem;
+    }
+
+    .brand-principles {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-principles p {
+      min-height: 11rem;
+    }
+
+    .brand-direction-list p {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .brand-direction-list strong {
+      text-align: left;
+    }
+
+    .brand-offer-copy {
+      grid-column: auto;
+    }
+
+    .brand-offer-connector {
+      grid-template-columns: 1fr;
+      min-height: 3.5rem;
+      padding-left: 0.25rem;
+    }
+
+    .brand-offer-connector::before {
+      grid-column: 1;
+      margin-left: 0;
     }
 
     .brand-signature-list p {
