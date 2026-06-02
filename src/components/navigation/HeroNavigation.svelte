@@ -9,7 +9,7 @@
 
   const overlayLinks = [
     { label: 'Moura', href: '/moura' },
-    { label: 'Brand-Driven', href: '/metodo-brand-driven/' },
+    { label: 'Brand-Driven', href: '/brand-driven' },
     { label: 'Candidatura', href: '/analise' },
     { label: 'Editorial', href: '/editorial' },
     { label: 'Mentoria', href: '/mentoria' },

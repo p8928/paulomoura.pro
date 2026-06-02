@@ -1,0 +1,577 @@
+---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const signatureScope = [
+  {
+    title: 'Leitura antropológica',
+    copy:
+      'A operação, o atendimento, a percepção do cliente, os diferenciais reais e as contradições da comunicação atual são observados antes de qualquer decisão visual ou técnica.',
+  },
+  {
+    title: 'Direção de marca e linguagem',
+    copy:
+      'O trabalho organiza mensagem, tom, vocabulário e hierarquia narrativa para que a empresa comunique o que sustenta na prática, com refinamento suficiente para preservar autoridade sem apagar personalidade.',
+  },
+  {
+    title: 'Site, experiência e estrutura técnica',
+    copy:
+      'A presença inicial ganha forma em uma arquitetura digital de alto padrão: interface, performance, narrativa, dados estruturados, SEO, GEO, AEO e sinais de entidade tratados como partes do mesmo sistema.',
+  },
+  {
+    title: 'Presença local e pontos de confiança',
+    copy:
+      'Google Business Profile, consistência de dados públicos, reputação, perfis e fragmentos de autoridade entram para reduzir ruído entre aquilo que a empresa afirma e aquilo que o ecossistema digital consegue confirmar.',
+  },
+];
+
+const directionScope = [
+  'Direção editorial e conteúdos com ganho real de informação.',
+  'Construção de autoria: perfis, assinatura, repertório e vínculos públicos.',
+  'Monitoramento de busca, IA, presença local e sinais de reputação.',
+  'Refinamentos de linguagem, páginas, experiência e posicionamento conforme a marca amadurece.',
+];
+
+const principles = [
+  'Autenticidade como dado de alta fidelidade.',
+  'Marca como entidade reconhecível.',
+  'Conteúdo como prova de experiência.',
+  'Tecnologia como tradução da substância.',
+];
+---
+
+<BaseLayout
+  title="Brand-Driven"
+  description="Brand-Driven é o método de Paulo Moura para construir presença digital a partir de substância real, linguagem autoral, site, busca, IA e reputação."
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="brand-page">
+    <section class="brand-hero" data-nav-surface="dark" aria-labelledby="brand-title">
+      <div class="brand-hero-media" aria-hidden="true">
+        <img
+          src="/images/editorial/brand-driven-material.webp"
+          alt=""
+          width="1122"
+          height="1402"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <div class="brand-shell brand-hero-grid">
+        <div class="brand-hero-copy">
+          <p class="brand-kicker">Método</p>
+          <h1 id="brand-title">Brand-Driven</h1>
+        </div>
+
+        <div class="brand-hero-aside">
+          <p>
+            Serviços com metodologia proprietária que transformam a marca em um motor de presença digital. Da estratégia que parte da leitura do negócio à engenhosa construção da estrutura técnica que dissemina sinais de autoridade para clientes, Google e IA.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Iniciar análise</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-thesis" data-nav-surface="light" aria-labelledby="brand-thesis-title">
+      <div class="brand-shell brand-thesis-grid">
+        <div class="brand-section-heading">
+          <p class="brand-kicker brand-kicker-dark">Conversão</p>
+          <h2 id="brand-thesis-title">A marca decifrada se torna entidade estruturada que a coloca à parte do genérico.</h2>
+        </div>
+
+        <div class="brand-thesis-copy">
+          <p>
+            A IA sintetiza o que encontra com frequência. Quando uma empresa se apresenta com os mesmos argumentos, a mesma linguagem e os mesmos sinais dos concorrentes, ela se torna matéria-prima para uma resposta comum. A fonte desaparece porque a informação parece pertencer a todos.
+          </p>
+          <p>
+            Brand-Driven segue outro caminho: revelar a lógica própria da empresa, organizar suas provas de experiência e transformar essa diferença em presença digital legível para pessoas e sistemas. O objetivo deixa de ser apenas aparecer para uma busca e passa a ser reconhecido como referência confiável dentro de um território.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-offers" data-nav-surface="dark" aria-labelledby="brand-offers-title">
+      <div class="brand-shell brand-offers-head">
+        <p class="brand-kicker">Estrutura de trabalho</p>
+        <h2 id="brand-offers-title">Dois movimentos para uma presença que começa com precisão e continua acumulando autoridade.</h2>
+      </div>
+
+      <div class="brand-shell brand-offer-grid">
+        <article class="brand-offer-card brand-offer-card-signature">
+          <span>Entrada</span>
+          <h3>M-Signature</h3>
+          <p>
+            A construção inicial da presença digital cutting-edge: leitura do negócio, direção de marca, linguagem, site, busca, IA, reputação e presença local reunidos sob uma mesma assinatura.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Solicitar análise</a>
+        </article>
+
+        <article class="brand-offer-card">
+          <span>Continuidade</span>
+          <h3>M-Direction</h3>
+          <p>
+            A direção estratégica depois da primeira entrega. A marca passa a ser acompanhada em conteúdo, autoridade, sinais de entidade, reputação e ajustes finos de presença digital.
+          </p>
+          <a class="moura-button moura-button-light" href="/m-direction">Ver continuidade</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="brand-signature" data-nav-surface="light" aria-labelledby="brand-signature-title">
+      <div class="brand-shell brand-signature-grid">
+        <div class="brand-section-heading">
+          <p class="brand-kicker brand-kicker-dark">M-Signature</p>
+          <h2 id="brand-signature-title">A primeira entrega precisa organizar o que será reconhecido depois.</h2>
+        </div>
+
+        <div class="brand-signature-list">
+          {signatureScope.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-principles-section" data-nav-surface="dark" aria-labelledby="brand-principles-title">
+      <div class="brand-shell brand-principles-grid">
+        <div>
+          <p class="brand-kicker">Cofre técnico</p>
+          <h2 id="brand-principles-title">A parte invisível existe para que a parte visível tenha lastro.</h2>
+        </div>
+
+        <div class="brand-principles" aria-label="Princípios Brand-Driven">
+          {principles.map((principle, index) => (
+            <p><span>{String(index + 1).padStart(2, '0')}</span>{principle}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-direction" data-nav-surface="light" aria-labelledby="brand-direction-title">
+      <div class="brand-shell brand-direction-grid">
+        <div class="brand-section-heading">
+          <p class="brand-kicker brand-kicker-dark">M-Direction</p>
+          <h2 id="brand-direction-title">A autoridade não se encerra na publicação do site.</h2>
+        </div>
+
+        <div class="brand-direction-copy">
+          <p>
+            O primeiro projeto cria a base. A continuidade existe porque reputação, conteúdo, busca e IA respondem ao tempo, à consistência e à qualidade dos sinais acumulados. Uma marca que deseja permanecer relevante precisa continuar produzindo provas de experiência.
+          </p>
+          <div class="brand-direction-list">
+            {directionScope.map((item) => <p>{item}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-closing" data-nav-surface="dark" aria-labelledby="brand-closing-title">
+      <div class="brand-shell brand-closing-grid">
+        <div>
+          <p class="brand-kicker">Análise</p>
+          <h2 id="brand-closing-title">A entrada começa pela pergunta que o digital costuma evitar.</h2>
+        </div>
+
+        <div class="brand-closing-copy">
+          <p>
+            O que a empresa sustenta na prática? A resposta orienta o escopo, define a profundidade do M-Signature e indica se existe maturidade para uma direção Brand-Driven.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Iniciar análise</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .brand-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .brand-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .brand-kicker {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.5);
+  }
+
+  .brand-kicker-dark {
+    color: rgba(8, 8, 8, 0.46);
+  }
+
+  .brand-hero {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    align-items: center;
+    overflow: hidden;
+    padding-block: 8rem 5.5rem;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(111, 38, 61, 0.26), transparent 30%),
+      linear-gradient(145deg, #050505 0%, #10100f 54%, #050505 100%);
+    color: var(--moura-ivory);
+  }
+
+  .brand-hero-media {
+    position: absolute;
+    inset: 8vh 0 auto auto;
+    width: min(42vw, 34rem);
+    opacity: 0.2;
+    transform: translateX(12%);
+    filter: saturate(0.8) contrast(1.08);
+    pointer-events: none;
+  }
+
+  .brand-hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .brand-hero-grid,
+  .brand-thesis-grid,
+  .brand-signature-grid,
+  .brand-principles-grid,
+  .brand-direction-grid,
+  .brand-closing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.68fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .brand-hero-copy,
+  .brand-section-heading,
+  .brand-offers-head,
+  .brand-principles-grid > div:first-child,
+  .brand-closing-grid > div:first-child {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .brand-hero h1,
+  .brand-section-heading h2,
+  .brand-offers-head h2,
+  .brand-principles-section h2,
+  .brand-closing h2 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+  }
+
+  .brand-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(4rem, 9vw, 11rem);
+    line-height: 0.86;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .brand-hero-aside,
+  .brand-closing-copy {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 34rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: 1.4rem;
+  }
+
+  .brand-hero-aside p,
+  .brand-thesis-copy p,
+  .brand-offer-card p,
+  .brand-signature-list p,
+  .brand-direction-copy p,
+  .brand-closing-copy p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.16vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.68;
+    color: rgba(244, 239, 231, 0.64);
+  }
+
+
+  .brand-page :global(.moura-button) {
+    width: 14.75rem;
+    max-width: 100%;
+  }
+
+  .brand-thesis,
+  .brand-signature,
+  .brand-direction {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background: var(--moura-paper);
+  }
+
+  .brand-thesis-grid,
+  .brand-signature-grid,
+  .brand-direction-grid {
+    align-items: start;
+  }
+
+  .brand-section-heading h2 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 6.5vw, 7.6rem);
+    line-height: 0.92;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .brand-thesis-copy,
+  .brand-direction-copy {
+    display: grid;
+    gap: 1.45rem;
+    max-width: 39rem;
+    margin-left: auto;
+  }
+
+  .brand-thesis-copy p,
+  .brand-signature-list p,
+  .brand-direction-copy p {
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .brand-offers,
+  .brand-principles-section,
+  .brand-closing {
+    background: #060606;
+    color: var(--moura-ivory);
+  }
+
+  .brand-offers {
+    padding-block: clamp(7rem, 11vw, 11rem);
+  }
+
+  .brand-offers-head {
+    max-width: 66rem;
+    margin-bottom: clamp(4rem, 7vw, 7rem);
+  }
+
+  .brand-offers-head h2,
+  .brand-principles-section h2,
+  .brand-closing h2 {
+    max-width: 13ch;
+    font-size: clamp(3rem, 6.4vw, 7.4rem);
+    line-height: 0.92;
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .brand-offer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .brand-offer-card {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: clamp(29rem, 48vw, 42rem);
+    gap: 1.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(244, 239, 231, 0.14);
+    padding: clamp(1.8rem, 3.2vw, 3rem);
+    background:
+      radial-gradient(circle at 20% 12%, rgba(111, 38, 61, 0.26), transparent 32%),
+      linear-gradient(160deg, #111 0%, #050505 58%, #080808 100%);
+  }
+
+  .brand-offer-card-signature {
+    border-color: rgba(111, 38, 61, 0.46);
+    box-shadow: inset 0 0 4rem rgba(111, 38, 61, 0.14);
+  }
+
+  .brand-offer-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, transparent 0%, rgba(244, 239, 231, 0.08) 44%, transparent 58%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 2px);
+    opacity: 0.46;
+    pointer-events: none;
+  }
+
+  .brand-offer-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-offer-card span,
+  .brand-signature-list span,
+  .brand-principles span {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(111, 38, 61, 0.82);
+  }
+
+  .brand-offer-card h3 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.2rem, 6vw, 6.8rem);
+    font-weight: 100;
+    line-height: 0.88;
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .brand-signature-list {
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.14);
+  }
+
+  .brand-signature-list article {
+    display: grid;
+    grid-template-columns: 4rem minmax(10rem, 0.42fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 3rem);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.14);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .brand-signature-list h3 {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.7rem);
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(8, 8, 8, 0.84);
+  }
+
+  .brand-principles-section,
+  .brand-closing {
+    display: grid;
+    min-height: 100vh;
+    align-items: center;
+    padding-block: clamp(7rem, 12vw, 12rem);
+  }
+
+  .brand-principles {
+    display: grid;
+    align-self: center;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+  }
+
+  .brand-principles p {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid rgba(244, 239, 231, 0.14);
+    padding-block: 1.35rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: rgba(244, 239, 231, 0.8);
+  }
+
+  .brand-direction-list {
+    display: grid;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(8, 8, 8, 0.14);
+  }
+
+  .brand-direction-list p {
+    border-bottom: 1px solid rgba(8, 8, 8, 0.14);
+    padding-block: 1.1rem;
+    color: rgba(8, 8, 8, 0.78);
+  }
+
+  .brand-closing {
+    background:
+      radial-gradient(circle at 78% 24%, rgba(111, 38, 61, 0.28), transparent 30%),
+      #060606;
+  }
+
+  .brand-closing-copy {
+    margin-left: auto;
+  }
+
+  @media (max-width: 980px) {
+    .brand-hero-grid,
+    .brand-thesis-grid,
+    .brand-signature-grid,
+    .brand-principles-grid,
+    .brand-direction-grid,
+    .brand-closing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-hero-media {
+      width: 26rem;
+      opacity: 0.14;
+    }
+
+    .brand-thesis-copy,
+    .brand-direction-copy,
+    .brand-closing-copy {
+      margin-left: 0;
+    }
+
+    .brand-offer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-signature-list article {
+      grid-template-columns: 4rem 1fr;
+    }
+
+    .brand-signature-list p {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .brand-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .brand-hero {
+      padding-block: 7rem 4.5rem;
+    }
+
+    .brand-hero h1,
+    .brand-section-heading h2,
+    .brand-offers-head h2,
+    .brand-principles-section h2,
+    .brand-closing h2 {
+      font-size: clamp(2.75rem, 13vw, 4.7rem);
+    }
+
+    .brand-signature-list article,
+    .brand-principles p {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+
+    .brand-signature-list p {
+      grid-column: auto;
+    }
+  }
+</style>
