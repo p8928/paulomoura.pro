@@ -75,7 +75,7 @@
     position: absolute;
     inset: 0 0 auto;
     height: 1px;
-    background: rgba(111, 38, 61, 0.28);
+    background: rgba(8, 8, 8, 0.12);
     pointer-events: none;
   }
 
@@ -114,10 +114,6 @@
     line-height: 0.92;
     letter-spacing: 0;
     color: rgba(8, 8, 8, 0.9);
-  }
-
-  .application-heading h2 span:last-child {
-    color: rgba(111, 38, 61, 0.92);
   }
 
   .application-accordion {
@@ -215,14 +211,14 @@
 
   .application-accordion-item.is-open button span:first-child,
   .application-accordion-item button:hover span:first-child {
-    color: rgba(111, 38, 61, 0.92);
+    color: rgba(8, 8, 8, 0.92);
     transform: translateX(0.05em);
   }
 
   .application-accordion-item.is-open .application-accordion-marker,
   .application-accordion-item button:hover .application-accordion-marker {
-    border-color: rgba(111, 38, 61, 0.48);
-    background: rgba(111, 38, 61, 0.045);
+    border-color: rgba(111, 38, 61, 0.42);
+    background: rgba(8, 8, 8, 0.025);
     transform: rotate(90deg);
   }
 
@@ -234,7 +230,7 @@
   .application-accordion-item.is-open .application-accordion-marker::after,
   .application-accordion-item button:hover .application-accordion-marker::before,
   .application-accordion-item button:hover .application-accordion-marker::after {
-    background: rgba(111, 38, 61, 0.82);
+    background: rgba(111, 38, 61, 0.68);
   }
 
   .application-accordion-item.is-open .application-accordion-panel {

@@ -7,6 +7,10 @@ const editorial = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    seoTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    keywords: z.array(z.string()).default([]),
+    canonicalPath: z.string().optional(),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     category: z.enum(['branding', 'seo', 'geo', 'aeo', 'luxury', 'estrategia']),

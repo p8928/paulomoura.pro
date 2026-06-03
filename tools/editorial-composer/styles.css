@@ -1,0 +1,424 @@
+@font-face {
+  font-family: "Neue Haas Display";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/neue-haas-grotesk/woff2/neue-haas-grotesk-display-pro-45-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Neue Haas Display";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/neue-haas-grotesk/woff2/neue-haas-grotesk-display-pro-65-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono/woff2/JetBrainsMono-Medium.woff2") format("woff2");
+}
+
+:root {
+  --ink: #151515;
+  --muted: #635f5a;
+  --paper: #f4f1ec;
+  --panel: #fffdfa;
+  --field: #fbfaf7;
+  --line: #d8d1c8;
+  --wine: #6f263d;
+  --gold: #a77c3d;
+  --focus: #2d6f68;
+  --error: #9d2d28;
+  --success: #2f7351;
+  --shadow: 0 24px 60px rgba(31, 25, 19, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, var(--panel), var(--paper));
+  color: var(--ink);
+  font-family: "Neue Haas Display", "Avenir Next", sans-serif;
+}
+
+.composer-shell {
+  width: min(100% - 2rem, 1180px);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 4rem) 0 clamp(2rem, 5vw, 5rem);
+}
+
+.composer-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.34fr);
+  grid-template-areas:
+    "kicker note"
+    "title note";
+  column-gap: clamp(2rem, 5vw, 5rem);
+  row-gap: 1rem;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.composer-hero p,
+.composer-form label > span,
+.composer-editor p,
+.composer-preview > p,
+.composer-actions p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.composer-hero p {
+  grid-area: kicker;
+  margin: 0;
+  color: var(--wine);
+}
+
+.composer-hero h1 {
+  grid-area: title;
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.composer-hero span {
+  grid-area: note;
+  max-width: 300px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.composer-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.1rem;
+  border: 1px solid rgba(21, 21, 21, 0.08);
+  background: rgba(255, 253, 250, 0.72);
+  box-shadow: var(--shadow);
+  padding: clamp(1rem, 2.4vw, 1.75rem);
+}
+
+.composer-form-wide {
+  grid-column: 1 / -1;
+}
+
+.composer-form label {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.composer-form label > span,
+.composer-editor p,
+.composer-preview > p {
+  color: var(--wine);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(21, 21, 21, 0.16);
+  border-radius: 4px;
+  background: var(--field);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.95rem 1rem;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--focus);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 111, 104, 0.14);
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.55;
+}
+
+
+.composer-check {
+  display: flex !important;
+  gap: 0.75rem !important;
+  align-items: center;
+  border: 1px solid rgba(21, 21, 21, 0.12);
+  border-radius: 4px;
+  background: rgba(244, 241, 236, 0.58);
+  padding: 1rem;
+}
+
+.composer-check input {
+  width: auto;
+  accent-color: var(--wine);
+}
+
+.composer-seo,
+.composer-editor {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(244, 241, 236, 0.5);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.composer-seo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.1rem;
+}
+
+.composer-editor textarea {
+  min-height: 36rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.92rem;
+}
+
+
+.composer-editor-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.composer-seo p,
+.composer-editor p {
+  margin: 0 0 0.6rem;
+}
+
+.composer-seo .composer-editor-head > div > span,
+.composer-editor-head > div > span {
+  display: block;
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+
+
+.composer-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.32fr);
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(244, 241, 236, 0.72));
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.composer-preview h2 {
+  grid-column: 1;
+  margin: 0.75rem 0 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.composer-preview span {
+  display: block;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 1rem;
+  color: var(--gold);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.composer-preview strong {
+  display: block;
+  grid-column: 1;
+  max-width: 720px;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.composer-preview-seo {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: clamp(1rem, 2.5vw, 1.5rem) 0 0;
+}
+
+.composer-preview-seo div {
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 250, 0.58);
+  padding: 0.9rem;
+}
+
+.composer-preview-seo dt {
+  color: var(--wine);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.composer-preview-seo dd {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.composer-preview-body {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  color: var(--ink);
+}
+
+.composer-preview-body em {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.composer-preview-body h3 {
+  margin: 1.4rem 0 0.7rem;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+.composer-preview-body h3:first-child,
+.composer-preview-body p:first-child,
+.composer-preview-body ul:first-child,
+.composer-preview-body ol:first-child {
+  margin-top: 0;
+}
+
+.composer-preview-body p,
+.composer-preview-body li {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.composer-preview-body p {
+  margin: 0 0 1rem;
+}
+
+.composer-preview-body ul,
+.composer-preview-body ol {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.composer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+button {
+  border: 0;
+  border-radius: 4px;
+  background: var(--wine);
+  color: var(--panel);
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding: 1rem 1.4rem;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+button:hover {
+  background: #5f1f34;
+  transform: translateY(-1px);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(45, 111, 104, 0.26);
+  outline-offset: 3px;
+}
+
+.composer-actions p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.composer-actions p[data-tone="error"] {
+  color: var(--error);
+}
+
+.composer-actions p[data-tone="success"] {
+  color: var(--success);
+}
+
+@media (max-width: 760px) {
+  .composer-hero,
+  .composer-form,
+  .composer-seo-grid,
+  .composer-preview,
+  .composer-preview-seo {
+    grid-template-columns: 1fr;
+  }
+
+  .composer-hero {
+    grid-template-areas:
+      "kicker"
+      "title"
+      "note";
+  }
+
+  .composer-hero span,
+  .composer-preview span {
+    max-width: none;
+    text-align: left;
+  }
+
+  .composer-preview span,
+  .composer-preview strong {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

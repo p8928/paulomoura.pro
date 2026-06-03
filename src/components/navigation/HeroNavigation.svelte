@@ -10,9 +10,8 @@
   const overlayLinks = [
     { label: 'Moura', href: '/moura' },
     { label: 'Brand-Driven', href: '/brand-driven' },
-    { label: 'Candidatura', href: '/analise' },
+    { label: 'M-Signature', href: '/m-signature' },
     { label: 'Editorial', href: '/editorial' },
-    { label: 'Mentoria', href: '/mentoria' },
   ];
 
   const socialLinks = [

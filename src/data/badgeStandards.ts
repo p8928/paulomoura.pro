@@ -26,7 +26,7 @@ export const badgeStandards: BadgeStandard[] = [
     category: 'Padrão de Excelência Digital',
     title: 'O padrão mínimo para uma presença digital de alto nível.',
     heroTitle: 'High Standards.',
-    description: 'Critérios públicos do selo M-HS, a certificação Moura para projetos digitais em que técnica, interface, semântica e conteúdo operam no mesmo nível de exigência da marca.',
+    description: 'Identifica projetos em que técnica, interface, semântica e conteúdo deixam de competir por atenção e passam a sustentar o mesmo nível de exigência da marca.',
     definition: [
       'O M-HS certifica que o projeto digital atende aos requisitos de alto padrão estabelecidos pela metodologia Moura. Não é um selo de conclusão de projeto; é uma acreditação de qualidade.',
       'A maioria dos sites de empresas de alto padrão falha quando a qualidade da operação offline não encontra equivalente no digital. O M-HS certifica que essa distância foi eliminada.',
@@ -52,7 +52,7 @@ export const badgeStandards: BadgeStandard[] = [
     category: 'Excelência Digital para Gastronomia',
     title: 'Presença gastronômica digital.',
     heroTitle: 'Moura Star.',
-    description: 'Critérios públicos do M-Star, o selo Moura para projetos digitais de restaurantes, bares e operações gastronômicas com identidade definida.',
+    description: 'Reconhece presenças digitais criadas para operações gastronômicas com identidade própria, onde cardápio, experiência, busca local e atmosfera precisam comunicar a mesma intenção.',
     definition: [
       'O M-Star certifica que o projeto digital de um restaurante, bar ou estabelecimento gastronômico foi concebido e executado com domínio das especificidades do setor.',
       'Gastronomia exige que experiência sensorial, logística operacional e identidade de marca coexistam em um ambiente digital coeso. O selo avalia o ecossistema, não apenas o site.',
@@ -78,7 +78,7 @@ export const badgeStandards: BadgeStandard[] = [
     category: 'Autoridade Digital de Identidade Pessoal',
     title: 'Autoridade digital construída em torno de uma pessoa, não de uma corporação.',
     heroTitle: 'Identidade verificável.',
-    description: 'Critérios públicos do M-ID, o selo Moura para projetos digitais centrados em identidade pessoal, entidade, voz e autoridade intelectual.',
+    description: 'Aplica-se a presenças digitais em que a autoridade nasce de uma pessoa: trajetória, voz, pensamento, entidade pública e consistência intelectual organizados com precisão.',
     definition: [
       'O M-ID certifica que o projeto digital foi concebido e executado com foco na construção de autoridade atribuída a uma pessoa.',
       'Uma marca corporativa comunica o que uma organização faz. Uma identidade pessoal comunica quem uma pessoa é: trajetória, pensamento e visão de mundo.',
@@ -104,7 +104,7 @@ export const badgeStandards: BadgeStandard[] = [
     category: 'Distinção de Grau Máximo',
     title: 'O grau máximo de execução aplicado aos padrões Moura.',
     heroTitle: 'Execução máxima.',
-    description: 'Critérios públicos do M-Supreme, a distinção Moura para projetos em que personalização, direção de arte, refinamento editorial e execução atingem o nível máximo.',
+    description: 'Marca projetos levados ao limite da execução Moura, com personalização, direção de arte, refinamento editorial e decisões técnicas tratadas sem economia de critério.',
     definition: [
       'O M-Supreme não é uma categoria separada. É o grau máximo de execução aplicado sobre qualquer categoria existente.',
       'A distinção existe porque há diferença objetiva entre atender todos os requisitos e levar cada decisão ao limite do possível: personalização, direção de arte, integrações e refinamento sem paralelo.',

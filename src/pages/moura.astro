@@ -81,13 +81,20 @@ const distinctions = [
 
         <div class="moura-hero-aside">
           <div class="moura-hero-luxury-mark" aria-label="Monograma Moura Signature">
-            <MSupremeBadge scale={1.08} label="Signature" tone="wine" />
+            <MSupremeBadge scale={1.08} label="Signature" tone="gold" />
           </div>
           <p class="moura-hero-text">
             Paulo Moura conduz a interpretação do negócio, identifica seus sinais reais de autoridade e organiza marca, site, conteúdo, busca e reputação para que clientes, Google e IA compreendam com mais precisão por que aquela empresa é a melhor escolha.
           </p>
         </div>
       </div>
+
+      <aside class="moura-hero-system" aria-label="Coordenadas da assinatura Moura">
+        <p>01 / Assinatura Moura</p>
+        <span>Leitura do negócio</span>
+        <span>Direção de presença</span>
+        <span>Autoridade reconhecível</span>
+      </aside>
     </section>
 
     <section class="moura-system" data-nav-surface="light" aria-labelledby="moura-system-title">
@@ -187,6 +194,11 @@ const distinctions = [
             </a>
 
             <p class="moura-badge-description">{standard.description}</p>
+            <a class="moura-badge-arrow" href={`/${standard.slug}/`} aria-label={`Conhecer ${standard.seal}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </article>
         ))}
       </div>
@@ -317,13 +329,13 @@ const distinctions = [
     width: max-content;
     justify-self: center;
     padding: clamp(0.7rem, 1.2vw, 1rem);
-    border: 1px solid rgba(111, 38, 61, 0.38);
+    border: 1px solid rgba(167, 124, 61, 0.38);
     background:
-      linear-gradient(135deg, rgba(111, 38, 61, 0.14), transparent 38%),
+      linear-gradient(135deg, rgba(167, 124, 61, 0.12), transparent 38%),
       rgba(4, 4, 4, 0.24);
     box-shadow:
       0 1.4rem 4rem rgba(0, 0, 0, 0.26),
-      inset 0 0 2.4rem rgba(111, 38, 61, 0.14);
+      inset 0 0 2.4rem rgba(167, 124, 61, 0.12);
   }
 
   .moura-hero-text {
@@ -336,6 +348,37 @@ const distinctions = [
     font-weight: 300;
     line-height: 1.6;
     color: rgba(244, 239, 231, 0.64);
+  }
+
+  .moura-hero-system {
+    position: absolute;
+    right: clamp(3rem, 8vw, 9rem);
+    bottom: clamp(2rem, 4vw, 4rem);
+    left: clamp(3rem, 8vw, 9rem);
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(10rem, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+    margin: 0;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    padding-top: 1rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .moura-hero-system p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.74);
+  }
+
+  .moura-hero-system span {
+    display: block;
+    text-align: right;
   }
 
   .moura-system,
@@ -607,7 +650,7 @@ const distinctions = [
   }
 
   .moura-method-copy--closing {
-    justify-self: start;
+    justify-self: end;
     color: rgba(244, 239, 231, 0.56);
   }
 
@@ -686,9 +729,9 @@ const distinctions = [
   }
 
   .moura-badge-card {
-    min-height: clamp(25rem, 34vw, 33rem);
+    min-height: clamp(31rem, 42vw, 38rem);
     display: grid;
-    grid-template-rows: auto 12.5rem auto;
+    grid-template-rows: auto 12.5rem 1fr auto;
     align-content: start;
     gap: clamp(1.1rem, 1.7vw, 1.65rem);
     padding: clamp(1.15rem, 1.7vw, 1.6rem);
@@ -722,6 +765,41 @@ const distinctions = [
 
   .moura-badge-description {
     align-self: start;
+  }
+
+  .moura-badge-arrow {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    align-self: end;
+    justify-self: end;
+    border: 1px solid rgba(8, 8, 8, 0.18);
+    border-radius: 999px;
+    color: rgba(8, 8, 8, 0.72);
+    text-decoration: none;
+    transition:
+      border-color 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-badge-arrow svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+
+  .moura-badge-arrow:hover {
+    border-color: rgba(111, 38, 61, 0.48);
+    background: rgba(111, 38, 61, 0.04);
+    color: var(--moura-wine);
+    transform: translate(0.12rem, -0.12rem);
   }
 
   .moura-distinction {
@@ -804,6 +882,10 @@ const distinctions = [
   }
 
   @media (max-width: 1180px) {
+    .moura-hero-aside {
+      margin-bottom: 0;
+    }
+
     .moura-system-visual {
       min-height: clamp(34rem, 72vw, 46rem);
     }
@@ -865,6 +947,10 @@ const distinctions = [
       width: min(100% - 3rem, 88rem);
     }
 
+    .moura-hero-system {
+      display: none;
+    }
+
     .moura-hero h1,
     .moura-section-heading h2,
     .moura-badges-heading h2,
@@ -899,6 +985,14 @@ const distinctions = [
     .moura-pillar-grid,
     .moura-badges-grid {
       grid-template-columns: 1fr;
+    }
+
+    .moura-badge-card {
+      min-height: auto;
+    }
+
+    .moura-badge-arrow {
+      justify-self: start;
     }
 
     .moura-pillar-card,

@@ -20,16 +20,6 @@ import SiteFooter from '@components/site/SiteFooter.astro';
   <HeroNavigation client:load />
 
   <div class="brand-atmosphere">
-    <img
-      class="brand-atmosphere-image"
-      src="/images/editorial/brand-driven-material.webp"
-      alt=""
-      width="1122"
-      height="1402"
-      loading="lazy"
-      decoding="async"
-      aria-hidden="true"
-    />
     <div class="relative h-[200vh]">
       <div class="sticky top-0 z-0 h-screen overflow-hidden">
         <HomeSection02BrandDriven />
@@ -37,6 +27,11 @@ import SiteFooter from '@components/site/SiteFooter.astro';
       <div class="absolute inset-x-0 top-0 z-20 h-screen overflow-hidden">
         <HomeSection01Hero />
       </div>
+    </div>
+
+    <div class="brand-atmosphere-transition" aria-label="Transição entre método e critério">
+      <span>02 / 03</span>
+      <p>Da tese ao critério</p>
     </div>
 
     <HomeSection03ValueCriteria />

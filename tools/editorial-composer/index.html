@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Composer Editorial Local</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="composer-shell">
+      <section class="composer-hero">
+        <p>Composer local</p>
+        <h1>Publicação editorial offline.</h1>
+        <span>O arquivo só entra no site publicado depois de commit, push e deploy.</span>
+      </section>
+
+      <form class="composer-form" data-composer-form>
+        <label>
+          <span>Título</span>
+          <input name="title" type="text" required autocomplete="off" />
+        </label>
+
+        <label>
+          <span>Slug</span>
+          <input name="slug" type="text" required autocomplete="off" />
+        </label>
+
+        <label class="composer-form-wide">
+          <span>Descrição editorial</span>
+          <textarea name="description" rows="3" required></textarea>
+        </label>
+
+        <section class="composer-seo composer-form-wide" aria-labelledby="seo-title">
+          <div class="composer-editor-head">
+            <div>
+              <p id="seo-title">SEO</p>
+              <span>Campos opcionais. Se a meta description ficar vazia, o CMS usa a descrição editorial.</span>
+            </div>
+          </div>
+          <div class="composer-seo-grid">
+            <label>
+              <span>Título SEO</span>
+              <input name="seoTitle" type="text" autocomplete="off" maxlength="70" />
+            </label>
+            <label>
+              <span>Canonical path</span>
+              <input name="canonicalPath" type="text" autocomplete="off" placeholder="/editorial/meu-artigo/" />
+            </label>
+            <label class="composer-form-wide">
+              <span>Meta description</span>
+              <textarea name="metaDescription" rows="3" maxlength="180"></textarea>
+            </label>
+            <label class="composer-form-wide">
+              <span>Keywords</span>
+              <input name="keywords" type="text" autocomplete="off" placeholder="marca, seo, presença digital" />
+            </label>
+          </div>
+        </section>
+
+        <label>
+          <span>Categoria</span>
+          <select name="category" required></select>
+        </label>
+
+        <label>
+          <span>Data</span>
+          <input name="publishedAt" type="date" required />
+        </label>
+
+        <label class="composer-check">
+          <input name="draft" type="checkbox" />
+          <span>Salvar como draft</span>
+        </label>
+
+        <label class="composer-check">
+          <input name="overwrite" type="checkbox" />
+          <span>Sobrescrever se existir</span>
+        </label>
+
+        <section class="composer-editor composer-form-wide" aria-labelledby="body-editor-title">
+          <div class="composer-editor-head">
+            <div>
+              <p id="body-editor-title">Corpo do post</p>
+              <span>Cole ou escreva livremente. Ao salvar, o CMS normaliza o corpo como Markdown.</span>
+            </div>
+          </div>
+          <textarea name="body" rows="22" required spellcheck="true" data-body-editor></textarea>
+        </section>
+
+        <aside class="composer-preview composer-form-wide" aria-live="polite">
+          <p>Preview estrutural</p>
+          <h2 data-preview-title>Sem título</h2>
+          <span data-preview-meta>categoria / data</span>
+          <strong data-preview-description>Descrição ainda não definida.</strong>
+          <dl class="composer-preview-seo">
+            <div>
+              <dt>Meta description</dt>
+              <dd data-preview-meta-description>Usando descrição editorial.</dd>
+            </div>
+            <div>
+              <dt>Keywords</dt>
+              <dd data-preview-keywords>Nenhuma keyword definida.</dd>
+            </div>
+            <div>
+              <dt>Schema</dt>
+              <dd>Article JSON-LD ativo no layout publicado.</dd>
+            </div>
+          </dl>
+          <div class="composer-preview-body" data-preview-body>
+            <em>O corpo do texto aparece aqui enquanto você escreve.</em>
+          </div>
+        </aside>
+
+        <div class="composer-actions composer-form-wide">
+          <button type="submit">Salvar Markdown</button>
+          <p data-status>Pronto para escrever.</p>
+        </div>
+      </form>
+    </main>
+
+    <script src="/main.js" type="module"></script>
+  </body>
+</html>

@@ -1,18 +1,509 @@
 ---
-import BlankHero from '@components/sections/shared/BlankHero.astro';
+import { getCollection } from 'astro:content';
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+
+const categoryLabels = {
+  branding: 'Marca',
+  seo: 'SEO',
+  geo: 'GEO',
+  aeo: 'AEO',
+  luxury: 'Luxury',
+  estrategia: 'Estratégia',
+};
+
+const categoryDescriptions = {
+  branding: 'Marca, posicionamento, autenticidade e substância reconhecível.',
+  seo: 'Busca, entidade, reputação e leitura técnica aplicada ao negócio.',
+  geo: 'Presença preparada para respostas generativas e sistemas de IA.',
+  aeo: 'Arquitetura de resposta, clareza semântica e informação recuperável.',
+  luxury: 'Distinção, desejo, restrição e códigos culturais de alto padrão.',
+  estrategia: 'Conteúdo, linguagem, decisão e direção de presença digital.',
+};
+
+const categoryOrder = ['branding', 'seo', 'geo', 'aeo', 'luxury', 'estrategia'] as const;
+
+const posts = (await getCollection('editorial'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const [featuredPost] = posts;
+
+const editorialAxes = categoryOrder
+  .map((category) => ({
+    category,
+    label: categoryLabels[category],
+    description: categoryDescriptions[category],
+    posts: posts.filter((post) => post.data.category === category),
+  }))
+  .filter((axis) => axis.posts.length > 0);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
 ---
 
-<BaseLayout title="Editorial" description="Conteudo editorial Brand-Driven" showChrome={false}>
+<BaseLayout
+  title="Editorial"
+  description="Ensaios de Paulo Moura sobre marca, linguagem, busca, IA e presença digital conduzida por substância real."
+  showChrome={false}
+>
   <script>
     import '@scripts/lenis';
   </script>
 
   <HeroNavigation client:load />
-  <main>
-    <BlankHero />
+
+  <main class="editorial-page">
+    <section class="editorial-hero" data-nav-surface="dark" aria-labelledby="editorial-title">
+      <div class="editorial-shell editorial-hero-grid">
+        <div class="editorial-hero-copy">
+          <p class="editorial-kicker">Editorial</p>
+          <h1 id="editorial-title">Leitura de marca para um digital mais exigente.</h1>
+        </div>
+
+        <div class="editorial-hero-aside">
+          <p>
+            Ensaios sobre presença digital, linguagem, busca, IA e autoridade. O objetivo é examinar como empresas se tornam reconhecíveis quando a comunicação parte daquilo que sustentam na prática.
+          </p>
+        </div>
+      </div>
+
+      <aside class="editorial-hero-system" aria-label="Coordenadas editoriais">
+        <p>01 / Publicação</p>
+        <span>Marca</span>
+        <span>Busca</span>
+        <span>IA</span>
+        <span>Linguagem</span>
+      </aside>
+    </section>
+
+    <section class="editorial-index" data-nav-surface="light" aria-labelledby="editorial-index-title">
+      <div class="editorial-shell editorial-index-head">
+        <p class="editorial-kicker editorial-kicker-dark">Ensaios</p>
+        <h2 id="editorial-index-title">Textos para quem precisa interpretar antes de publicar.</h2>
+      </div>
+
+      <nav class="editorial-axis-nav" aria-label="Eixos editoriais" data-editorial-filters>
+        {editorialAxes.map((axis, index) => (
+          <button type="button" data-editorial-filter={axis.category} aria-pressed="false">
+            <span>{String(index + 1).padStart(2, '0')} / {axis.label}</span>
+            <strong>{axis.posts.length} {axis.posts.length === 1 ? 'post' : 'posts'}</strong>
+            <p>{axis.description}</p>
+          </button>
+        ))}
+      </nav>
+
+      {featuredPost && (
+        <article class="editorial-featured">
+          <a href={`/editorial/${featuredPost.id}/`} aria-label={`Ler ${featuredPost.data.title}`}>
+            <div class="editorial-featured-meta">
+              <span>{categoryLabels[featuredPost.data.category]}</span>
+              <time datetime={featuredPost.data.publishedAt.toISOString()}>{formatDate(featuredPost.data.publishedAt)}</time>
+            </div>
+            <div class="editorial-featured-copy">
+              <p>Mais recente</p>
+              <h3>{featuredPost.data.title}</h3>
+              <p>{featuredPost.data.description}</p>
+            </div>
+            <span class="editorial-featured-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      )}
+
+      <div class="editorial-archive" aria-label="Arquivo editorial" data-editorial-archive>
+        <div class="editorial-list">
+          {posts.map((post, index) => (
+            <article class="editorial-row" data-editorial-post data-editorial-category={post.data.category}>
+              <a href={`/editorial/${post.id}/`} aria-label={`Ler ${post.data.title}`}>
+                <span class="editorial-row-index">{String(index + 1).padStart(2, '0')}</span>
+                <div class="editorial-row-copy">
+                  <div class="editorial-row-meta">
+                    <span>{categoryLabels[post.data.category]}</span>
+                    <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time>
+                  </div>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                </div>
+                <span class="editorial-row-arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
+
   <SiteFooter />
+
+  <script>
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-editorial-filter]');
+    const posts = document.querySelectorAll<HTMLElement>('[data-editorial-post]');
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.editorialFilter ?? '';
+        const shouldDeselect = button.classList.contains('is-active');
+        const activeFilter = shouldDeselect ? '' : selected;
+
+        filterButtons.forEach((item) => {
+          const isActive = !shouldDeselect && item === button;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-pressed', String(isActive));
+        });
+
+        posts.forEach((post) => {
+          const shouldShow = !activeFilter || post.dataset.editorialCategory === activeFilter;
+          post.hidden = !shouldShow;
+        });
+      });
+    });
+  </script>
 </BaseLayout>
+
+<style>
+  .editorial-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .editorial-shell {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto;
+  }
+
+  .editorial-kicker {
+    margin: 0;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    color: var(--moura-gold);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .editorial-kicker-dark {
+    color: var(--moura-wine);
+  }
+
+  .editorial-hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    padding: 8rem 0 6rem;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(167, 124, 61, 0.14), transparent 32%),
+      radial-gradient(circle at 76% 70%, rgba(111, 38, 61, 0.2), transparent 34%),
+      linear-gradient(135deg, #060606 0%, #111 48%, #070707 100%);
+    color: var(--moura-ivory);
+  }
+
+  .editorial-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.62fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: end;
+  }
+
+  .editorial-hero-copy h1 {
+    max-width: 950px;
+    margin: 1.35rem 0 0;
+    font-size: clamp(3.8rem, 8.8vw, 9.6rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.075em;
+  }
+
+  .editorial-hero-aside {
+    border-left: 1px solid rgba(167, 124, 61, 0.45);
+    padding-left: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .editorial-hero-aside p {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.78);
+    font-size: clamp(1rem, 1.25vw, 1.18rem);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .editorial-hero-system {
+    position: absolute;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    right: clamp(1rem, 3vw, 2.5rem);
+    bottom: 1.25rem;
+    left: clamp(1rem, 3vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 1.1fr repeat(4, auto);
+    gap: 1rem;
+    align-items: center;
+    color: rgba(244, 239, 231, 0.52);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .editorial-hero-system p,
+  .editorial-hero-system span {
+    margin: 0;
+  }
+
+  .editorial-index {
+    padding: clamp(5rem, 9vw, 8rem) 0 clamp(6rem, 10vw, 10rem);
+  }
+
+  .editorial-index-head {
+    display: grid;
+    grid-template-columns: 0.32fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .editorial-index-head h2 {
+    max-width: 820px;
+    margin: 0;
+    font-size: clamp(2.7rem, 5.8vw, 6.4rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  .editorial-axis-nav {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto clamp(2.4rem, 5vw, 4.5rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(21, 21, 21, 0.16);
+  }
+
+  .editorial-axis-nav button {
+    min-height: 12rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1.1rem;
+    border: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.78), rgba(247, 244, 239, 0.98)),
+      var(--moura-paper);
+    color: inherit;
+    cursor: pointer;
+    padding: clamp(1.15rem, 2.5vw, 1.8rem);
+    text-align: left;
+    transition:
+      background 260ms ease,
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .editorial-axis-nav button:hover,
+  .editorial-axis-nav button.is-active {
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(255, 253, 248, 1)),
+      var(--moura-panel);
+    transform: translateY(-0.18rem);
+  }
+
+  .editorial-axis-nav button.is-active {
+    box-shadow: inset 0 -3px 0 rgba(111, 38, 61, 0.72);
+  }
+
+  .editorial-axis-nav span,
+  .editorial-axis-nav strong {
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .editorial-axis-nav span {
+    color: var(--moura-wine);
+  }
+
+  .editorial-axis-nav strong {
+    justify-self: end;
+    align-self: start;
+    color: rgba(21, 21, 21, 0.36);
+    font-size: clamp(1.35rem, 2.7vw, 2.35rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    text-transform: lowercase;
+  }
+
+  .editorial-axis-nav p {
+    max-width: 20rem;
+    margin: 0;
+    color: var(--moura-muted);
+    font-size: 0.98rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .editorial-archive {
+    margin-top: clamp(2.6rem, 5vw, 4.5rem);
+  }
+
+  .editorial-featured {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto clamp(2.2rem, 5vw, 4.5rem);
+    border-top: 1px solid rgba(21, 21, 21, 0.22);
+    border-bottom: 1px solid rgba(21, 21, 21, 0.22);
+  }
+
+  .editorial-featured a {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.24fr) 1fr auto;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+    padding: clamp(2rem, 5vw, 4.5rem) 0;
+  }
+
+  .editorial-featured-meta,
+  .editorial-row-meta {
+    display: flex;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    flex-direction: column;
+    gap: 0.6rem;
+    color: var(--moura-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .editorial-featured-copy > p:first-child {
+    margin: 0 0 1rem;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    color: var(--moura-wine);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .editorial-featured-copy h3 {
+    max-width: 900px;
+    margin: 0;
+    font-size: clamp(2.4rem, 5.2vw, 5.7rem);
+    font-weight: 300;
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+  }
+
+  .editorial-featured-copy > p:last-child {
+    max-width: 680px;
+    margin: 1.6rem 0 0;
+    color: var(--moura-muted);
+    font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+    line-height: 1.75;
+  }
+
+  .editorial-featured-arrow,
+  .editorial-row-arrow {
+    color: var(--moura-wine);
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1;
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .editorial-featured a:hover .editorial-featured-arrow,
+  .editorial-row a:hover .editorial-row-arrow {
+    transform: translateX(0.45rem);
+  }
+
+  .editorial-list {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto;
+  }
+
+  .editorial-row {
+    border-bottom: 1px solid rgba(21, 21, 21, 0.16);
+  }
+
+  .editorial-row a {
+    display: grid;
+    grid-template-columns: 0.12fr 1fr auto;
+    gap: clamp(1.25rem, 3vw, 3rem);
+    align-items: start;
+    padding: clamp(1.6rem, 3.8vw, 3.2rem) 0;
+  }
+
+  .editorial-row-index {
+    color: rgba(21, 21, 21, 0.34);
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+  }
+
+  .editorial-row-copy h3 {
+    max-width: 760px;
+    margin: 0.9rem 0 0;
+    font-size: clamp(1.8rem, 3vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .editorial-row-copy p {
+    max-width: 640px;
+    margin: 1rem 0 0;
+    color: var(--moura-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 820px) {
+    .editorial-hero {
+      min-height: 92vh;
+      padding: 7rem 0 5rem;
+    }
+
+    .editorial-hero-grid,
+    .editorial-index-head,
+    .editorial-featured a,
+    .editorial-row a {
+      grid-template-columns: 1fr;
+    }
+
+    .editorial-hero-copy h1 {
+      letter-spacing: -0.06em;
+    }
+
+    .editorial-hero-system {
+      display: none;
+    }
+
+    .editorial-hero-aside {
+      border-left: 0;
+      border-top: 1px solid rgba(167, 124, 61, 0.45);
+      padding: 1.5rem 0 0;
+    }
+
+    .editorial-axis-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .editorial-axis-nav button {
+      min-height: auto;
+    }
+
+    .editorial-axis-nav strong {
+      font-size: 1.75rem;
+    }
+
+
+    .editorial-featured-arrow,
+    .editorial-row-arrow {
+      justify-self: end;
+    }
+  }
+</style>

@@ -36,7 +36,7 @@ const catalogItems = standard.notItems.map((item) => {
 
   return {
     title: 'Não é ' + withoutPrefix,
-    detail: 'Fora do padrão certificado por este selo.',
+    detail: '',
   };
 });
 ---
@@ -132,7 +132,7 @@ const catalogItems = standard.notItems.map((item) => {
               <span>{String(index + 1).padStart(2, '0')}</span>
               <div>
                 <h3>{item.title}</h3>
-                <p>{item.detail}</p>
+                {item.detail && <p>{item.detail}</p>}
               </div>
             </article>
           ))}
@@ -633,19 +633,19 @@ const catalogItems = standard.notItems.map((item) => {
     position: absolute;
     inset: 0 auto 0 0;
     width: 2px;
-    background: linear-gradient(180deg, rgba(111, 38, 61, 0.72), rgba(167, 124, 61, 0.34));
+    background: linear-gradient(180deg, rgba(8, 8, 8, 0.18), rgba(167, 124, 61, 0.26));
   }
 
   .badge-standard-catalog-item span {
     width: fit-content;
-    border-bottom: 1px solid rgba(111, 38, 61, 0.28);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.18);
     padding-bottom: 0.38rem;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(0.7rem, 0.82vw, 0.82rem);
     font-weight: 300;
     line-height: 1;
     letter-spacing: 0.18em;
-    color: rgba(111, 38, 61, 0.72);
+    color: rgba(167, 124, 61, 0.78);
   }
 
   .badge-standard-catalog-item div {

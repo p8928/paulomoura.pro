@@ -29,20 +29,20 @@
   let viewportHeight = $state(900);
 
   const clamp = (value: number, min = 0, max = 1) => Math.min(Math.max(value, min), max);
-  const ease = (value: number) => 1 - Math.pow(1 - value, 4);
+  const ease = (value: number) => value < 0.5 ? 4 * Math.pow(value, 3) : 1 - Math.pow(-2 * value + 2, 3) / 2;
 
   const cardProgress = (index: number) => {
-    const start = 0.14 + index * 0.18;
-    const end = start + 0.22;
+    const start = 0.16 + index * 0.17;
+    const end = start + 0.32;
     return ease(clamp((progress - start) / (end - start)));
   };
 
   const cardStyle = (index: number) => {
     const t = cardProgress(index);
-    const finalOffset = index * 72;
-    const enterOffset = viewportHeight * 0.78;
+    const finalOffset = index * 84;
+    const enterOffset = viewportHeight * 0.92;
     const y = enterOffset + (finalOffset - enterOffset) * t;
-    const opacity = 0.18 + t * 0.82;
+    const opacity = 0.12 + t * 0.88;
     const scale = 0.985 + t * 0.015;
 
     return '--card-y: ' + y + 'px; --card-opacity: ' + opacity + '; --card-scale: ' + scale + '; --card-z: ' + (index + 1) + ';';
@@ -121,7 +121,7 @@
 <style>
   .method-scroll-section {
     position: relative;
-    height: 390vh;
+    height: 460vh;
     background: #060606;
     color: var(--moura-ivory);
   }
@@ -173,8 +173,10 @@
   }
 
   .method-scroll-intro p:not(.method-scroll-kicker) {
-    max-width: min(86vw, 34rem);
-    margin: 0;
+    max-width: min(86vw, 32rem);
+    margin: clamp(1.8rem, 4vw, 3.4rem) 0 0;
+    border-top: 1px solid rgba(167, 124, 61, 0.26);
+    padding-top: clamp(1.1rem, 2vw, 1.6rem);
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
     font-size: clamp(1.02rem, 1.32vw, 1.32rem);
     font-weight: 300;
@@ -198,17 +200,30 @@
     min-height: clamp(20rem, 38vh, 28rem);
     align-content: end;
     gap: clamp(1.15rem, 1.9vw, 1.65rem);
-    border: 1px solid rgba(244, 239, 231, 0.14);
-    border-top-color: rgba(244, 239, 231, 0.26);
-    padding: clamp(1.9rem, 3.3vw, 3.1rem);
-    background: rgba(10, 10, 10, 0.98);
+    border: 1px solid rgba(244, 239, 231, 0.12);
+    border-top-color: rgba(167, 124, 61, 0.42);
+    padding: clamp(1.8rem, 3.2vw, 3rem);
+    background:
+      linear-gradient(180deg, rgba(244, 239, 231, 0.035), rgba(244, 239, 231, 0.012)),
+      #080808;
     box-shadow:
-      0 -1.25rem 3.25rem rgba(0, 0, 0, 0.38),
-      0 1.5rem 4rem rgba(0, 0, 0, 0.24);
+      0 -0.75rem 2.4rem rgba(0, 0, 0, 0.26),
+      0 1.35rem 3.4rem rgba(0, 0, 0, 0.18);
     opacity: var(--card-opacity);
     transform: translate3d(0, var(--card-y), 0) scale(var(--card-scale));
     transform-origin: center top;
     will-change: transform, opacity;
+  }
+
+  .method-scroll-card::before {
+    content: "";
+    position: absolute;
+    top: clamp(1.1rem, 2vw, 1.8rem);
+    right: clamp(1.8rem, 3.2vw, 3rem);
+    left: clamp(1.8rem, 3.2vw, 3rem);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(167, 124, 61, 0.5), rgba(244, 239, 231, 0.16), transparent);
+    pointer-events: none;
   }
 
   .method-scroll-card span {
@@ -249,12 +264,14 @@
 
   .method-scroll-outro-shell {
     display: grid;
-    grid-template-columns: minmax(0, 34rem) auto minmax(0, 18rem);
+    grid-template-columns: minmax(0, 42rem) auto;
     align-items: center;
     gap: clamp(2rem, 5vw, 5rem);
     width: 100%;
     max-width: 88rem;
     margin-inline: auto;
+    border-top: 1px solid rgba(167, 124, 61, 0.28);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .method-scroll-outro p {
@@ -271,8 +288,7 @@
   }
 
   .method-scroll-outro :global(a) {
-    justify-self: center;
-    transform: translateX(clamp(8rem, 18vw, 20rem));
+    justify-self: end;
   }
 
   @media (max-width: 980px) {

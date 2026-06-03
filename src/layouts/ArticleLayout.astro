@@ -1,22 +1,1039 @@
 ---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-interface Props {
+interface Recommendation {
+  href: string;
   title: string;
   description: string;
   category: string;
 }
 
-const { title, description, category } = Astro.props;
+interface TableOfContentsItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  metaDescription?: string;
+  seoTitle?: string;
+  keywords?: string[];
+  canonicalPath?: string;
+  category: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  readingTime: string;
+  tableOfContents?: TableOfContentsItem[];
+  recommendations?: Recommendation[];
+}
+
+const {
+  title,
+  description,
+  metaDescription,
+  seoTitle,
+  keywords = [],
+  canonicalPath,
+  category,
+  publishedAt,
+  updatedAt,
+  readingTime,
+  tableOfContents = [],
+  recommendations = [],
+} = Astro.props;
+
+const pageDescription = metaDescription || description;
+const articleUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: pageDescription,
+  datePublished: publishedAt.toISOString(),
+  dateModified: (updatedAt ?? publishedAt).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Paulo Moura',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Paulo Moura',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl.toString(),
+  },
+  articleSection: category,
+  keywords,
+};
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
 ---
 
-<BaseLayout title={title} description={description}>
-  <article class="mx-auto max-w-3xl px-5 pb-20 pt-32 lg:px-8">
-    <p class="text-sm uppercase tracking-[0.22em] text-wine">{category}</p>
-    <h1 class="mt-5 font-serif text-6xl leading-tight">{title}</h1>
-    <p class="mt-6 text-lg leading-8 text-muted">{description}</p>
-    <div class="mt-12 border-t border-line pt-10 text-lg leading-8 text-ink [&_p+p]:mt-6">
-      <slot />
-    </div>
+<BaseLayout
+  title={seoTitle || title}
+  description={pageDescription}
+  keywords={keywords}
+  canonicalPath={canonicalPath}
+  ogType="article"
+  structuredData={articleSchema}
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <div class="article-progress" aria-hidden="true">
+    <span data-article-progress></span>
+  </div>
+
+  <article class="article-page">
+    <header class="article-hero" data-nav-surface="dark">
+      <div class="article-shell">
+        <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Início</a>
+          <span aria-hidden="true">/</span>
+          <a href="/editorial/">Editorial</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{title}</span>
+        </nav>
+      </div>
+
+      <div class="article-shell article-hero-grid">
+        <div>
+          <p class="article-kicker">{category}</p>
+          <h1>{title}</h1>
+        </div>
+
+        <aside class="article-hero-aside" aria-label="Resumo do artigo">
+          <p>{description}</p>
+          <div class="article-meta-stack">
+            <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+            <span>{readingTime}</span>
+            {updatedAt && <span>Atualizado em {formatDate(updatedAt)}</span>}
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="article-body-section" data-nav-surface="light">
+      <div class="article-shell article-body-grid">
+        <aside class="article-reading-rail" aria-label="Informações editoriais">
+          <p>Editorial</p>
+          <span>Paulo Moura</span>
+          <span>{category}</span>
+          <span>{readingTime}</span>
+
+          {tableOfContents.length > 0 && (
+            <nav class="article-toc" aria-label="Sumário do artigo">
+              <p>Sumário</p>
+              {tableOfContents.map((item) => (
+                <a href={"#" + item.slug}>{item.text}</a>
+              ))}
+            </nav>
+          )}
+
+          <button class="article-copy-link" type="button" data-copy-article-link>Copiar link</button>
+        </aside>
+
+        <div class="article-mobile-utils">
+          {tableOfContents.length > 0 && (
+            <details class="article-mobile-toc">
+              <summary>Sumário</summary>
+              <nav aria-label="Sumário do artigo no mobile">
+                {tableOfContents.map((item) => (
+                  <a href={"#" + item.slug}>{item.text}</a>
+                ))}
+              </nav>
+            </details>
+          )}
+
+          <button class="article-copy-link article-copy-link--mobile" type="button" data-copy-article-link>Copiar link</button>
+        </div>
+
+        <div class="article-content">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <section class="article-editorial-notes" data-nav-surface="light" aria-labelledby="article-editorial-notes-title">
+      <div class="article-shell article-editorial-notes-grid">
+        <div class="article-editorial-notes-head">
+          <p>Notas editoriais</p>
+          <h2 id="article-editorial-notes-title">Para situar a leitura.</h2>
+        </div>
+
+        <div class="article-editorial-notes-list">
+          <article>
+            <span>01 / Tese</span>
+            <p>{description}</p>
+          </article>
+
+          <article>
+            <span>02 / Percurso</span>
+            <p>
+              {tableOfContents.length > 0
+                ? `O texto se organiza em ${tableOfContents.length} movimentos principais, permitindo avançar pela estrutura sem perder a linha argumentativa.`
+                : 'Texto breve, pensado para leitura contínua e sem interrupções de navegação.'}
+            </p>
+          </article>
+
+          <article>
+            <span>03 / Arquivo</span>
+            <p>Publicado na frente {category}, com {readingTime}, como parte do arquivo editorial sobre marca, linguagem, busca e presença digital.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {recommendations.length > 0 && (
+      <section class="article-recommendations" data-nav-surface="light" aria-labelledby="article-recommendations-title">
+        <div class="article-shell article-recommendations-grid">
+          <div class="article-recommendations-head">
+            <p>Leituras recomendadas</p>
+            <h2 id="article-recommendations-title">Continue por textos que ampliam a mesma leitura.</h2>
+          </div>
+
+          <div class="article-recommendations-list">
+            {recommendations.map((item, index) => (
+              <article class="article-recommendation-card">
+                <a href={item.href} aria-label={`Ler ${item.title}`}>
+                  <span>{String(index + 1).padStart(2, '0')} / {item.category}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <strong aria-hidden="true">→</strong>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
   </article>
+
+  <SiteFooter />
+  <script>
+    const copyButtons = document.querySelectorAll<HTMLButtonElement>("[data-copy-article-link]");
+
+    const progressBar = document.querySelector<HTMLElement>('[data-article-progress]');
+    let progressTicking = false;
+
+    const updateProgress = () => {
+      if (!progressBar) {
+        return;
+      }
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+      progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+      progressTicking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!progressTicking) {
+        window.requestAnimationFrame(updateProgress);
+        progressTicking = true;
+      }
+    }, { passive: true });
+
+    updateProgress();
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          button.textContent = "Link copiado";
+          window.setTimeout(() => {
+            button.textContent = "Copiar link";
+          }, 1800);
+        } catch {
+          button.textContent = "Copie pela barra";
+        }
+      });
+    });
+  </script>
 </BaseLayout>
+
+<style>
+  .article-progress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 80;
+    height: 3px;
+    background: rgba(8, 8, 8, 0.22);
+    pointer-events: none;
+  }
+
+  .article-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, rgba(111, 38, 61, 0.88), rgba(167, 124, 61, 0.96));
+    box-shadow: 0 0 18px rgba(167, 124, 61, 0.28);
+    transition: transform 120ms linear;
+  }
+
+  .article-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .article-shell {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto;
+  }
+
+  .article-hero {
+    min-height: 78vh;
+    display: grid;
+    align-items: end;
+    padding: 9rem 0 clamp(4rem, 8vw, 7rem);
+    background:
+      radial-gradient(circle at 16% 20%, rgba(167, 124, 61, 0.13), transparent 32%),
+      radial-gradient(circle at 82% 76%, rgba(111, 38, 61, 0.2), transparent 34%),
+      linear-gradient(135deg, #060606 0%, #111 50%, #070707 100%);
+    color: var(--moura-ivory);
+  }
+
+  .article-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    max-width: 760px;
+    margin-bottom: clamp(2.4rem, 5vw, 4.5rem);
+    color: rgba(244, 239, 231, 0.58);
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    font-size: 0.66rem;
+    font-weight: 400;
+    letter-spacing: 0.17em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .article-breadcrumbs a {
+    color: rgba(244, 239, 231, 0.72);
+    transition: color 240ms ease;
+  }
+
+  .article-breadcrumbs a:hover {
+    color: var(--moura-gold);
+  }
+
+  .article-breadcrumbs span[aria-current="page"] {
+    max-width: 42ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .article-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.55fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: end;
+  }
+
+  .article-kicker {
+    margin: 0;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    color: var(--moura-gold);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .article-hero h1 {
+    max-width: 960px;
+    margin: 1.35rem 0 0;
+    font-size: clamp(3.2rem, 7.6vw, 8.2rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.07em;
+  }
+
+  .article-hero-aside {
+    border-left: 1px solid rgba(167, 124, 61, 0.45);
+    padding-left: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .article-hero-aside p {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.8);
+    font-size: clamp(1.02rem, 1.28vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .article-meta-stack {
+    display: flex;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    color: rgba(244, 239, 231, 0.58);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .article-body-section {
+    padding: clamp(4.5rem, 8vw, 7.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .article-body-grid {
+    display: grid;
+    grid-template-columns: minmax(120px, 0.25fr) minmax(0, 760px) minmax(120px, 0.25fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .article-reading-rail {
+    position: sticky;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    top: 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.72rem;
+    color: var(--moura-muted);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .article-reading-rail p,
+  .article-reading-rail span {
+    margin: 0;
+  }
+
+  .article-reading-rail p {
+    color: var(--moura-wine);
+  }
+
+  .article-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 1.8rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid rgba(21, 21, 21, 0.14);
+  }
+
+  .article-toc p {
+    color: var(--moura-wine);
+  }
+
+  .article-toc a {
+    color: var(--moura-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-transform: none;
+    transition: color 220ms ease;
+  }
+
+  .article-toc a:hover {
+    color: var(--moura-ink);
+  }
+
+  .article-copy-link {
+    width: fit-content;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    margin-top: 1.55rem;
+    border: 1px solid rgba(111, 38, 61, 0.24);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--moura-wine);
+    cursor: pointer;
+    padding: 0.62rem 0.86rem;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition:
+      border-color 220ms ease,
+      color 220ms ease;
+  }
+
+  .article-copy-link:hover {
+    border-color: rgba(111, 38, 61, 0.5);
+    color: var(--moura-ink);
+  }
+
+  .article-mobile-utils {
+    display: none;
+  }
+
+  .article-content {
+    max-width: 760px;
+    font-size: clamp(1.08rem, 1.32vw, 1.24rem);
+    font-weight: 300;
+    line-height: 1.86;
+  }
+
+  .article-content :global(*) {
+    overflow-wrap: anywhere;
+  }
+
+  .article-content :global(p) {
+    margin: 0;
+  }
+
+  .article-content :global(p + p) {
+    margin-top: 1.65rem;
+  }
+
+  .article-content :global(h2) {
+    margin: clamp(3.5rem, 6vw, 5.5rem) 0 1.35rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(21, 21, 21, 0.16);
+    font-size: clamp(2.1rem, 3.8vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .article-content :global(h3) {
+    margin: 3rem 0 1rem;
+    color: var(--moura-wine);
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .article-content :global(blockquote) {
+    margin: clamp(2.5rem, 5vw, 4rem) 0;
+    border-left: 1px solid var(--moura-wine);
+    padding-left: clamp(1.25rem, 3vw, 2rem);
+    color: var(--moura-ink);
+    font-size: clamp(1.35rem, 2.4vw, 2.25rem);
+    line-height: 1.28;
+    letter-spacing: -0.035em;
+  }
+
+  .article-content :global(blockquote p) {
+    margin: 0;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin: 1.6rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .article-content :global(li + li) {
+    margin-top: 0.75rem;
+  }
+
+  .article-content :global(a) {
+    color: var(--moura-wine);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .article-content :global(strong) {
+    font-weight: 500;
+  }
+
+  .article-editorial-notes {
+    padding: 0 0 clamp(4.5rem, 8vw, 7rem);
+    background: var(--moura-paper);
+  }
+
+  .article-editorial-notes-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.35fr) 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    border-top: 1px solid rgba(21, 21, 21, 0.16);
+    padding-top: clamp(2rem, 4.5vw, 4rem);
+  }
+
+  .article-editorial-notes-head p {
+    margin: 0;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    color: var(--moura-wine);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .article-editorial-notes-head h2 {
+    max-width: 320px;
+    margin: 1rem 0 0;
+    font-size: clamp(1.9rem, 3.2vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .article-editorial-notes-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(21, 21, 21, 0.14);
+  }
+
+  .article-editorial-notes-list article {
+    min-height: 15rem;
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.72), rgba(247, 244, 239, 0.98)),
+      var(--moura-paper);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .article-editorial-notes-list span {
+    color: var(--moura-wine);
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .article-editorial-notes-list p {
+    margin: 1.25rem 0 0;
+    color: var(--moura-muted);
+    font-size: clamp(0.98rem, 1.18vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.72;
+  }
+
+  .article-recommendations {
+    padding: 0 0 clamp(6rem, 10vw, 10rem);
+    background: var(--moura-paper);
+  }
+
+  .article-recommendations-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.35fr) 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    border-top: 1px solid rgba(21, 21, 21, 0.18);
+    padding-top: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .article-recommendations-head p {
+    margin: 0;
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    color: var(--moura-wine);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .article-recommendations-head h2 {
+    max-width: 360px;
+    margin: 1rem 0 0;
+    font-size: clamp(1.9rem, 3.3vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .article-recommendations-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .article-recommendation-card {
+    border-bottom: 1px solid rgba(21, 21, 21, 0.14);
+  }
+
+  .article-recommendation-card:first-child {
+    border-top: 1px solid rgba(21, 21, 21, 0.14);
+  }
+
+  .article-recommendation-card a {
+    position: relative;
+    display: block;
+    padding: clamp(1.35rem, 3vw, 2.4rem) 3rem clamp(1.35rem, 3vw, 2.4rem) 0;
+  }
+
+  .article-recommendation-card span {
+    color: var(--moura-muted);
+    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .article-recommendation-card h3 {
+    max-width: 700px;
+    margin: 0.8rem 0 0;
+    font-size: clamp(1.55rem, 2.5vw, 2.65rem);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .article-recommendation-card p {
+    max-width: 620px;
+    margin: 0.9rem 0 0;
+    color: var(--moura-muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .article-recommendation-card strong {
+    position: absolute;
+    top: clamp(1.35rem, 3vw, 2.4rem);
+    right: 0;
+    color: var(--moura-wine);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .article-recommendation-card a:hover strong {
+    transform: translateX(0.35rem);
+  }
+
+  @media (max-width: 900px) {
+    .article-hero {
+      min-height: 82vh;
+      padding-top: 8rem;
+    }
+
+    .article-hero-grid,
+    .article-body-grid,
+    .article-editorial-notes-grid,
+    .article-recommendations-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article-hero h1 {
+      letter-spacing: -0.055em;
+    }
+
+    .article-hero-aside {
+      border-left: 0;
+      border-top: 1px solid rgba(167, 124, 61, 0.45);
+      padding: 1.5rem 0 0;
+    }
+
+    .article-reading-rail {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(21, 21, 21, 0.16);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .article-page {
+      background:
+        linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(246, 241, 232, 1) 34%),
+        #f6f1e8;
+    }
+
+    .article-shell {
+      width: min(100% - 2.25rem, 36rem);
+    }
+
+    .article-hero {
+      min-height: auto;
+      align-items: end;
+      padding: 7.35rem 0 2.65rem;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(167, 124, 61, 0.12), transparent 36%),
+        linear-gradient(145deg, #060606 0%, #101010 58%, #080808 100%);
+    }
+
+    .article-breadcrumbs {
+      gap: 0.42rem;
+      font-weight: 400;
+      margin-bottom: 2.2rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.13em;
+    }
+
+    .article-breadcrumbs span[aria-current="page"] {
+      max-width: 24ch;
+    }
+
+    .article-hero-grid {
+      gap: 2rem;
+    }
+
+    .article-kicker {
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+    }
+
+    .article-hero h1 {
+      margin-top: 1.05rem;
+      max-width: 12ch;
+      font-size: clamp(2.75rem, 12.8vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.052em;
+    }
+
+    .article-hero-aside {
+      border-top-color: rgba(167, 124, 61, 0.32);
+      padding-top: 1.25rem;
+    }
+
+    .article-hero-aside p {
+      color: rgba(244, 239, 231, 0.76);
+      font-size: 0.98rem;
+      line-height: 1.62;
+    }
+
+    .article-meta-stack {
+      margin-top: 1.35rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+    }
+
+    .article-body-section {
+      padding: 0 0 4.5rem;
+      background:
+        linear-gradient(90deg, rgba(21, 21, 21, 0.035), transparent 13%, transparent 87%, rgba(21, 21, 21, 0.035)),
+        #f8f3ea;
+    }
+
+    .article-body-grid {
+      display: block;
+      width: 100%;
+    }
+
+    .article-reading-rail {
+      display: none;
+    }
+
+    .article-mobile-utils {
+      display: grid;
+      gap: 0.85rem;
+      width: min(100% - 2.25rem, 34rem);
+      margin: 0 auto;
+      padding-top: 1.65rem;
+    }
+
+    .article-mobile-toc {
+      border-top: 1px solid rgba(111, 38, 61, 0.16);
+      border-bottom: 1px solid rgba(111, 38, 61, 0.16);
+    }
+
+    .article-mobile-toc summary {
+      cursor: pointer;
+      font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+      list-style: none;
+      padding: 1rem 0;
+      color: var(--moura-wine);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .article-mobile-toc summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .article-mobile-toc summary::after {
+      content: "+";
+      float: right;
+      color: rgba(111, 38, 61, 0.7);
+    }
+
+    .article-mobile-toc[open] summary::after {
+      content: "-";
+    }
+
+    .article-mobile-toc nav {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0 0 1.2rem;
+    }
+
+    .article-mobile-toc a {
+      color: var(--moura-muted);
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .article-copy-link--mobile {
+      margin: 0;
+      justify-self: start;
+      padding: 0.66rem 0.9rem;
+      background: rgba(255, 253, 248, 0.54);
+    }
+
+    .article-content {
+      width: min(100% - 2.25rem, 34rem);
+      max-width: 34rem;
+      margin: 0 auto;
+      padding: 2.25rem 0 0;
+      color: #1d1a16;
+      font-family: "Neue Haas Display", "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(1.06rem, 4.65vw, 1.18rem);
+      font-weight: 400;
+      line-height: 1.76;
+      letter-spacing: 0.018em;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      hyphens: auto;
+    }
+
+    .article-content :global(p + p) {
+      margin-top: 1.28rem;
+    }
+
+    .article-content :global(p:first-child) {
+      font-size: 1.08em;
+      line-height: 1.72;
+    }
+
+    .article-content :global(h2) {
+      margin: 3.4rem 0 1.2rem;
+      padding-top: 1.45rem;
+      border-top-color: rgba(111, 38, 61, 0.18);
+      font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(1.86rem, 8vw, 2.55rem);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .article-content :global(h3) {
+      margin: 2.4rem 0 0.85rem;
+      font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(1.18rem, 5.8vw, 1.58rem);
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    .article-content :global(blockquote) {
+      margin: 2.4rem 0;
+      padding: 1.35rem 0 1.35rem 1.15rem;
+      border-left-color: rgba(111, 38, 61, 0.48);
+      font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(1.25rem, 6.2vw, 1.75rem);
+      line-height: 1.32;
+    }
+
+    .article-content :global(ul),
+    .article-content :global(ol) {
+      margin-top: 1.25rem;
+      padding-left: 1.1rem;
+    }
+
+    .article-content :global(li + li) {
+      margin-top: 0.68rem;
+    }
+
+    .article-editorial-notes {
+      padding: 0 0 4.5rem;
+      background: #f8f3ea;
+    }
+
+    .article-editorial-notes-grid {
+      border-top-color: rgba(111, 38, 61, 0.16);
+      padding-top: 2.2rem;
+      gap: 2rem;
+    }
+
+    .article-editorial-notes-head p {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+    }
+
+    .article-editorial-notes-head h2 {
+      max-width: 10ch;
+      font-size: clamp(2rem, 9.5vw, 2.8rem);
+    }
+
+    .article-editorial-notes-list {
+      grid-template-columns: 1fr;
+      background: rgba(111, 38, 61, 0.14);
+    }
+
+    .article-editorial-notes-list article {
+      min-height: auto;
+      padding: 1.35rem 0;
+      background: transparent;
+    }
+
+    .article-editorial-notes-list span {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+    }
+
+    .article-editorial-notes-list p {
+      margin-top: 0.8rem;
+      font-size: 0.98rem;
+      line-height: 1.62;
+    }
+
+    .article-recommendations {
+      padding: 0 0 5.75rem;
+      background: #f8f3ea;
+    }
+
+    .article-recommendations-grid {
+      border-top-color: rgba(111, 38, 61, 0.16);
+      padding-top: 2.35rem;
+      gap: 2.1rem;
+    }
+
+    .article-recommendations-head p {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+    }
+
+    .article-recommendations-head h2 {
+      max-width: 11ch;
+      font-size: clamp(2rem, 9.5vw, 2.8rem);
+    }
+
+    .article-recommendation-card a {
+      padding: 1.45rem 2.25rem 1.45rem 0;
+    }
+
+    .article-recommendation-card span {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+    }
+
+    .article-recommendation-card h3 {
+      font-size: clamp(1.45rem, 7vw, 2rem);
+    }
+
+    .article-recommendation-card p {
+      font-size: 0.94rem;
+      line-height: 1.58;
+    }
+
+    .article-recommendation-card strong {
+      top: 1.45rem;
+      font-size: 1.7rem;
+    }
+  }
+</style>
