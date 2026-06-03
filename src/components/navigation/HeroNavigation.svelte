@@ -11,6 +11,7 @@
     { label: 'Moura', href: '/moura' },
     { label: 'Brand-Driven', href: '/brand-driven' },
     { label: 'M-Signature', href: '/m-signature' },
+    { label: 'M-Direction', href: '/m-direction' },
     { label: 'Editorial', href: '/editorial' },
   ];
 

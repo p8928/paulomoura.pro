@@ -1,18 +1,823 @@
 ---
-import BlankHero from '@components/sections/shared/BlankHero.astro';
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+
+const continuityModules = [
+  {
+    label: 'Base já construída',
+    copy: 'M-Direction parte de uma presença criada ou reorganizada pelo M-Signature. A continuidade não começa do zero; ela expande uma base já orientada pelo método Brand-Driven.',
+  },
+  {
+    label: 'Direção contínua',
+    copy: 'A estratégia permanece acompanhada para que conteúdo, autoridade, reputação, tecnologia e sinais de busca avancem sob o mesmo critério.',
+  },
+  {
+    label: 'Execução personalizada',
+    copy: 'O escopo é definido conforme a necessidade do cliente: editorial, autoridade pública, redes sociais, concorrência, tecnologia e outros serviços digitais.',
+  },
+];
+
+const scopeItems = [
+  {
+    title: 'Conteúdo editorial e autoridade',
+    copy:
+      'Produção e direção de conteúdos que ampliam repertório público, reforçam entidade e sustentam perspectivas próprias, sem depender de volume genérico ou calendário vazio.',
+  },
+  {
+    title: 'Autoridade dos envolvidos',
+    copy:
+      'Donos, chefs, advogados, arquitetos, médicos, líderes e especialistas podem ter sua presença pública trabalhada como parte da autoridade da marca.',
+  },
+  {
+    title: 'Press releases e sinais externos',
+    copy:
+      'A marca passa a acumular sinais fora do próprio site, com ações de reputação, menções, pautas e ativos públicos capazes de fortalecer confiança e reconhecimento.',
+  },
+  {
+    title: 'Roadmap e calendário editorial',
+    copy:
+      'Redes sociais e canais públicos recebem direção estratégica para preservar coerência, prioridade e linguagem, mesmo quando a execução envolve equipes internas ou parceiros.',
+  },
+  {
+    title: 'Concorrência e inteligência digital',
+    copy:
+      'A presença passa por análise recorrente de contexto, concorrentes, oportunidades, lacunas, tecnologias e decisões digitais que podem afetar vantagem competitiva.',
+  },
+];
+
+const fitItems = [
+  'Cliente que concluiu M-Signature e deseja continuar evoluindo com o mesmo padrão de exigência.',
+  'Empresa sem estrutura interna, tempo ou talentos suficientes para expandir presença digital com consistência.',
+  'Marca que precisa manter autoridade, conteúdo, reputação e tecnologia sob uma direção unificada.',
+  'Operação que prefere evolução orientada por critério em vez de ações soltas, campanhas isoladas ou produção genérica.',
+];
+
+const formatItems = [
+  ['Formato', 'Direção estratégica contínua com execução personalizada.'],
+  ['Ciclo mínimo', 'Contrato semestral.'],
+  ['Reuniões', 'Sob demanda do cliente ou quando houver necessidade estratégica.'],
+  ['Entregas', 'Definidas por contrato, conforme escopo aprovado.'],
+  ['Investimento', 'Sob consulta, calculado de acordo com os serviços prestados.'],
+];
+
+const processSteps = [
+  {
+    label: '01',
+    title: 'Base M-Signature',
+    copy: 'A continuidade parte de uma entrega inicial já construída, com linguagem, site, estrutura técnica e sinais principais organizados.',
+  },
+  {
+    label: '02',
+    title: 'Escopo semestral',
+    copy: 'As prioridades são definidas conforme momento, ambição, equipe disponível, oportunidades e lacunas da presença digital.',
+  },
+  {
+    label: '03',
+    title: 'Direção e execução',
+    copy: 'O trabalho combina orientação estratégica com execução dos serviços contratados, mantendo coerência com a metodologia Brand-Driven.',
+  },
+  {
+    label: '04',
+    title: 'Evolução acumulada',
+    copy: 'A marca passa a acumular autoridade, presença editorial, reputação, atualizações técnicas e sinais públicos com mais ritmo e consistência.',
+  },
+];
 ---
 
-<BaseLayout title="M-Direction" description="Direcao estrategica continuada" showChrome={false}>
+<BaseLayout
+  title="M-Direction"
+  description="M-Direction é a direção estratégica contínua para clientes M-Signature que precisam expandir autoridade, conteúdo, reputação e presença digital com metodologia Brand-Driven."
+  showChrome={false}
+>
   <script>
     import '@scripts/lenis';
   </script>
 
   <HeroNavigation client:load />
-  <main>
-    <BlankHero />
+
+  <main class="direction-page">
+    <section class="direction-hero" data-nav-surface="dark" aria-labelledby="direction-title">
+      <div class="direction-shell direction-hero-grid">
+        <div class="direction-hero-copy">
+          <p class="direction-kicker">M-Direction</p>
+          <h1 id="direction-title">Continuidade para marcas que não podem estacionar.</h1>
+        </div>
+
+        <aside class="direction-hero-aside" aria-label="Resumo do M-Direction">
+          <p>
+            M-Direction é a continuidade estratégica para clientes M-Signature que precisam expandir presença digital, autoridade e vantagem competitiva sem perder o padrão construído na entrega inicial.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Solicitar direção contínua</a>
+        </aside>
+      </div>
+
+      <aside class="direction-hero-system" aria-label="Coordenadas do serviço">
+        <p>Semestral / Continuidade</p>
+        <span>Exclusivo M-Signature</span>
+        <span>Direção + execução</span>
+        <span>Escopo sob consulta</span>
+      </aside>
+    </section>
+
+    <section class="direction-continuity" data-nav-surface="light" aria-labelledby="direction-continuity-title">
+      <div class="direction-shell direction-statement-layout">
+        <header class="direction-section-head">
+          <p class="direction-kicker direction-kicker-dark">Depois da base</p>
+          <span>01 / Continuidade</span>
+        </header>
+
+        <h2 id="direction-continuity-title">A presença digital continua acumulando valor quando permanece sob direção.</h2>
+
+        <div class="direction-statement-copy">
+          <p>
+            O M-Signature cria a base. O M-Direction existe porque autoridade, conteúdo, reputação, tecnologia e sinais públicos respondem ao tempo. Sem continuidade, a presença ainda pode crescer, mas tende a avançar com menos ritmo, menos vantagem competitiva e menos precisão estratégica.
+          </p>
+          <p>
+            A direção contínua mantém a marca em evolução: identifica prioridades, organiza execução, acompanha oportunidades e preserva a coerência Brand-Driven em cada novo movimento digital.
+          </p>
+        </div>
+
+        <div class="direction-modules" aria-label="Resumo da continuidade M-Direction">
+          {continuityModules.map((item) => (
+            <article>
+              <span>{item.label}</span>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-scope" data-nav-surface="dark" aria-labelledby="direction-scope-title">
+      <div class="direction-shell direction-scope-head">
+        <p class="direction-kicker">Escopo possível</p>
+        <h2 id="direction-scope-title">Serviços que expandem autoridade com o passar do tempo.</h2>
+      </div>
+
+      <div class="direction-shell direction-scope-list">
+        {scopeItems.map((item, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="direction-shell direction-scope-cta">
+        <p>A carta completa detalha as frentes que podem compor o escopo semestral do M-Direction.</p>
+        <a class="moura-button moura-button-light" href="/m-direction/carta-de-servicos-continuos">Ver carta completa</a>
+      </div>
+    </section>
+
+    <section class="direction-fit" data-nav-surface="light" aria-labelledby="direction-fit-title">
+      <div class="direction-shell direction-fit-grid">
+        <div class="direction-fit-title">
+          <p class="direction-kicker direction-kicker-dark">Aderência</p>
+          <h2 id="direction-fit-title">Para clientes que precisam manter a exigência depois da entrega.</h2>
+        </div>
+
+        <div class="direction-fit-list">
+          {fitItems.map((item) => (
+            <p><span aria-hidden="true">+</span>{item}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-format" data-nav-surface="dark" aria-labelledby="direction-format-title">
+      <div class="direction-shell direction-format-grid">
+        <div class="direction-format-copy">
+          <p class="direction-kicker">Formato comercial</p>
+          <h2 id="direction-format-title">O escopo não é empacotado. Ele é calculado pela continuidade necessária.</h2>
+          <p>
+            M-Direction não funciona como mensalidade genérica, pacote de marketing ou agência de conteúdo. O contrato parte das necessidades reais do cliente depois do M-Signature e define serviços, prazos e investimento conforme o trabalho a ser executado.
+          </p>
+        </div>
+
+        <dl class="direction-format-table">
+          {formatItems.map(([label, copy]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{copy}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="direction-process" data-nav-surface="light" aria-labelledby="direction-process-title">
+      <div class="direction-shell direction-process-layout">
+        <header class="direction-section-head">
+          <p class="direction-kicker direction-kicker-dark">Ciclo</p>
+          <span>Semestral</span>
+        </header>
+
+        <h2 id="direction-process-title">A continuidade transforma presença publicada em presença acumulada.</h2>
+
+        <div class="direction-process-list">
+          {processSteps.map((step) => (
+            <article>
+              <span>{step.label}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-decision" data-nav-surface="dark" aria-labelledby="direction-decision-title">
+      <div class="direction-shell direction-decision-grid">
+        <div>
+          <p class="direction-kicker">Exclusividade</p>
+          <h2 id="direction-decision-title">M-Direction começa onde o M-Signature termina.</h2>
+        </div>
+
+        <div class="direction-decision-copy">
+          <p>
+            A continuidade é exclusiva para clientes que já passaram pela entrega inicial. Isso preserva método, contexto, histórico e padrão de execução. A direção contínua não precisa redescobrir a marca; ela parte do que já foi estruturado para levar a presença a patamares mais altos.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Solicitar direção contínua</a>
+        </div>
+      </div>
+    </section>
   </main>
+
   <SiteFooter />
 </BaseLayout>
+
+<style>
+  .direction-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .direction-shell {
+    width: min(100% - clamp(2rem, 7vw, 8rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .direction-kicker,
+  .direction-section-head span,
+  .direction-hero-system,
+  .direction-scope-list span,
+  .direction-process-list > article > span {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .direction-kicker {
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .direction-kicker-dark {
+    color: rgba(72, 84, 63, 0.78);
+  }
+
+  .direction-hero,
+  .direction-scope,
+  .direction-format,
+  .direction-decision {
+    background: #060606;
+    color: var(--moura-ivory);
+  }
+
+  .direction-hero {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    align-items: center;
+    padding-block: 8rem 6rem;
+    background:
+      linear-gradient(90deg, rgba(244, 239, 231, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
+    background-size: calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+  }
+
+  .direction-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(21rem, 0.55fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .direction-hero-copy {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .direction-hero h1,
+  .direction-statement-layout h2,
+  .direction-scope-head h2,
+  .direction-fit-title h2,
+  .direction-format h2,
+  .direction-process-layout h2,
+  .direction-decision h2 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+  }
+
+  .direction-hero h1 {
+    max-width: 11.5ch;
+    font-size: clamp(3.6rem, 7.2vw, 8.9rem);
+    line-height: 0.9;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .direction-hero-aside {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+    max-width: 35rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: 1.4rem;
+  }
+
+  .direction-hero-aside p,
+  .direction-scope-list p,
+  .direction-format-copy p,
+  .direction-decision-copy p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.16vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.68;
+    color: rgba(244, 239, 231, 0.64);
+  }
+
+  .direction-page :global(.moura-button) {
+    width: 17rem;
+    max-width: 100%;
+  }
+
+  .direction-hero-system {
+    position: absolute;
+    right: clamp(2rem, 7vw, 8rem);
+    bottom: clamp(2rem, 4vw, 4rem);
+    left: clamp(2rem, 7vw, 8rem);
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(9rem, 1fr));
+    gap: clamp(1.2rem, 3vw, 3rem);
+    align-items: center;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    padding-top: 1rem;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .direction-hero-system p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.76);
+  }
+
+  .direction-hero-system span {
+    text-align: right;
+  }
+
+  .direction-continuity,
+  .direction-fit,
+  .direction-process {
+    padding-block: clamp(7rem, 11vw, 11rem);
+    background: var(--moura-paper);
+  }
+
+  .direction-statement-layout,
+  .direction-process-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.2rem, 4vw, 4rem);
+  }
+
+  .direction-statement-layout::before::before,
+  .direction-process-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.032) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.46;
+    pointer-events: none;
+  }
+
+  .direction-statement-layout > * > *,
+  .direction-process-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .direction-section-head {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .direction-section-head span {
+    color: rgba(72, 84, 63, 0.76);
+  }
+
+  .direction-statement-layout h2,
+  .direction-process-layout h2 {
+    grid-column: 1 / 8;
+    max-width: 14ch;
+    font-size: clamp(2.8rem, 5.2vw, 6.4rem);
+    line-height: 0.96;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .direction-statement-copy {
+    grid-column: 8 / -1;
+    display: grid;
+    gap: 1.45rem;
+    max-width: 72ch;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    padding-top: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  .direction-statement-copy p,
+  .direction-modules p,
+  .direction-fit-list p,
+  .direction-process-list p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.12vw, 1.14rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .direction-modules {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(8, 8, 8, 0.18);
+    border-left: 1px solid rgba(8, 8, 8, 0.18);
+  }
+
+  .direction-modules article {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    min-height: 14rem;
+    border-right: 1px solid rgba(8, 8, 8, 0.18);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.18);
+    padding: clamp(1.2rem, 2vw, 1.7rem);
+  }
+
+  .direction-modules span {
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: rgba(72, 84, 63, 0.78);
+  }
+
+  .direction-scope,
+  .direction-format,
+  .direction-decision {
+    padding-block: clamp(7rem, 11vw, 11rem);
+  }
+
+  .direction-scope-head {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 68rem;
+    margin-bottom: clamp(4rem, 7vw, 7rem);
+  }
+
+  .direction-scope-head h2,
+  .direction-format h2,
+  .direction-decision h2 {
+    max-width: 15ch;
+    font-size: clamp(2.8rem, 5.3vw, 6.2rem);
+    line-height: 0.96;
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  .direction-scope-list {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+  }
+
+  .direction-scope-list article {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: start;
+    border-bottom: 1px solid rgba(244, 239, 231, 0.18);
+    padding-block: clamp(1.55rem, 2.6vw, 2.25rem);
+  }
+
+  .direction-scope-list article > span {
+    grid-column: 1 / 2;
+  }
+
+  .direction-scope-list article > h3 {
+    grid-column: 3 / 6;
+  }
+
+  .direction-scope-list article > p {
+    grid-column: 7 / -1;
+  }
+
+  .direction-scope-list span,
+  .direction-process-list > article > span {
+    color: rgba(167, 124, 61, 0.84);
+  }
+
+  .direction-scope-list h3,
+  .direction-process-list h3,
+  .direction-fit-list p span {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.35rem, 2vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1.08;
+  }
+
+  .direction-scope-list h3 {
+    color: rgba(244, 239, 231, 0.88);
+  }
+
+  .direction-scope-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 42rem) auto;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: center;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+    padding-top: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .direction-scope-cta p {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.12vw, 1.14rem);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .direction-fit-grid,
+  .direction-format-grid,
+  .direction-decision-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .direction-fit-title {
+    grid-column: 1 / 6;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .direction-fit-title h2 {
+    max-width: 13ch;
+    font-size: clamp(2.8rem, 5.1vw, 6rem);
+    line-height: 0.96;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .direction-fit-list {
+    grid-column: 7 / -1;
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+  }
+
+  .direction-fit-list p {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.8rem;
+    border-bottom: 1px solid rgba(8, 8, 8, 0.16);
+    padding-block: 1rem;
+  }
+
+  .direction-fit-list p span {
+    color: var(--moura-moss);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .direction-format-grid {
+    align-items: center;
+  }
+
+  .direction-format-copy {
+    grid-column: 1 / 7;
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .direction-format-table {
+    grid-column: 8 / -1;
+    display: grid;
+    margin: 0;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+  }
+
+  .direction-format-table div {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.36fr) minmax(0, 0.64fr);
+    gap: 1rem;
+    border-bottom: 1px solid rgba(244, 239, 231, 0.18);
+    padding-block: 1rem;
+  }
+
+  .direction-format-table dt {
+    color: rgba(167, 124, 61, 0.86);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .direction-format-table dd {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.64);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .direction-process-list {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    border-left: 1px solid rgba(8, 8, 8, 0.16);
+  }
+
+  .direction-process-list article {
+    display: grid;
+    align-content: start;
+    gap: clamp(1.2rem, 2vw, 2rem);
+    min-height: 23rem;
+    border-right: 1px solid rgba(8, 8, 8, 0.16);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.16);
+    padding: clamp(1.2rem, 2vw, 1.7rem);
+  }
+
+  .direction-process-list div {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .direction-process-list h3 {
+    color: rgba(8, 8, 8, 0.86);
+  }
+
+  .direction-decision-grid > div:first-child {
+    grid-column: 1 / 7;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .direction-decision-copy {
+    grid-column: 8 / -1;
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: 1.4rem;
+  }
+
+  @media (max-width: 920px) {
+    .direction-hero {
+      min-height: auto;
+      padding-block: 7rem 3rem;
+    }
+
+    .direction-hero-grid,
+    .direction-fit-grid,
+    .direction-format-grid,
+    .direction-decision-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .direction-hero-system {
+      position: static;
+      width: min(100% - 2rem, 88rem);
+      grid-template-columns: 1fr;
+      margin: clamp(3rem, 8vw, 5rem) auto 0;
+    }
+
+    .direction-hero-system span {
+      text-align: left;
+    }
+
+    .direction-statement-layout,
+    .direction-process-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .direction-section-head,
+    .direction-statement-layout h2,
+    .direction-statement-copy,
+    .direction-modules,
+    .direction-fit-title,
+    .direction-fit-list,
+    .direction-format-copy,
+    .direction-format-table,
+    .direction-process-layout h2,
+    .direction-process-list,
+    .direction-decision-grid > div:first-child,
+    .direction-decision-copy {
+      grid-column: 1;
+    }
+
+    .direction-modules,
+    .direction-process-list {
+      grid-template-columns: 1fr;
+    }
+
+    .direction-process-list article {
+      min-height: auto;
+    }
+
+
+    .direction-format-table div {
+      grid-template-columns: 1fr;
+    }
+
+
+    .direction-scope-list {
+      grid-template-columns: 1fr;
+    }
+
+    .direction-scope-list article {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    .direction-scope-list article > span,
+    .direction-scope-list article > h3,
+    .direction-scope-list article > p {
+      grid-column: 1;
+    }
+
+    .direction-scope-cta {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+  }
+
+  @media (min-width: 761px) and (max-width: 920px) {
+    .direction-scope-list {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .direction-scope-list article {
+      grid-template-columns: subgrid;
+      gap: 0;
+    }
+
+    .direction-scope-list article > span {
+      grid-column: 1 / 2;
+    }
+
+    .direction-scope-list article > h3 {
+      grid-column: 3 / 6;
+    }
+
+    .direction-scope-list article > p {
+      grid-column: 7 / -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .direction-shell {
+      width: min(100% - 1.25rem, 88rem);
+    }
+
+    .direction-hero h1,
+    .direction-statement-layout h2,
+    .direction-scope-head h2,
+    .direction-fit-title h2,
+    .direction-format h2,
+    .direction-process-layout h2,
+    .direction-decision h2 {
+      font-size: clamp(2.75rem, 15vw, 4.8rem);
+    }
+
+    .direction-section-head {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,434 @@
+---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const serviceLetter = [
+  {
+    title: 'Editorial autoral',
+    function: 'Transformar repertório, visão e experiência em conteúdo de alta densidade.',
+    context: 'Quando a marca precisa acumular autoridade própria e evitar produção genérica.',
+  },
+  {
+    title: 'Autoridade de lideranças',
+    function: 'Estruturar presença pública de pessoas-chave: donos, chefs, advogados, arquitetos, médicos, sócios e especialistas.',
+    context: 'Quando a confiança depende também de quem representa a operação.',
+  },
+  {
+    title: 'Press e reputação',
+    function: 'Criar sinais externos de autoridade por meio de releases, menções, pautas e ativos públicos.',
+    context: 'Quando a marca precisa ser confirmada por fontes além de seus próprios canais.',
+  },
+  {
+    title: 'Social roadmap',
+    function: 'Organizar calendário editorial, temas, prioridades e direção de linguagem para redes sociais.',
+    context: 'Quando a execução social precisa deixar de ser reativa e ganhar critério estratégico.',
+  },
+  {
+    title: 'Inteligência competitiva',
+    function: 'Monitorar concorrência, lacunas, oportunidades, riscos e movimentos do mercado.',
+    context: 'Quando decisões digitais precisam considerar contexto, não apenas produção interna.',
+  },
+  {
+    title: 'Consultoria tecnológica',
+    function: 'Avaliar ferramentas, serviços digitais, integrações, infraestrutura e decisões técnicas futuras.',
+    context: 'Quando a marca precisa evoluir sem ficar presa a soluções caras, limitadas ou incoerentes.',
+  },
+  {
+    title: 'Refinamentos de presença',
+    function: 'Ajustar páginas, linguagem, estrutura, sinais locais, dados e pontos de confiança conforme a marca amadurece.',
+    context: 'Quando a presença publicada precisa acompanhar mudanças reais do negócio.',
+  },
+];
+---
+
+<BaseLayout
+  title="Carta de Serviços Contínuos | M-Direction"
+  description="Carta de Serviços Contínuos do M-Direction: frentes possíveis para compor a continuidade estratégica semestral de clientes M-Signature."
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="letter-page">
+    <section class="letter-hero" data-nav-surface="dark" aria-labelledby="letter-title">
+      <div class="letter-shell letter-hero-grid">
+        <div class="letter-hero-copy">
+          <p class="letter-kicker">M-Direction</p>
+          <h1 id="letter-title"><span>Carta</span><span>de Serviços</span><span>Contínuos</span></h1>
+        </div>
+        <aside>
+          <p>
+            Uma matriz de frentes possíveis para compor a continuidade semestral. A carta não funciona como cardápio de itens avulsos; ela orienta o escopo conforme prioridade, contexto e maturidade da marca.
+          </p>
+          <a class="moura-button moura-button-light" href="/m-direction">Voltar ao M-Direction</a>
+        </aside>
+        <div class="letter-hero-index" aria-hidden="true">
+          <span>Frente</span>
+          <span>Função</span>
+          <span>Contexto</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="letter-table-section" data-nav-surface="light" aria-labelledby="letter-table-title">
+      <div class="letter-shell letter-table-layout">
+        <header class="letter-section-head">
+          <p class="letter-kicker letter-kicker-dark">Carta</p>
+          <span>Serviços contínuos</span>
+        </header>
+
+        <h2 id="letter-table-title">Sete frentes para compor a continuidade.</h2>
+        <p class="letter-table-intro">Cada frente entra conforme prioridade estratégica, contexto competitivo e maturidade da marca depois do M-Signature.</p>
+
+        <div class="letter-table" role="table" aria-label="Carta de Serviços Contínuos">
+          <div class="letter-row letter-row-head" role="row">
+            <span role="columnheader">Frente</span>
+            <span role="columnheader">Função</span>
+            <span role="columnheader">Contexto</span>
+          </div>
+          {serviceLetter.map((item) => (
+            <article class="letter-row" role="row">
+              <h3 role="cell">{item.title}</h3>
+              <p role="cell"><span>Função</span>{item.function}</p>
+              <p role="cell"><span>Contexto</span>{item.context}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="letter-closing" data-nav-surface="dark" aria-labelledby="letter-closing-title">
+      <div class="letter-shell letter-closing-grid">
+        <div>
+          <p class="letter-kicker">Escopo</p>
+          <h2 id="letter-closing-title">A carta orienta a composição. A direção define a prioridade.</h2>
+        </div>
+        <div class="letter-closing-copy">
+          <p>
+            Cada ciclo semestral combina as frentes necessárias para avançar autoridade, reputação, conteúdo e presença digital com o padrão construído no M-Signature.
+          </p>
+          <a class="moura-button moura-button-light" href="/analise">Solicitar direção contínua</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .letter-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .letter-shell {
+    width: min(100% - clamp(2rem, 7vw, 8rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .letter-kicker,
+  .letter-section-head span,
+  .letter-row-head span {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .letter-kicker {
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .letter-kicker-dark,
+  .letter-section-head span,
+  .letter-row-head span {
+    color: rgba(72, 84, 63, 0.78);
+  }
+
+  .letter-hero,
+  .letter-closing {
+    background: #060606;
+    color: var(--moura-ivory);
+  }
+
+  .letter-hero {
+    display: grid;
+    min-height: 100vh;
+    align-items: end;
+    padding-block: 8rem clamp(3rem, 5vw, 5rem);
+    background:
+      linear-gradient(90deg, rgba(244, 239, 231, 0.026) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(72, 84, 63, 0.07) 1px, transparent 1px),
+      linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
+    background-size:
+      calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%,
+      100% clamp(5rem, 9vw, 8rem),
+      100%;
+  }
+
+  .letter-hero-grid,
+  .letter-closing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 0.55fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .letter-hero-grid {
+    grid-template-rows: 1fr auto;
+    min-height: calc(100vh - 13rem);
+  }
+
+  .letter-hero-copy {
+    align-self: end;
+  }
+
+  .letter-hero h1,
+  .letter-table-layout h2,
+  .letter-closing h2 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+  }
+
+  .letter-hero h1 {
+    display: grid;
+    max-width: 11ch;
+    margin-top: 1.25rem;
+    font-size: clamp(4rem, 7.8vw, 9rem);
+    line-height: 0.88;
+    color: rgba(244, 239, 231, 0.94);
+  }
+
+  .letter-hero h1 span:nth-child(2) {
+    color: rgba(167, 124, 61, 0.88);
+  }
+
+  .letter-hero h1 span:nth-child(3) {
+    color: rgba(244, 239, 231, 0.72);
+  }
+
+  .letter-hero aside,
+  .letter-closing-copy {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: 1.4rem;
+  }
+
+  .letter-hero p,
+  .letter-closing-copy p {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.64);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.16vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.68;
+  }
+
+  .letter-hero-index {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 3rem);
+    align-self: end;
+    border-top: 1px solid rgba(244, 239, 231, 0.16);
+    padding-top: 1rem;
+  }
+
+  .letter-hero-index span {
+    color: rgba(244, 239, 231, 0.42);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .letter-page :global(.moura-button) {
+    width: 17rem;
+    max-width: 100%;
+  }
+
+  .letter-table-section {
+    padding-block: clamp(7rem, 11vw, 11rem);
+  }
+
+  .letter-table-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(2.2rem, 4vw, 4rem);
+  }
+
+  .letter-table-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.018) 0 1px, transparent 1px calc(100% / 12));
+    opacity: 0.34;
+    pointer-events: none;
+  }
+
+  .letter-table-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .letter-section-head {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+  }
+
+  .letter-table-layout h2 {
+    grid-column: 1 / 7;
+    max-width: 12ch;
+    font-size: clamp(2.45rem, 4.2vw, 5.2rem);
+    line-height: 0.98;
+    color: rgba(8, 8, 8, 0.9);
+  }
+
+  .letter-table-intro {
+    grid-column: 8 / -1;
+    align-self: end;
+    margin: 0;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    padding-top: 1.2rem;
+    color: rgba(8, 8, 8, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.12vw, 1.14rem);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .letter-table {
+    grid-column: 1 / -1;
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.18);
+  }
+
+  .letter-row {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.26fr) minmax(0, 0.38fr) minmax(0, 0.36fr);
+    gap: clamp(1.25rem, 3vw, 3rem);
+    align-items: start;
+    border-bottom: 1px solid rgba(8, 8, 8, 0.18);
+    padding-block: clamp(1.1rem, 2vw, 1.6rem);
+  }
+
+  .letter-row-head {
+    padding-block: 0.85rem;
+  }
+
+  .letter-row h3 {
+    margin: 0;
+    color: rgba(8, 8, 8, 0.86);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+    font-weight: 300;
+    line-height: 1.08;
+  }
+
+  .letter-row p {
+    margin: 0;
+    color: rgba(8, 8, 8, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.12vw, 1.14rem);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .letter-row p span {
+    display: none;
+  }
+
+  .letter-closing {
+    padding-block: clamp(7rem, 11vw, 11rem);
+  }
+
+  .letter-closing h2 {
+    max-width: 13ch;
+    font-size: clamp(2.8rem, 5.3vw, 6.2rem);
+    line-height: 0.96;
+    color: rgba(244, 239, 231, 0.92);
+  }
+
+  @media (max-width: 920px) {
+    .letter-hero-grid,
+    .letter-closing-grid,
+    .letter-table-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .letter-hero-grid {
+      min-height: calc(100vh - 11rem);
+    }
+
+    .letter-hero-index {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .letter-section-head,
+    .letter-table-layout h2,
+    .letter-table-intro,
+    .letter-table {
+      grid-column: 1;
+    }
+
+    .letter-row {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    .letter-row p {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .letter-row p span {
+      display: block;
+      color: rgba(72, 84, 63, 0.78);
+      font-family: "Neue Haas Display", "Outfit", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .letter-row-head {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .letter-shell {
+      width: min(100% - 1.25rem, 88rem);
+    }
+
+    .letter-hero h1,
+    .letter-closing h2 {
+      font-size: clamp(2.75rem, 15vw, 4.8rem);
+    }
+
+    .letter-table-layout h2 {
+      font-size: clamp(2.45rem, 12vw, 3.9rem);
+    }
+
+    .letter-section-head {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>
