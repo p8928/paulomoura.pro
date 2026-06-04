@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   type FormData = {
     firstName: string;
     lastName: string;
@@ -155,6 +156,60 @@
   const missingFields = $derived(getMissingFields(current));
   const canContinue = $derived(missingFields.length === 0);
   const submittedLabel = $derived(submittedAt || 'Agora');
+
+  onMount(() => {
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.isComposing) return;
+
+      const target = event.target as HTMLElement | null;
+      const tagName = target?.tagName;
+      const isEditable = !!target?.closest('[contenteditable="true"]');
+      const inputType = target instanceof HTMLInputElement ? target.type : '';
+      const isTextInput =
+        tagName === 'INPUT' &&
+        !['checkbox', 'radio', 'button', 'submit', 'reset', 'file', 'range', 'color'].includes(inputType);
+      const isSelect = tagName === 'SELECT';
+      const isTextarea = tagName === 'TEXTAREA';
+      const isModifier = event.metaKey || event.ctrlKey || event.altKey;
+
+      if (event.key === 'Escape') {
+        if (submitted) {
+          event.preventDefault();
+          resetFlow();
+          return;
+        }
+
+        if (current > 0) {
+          event.preventDefault();
+          back();
+        }
+
+        return;
+      }
+
+      if (event.key !== 'Enter' || isModifier || isEditable || isTextarea) return;
+      if (!isTextInput && !isSelect) return;
+
+      event.preventDefault();
+
+      if (submitted) {
+        resetFlow();
+        return;
+      }
+
+      if (current < steps.length - 1) {
+        next();
+        return;
+      }
+
+      if (canContinue && !submitting) {
+        void submit();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeydown);
+    return () => window.removeEventListener('keydown', handleKeydown);
+  });
 
   function getMissingFields(stepIndex: number) {
     if (stepIndex === 0) {

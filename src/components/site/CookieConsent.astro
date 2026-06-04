@@ -1,0 +1,314 @@
+---
+const consentVersion = '2026-06-04';
+const categories = [
+  {
+    id: 'essential',
+    label: 'Essenciais',
+    description: 'Necessários para funcionamento, segurança e envio de formulários. Sempre ativos.',
+    required: true,
+  },
+  {
+    id: 'analytics',
+    label: 'Analytics',
+    description: 'Métricas agregadas de navegação, como Cloudflare Web Analytics, quando ativado.',
+    required: false,
+  },
+  {
+    id: 'experience',
+    label: 'Experiência',
+    description: 'Ferramentas futuras para entender uso do site e melhorar a experiência.',
+    required: false,
+  },
+];
+---
+
+<section
+  class="cookie-consent"
+  data-cookie-consent
+  data-version={consentVersion}
+  aria-labelledby="cookie-consent-title"
+  hidden
+>
+  <div class="cookie-consent-panel">
+    <div class="cookie-consent-copy">
+      <p>Privacidade</p>
+      <h2 id="cookie-consent-title">Cookies e privacidade.</h2>
+      <span>
+        Usamos o mínimo necessário para operar o site. Ajuste preferências opcionais quando quiser.
+      </span>
+    </div>
+
+    <div class="cookie-consent-preferences" data-cookie-preferences hidden>
+      {categories.map((category) => (
+        <label class="cookie-consent-option">
+          <input
+            type="checkbox"
+            value={category.id}
+            data-cookie-category={category.id}
+            checked={category.required}
+            disabled={category.required}
+          />
+          <span>
+            <strong>{category.label}</strong>
+            <small>{category.description}</small>
+          </span>
+        </label>
+      ))}
+    </div>
+
+    <div class="cookie-consent-actions">
+      <button type="button" data-cookie-reject>Recusar opcionais</button>
+      <button type="button" data-cookie-configure>Configurar</button>
+      <button type="button" data-cookie-save hidden>Salvar preferências</button>
+      <button type="button" data-cookie-accept>Aceitar</button>
+    </div>
+
+    <a href="/cookies">Política de Cookies</a>
+  </div>
+</section>
+
+<button class="cookie-consent-trigger" type="button" data-cookie-open hidden>Cookies</button>
+
+<script is:inline define:vars={{ categories, consentVersion }}>
+  const storageKey = 'moura:cookie-consent';
+  const consentRoot = document.querySelector('[data-cookie-consent]');
+  const preferences = document.querySelector('[data-cookie-preferences]');
+  const trigger = document.querySelector('[data-cookie-open]');
+  const configureButton = document.querySelector('[data-cookie-configure]');
+  const saveButton = document.querySelector('[data-cookie-save]');
+  const acceptButton = document.querySelector('[data-cookie-accept]');
+  const rejectButton = document.querySelector('[data-cookie-reject]');
+  const categoryInputs = [...document.querySelectorAll('[data-cookie-category]')];
+
+  const optionalCategories = categories.filter((category) => !category.required).map((category) => category.id);
+  const requiredCategories = categories.filter((category) => category.required).map((category) => category.id);
+
+  function readConsent() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || 'null');
+    } catch {
+      return null;
+    }
+  }
+
+  function dispatchConsent(consent) {
+    window.mouraCookieConsent = consent;
+    window.dispatchEvent(new CustomEvent('moura:consent', { detail: consent }));
+  }
+
+  function writeConsent(accepted) {
+    const consent = {
+      version: consentVersion,
+      accepted,
+      updatedAt: new Date().toISOString(),
+    };
+    localStorage.setItem(storageKey, JSON.stringify(consent));
+    dispatchConsent(consent);
+    hidePanel();
+  }
+
+  function currentSelection() {
+    const selected = categoryInputs.filter((input) => input.checked).map((input) => input.value);
+    return [...new Set([...requiredCategories, ...selected])];
+  }
+
+  function applyConsentToInputs(consent) {
+    const accepted = consent?.accepted ?? requiredCategories;
+    for (const input of categoryInputs) {
+      input.checked = accepted.includes(input.value);
+    }
+  }
+
+  function showPanel() {
+    consentRoot.hidden = false;
+    trigger.hidden = true;
+  }
+
+  function hidePanel() {
+    consentRoot.hidden = true;
+    trigger.hidden = false;
+  }
+
+  function showPreferences() {
+    preferences.hidden = false;
+    saveButton.hidden = false;
+    configureButton.hidden = true;
+  }
+
+  const existingConsent = readConsent();
+  if (existingConsent?.version === consentVersion) {
+    dispatchConsent(existingConsent);
+    hidePanel();
+  } else {
+    showPanel();
+  }
+
+  trigger.addEventListener('click', () => {
+    applyConsentToInputs(readConsent());
+    showPanel();
+  });
+
+  configureButton.addEventListener('click', showPreferences);
+  acceptButton.addEventListener('click', () => writeConsent([...requiredCategories, ...optionalCategories]));
+  rejectButton.addEventListener('click', () => writeConsent(requiredCategories));
+  saveButton.addEventListener('click', () => writeConsent(currentSelection()));
+</script>
+
+<style>
+  .cookie-consent[hidden],
+  .cookie-consent-trigger[hidden],
+  .cookie-consent-preferences[hidden],
+  .cookie-consent-actions button[hidden] {
+    display: none;
+  }
+
+  .cookie-consent {
+    position: fixed;
+    left: clamp(0.85rem, 2vw, 1.25rem);
+    bottom: clamp(0.85rem, 2vw, 1.25rem);
+    z-index: 80;
+    width: min(calc(100vw - 1.7rem), 24.5rem);
+  }
+
+  .cookie-consent-panel {
+    display: grid;
+    gap: 0.68rem;
+    max-width: 100%;
+    border: 1px solid rgba(244, 239, 231, 0.1);
+    background:
+      linear-gradient(180deg, rgba(244, 239, 231, 0.038), rgba(244, 239, 231, 0.014)),
+      rgba(8, 8, 8, 0.88);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+    color: var(--moura-ivory);
+    padding: 0.82rem;
+    overflow-wrap: anywhere;
+    backdrop-filter: blur(18px);
+  }
+
+  .cookie-consent-copy {
+    display: grid;
+    gap: 0.38rem;
+  }
+
+  .cookie-consent-copy p,
+  .cookie-consent-panel a,
+  .cookie-consent-actions button,
+  .cookie-consent-option strong {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.69rem;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+
+  .cookie-consent-copy p,
+  .cookie-consent-panel a,
+  .cookie-consent-option strong {
+    color: rgba(167, 124, 61, 0.78);
+  }
+
+  .cookie-consent-copy h2 {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.94);
+    font-family: "Outfit", "Neue Haas Display", sans-serif;
+    font-size: clamp(1.22rem, 1.34vw, 1.55rem);
+    font-weight: 100;
+    letter-spacing: 0;
+    line-height: 0.98;
+  }
+
+  .cookie-consent-copy span,
+  .cookie-consent-option small {
+    color: rgba(244, 239, 231, 0.66);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.44;
+  }
+
+  .cookie-consent-preferences {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .cookie-consent-option {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.56rem;
+    align-items: start;
+    border: 1px solid rgba(244, 239, 231, 0.09);
+    padding: 0.58rem;
+  }
+
+  .cookie-consent-option input {
+    margin-top: 0.1rem;
+    accent-color: var(--moura-wine);
+  }
+
+  .cookie-consent-option span {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .cookie-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.1);
+    padding-top: 0.68rem;
+  }
+
+  .cookie-consent-actions button,
+  .cookie-consent-trigger {
+    border: 1px solid rgba(244, 239, 231, 0.18);
+    border-radius: 0;
+    cursor: pointer;
+    min-width: 0;
+    padding: 0.54rem 0.62rem;
+  }
+
+  .cookie-consent-actions button {
+    background: transparent;
+    color: rgba(244, 239, 231, 0.72);
+  }
+
+  .cookie-consent-actions [data-cookie-accept],
+  .cookie-consent-actions [data-cookie-save] {
+    border-color: rgba(167, 124, 61, 0.54);
+    background: rgba(244, 239, 231, 0.92);
+    color: var(--moura-black);
+  }
+
+  .cookie-consent-panel a {
+    justify-self: start;
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .cookie-consent-trigger {
+    position: fixed;
+    left: clamp(0.9rem, 2vw, 1.35rem);
+    bottom: clamp(0.9rem, 2vw, 1.35rem);
+    z-index: 79;
+    background: rgba(8, 8, 8, 0.82);
+    color: rgba(244, 239, 231, 0.72);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.69rem;
+    font-weight: 300;
+    letter-spacing: 0;
+    backdrop-filter: blur(14px);
+  }
+
+  @media (max-width: 560px) {
+    .cookie-consent {
+      left: 0.65rem;
+      bottom: 0.65rem;
+      width: calc(100vw - 1.3rem);
+    }
+
+    .cookie-consent-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
