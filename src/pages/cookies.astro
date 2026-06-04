@@ -1,0 +1,75 @@
+---
+import LegalDocument from '@components/legal/LegalDocument.astro';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    title: 'O que são cookies',
+    body: [
+      'Cookies são pequenos arquivos ou identificadores armazenados no navegador para lembrar informações, manter funcionalidades, medir uso do site ou apoiar segurança. Tecnologias semelhantes incluem localStorage, pixels, tags, scripts de analytics e identificadores de sessão.',
+      'Esta Política de Cookies explica como essas tecnologias são ou poderão ser utilizadas neste site.',
+    ],
+  },
+  {
+    title: 'Uso atual',
+    body: [
+      'No momento, o site foi planejado para operar com o mínimo necessário de rastreamento. O formulário de candidatura envia informações ao Formspree apenas quando o usuário submete os dados voluntariamente.',
+      'O site poderá usar Cloudflare Web Analytics para medir visitas e desempenho. Segundo a própria Cloudflare, essa ferramenta não utiliza cookies, localStorage nem fingerprinting para analytics.',
+    ],
+  },
+  {
+    title: 'Categorias possíveis',
+    items: [
+      'Essenciais: necessários para funcionamento, segurança, prevenção de abuso, envio de formulários e operação técnica do site.',
+      'Analytics: utilizados para entender visitas, páginas acessadas, origem de tráfego e desempenho geral, preferencialmente de forma agregada e sem identificação direta.',
+      'Marketing: não são prioridade atual. Caso sejam adotados para campanhas, remarketing ou mensuração publicitária, esta política deverá ser atualizada.',
+    ],
+  },
+  {
+    title: 'Ferramentas de terceiros',
+    body: [
+      'Hoje, as principais referências são Formspree para formulários e Cloudflare Web Analytics para métricas agregadas de navegação, se ativado.',
+      'Outras ferramentas poderão ser adotadas conforme a necessidade operacional do site. Caso isso altere a forma de coleta ou tratamento de dados pessoais, esta política será atualizada.',
+    ],
+  },
+  {
+    title: 'Consentimento',
+    body: [
+      'Quando forem utilizados cookies ou tecnologias não essenciais que dependam de consentimento, o site deverá exibir mecanismo adequado para aceitar, recusar ou gerenciar preferências.',
+      'Enquanto apenas tecnologias essenciais ou analytics sem cookies forem utilizadas, pode não haver banner de cookies. Se o conjunto analítico evoluir, essa decisão deverá ser revista.',
+    ],
+  },
+  {
+    title: 'Como controlar',
+    body: [
+      'Você pode bloquear ou apagar cookies diretamente nas configurações do navegador. Alguns navegadores também permitem limitar rastreamento, bloquear scripts de terceiros ou limpar dados por site.',
+      'O bloqueio de tecnologias essenciais pode afetar funcionalidades como envio de formulários, segurança ou carregamento correto de determinadas partes do site.',
+    ],
+  },
+  {
+    title: 'Atualizações',
+    body: [
+      'Esta política será atualizada quando novas ferramentas forem ativadas e alterarem a forma de coleta ou tratamento de dados pessoais.',
+      'A data no topo indica a versão vigente deste documento.',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Política de Cookies" description="Como este site utiliza ou poderá utilizar cookies, tecnologias semelhantes, Formspree e Cloudflare Web Analytics." canonicalPath="/cookies" showChrome={false}>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+  <LegalDocument
+    kicker="Cookies"
+    title="Política de Cookies."
+    summary="Documento sobre cookies, tecnologias semelhantes, formulários e métricas agregadas de navegação."
+    updatedAt="04/06/2026"
+    sections={sections}
+  />
+  <SiteFooter />
+</BaseLayout>

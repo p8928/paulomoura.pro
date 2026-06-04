@@ -1,0 +1,90 @@
+---
+import LegalDocument from '@components/legal/LegalDocument.astro';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    title: 'Quem controla os dados',
+    body: [
+      'Esta Política de Privacidade descreve como Paulo Moura trata dados pessoais coletados neste site, especialmente em formulários de candidatura, contato e interações relacionadas aos serviços M-Signature, M-Direction e metodologia Brand-Driven.',
+      'Para assuntos de privacidade, solicitações de acesso, correção ou exclusão de dados, o contato é contato@paulomoura.pro.',
+    ],
+  },
+  {
+    title: 'Dados coletados',
+    body: [
+      'Quando você envia uma candidatura ou entra em contato, podemos coletar dados como nome, sobrenome, empresa, e-mail, telefone, CNPJ, site, indústria, faixa de orçamento, canal de aquisição, urgência, motivos da candidatura e contexto informado livremente por você.',
+      'Também podemos coletar dados técnicos de navegação em formato agregado ou limitado, como páginas visitadas, origem de acesso, dispositivo, navegador, país ou métricas gerais de uso, conforme as ferramentas ativadas no site.',
+    ],
+  },
+  {
+    title: 'Finalidades de uso',
+    items: [
+      'Avaliar candidaturas e aderência aos serviços oferecidos.',
+      'Responder contatos e dar continuidade a conversas comerciais iniciadas pelo próprio usuário.',
+      'Organizar diagnóstico, proposta, atendimento e histórico mínimo de relacionamento.',
+      'Medir desempenho do site, entender navegação e melhorar clareza, conteúdo e experiência.',
+      'Prevenir abuso, spam, uso indevido do formulário e incidentes de segurança.',
+      'Cumprir obrigações legais, regulatórias ou exercício regular de direitos, quando aplicável.',
+    ],
+  },
+  {
+    title: 'Ferramentas de terceiros',
+    body: [
+      'O site utiliza prestadores de serviço para operar formulários, infraestrutura, segurança, e-mail e medição básica de navegação. Esses fornecedores atuam conforme suas próprias políticas, contratos e configurações técnicas.',
+      'Atualmente, a candidatura pública é enviada ao Formspree. O site poderá utilizar Cloudflare Web Analytics para métricas agregadas de navegação. Caso novas ferramentas passem a tratar dados pessoais de forma relevante, esta política será atualizada.',
+    ],
+    items: [
+      'Formspree: recebimento e processamento de formulários enviados pelo site.',
+      'Cloudflare Web Analytics: medição agregada de tráfego e desempenho de páginas, se ativado.',
+      'Infraestrutura, hospedagem, CDN, segurança e e-mail: serviços necessários para operação técnica e comunicação.',
+    ],
+  },
+  {
+    title: 'Base legal e retenção',
+    body: [
+      'O tratamento pode ocorrer com base em execução de procedimentos preliminares a contrato, legítimo interesse, consentimento quando necessário, cumprimento de obrigação legal ou exercício regular de direitos, conforme o contexto.',
+      'Dados de candidatura e contato são mantidos pelo tempo necessário para avaliação, relacionamento comercial, defesa de interesses legítimos e cumprimento de obrigações aplicáveis. Quando não forem mais necessários, poderão ser excluídos, anonimizados ou mantidos apenas quando houver justificativa legal.',
+    ],
+  },
+  {
+    title: 'Compartilhamento e transferência internacional',
+    body: [
+      'Dados podem ser compartilhados com fornecedores técnicos, plataformas de formulário, serviços de analytics, provedores de e-mail, hospedagem, segurança e ferramentas de gestão necessárias para operar o site e responder solicitações.',
+      'Alguns fornecedores podem processar dados fora do Brasil. Nesses casos, o tratamento dependerá das salvaguardas, contratos e políticas disponibilizadas pelos respectivos prestadores, observada a legislação aplicável.',
+    ],
+  },
+  {
+    title: 'Direitos do titular',
+    body: [
+      'Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, bloqueio, exclusão, portabilidade, informação sobre compartilhamento, revisão de decisões automatizadas quando aplicável e revogação de consentimento, nos termos da LGPD.',
+      'Solicitações devem ser enviadas para contato@paulomoura.pro. Para proteger a privacidade, poderemos solicitar informações adicionais para confirmar a identidade do solicitante antes de atender ao pedido.',
+    ],
+  },
+  {
+    title: 'Segurança e atualização',
+    body: [
+      'São adotadas medidas razoáveis para proteger dados contra acesso não autorizado, perda, alteração ou uso indevido. Nenhuma operação digital, porém, é absolutamente imune a riscos.',
+      'Esta política pode ser atualizada para refletir mudanças no site, nos serviços, nas ferramentas utilizadas ou em requisitos legais. A data de atualização no topo indica a versão vigente.',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Política de Privacidade" description="Como Paulo Moura trata dados pessoais em candidaturas, contato, analytics e navegação no site." canonicalPath="/privacidade" showChrome={false}>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+  <LegalDocument
+    kicker="Privacidade"
+    title="Política de Privacidade."
+    summary="Documento sobre coleta, uso, compartilhamento e retenção de dados pessoais em candidaturas, contato e navegação no site."
+    updatedAt="04/06/2026"
+    sections={sections}
+  />
+  <SiteFooter />
+</BaseLayout>

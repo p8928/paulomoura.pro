@@ -1,0 +1,89 @@
+---
+import LegalDocument from '@components/legal/LegalDocument.astro';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    title: 'Aceitação dos termos',
+    body: [
+      'Ao acessar este site, você concorda com estes Termos de Uso, com a Política de Privacidade e com a Política de Cookies. Se não concordar, deve interromper o uso do site.',
+      'Estes termos se aplicam à navegação, leitura de conteúdo, envio de candidaturas, formulários, contatos comerciais e qualquer interação realizada por meio do site.',
+    ],
+  },
+  {
+    title: 'Finalidade do site',
+    body: [
+      'O site apresenta a atuação de Paulo Moura, a metodologia Brand-Driven, serviços como M-Signature e M-Direction, conteúdos editoriais e meios de candidatura ou contato.',
+      'As informações publicadas têm caráter institucional, editorial e comercial. Elas não constituem proposta vinculante, diagnóstico definitivo, garantia de resultado ou obrigação de contratação.',
+    ],
+  },
+  {
+    title: 'Candidaturas e contato',
+    body: [
+      'O envio de candidatura não garante aprovação, reunião, proposta, disponibilidade de agenda ou contratação. As informações enviadas serão analisadas para avaliar aderência inicial ao método, momento do negócio e compatibilidade com o tipo de projeto.',
+      'Você declara que as informações enviadas são verdadeiras, atualizadas e que possui autorização para representar a empresa informada quando preencher dados em nome dela.',
+    ],
+  },
+  {
+    title: 'Conteúdo e propriedade intelectual',
+    body: [
+      'Textos, conceitos, estrutura, identidade visual, páginas, imagens, componentes, metodologia, nomes de serviços e demais elementos do site pertencem a Paulo Moura ou a seus respectivos titulares.',
+      'É proibida a cópia, reprodução, adaptação, raspagem, distribuição, exploração comercial ou uso indevido do conteúdo sem autorização prévia, salvo citações pontuais com indicação adequada de autoria e fonte.',
+    ],
+  },
+  {
+    title: 'Uso permitido e proibido',
+    items: [
+      'Você pode navegar, ler conteúdos, enviar candidatura e entrar em contato pelos meios disponibilizados.',
+      'Você não pode tentar invadir, sobrecarregar, automatizar abuso, extrair dados em massa, comprometer segurança, enviar spam ou usar o site para finalidade ilícita.',
+      'Você não pode preencher formulários com dados falsos, de terceiros sem autorização, conteúdo ofensivo, malicioso ou incompatível com a finalidade da candidatura.',
+      'Você não pode usar o conteúdo do site para treinar, compor ou alimentar produtos concorrentes sem autorização específica.',
+    ],
+  },
+  {
+    title: 'Terceiros e integrações',
+    body: [
+      'O site pode utilizar serviços de terceiros para formulários, analytics, infraestrutura, segurança, e-mail ou outras funções operacionais necessárias.',
+      'Esses serviços possuem seus próprios termos, políticas e práticas. O funcionamento do site pode depender da disponibilidade, segurança e continuidade desses fornecedores.',
+    ],
+  },
+  {
+    title: 'Limitações e disponibilidade',
+    body: [
+      'O site é oferecido no estado em que se encontra. Embora haja esforço para manter precisão, segurança e disponibilidade, podem ocorrer erros, indisponibilidade, desatualização, falhas técnicas ou interrupções.',
+      'Nenhuma informação do site deve ser interpretada como garantia de performance, ranqueamento, faturamento, redução de CAC, geração de leads ou qualquer resultado comercial específico.',
+    ],
+  },
+  {
+    title: 'Alterações',
+    body: [
+      'Estes Termos de Uso podem ser alterados para refletir mudanças no site, nos serviços, na operação, nas ferramentas utilizadas ou em exigências legais.',
+      'A versão vigente será indicada pela data de atualização no topo da página. O uso contínuo do site após alterações representa concordância com os termos atualizados.',
+    ],
+  },
+  {
+    title: 'Contato',
+    body: [
+      'Dúvidas sobre estes Termos de Uso podem ser enviadas para contato@paulomoura.pro.',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Termos de Uso" description="Termos aplicáveis ao acesso, navegação, conteúdo, candidatura e uso do site Paulo Moura." canonicalPath="/termos-de-uso" showChrome={false}>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+  <LegalDocument
+    kicker="Termos"
+    title="Termos de Uso."
+    summary="Regras de acesso, navegação, uso do conteúdo, candidatura, ferramentas de terceiros e limitações do site."
+    updatedAt="04/06/2026"
+    sections={sections}
+  />
+  <SiteFooter />
+</BaseLayout>

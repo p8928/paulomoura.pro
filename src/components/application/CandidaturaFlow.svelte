@@ -12,7 +12,6 @@
     budget: string;
     industry: string;
     companySize: string;
-    interest: string;
     acquisition: string;
     urgency: string;
     reasons: string[];
@@ -56,7 +55,6 @@
     'Acima de 200 pessoas',
   ];
 
-  const interestOptions = ['M-Signature', 'M-Direction', 'Ainda não sei'];
 
   const acquisitionOptions = [
     'Indicação',
@@ -107,8 +105,8 @@
     {
       eyebrow: '03 / Momento',
       title: 'Que tipo de projeto faz sentido agora?',
-      copy: 'Investimento, urgência e serviço de interesse ajudam a avaliar aderência antes de abrir uma conversa comercial.',
-      fields: ['budget', 'interest', 'acquisition', 'urgency'],
+      copy: 'Investimento, urgência e canal de aquisição ajudam a avaliar aderência antes de abrir uma conversa comercial.',
+      fields: ['budget', 'acquisition', 'urgency'],
     },
     {
       eyebrow: '04 / Motivo',
@@ -126,8 +124,13 @@
 
   let current = $state(0);
   let touched = $state(false);
+  const formspreeEndpoint = 'https://formspree.io/f/meewojoa';
+
   let submitted = $state(false);
+  let submitting = $state(false);
+  let submitError = $state('');
   let submittedAt = $state('');
+  let botField = $state('');
   let form = $state<FormData>({
     firstName: '',
     lastName: '',
@@ -141,7 +144,6 @@
     budget: '',
     industry: '',
     companySize: '',
-    interest: '',
     acquisition: '',
     urgency: '',
     reasons: [],
@@ -177,7 +179,6 @@
     if (stepIndex === 2) {
       return [
         !form.budget && 'orçamento',
-        !form.interest && 'interesse',
         !form.acquisition && 'aquisição',
         !form.urgency && 'urgência',
       ].filter(Boolean) as string[];
@@ -228,7 +229,6 @@
       `Indústria: ${form.industry}`,
       `Tamanho: ${form.companySize}`,
       `Orçamento: ${form.budget}`,
-      `Serviço de interesse: ${form.interest}`,
       `Canal de aquisição atual: ${form.acquisition}`,
       `Urgência: ${form.urgency}`,
       '',
@@ -240,29 +240,81 @@
     ].join('\n');
   }
 
-  function submit() {
+  async function submit() {
+    submitError = '';
+
+    if (botField) {
+      submitted = true;
+      return;
+    }
+
     const now = new Date();
-    submittedAt = new Intl.DateTimeFormat('pt-BR', {
-      dateStyle: 'short',
-      timeStyle: 'short',
-    }).format(now);
+    const payload = {
+      _subject: `Candidatura Moura - ${form.company || form.firstName}`,
+      name: `${form.firstName} ${form.lastName}`.trim(),
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phone: form.phone,
+      company: form.company,
+      cnpj: form.cnpjLater ? 'Prefere informar depois' : form.cnpj,
+      website: form.noWebsite ? 'Empresa ainda não tem site' : form.website,
+      budget: form.budget,
+      industry: form.industry,
+      companySize: form.companySize,
+      acquisition: form.acquisition,
+      urgency: form.urgency,
+      reasons: form.reasons.join(', '),
+      context: form.context || 'Não informado',
+      message: buildEmailBody(),
+      submittedAt: now.toISOString(),
+    };
 
-    localStorage.setItem(
-      'moura:candidatura:last',
-      JSON.stringify({
-        submittedAt: now.toISOString(),
-        form,
-        summary: buildEmailBody(),
-      }),
-    );
+    submitting = true;
 
-    submitted = true;
-    touched = false;
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Formspree recusou o envio.');
+      }
+
+      submittedAt = new Intl.DateTimeFormat('pt-BR', {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }).format(now);
+
+      localStorage.setItem(
+        'moura:candidatura:last',
+        JSON.stringify({
+          submittedAt: now.toISOString(),
+          form,
+          summary: buildEmailBody(),
+        }),
+      );
+
+      submitted = true;
+      touched = false;
+    } catch {
+      submitError = 'Não foi possível enviar a candidatura agora. Verifique a conexão e tente novamente.';
+    } finally {
+      submitting = false;
+    }
   }
 
   function resetFlow() {
     submitted = false;
+    submitting = false;
+    submitError = '';
     submittedAt = '';
+    botField = '';
     current = 0;
     touched = false;
   }
@@ -282,7 +334,6 @@
           <div><dt>Responsável</dt><dd>{form.firstName} {form.lastName}</dd></div>
           <div><dt>Empresa</dt><dd>{form.company}</dd></div>
           <div><dt>Contato</dt><dd>{form.email}</dd></div>
-          <div><dt>Interesse</dt><dd>{form.interest}</dd></div>
         </dl>
         <button class="ghost" type="button" onclick={resetFlow}>Enviar outra candidatura</button>
       </div>
@@ -300,6 +351,11 @@
     </div>
 
     <div class="application-step">
+      <label class="application-honeypot" aria-hidden="true">
+        <span>Não preencha este campo</span>
+        <input bind:value={botField} name="_gotcha" tabindex="-1" autocomplete="off" />
+      </label>
+
       <p class="application-copy">{step.copy}</p>
 
       {#if current === 0}
@@ -376,14 +432,6 @@
           </div>
         </div>
 
-        <div class="application-choice-group compact">
-          <span>Serviço de interesse</span>
-          <div class="application-chip-grid compact">
-            {#each interestOptions as option}
-              <button class:active={form.interest === option} type="button" onclick={() => setSingle('interest', option)}>{option}</button>
-            {/each}
-          </div>
-        </div>
 
         <div class="application-choice-group compact">
           <span>Canal de aquisição atual</span>
@@ -430,8 +478,7 @@
             <div><dt>Site</dt><dd>{form.noWebsite ? 'Minha empresa não tem site' : form.website}</dd></div>
             <div><dt>Indústria</dt><dd>{form.industry}</dd></div>
             <div><dt>Orçamento</dt><dd>{form.budget}</dd></div>
-            <div><dt>Interesse</dt><dd>{form.interest}</dd></div>
-            <div><dt>Motivos</dt><dd>{form.reasons.join(', ')}</dd></div>
+              <div><dt>Motivos</dt><dd>{form.reasons.join(', ')}</dd></div>
           </dl>
         </div>
       {/if}
@@ -441,12 +488,16 @@
       <p class="application-missing">Antes de continuar, preencha: {missingFields.join(', ')}.</p>
     {/if}
 
+    {#if submitError}
+      <p class="application-submit-error" role="alert">{submitError}</p>
+    {/if}
+
     <footer class="application-controls">
       <button class="ghost" type="button" onclick={back} disabled={current === 0}>Voltar</button>
       {#if current < steps.length - 1}
         <button class="primary" type="button" onclick={next}>Continuar</button>
       {:else}
-        <button class="primary" type="button" onclick={submit}>Enviar candidatura</button>
+        <button class="primary" type="button" onclick={submit} disabled={submitting}>{submitting ? 'Enviando...' : 'Enviar candidatura'}</button>
       {/if}
     </footer>
     {/if}
@@ -775,7 +826,16 @@
     line-height: 1.5;
   }
 
-  .application-missing {
+  .application-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .application-missing,
+  .application-submit-error {
     margin: 1.2rem 0 0;
     color: #e37b72;
   }
