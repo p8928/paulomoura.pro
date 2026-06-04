@@ -113,7 +113,7 @@
 <section data-nav-surface="dark" class="method-scroll-outro">
   <div class="method-scroll-outro-shell">
     <p>O método interpreta o negócio antes de organizar sua presença. A tecnologia amplia a leitura, mas a direção continua humana.</p>
-    <a class="moura-button moura-button-light" href="/analise">
+    <a class="moura-button moura-button-light" href="/candidatura">
     Iniciar candidatura</a>
   </div>
 </section>

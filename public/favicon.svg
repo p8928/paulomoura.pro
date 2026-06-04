@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Moura">
+  <style>
+    .mark { fill: #080808; }
+    @media (prefers-color-scheme: dark) { .mark { fill: #f4efe7; } }
+  </style>
+  <path class="mark" transform="translate(13 37) scale(1.239) translate(-56.910125 -31.41494)" d="M 192.39439,33.211311 h 8.20564 q 33.55196,0 40.11647,26.864274 2.097,8.704024 2.097,20.094476 V 179.56788 h -50.41911 z m -67.65096,0 h 50.69263 V 179.56788 h -50.69263 z m -67.833304,0 H 107.60276 V 179.56788 H 56.910126 Z" />
+</svg>

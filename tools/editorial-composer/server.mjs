@@ -5,11 +5,18 @@ import { categories, savePost, slugify, todayISO } from './editorial-utils.mjs';
 
 const port = Number(process.env.PORT || 4177);
 const root = new URL('.', import.meta.url).pathname;
+const publicRoot = new URL('../../public/', import.meta.url).pathname;
 
 const mime = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.woff2': 'font/woff2',
 };
 
 async function parseBody(request) {
@@ -44,14 +51,31 @@ const server = createServer(async (request, response) => {
     }
 
     const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
-    const filePath = join(root, pathname.replace(/^\//, ''));
-    const content = await readFile(filePath);
+    let filePath = join(root, pathname.replace(/^\//, ''));
+    let content;
+
+    try {
+      content = await readFile(filePath);
+    } catch {
+      filePath = join(publicRoot, pathname.replace(/^\//, ''));
+      content = await readFile(filePath);
+    }
+
     response.writeHead(200, { 'content-type': mime[extname(filePath)] ?? 'text/plain; charset=utf-8' });
     response.end(content);
   } catch (error) {
     response.writeHead(500, { 'content-type': 'application/json; charset=utf-8' });
     response.end(JSON.stringify({ ok: false, errors: [error instanceof Error ? error.message : 'Erro desconhecido'] }));
   }
+});
+
+server.on('error', (error) => {
+  if (error && typeof error === 'object' && 'code' in error && error.code === 'EADDRINUSE') {
+    console.log(`Composer editorial local ja esta ativo: http://127.0.0.1:${port}`);
+    process.exit(0);
+  }
+
+  throw error;
 });
 
 server.listen(port, '127.0.0.1', () => {

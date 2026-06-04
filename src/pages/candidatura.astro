@@ -1,0 +1,270 @@
+---
+import CandidaturaFlow from '@components/application/CandidaturaFlow.svelte';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Candidatura"
+  description="Envie uma candidatura para M-Signature ou M-Direction. O formulário avalia contexto, momento, investimento e aderência ao método Brand-Driven."
+  canonicalPath="/candidatura"
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="application-page">
+    <section class="application-hero" data-nav-surface="dark" aria-labelledby="application-title">
+      <div class="application-shell application-hero-grid">
+        <div class="application-hero-copy">
+          <p class="application-kicker">Candidatura</p>
+          <h1 id="application-title">Antes de propor, é preciso entender se existe aderência.</h1>
+        </div>
+
+        <aside class="application-hero-aside" aria-label="Resumo da candidatura">
+          <p>
+            A candidatura organiza informações essenciais sobre negócio, momento, investimento e principais gargalos da presença digital. Ela não substitui o diagnóstico; apenas evita uma conversa comercial prematura ou genérica.
+          </p>
+        </aside>
+      </div>
+
+      <aside class="application-hero-system" aria-label="Coordenadas da candidatura">
+        <p>Triagem / Brand-Driven</p>
+        <span>M-Signature</span>
+        <span>M-Direction</span>
+        <span>Avaliação de aderência</span>
+      </aside>
+    </section>
+
+    <section class="application-intro" data-nav-surface="light" aria-labelledby="application-intro-title">
+      <div class="application-shell application-intro-grid">
+        <header>
+          <p class="application-kicker application-kicker-dark">Como funciona</p>
+          <h2 id="application-intro-title">O formulário filtra o que precisa ser filtrado antes de abrir escopo.</h2>
+        </header>
+
+        <div class="application-intro-copy">
+          <p>
+            M-Signature e M-Direction trabalham com personalização alta. Por isso, a entrada precisa revelar se a empresa tem contexto, maturidade e orçamento compatíveis com uma intervenção profunda em marca, linguagem, site, SEO, AEO, GEO e autoridade digital.
+          </p>
+          <p>
+            Ao final, os dados são organizados para envio por e-mail. Depois da avaliação inicial, o diagnóstico define se faz sentido conversar sobre escopo, investimento e próximos passos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="application-form-section" data-nav-surface="dark" aria-label="Formulário de candidatura">
+      <CandidaturaFlow client:load />
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .application-page {
+    overflow: hidden;
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .application-shell {
+    width: min(100% - clamp(2rem, 7vw, 8rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .application-kicker,
+  .application-hero-system {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .application-kicker {
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .application-kicker-dark {
+    color: rgba(111, 38, 61, 0.72);
+  }
+
+  .application-hero,
+  .application-form-section {
+    background: #060606;
+    color: var(--moura-ivory);
+  }
+
+  .application-hero {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    align-items: center;
+    padding-block: 8rem 6rem;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(167, 124, 61, 0.14), transparent 28rem),
+      linear-gradient(90deg, rgba(244, 239, 231, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
+    background-size: auto, calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+  }
+
+  .application-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(21rem, 0.55fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .application-hero-copy {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .application-hero h1,
+  .application-intro h2 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+  }
+
+  .application-hero h1 {
+    max-width: 12ch;
+    color: rgba(244, 239, 231, 0.94);
+    font-size: clamp(3.5rem, 7.1vw, 8.8rem);
+    line-height: 0.9;
+  }
+
+  .application-hero-aside {
+    max-width: 35rem;
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    padding-top: 1.4rem;
+  }
+
+  .application-hero-aside p,
+  .application-intro-copy p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.16vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.68;
+  }
+
+  .application-hero-aside p {
+    color: rgba(244, 239, 231, 0.64);
+  }
+
+  .application-hero-system {
+    position: absolute;
+    right: clamp(2rem, 7vw, 8rem);
+    bottom: clamp(2rem, 4vw, 4rem);
+    left: clamp(2rem, 7vw, 8rem);
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(9rem, 1fr));
+    gap: clamp(1.2rem, 3vw, 3rem);
+    align-items: center;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    padding-top: 1rem;
+    color: rgba(244, 239, 231, 0.44);
+  }
+
+  .application-hero-system p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.76);
+  }
+
+  .application-hero-system span {
+    text-align: right;
+  }
+
+  .application-intro {
+    padding-block: clamp(7rem, 11vw, 11rem);
+    background: var(--moura-paper);
+  }
+
+  .application-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .application-intro header {
+    grid-column: 1 / 7;
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .application-intro h2 {
+    max-width: 13ch;
+    color: rgba(8, 8, 8, 0.9);
+    font-size: clamp(2.8rem, 5.2vw, 6.2rem);
+    line-height: 0.96;
+  }
+
+  .application-intro-copy {
+    grid-column: 8 / -1;
+    display: grid;
+    gap: 1.45rem;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    padding-top: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  .application-intro-copy p {
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .application-form-section {
+    padding-block: clamp(6rem, 10vw, 10rem);
+    background:
+      linear-gradient(90deg, rgba(244, 239, 231, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, #050505 0%, #10100f 50%, #050505 100%);
+    background-size: calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+  }
+
+  @media (max-width: 900px) {
+    .application-hero-grid,
+    .application-intro-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .application-intro header,
+    .application-intro-copy {
+      grid-column: 1;
+    }
+
+    .application-hero-system {
+      position: static;
+      width: min(100% - clamp(2rem, 7vw, 8rem), 88rem);
+      grid-template-columns: 1fr;
+      margin: clamp(2rem, 6vw, 4rem) auto 0;
+    }
+
+    .application-hero-system span {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .application-shell {
+      width: min(100% - 1.5rem, 88rem);
+    }
+
+    .application-hero {
+      min-height: auto;
+      padding-block: 7rem 3rem;
+    }
+
+    .application-hero h1 {
+      font-size: clamp(3.05rem, 16vw, 4.8rem);
+    }
+  }
+</style>

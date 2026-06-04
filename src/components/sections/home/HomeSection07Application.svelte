@@ -54,7 +54,7 @@
     <div class="application-action">
       <p class="application-action-title">Se houver aderência, o diagnóstico é o primeiro movimento.</p>
       <p class="application-action-copy">A partir dele, marca, presença e confiança digital passam a ser tratadas sob a mesma direção.</p>
-      <a class="moura-button moura-button-dark" href="/analise">
+      <a class="moura-button moura-button-dark" href="/candidatura">
       Iniciar candidatura</a>
     </div>
   </div>

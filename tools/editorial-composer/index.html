@@ -4,14 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Composer Editorial Local</title>
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f7f4ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="composer-shell">
+      <header class="composer-brandbar" aria-label="Moura editorial composer">
+        <a class="composer-brand" href="/" aria-label="Moura">
+          <img src="/images/logo/main_logo_white.svg" alt="Moura" />
+        </a>
+        <p>Editorial composer / local</p>
+      </header>
+
       <section class="composer-hero">
-        <p>Composer local</p>
-        <h1>Publicação editorial offline.</h1>
-        <span>O arquivo só entra no site publicado depois de commit, push e deploy.</span>
+        <div class="composer-hero-copy">
+          <p>Composer local</p>
+          <h1>Publicação editorial com assinatura.</h1>
+        </div>
+        <aside class="composer-hero-note" aria-label="Estado de publicação">
+          <span>Offline</span>
+          <p>Markdown estruturado. SEO preparado. Publicação final via commit, push e deploy.</p>
+        </aside>
       </section>
 
       <form class="composer-form" data-composer-form>
