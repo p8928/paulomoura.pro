@@ -1,6 +1,7 @@
 ---
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
+import { signatureSectors } from '@data/signatureSectors';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 const scopeItems = [
@@ -77,11 +78,15 @@ const processSteps = [
     label: '04',
     title: 'Entrega e continuidade possível',
     copy:
-      'Ao fim dos 90 dias, a empresa recebe a base construída. Se fizer sentido manter direção estratégica, a continuidade acontece por M-Direction.',
+      'Ao fim dos 90 dias, a empresa recebe a base construída. Se fizer sentido manter direção estratégica, a continuidade acontece por ',
+    link: {
+      href: '/m-direction',
+      label: 'M-Direction',
+    },
+    suffix: '.',
   },
 ];
 
-const sectors = ['Arquitetura', 'Clínicas médicas', 'Consultoria', 'Restaurantes', 'Tecnologia', 'E-commerce', 'Jurídico'];
 
 const technicalLayers = [
   ['Performance', 'carregamento rápido, arquitetura leve e menor dependência de camadas visuais limitadas'],
@@ -189,7 +194,7 @@ const technicalLayers = [
           </section>
 
           <section aria-labelledby="fit-bad-title">
-            <h3 id="fit-bad-title">Não é o caminho quando</h3>
+            <h3 id="fit-bad-title">Não é o caminho para</h3>
             <ul>
               {nonFitItems.map((item) => <li><span aria-hidden="true">-</span>{item}</li>)}
             </ul>
@@ -201,7 +206,7 @@ const technicalLayers = [
     <section class="signature-proof" data-nav-surface="dark" aria-labelledby="signature-proof-title">
       <div class="signature-shell signature-proof-grid">
         <div class="signature-proof-copy">
-          <p class="signature-kicker">Padrão de atuação</p>
+          <p class="signature-kicker">Atuação</p>
           <h2 id="signature-proof-title">Setores em que clareza, reputação e confiança pesam antes do contato.</h2>
           <p>
             A aplicação do método se concentra em operações nas quais o cliente precisa perceber critério antes de decidir. São mercados em que a presença digital não pode parecer improvisada, porque ela antecipa a confiança ou aumenta a distância até a contratação.
@@ -209,7 +214,17 @@ const technicalLayers = [
         </div>
 
         <div class="signature-sector-list" aria-label="Setores atendidos">
-          {sectors.map((sector) => <span>{sector}</span>)}
+          {signatureSectors.map((sector) => (
+            <details>
+              <summary>
+                <span>{sector.name}</span>
+              </summary>
+              <div>
+                <p>{sector.description}</p>
+                <a href={`/setores/${sector.slug}/`}>Ver abordagem para {sector.name.toLowerCase()}</a>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
@@ -229,7 +244,11 @@ const technicalLayers = [
               <span>{step.label}</span>
               <div>
                 <h3>{step.title}</h3>
-                <p>{step.copy}</p>
+                <p>
+                  {step.copy}
+                  {step.link && <a href={step.link.href}>{step.link.label}</a>}
+                  {step.suffix}
+                </p>
               </div>
             </article>
           ))}
@@ -285,6 +304,20 @@ const technicalLayers = [
 
   <SiteFooter />
 </BaseLayout>
+
+<script>
+  const sectorDetails = document.querySelectorAll<HTMLDetailsElement>('.signature-sector-list details');
+
+  sectorDetails.forEach((detail) => {
+    detail.addEventListener('toggle', () => {
+      if (!detail.open) return;
+
+      sectorDetails.forEach((item) => {
+        if (item !== detail) item.open = false;
+      });
+    });
+  });
+</script>
 
 <style>
   .signature-page {
@@ -578,17 +611,6 @@ const technicalLayers = [
     text-shadow: 0 0 42px rgba(167, 124, 61, 0.08);
   }
 
-  .signature-scope-head h2 .signature-dropcap::after {
-    content: "";
-    position: absolute;
-    right: 10%;
-    bottom: 8%;
-    width: 38%;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(167, 124, 61, 0), rgba(167, 124, 61, 0.72));
-    transform: rotate(-18deg);
-    transform-origin: right center;
-  }
 
   .signature-scope-head h2 span:not(.signature-dropcap) {
     display: block;
@@ -709,7 +731,13 @@ const technicalLayers = [
   .signature-proof-copy {
     grid-column: 1 / 8;
     display: grid;
-    gap: 1.35rem;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .signature-proof-copy .signature-kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
   }
 
   .signature-proof-copy p:last-child {
@@ -723,13 +751,84 @@ const technicalLayers = [
     border-top: 1px solid rgba(244, 239, 231, 0.18);
   }
 
-  .signature-sector-list span {
+  .signature-sector-list details {
     border-bottom: 1px solid rgba(244, 239, 231, 0.18);
+  }
+
+  .signature-sector-list summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
     padding-block: 1rem;
+  }
+
+  .signature-sector-list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .signature-sector-list summary::after {
+    content: "+";
+    color: rgba(167, 124, 61, 0.78);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .signature-sector-list details[open] summary::after {
+    content: "-";
+  }
+
+  .signature-sector-list summary span {
+    display: block;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(1.05rem, 1.5vw, 1.5rem);
     font-weight: 300;
     color: rgba(244, 239, 231, 0.76);
+  }
+
+  .signature-sector-list details > div {
+    display: grid;
+    gap: 0.85rem;
+    padding: 0 0 1.1rem;
+  }
+
+  .signature-sector-list p {
+    max-width: 28rem;
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.86rem, 0.95vw, 0.96rem);
+    font-weight: 300;
+    line-height: 1.58;
+    color: rgba(244, 239, 231, 0.52);
+  }
+
+  .signature-sector-list a {
+    width: fit-content;
+    border: 1px solid rgba(244, 239, 231, 0.18);
+    color: rgba(244, 239, 231, 0.72);
+    padding: 0.62rem 0.75rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      color 180ms ease;
+  }
+
+  .signature-sector-list a:hover,
+  .signature-sector-list a:focus-visible {
+    border-color: rgba(167, 124, 61, 0.58);
+    background: rgba(167, 124, 61, 0.12);
+    color: rgba(244, 239, 231, 0.9);
   }
 
   .signature-process-list {
@@ -758,6 +857,17 @@ const technicalLayers = [
 
   .signature-process-list h3 {
     color: rgba(8, 8, 8, 0.86);
+  }
+
+  .signature-process-list a {
+    color: var(--moura-wine);
+    text-decoration-color: rgba(111, 38, 61, 0.36);
+    text-underline-offset: 0.18em;
+  }
+
+  .signature-process-list a:hover,
+  .signature-process-list a:focus-visible {
+    text-decoration-color: rgba(111, 38, 61, 0.78);
   }
 
   .signature-tech-table {
@@ -902,11 +1012,6 @@ const technicalLayers = [
       font-size: clamp(6.2rem, 27vw, 8.6rem);
     }
 
-    .signature-scope-head h2 .signature-dropcap::after {
-      right: 8%;
-      bottom: 10%;
-      width: 34%;
-    }
 
     .signature-scope-list {
       grid-template-columns: 1fr;

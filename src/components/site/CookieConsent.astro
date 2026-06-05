@@ -67,13 +67,11 @@ const categories = [
   </div>
 </section>
 
-<button class="cookie-consent-trigger" type="button" data-cookie-open hidden>Cookies</button>
 
 <script is:inline define:vars={{ categories, consentVersion }}>
   const storageKey = 'moura:cookie-consent';
   const consentRoot = document.querySelector('[data-cookie-consent]');
   const preferences = document.querySelector('[data-cookie-preferences]');
-  const trigger = document.querySelector('[data-cookie-open]');
   const configureButton = document.querySelector('[data-cookie-configure]');
   const saveButton = document.querySelector('[data-cookie-save]');
   const acceptButton = document.querySelector('[data-cookie-accept]');
@@ -112,21 +110,13 @@ const categories = [
     return [...new Set([...requiredCategories, ...selected])];
   }
 
-  function applyConsentToInputs(consent) {
-    const accepted = consent?.accepted ?? requiredCategories;
-    for (const input of categoryInputs) {
-      input.checked = accepted.includes(input.value);
-    }
-  }
 
   function showPanel() {
     consentRoot.hidden = false;
-    trigger.hidden = true;
   }
 
   function hidePanel() {
     consentRoot.hidden = true;
-    trigger.hidden = false;
   }
 
   function showPreferences() {
@@ -143,10 +133,6 @@ const categories = [
     showPanel();
   }
 
-  trigger.addEventListener('click', () => {
-    applyConsentToInputs(readConsent());
-    showPanel();
-  });
 
   configureButton.addEventListener('click', showPreferences);
   acceptButton.addEventListener('click', () => writeConsent([...requiredCategories, ...optionalCategories]));
@@ -156,7 +142,6 @@ const categories = [
 
 <style>
   .cookie-consent[hidden],
-  .cookie-consent-trigger[hidden],
   .cookie-consent-preferences[hidden],
   .cookie-consent-actions button[hidden] {
     display: none;
@@ -259,8 +244,7 @@ const categories = [
     padding-top: 0.68rem;
   }
 
-  .cookie-consent-actions button,
-  .cookie-consent-trigger {
+  .cookie-consent-actions button {
     border: 1px solid rgba(244, 239, 231, 0.18);
     border-radius: 0;
     cursor: pointer;
@@ -285,19 +269,6 @@ const categories = [
     color: rgba(244, 239, 231, 0.52);
   }
 
-  .cookie-consent-trigger {
-    position: fixed;
-    left: clamp(0.9rem, 2vw, 1.35rem);
-    bottom: clamp(0.9rem, 2vw, 1.35rem);
-    z-index: 79;
-    background: rgba(8, 8, 8, 0.82);
-    color: rgba(244, 239, 231, 0.72);
-    font-family: "Neue Haas Display", "Outfit", sans-serif;
-    font-size: 0.69rem;
-    font-weight: 300;
-    letter-spacing: 0;
-    backdrop-filter: blur(14px);
-  }
 
   @media (max-width: 560px) {
     .cookie-consent {

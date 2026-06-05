@@ -1,0 +1,807 @@
+---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import { signatureSectors } from '@data/signatureSectors';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return signatureSectors.map((sector) => ({
+    params: { slug: sector.slug },
+    props: { sector },
+  }));
+}
+
+const { sector } = Astro.props;
+const isArchitecture = sector.slug === 'arquitetura';
+
+const genericSignals = [
+  'Portfólio tratado como galeria visual, sem critério de leitura.',
+  'Texto institucional parecido com qualquer escritório do mercado.',
+  'Site construído para existir, não para sustentar autoridade.',
+  'Pouca conexão entre reputação, linguagem, obra, busca e experiência.',
+];
+
+const signatureSignals = [
+  'Narrativa que organiza repertório, método, valores e tipo de cliente ideal.',
+  'Site como núcleo técnico, editorial e visual do ecossistema de autoridade.',
+  'Arquitetura de informação pensada para qualificar interesse antes do contato.',
+  'Presença digital personalizada, coerente com ticket, entrega e ambição do estúdio.',
+];
+---
+
+<BaseLayout
+  title={`${sector.name} | M-Signature`}
+  description={`Página setorial M-Signature para ${sector.name}.`}
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="sector-page">
+    {isArchitecture ? (
+      <>
+        <div class="sector-architecture-stack">
+          <div class="sector-architecture-sticky">
+            <section class="architecture-title-section" data-nav-surface="light" aria-labelledby="architecture-title-section">
+              <div class="architecture-shell architecture-title-grid">
+                <figure class="architecture-portrait" aria-label="Ambiente editorial de arquitetura">
+                  <img src="/images/setores/architecture-editorial.png" alt="Modelo arquitetônico e materiais de projeto em ambiente contemporâneo" loading="eager" decoding="async" />
+                </figure>
+                <div class="architecture-title-copy">
+                  <p>Arquitetura / Presença digital</p>
+                  <h2 id="architecture-title-section">O valor do projeto precisa ser percebido antes da primeira reunião.</h2>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section
+            class:list={["sector-hero", "sector-hero--stacked", sector.heroImage && "sector-hero--illustrated"]}
+            style={sector.heroImage ? `--sector-hero-image: url("${sector.heroImage}")` : undefined}
+            data-nav-surface="dark"
+            aria-labelledby="sector-title"
+          >
+            <div class="sector-shell">
+              <p>M-Signature / Setor</p>
+              <h1 id="sector-title">{sector.name}</h1>
+            </div>
+          </section>
+        </div>
+
+        <section class="architecture-awareness" data-nav-surface="light" aria-labelledby="architecture-awareness-title">
+          <div class="architecture-shell architecture-editorial-grid">
+            <div class="architecture-section-heading">
+              <h2 id="architecture-awareness-title">Fotografias de alta qualidade são commodities. Substância e critério tornam o escritório distinto.</h2>
+            </div>
+            <div class="architecture-editorial-copy">
+              <p>Na arquitetura, presença digital precisa demonstrar o que sustenta o projeto: repertório, método, escuta, proporção e responsabilidade estética.</p>
+              <p>Imagem chama atenção; critério qualifica interesse. Quando o site mostra apenas resultados, o visitante vê a obra, mas não compreende a inteligência por trás dela.</p>
+              <p>A presença se torna sólida quando portfólio, linguagem, experiência, busca e reputação conduzem à mesma leitura: para quem o estúdio trabalha melhor e por que deve ser considerado.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="architecture-solution" data-nav-surface="dark" aria-labelledby="architecture-solution-title">
+          <div class="architecture-shell architecture-solution-layout">
+            <div class="architecture-section-heading architecture-section-heading--dark">
+              <h2 id="architecture-solution-title">Do portfólio genérico ao ecossistema de autoridade.</h2>
+            </div>
+            <div class="architecture-comparison" aria-label="Comparação entre presença genérica e M-Signature para arquitetura">
+              <section>
+                <span>Presença genérica</span>
+                <ul>
+                  {genericSignals.map((item) => <li>{item}</li>)}
+                </ul>
+              </section>
+              <section>
+                <span>M-Signature para arquitetura</span>
+                <ul>
+                  {signatureSignals.map((item) => <li>{item}</li>)}
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="architecture-offer" data-nav-surface="light" aria-labelledby="architecture-offer-title">
+          <div class="architecture-shell architecture-offer-grid">
+            <aside class="architecture-signature-badge" aria-label="Coordenadas do M-Signature">
+              <p>M-Signature</p>
+              <div>
+                <span>90 dias / Projeto fechado</span>
+                <span>Leitura do negócio</span>
+                <span>SEO, AEO e GEO</span>
+                <span>Candidatura avaliada</span>
+              </div>
+            </aside>
+            <div class="architecture-offer-copy">
+              <h2 id="architecture-offer-title">Para escritórios que procuram direção, não apenas execução.</h2>
+              <p>O M-Signature organiza a presença digital de arquitetura como projeto de alta direção: diagnóstico, linguagem, estrutura, interface, performance, SEO, AEO, GEO e sinais de autoridade operando em conjunto.</p>
+              <p>A candidatura existe para entender maturidade, ambição, escopo e aderência antes da proposta. Um trabalho desse nível precisa de contexto real para ser dimensionado com critério.</p>
+              <a href="/candidatura">Iniciar candidatura</a>
+            </div>
+          </div>
+        </section>
+      </>
+    ) : (
+      <section
+        class:list={["sector-hero", sector.heroImage && "sector-hero--illustrated"]}
+        style={sector.heroImage ? `--sector-hero-image: url("${sector.heroImage}")` : undefined}
+        data-nav-surface="dark"
+        aria-labelledby="sector-title"
+      >
+        <div class="sector-shell">
+          <p>M-Signature / Setor</p>
+          <h1 id="sector-title">{sector.name}</h1>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .sector-page {
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .sector-architecture-stack {
+    position: relative;
+    height: 200vh;
+  }
+
+  .sector-architecture-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .sector-blank-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--moura-paper);
+  }
+
+  .sector-shell {
+    position: relative;
+    z-index: 1;
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+    transform: translateY(clamp(2.5rem, 8vh, 5rem));
+  }
+
+  .sector-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(7rem, 11vw, 10rem) clamp(4.5rem, 7vw, 6.5rem);
+    background: linear-gradient(180deg, #050505 0%, #0d0d0c 54%, #060606 100%);
+    color: var(--moura-ivory);
+    overflow: hidden;
+  }
+
+  .sector-hero.sector-hero--stacked {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 20;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .sector-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--sector-hero-image, none) right center / cover no-repeat;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sector-hero--illustrated::before {
+    opacity: 0.72;
+  }
+
+  .sector-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(5, 5, 5, 0.97) 0%, rgba(5, 5, 5, 0.86) 36%, rgba(5, 5, 5, 0.34) 100%),
+      linear-gradient(180deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0.62) 100%);
+    pointer-events: none;
+  }
+
+  .sector-hero p {
+    position: relative;
+    width: fit-content;
+    margin: 0 0 clamp(1.15rem, 2.2vw, 1.7rem);
+    border: 1px solid rgba(167, 124, 61, 0.34);
+    padding: 0.58rem 0.72rem;
+    color: rgba(167, 124, 61, 0.78);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+
+  .sector-hero h1 {
+    max-width: 12ch;
+    margin: 0;
+    color: rgba(244, 239, 231, 0.94);
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(4rem, 10vw, 9.5rem);
+    font-weight: 100;
+    letter-spacing: 0;
+    line-height: 0.94;
+  }
+
+
+  .architecture-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .architecture-title-section {
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(5.25rem, 8vw, 7.4rem) clamp(4.25rem, 7vw, 6.4rem);
+    background: var(--moura-paper);
+  }
+
+  .architecture-title-grid {
+    display: grid;
+    grid-template-columns: minmax(20rem, 0.6fr) minmax(0, 0.64fr);
+    gap: clamp(3rem, 9vw, 10rem);
+    align-items: center;
+  }
+
+  .architecture-portrait {
+    position: relative;
+    min-height: min(72vh, 46rem);
+    margin: 0;
+    overflow: hidden;
+    background: rgba(8, 8, 8, 0.08);
+  }
+
+  .architecture-portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(8, 8, 8, 0.12);
+    pointer-events: none;
+  }
+
+  .architecture-portrait img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    display: block;
+    object-fit: cover;
+  }
+
+  .architecture-title-copy,
+  .architecture-section-heading,
+  .architecture-offer-copy {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .architecture-title-copy {
+    position: relative;
+    align-self: center;
+    max-width: 31rem;
+    border-left: 1px solid rgba(111, 38, 61, 0.16);
+    padding: clamp(0.7rem, 1.4vw, 1.1rem) 0 clamp(0.45rem, 1vw, 0.8rem) clamp(1.25rem, 2.2vw, 1.9rem);
+    transform: translateY(clamp(-6.5rem, -12vh, -4rem));
+  }
+
+  .architecture-title-copy::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: clamp(4.5rem, 7vw, 7rem);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(111, 38, 61, 0.42), rgba(111, 38, 61, 0));
+  }
+
+  .architecture-title-copy::after {
+    content: "";
+    position: absolute;
+    left: clamp(1.25rem, 2.2vw, 1.9rem);
+    right: 0;
+    bottom: -0.8rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(8, 8, 8, 0.16), rgba(8, 8, 8, 0));
+  }
+
+  .architecture-title-copy p,
+  .architecture-section-heading p {
+    margin: 0;
+    color: rgba(111, 38, 61, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .architecture-title-copy h2,
+  .architecture-section-heading h2,
+  .architecture-offer-copy h2 {
+    max-width: 12ch;
+    margin: 0;
+    color: rgba(8, 8, 8, 0.9);
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-size: clamp(3.8rem, 7.8vw, 8.9rem);
+    font-weight: 100;
+    letter-spacing: 0;
+    line-height: 0.92;
+  }
+
+  .architecture-title-copy h2 {
+    max-width: 15ch;
+    color: rgba(8, 8, 8, 0.78);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.9rem, 3.25vw, 3.85rem);
+    font-weight: 300;
+    line-height: 1.06;
+  }
+
+  .architecture-awareness,
+  .architecture-offer {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background: var(--moura-paper);
+  }
+
+  .architecture-editorial-grid,
+  .architecture-offer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .architecture-awareness .architecture-section-heading h2 {
+    max-width: 17ch;
+    color: rgba(8, 8, 8, 0.84);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(2rem, 3.35vw, 4.15rem);
+    font-weight: 300;
+    line-height: 1.04;
+  }
+
+  .architecture-editorial-copy {
+    counter-reset: architecture-note;
+    display: grid;
+    gap: 0;
+    max-width: 44rem;
+    margin-left: auto;
+    border-top: 1px solid rgba(8, 8, 8, 0.14);
+    color: rgba(8, 8, 8, 0.64);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.58;
+  }
+
+  .architecture-editorial-copy p,
+  .architecture-offer-copy p {
+    margin: 0;
+  }
+
+  .architecture-editorial-copy p {
+    counter-increment: architecture-note;
+    display: grid;
+    grid-template-columns: clamp(2.3rem, 4vw, 3.6rem) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.1);
+    padding-block: clamp(1.15rem, 2vw, 1.55rem);
+  }
+
+  .architecture-editorial-copy p::before {
+    content: counter(architecture-note, decimal-leading-zero);
+    color: rgba(111, 38, 61, 0.48);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    line-height: 1.58;
+  }
+
+  .architecture-solution {
+    padding-block: clamp(7rem, 12vw, 12rem);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 34%),
+      linear-gradient(145deg, #060606 0%, #0c0c0b 58%, #050505 100%);
+    color: var(--moura-ivory);
+  }
+
+  .architecture-solution-layout {
+    display: grid;
+    gap: clamp(3rem, 6.5vw, 5.8rem);
+  }
+
+  .architecture-section-heading--dark h2 {
+    max-width: 13ch;
+    color: rgba(244, 239, 231, 0.86);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(2.25rem, 4.2vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .architecture-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.14);
+  }
+
+  .architecture-comparison section {
+    counter-reset: comparison-item;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: clamp(2rem, 3.8vw, 3.2rem);
+    min-height: clamp(24rem, 35vw, 32rem);
+    padding: clamp(1.4rem, 2.8vw, 2.35rem) clamp(1.2rem, 2.4vw, 2.1rem);
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  .architecture-comparison section + section {
+    border-left: 1px solid rgba(244, 239, 231, 0.14);
+    background: linear-gradient(180deg, rgba(167, 124, 61, 0.055), rgba(255, 255, 255, 0.012));
+  }
+
+  .architecture-comparison span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: rgba(244, 239, 231, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .architecture-comparison span::after {
+    content: "";
+    width: clamp(2.4rem, 6vw, 5.8rem);
+    height: 1px;
+    background: rgba(244, 239, 231, 0.16);
+  }
+
+  .architecture-comparison section + section span {
+    color: rgba(167, 124, 61, 0.78);
+  }
+
+  .architecture-comparison section + section span::after {
+    background: rgba(167, 124, 61, 0.28);
+  }
+
+  .architecture-comparison ul {
+    display: grid;
+    gap: 0;
+    align-self: end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .architecture-comparison li {
+    counter-increment: comparison-item;
+    display: grid;
+    grid-template-columns: clamp(2rem, 3.3vw, 2.8rem) minmax(0, 1fr);
+    gap: clamp(0.85rem, 1.8vw, 1.25rem);
+    border-top: 1px solid rgba(244, 239, 231, 0.11);
+    padding-block: clamp(0.9rem, 1.7vw, 1.2rem);
+    color: rgba(244, 239, 231, 0.58);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    font-weight: 300;
+    line-height: 1.52;
+  }
+
+  .architecture-comparison li::before {
+    content: counter(comparison-item, decimal-leading-zero);
+    color: rgba(244, 239, 231, 0.28);
+    font-size: 0.64rem;
+    line-height: 1.52;
+  }
+
+  .architecture-comparison section + section li {
+    color: rgba(244, 239, 231, 0.72);
+  }
+
+  .architecture-comparison section + section li::before {
+    color: rgba(167, 124, 61, 0.54);
+  }
+
+  .architecture-offer-grid {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+    align-items: start;
+    border-top: 1px solid rgba(8, 8, 8, 0.14);
+    padding-top: clamp(1.6rem, 3vw, 2.4rem);
+  }
+
+  .architecture-signature-badge {
+    position: relative;
+    display: grid;
+    align-self: start;
+    gap: clamp(1.5rem, 3vw, 2.4rem);
+    max-width: 24rem;
+    padding-top: clamp(1rem, 2vw, 1.4rem);
+    color: rgba(8, 8, 8, 0.48);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+  }
+
+
+  .architecture-signature-badge p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.76);
+    font-size: clamp(1.7rem, 3.2vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .architecture-signature-badge div {
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.1);
+  }
+
+  .architecture-signature-badge span {
+    border-bottom: 1px solid rgba(8, 8, 8, 0.09);
+    padding-block: 0.76rem;
+    color: rgba(8, 8, 8, 0.5);
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .architecture-offer-copy {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    max-width: 42rem;
+    margin-left: auto;
+    color: rgba(8, 8, 8, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .architecture-offer-copy h2 {
+    max-width: 13ch;
+    margin-bottom: clamp(2rem, 4vw, 3.4rem);
+    color: rgba(8, 8, 8, 0.84);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(2.2rem, 4.6vw, 5.6rem);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .architecture-offer-copy p {
+    display: grid;
+    grid-template-columns: clamp(2.3rem, 4vw, 3.4rem) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    border-top: 1px solid rgba(8, 8, 8, 0.1);
+    padding-block: clamp(1.05rem, 1.8vw, 1.4rem);
+  }
+
+  .architecture-offer-copy p:nth-of-type(1)::before {
+    content: "01";
+  }
+
+  .architecture-offer-copy p:nth-of-type(2)::before {
+    content: "02";
+  }
+
+  .architecture-offer-copy p::before {
+    color: rgba(111, 38, 61, 0.48);
+    font-size: 0.68rem;
+    line-height: 1.6;
+  }
+
+  .architecture-offer-copy a {
+    width: fit-content;
+    margin-top: clamp(1.2rem, 2.2vw, 1.8rem);
+    border: 1px solid rgba(8, 8, 8, 0.18);
+    background: rgba(8, 8, 8, 0.9);
+    color: rgba(244, 239, 231, 0.9);
+    padding: 0.86rem 1rem;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .architecture-offer-copy a:hover {
+    border-color: rgba(111, 38, 61, 0.36);
+    background: rgba(111, 38, 61, 0.92);
+  }
+
+  @media (max-width: 980px) {
+    .architecture-title-grid,
+    .architecture-editorial-grid,
+    .architecture-offer-grid,
+    .architecture-comparison {
+      grid-template-columns: 1fr;
+    }
+
+    .architecture-editorial-copy,
+    .architecture-offer-copy {
+      margin-left: 0;
+    }
+
+    .architecture-signature-badge {
+      max-width: none;
+    }
+
+    .architecture-offer-copy {
+      grid-column: 1;
+    }
+
+    .architecture-title-section {
+      align-items: start;
+      padding-block: clamp(5.25rem, 8vw, 6.5rem) clamp(3rem, 6vw, 4.75rem);
+    }
+
+    .architecture-title-grid {
+      gap: clamp(1.8rem, 5vw, 3rem);
+      align-content: center;
+    }
+
+    .architecture-portrait {
+      min-height: clamp(20rem, 45vh, 32rem);
+    }
+
+    .architecture-title-copy {
+      max-width: 36rem;
+      padding-bottom: clamp(0.45rem, 1vw, 0.8rem);
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sector-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .sector-shell {
+      transform: translateY(clamp(2rem, 7vh, 3.4rem));
+    }
+
+    .sector-hero h1,
+    .architecture-section-heading h2,
+    .architecture-offer-copy h2 {
+      font-size: clamp(3.2rem, 15vw, 5.2rem);
+      line-height: 0.96;
+    }
+
+    .architecture-title-section {
+      padding-block: clamp(5.7rem, 15vw, 6.8rem) clamp(2.2rem, 8vw, 3.2rem);
+    }
+
+    .architecture-title-grid {
+      gap: clamp(1.3rem, 5vw, 1.8rem);
+    }
+
+    .architecture-portrait {
+      min-height: min(39vh, 21rem);
+    }
+
+    .architecture-title-copy {
+      padding-left: 1rem;
+    }
+
+    .architecture-title-copy h2 {
+      font-size: clamp(1.75rem, 7.6vw, 2.65rem);
+      line-height: 1.08;
+    }
+
+    .architecture-solution {
+      padding-block: clamp(5.8rem, 14vw, 7rem);
+    }
+
+    .architecture-solution-layout {
+      gap: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .architecture-section-heading--dark h2 {
+      max-width: 12ch;
+      font-size: clamp(2.05rem, 8.8vw, 3.25rem);
+      line-height: 1.04;
+    }
+
+    .architecture-comparison section + section {
+      border-left: 0;
+      border-top: 1px solid rgba(244, 239, 231, 0.14);
+    }
+
+    .architecture-comparison section {
+      min-height: auto;
+      padding: 1.15rem 1rem;
+    }
+
+    .architecture-comparison li {
+      grid-template-columns: 1.8rem minmax(0, 1fr);
+      gap: 0.8rem;
+      padding-block: 0.85rem;
+    }
+
+    .architecture-awareness .architecture-section-heading h2 {
+      max-width: 15ch;
+      font-size: clamp(2rem, 8.2vw, 3rem);
+      line-height: 1.06;
+    }
+
+    .architecture-editorial-copy p {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.85rem;
+      padding-block: 1rem;
+    }
+
+    .architecture-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .architecture-comparison section {
+      min-height: auto;
+    }
+
+    .architecture-signature-badge {
+      gap: 1rem;
+    }
+
+    .architecture-signature-badge p {
+      font-size: clamp(1.55rem, 8vw, 2.5rem);
+    }
+
+    .architecture-signature-badge span {
+      padding-block: 0.66rem;
+      font-size: 0.66rem;
+    }
+
+    .architecture-offer-copy h2 {
+      max-width: 13ch;
+      font-size: clamp(2.2rem, 9.4vw, 3.5rem);
+      line-height: 1.04;
+    }
+
+    .architecture-offer-copy p {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.85rem;
+      padding-block: 1rem;
+    }
+  }
+</style>

@@ -28,7 +28,7 @@ export const badgeStandards: BadgeStandard[] = [
     heroTitle: 'High Standards.',
     description: 'Identifica projetos em que técnica, interface, semântica e conteúdo deixam de competir por atenção e passam a sustentar o mesmo nível de exigência da marca.',
     definition: [
-      'O M-HS certifica que o projeto digital atende aos requisitos de alto padrão estabelecidos pela metodologia Moura. Não é um selo de conclusão de projeto; é uma acreditação de qualidade.',
+      'O M-HS certifica que o projeto digital atende aos requisitos de alto padrão estabelecidos pela metodologia Moura. O selo é uma acreditação de qualidade.',
       'A maioria dos sites de empresas de alto padrão falha quando a qualidade da operação offline não encontra equivalente no digital. O M-HS certifica que essa distância foi eliminada.',
     ],
     criteriaTitle: 'Critérios do padrão',
@@ -52,7 +52,7 @@ export const badgeStandards: BadgeStandard[] = [
     category: 'Excelência Digital para Gastronomia',
     title: 'Presença gastronômica digital.',
     heroTitle: 'Moura Star.',
-    description: 'Reconhece presenças digitais criadas para operações gastronômicas com identidade própria, onde cardápio, experiência, busca local e atmosfera precisam comunicar a mesma intenção.',
+    description: 'Reconhece presenças digitais criadas para operações gastronômicas com identidade própria, em que cardápio, experiência, busca local e atmosfera precisam comunicar a mesma intenção.',
     definition: [
       'O M-Star certifica que o projeto digital de um restaurante, bar ou estabelecimento gastronômico foi concebido e executado com domínio das especificidades do setor.',
       'Gastronomia exige que experiência sensorial, logística operacional e identidade de marca coexistam em um ambiente digital coeso. O selo avalia o ecossistema, não apenas o site.',
@@ -88,8 +88,8 @@ export const badgeStandards: BadgeStandard[] = [
       { title: 'Conteúdo com Information Gain', body: 'Estratégia editorial com perspectivas inéditas, sem produção de volume por palavras-chave. Cada publicação carrega pensamento real do titular.' },
       { title: 'Jornada com intencionalidade narrativa', body: 'A arquitetura revela progressivamente quem é o titular e por que sua perspectiva é única.' },
       { title: 'Design e experiência de leitura', body: 'Texto e imagem têm igual dignidade. Tipografia, espaçamento e hierarquia sustentam leitura longa sem fadiga.' },
-      { title: 'Autoridade de entidade', body: 'Schema Person com marcação densa, afiliações, áreas de conhecimento e sameAs para perfis externos de autoridade.' },
-      { title: 'Otimização para IA', body: 'llms.txt com síntese da identidade do titular, autoridade, produção e forma correta de referência por modelos de linguagem.' },
+      { title: 'Autoridade de entidade', body: 'Estrutura semântica avançada para consolidar identidade, vínculos profissionais, áreas de conhecimento e sinais externos de autoridade verificável.' },
+      { title: 'Otimização para IA', body: 'Camada técnica e editorial para que modelos de linguagem compreendam o titular com precisão, preservando trajetória, autoridade, produção e contexto correto de referência.' },
       { title: 'Voz e autenticidade', body: 'Conteúdo produzido ou rigorosamente validado pelo titular. A voz escrita é reconhecível em todos os pontos de contato.' },
     ],
     audience: ['Consultores, arquitetos, advogados, médicos especialistas, acadêmicos com atuação de mercado, criadores intelectuais e executivos com trajetória densa.'],
@@ -116,11 +116,11 @@ export const badgeStandards: BadgeStandard[] = [
       { title: 'Integrações premium', body: 'Sistemas de terceiros integrados com personalização que elimina dissonância visual ou funcional.' },
       { title: 'Serviços de estúdio', body: 'Produção ou curadoria de ativos audiovisuais de alto padrão como parte integral do projeto.' },
       { title: 'Refinamento editorial máximo', body: 'Cada frase passa por revisão estratégica e editorial, com cuidado equivalente ao de uma publicação de referência.' },
-      { title: 'Tempo e dedicação irrestrita', body: 'Projetos com duração estendida e envolvimento profundo de Paulo Moura em cada fase.' },
+      { title: 'Profundidade estendida de direção', body: 'Projetos com duração ampliada e envolvimento ainda mais intenso de Paulo Moura em decisões estratégicas, editoriais, técnicas e estéticas.' },
     ],
     audience: ['Marcas de luxo e clientes que não querem o melhor dentro de um orçamento, mas o melhor, ponto.'],
     notTitle: 'O que o M-Supreme não é',
-    notItems: ['Não é um upgrade de pacote.', 'Não é um M-HS com mais páginas.', 'Não é premium por preço.', 'Não é decoração dourada: é registro de execução no limite do que a Moura produz.'],
+    notItems: ['Não é um upgrade de pacote.', 'Não é um M-HS com mais páginas.', 'Não é premium por preço.', 'Não é um mero padrão estético'],
   },
 ];
 
