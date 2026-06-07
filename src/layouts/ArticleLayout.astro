@@ -2,6 +2,7 @@
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { breadcrumbSchema, schemaIdentity } from '@data/schema';
 
 interface Recommendation {
   href: string;
@@ -49,27 +50,29 @@ const {
 const pageDescription = metaDescription || description;
 const articleUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 const articleSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': articleUrl.toString() + '#article',
   headline: title,
   description: pageDescription,
   datePublished: publishedAt.toISOString(),
   dateModified: (updatedAt ?? publishedAt).toISOString(),
-  author: {
-    '@type': 'Person',
-    name: 'Paulo Moura',
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'Paulo Moura',
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': articleUrl.toString(),
-  },
+  author: { '@id': schemaIdentity.personId },
+  publisher: { '@id': schemaIdentity.organizationId },
+  mainEntityOfPage: { '@id': articleUrl.toString() + '#webpage' },
+  isPartOf: { '@id': schemaIdentity.websiteId },
+  inLanguage: 'pt-BR',
   articleSection: category,
   keywords,
 };
+
+const articleBreadcrumbSchema = breadcrumbSchema({
+  id: articleUrl.toString() + '#breadcrumb',
+  items: [
+    { name: 'Início', url: schemaIdentity.baseUrl + '/' },
+    { name: 'Editorial', url: schemaIdentity.baseUrl + '/editorial/' },
+    { name: title, url: articleUrl.toString() },
+  ],
+});
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('pt-BR', {
@@ -85,7 +88,9 @@ const formatDate = (date: Date) =>
   keywords={keywords}
   canonicalPath={canonicalPath}
   ogType="article"
-  structuredData={articleSchema}
+  structuredData={[articleSchema, articleBreadcrumbSchema]}
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': articleUrl.toString() + '#article' }}
   showChrome={false}
 >
   <script>
@@ -118,23 +123,22 @@ const formatDate = (date: Date) =>
 
         <aside class="article-hero-aside" aria-label="Resumo do artigo">
           <p>{description}</p>
-          <div class="article-meta-stack">
-            <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
-            <span>{readingTime}</span>
-            {updatedAt && <span>Atualizado em {formatDate(updatedAt)}</span>}
-          </div>
         </aside>
+      </div>
+
+      <div class="article-shell article-hero-footer" aria-label="Informações do artigo">
+        <a class="article-hero-author" href="/autor/paulo-moura/">Paulo Moura</a>
+        <span>{category}</span>
+        <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+        <span>{readingTime}</span>
+        {updatedAt && <span>Atualizado em {formatDate(updatedAt)}</span>}
+        <button class="article-copy-link article-copy-link--hero" type="button" data-copy-article-link>Compartilhar</button>
       </div>
     </header>
 
     <section class="article-body-section" data-nav-surface="light">
       <div class="article-shell article-body-grid">
-        <aside class="article-reading-rail" aria-label="Informações editoriais">
-          <p>Editorial</p>
-          <span>Paulo Moura</span>
-          <span>{category}</span>
-          <span>{readingTime}</span>
-
+        <aside class="article-reading-rail" aria-label="Sumário do artigo">
           {tableOfContents.length > 0 && (
             <nav class="article-toc" aria-label="Sumário do artigo">
               <p>Sumário</p>
@@ -143,8 +147,6 @@ const formatDate = (date: Date) =>
               ))}
             </nav>
           )}
-
-          <button class="article-copy-link" type="button" data-copy-article-link>Copiar link</button>
         </aside>
 
         <div class="article-mobile-utils">
@@ -158,8 +160,6 @@ const formatDate = (date: Date) =>
               </nav>
             </details>
           )}
-
-          <button class="article-copy-link article-copy-link--mobile" type="button" data-copy-article-link>Copiar link</button>
         </div>
 
         <div class="article-content">
@@ -256,7 +256,7 @@ const formatDate = (date: Date) =>
           await navigator.clipboard.writeText(window.location.href);
           button.textContent = "Link copiado";
           window.setTimeout(() => {
-            button.textContent = "Copiar link";
+            button.textContent = button.classList.contains("article-copy-link--hero") ? "Compartilhar" : "Copiar link";
           }, 1800);
         } catch {
           button.textContent = "Copie pela barra";
@@ -301,10 +301,12 @@ const formatDate = (date: Date) =>
   }
 
   .article-hero {
-    min-height: 78vh;
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: grid;
     align-items: end;
-    padding: 9rem 0 clamp(4rem, 8vw, 7rem);
+    padding: 9rem 0 clamp(7rem, 12vw, 10rem);
     background:
       radial-gradient(circle at 16% 20%, rgba(167, 124, 61, 0.13), transparent 32%),
       radial-gradient(circle at 82% 76%, rgba(111, 38, 61, 0.2), transparent 34%),
@@ -382,17 +384,41 @@ const formatDate = (date: Date) =>
     line-height: 1.75;
   }
 
-  .article-meta-stack {
-    display: flex;
-    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    color: rgba(244, 239, 231, 0.58);
-    font-size: 0.68rem;
-    font-weight: 500;
+  .article-hero-footer {
+    position: absolute;
+    right: max(1rem, calc((100vw - 1180px) / 2));
+    bottom: clamp(1.75rem, 4vw, 3.6rem);
+    left: max(1rem, calc((100vw - 1180px) / 2));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+    gap: clamp(0.9rem, 2.4vw, 2rem);
+    align-items: center;
+    border-top: 1px solid rgba(244, 239, 231, 0.15);
+    padding-top: clamp(0.85rem, 1.8vw, 1.35rem);
+    color: rgba(244, 239, 231, 0.56);
+    font-family: "Neue Haas Display", "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+    font-size: clamp(0.58rem, 0.7vw, 0.68rem);
+    font-weight: 400;
     letter-spacing: 0.18em;
+    line-height: 1.4;
     text-transform: uppercase;
+  }
+
+  .article-hero-footer a,
+  .article-hero-footer time,
+  .article-hero-footer span {
+    min-width: 0;
+  }
+
+  .article-hero-author {
+    color: rgba(244, 239, 231, 0.82);
+    text-decoration: none;
+    transition: color 220ms ease;
+  }
+
+  .article-hero-author:hover,
+  .article-hero-author:focus-visible {
+    color: var(--moura-gold);
   }
 
   .article-body-section {
@@ -421,8 +447,19 @@ const formatDate = (date: Date) =>
   }
 
   .article-reading-rail p,
-  .article-reading-rail span {
+  .article-reading-rail span,
+  .article-reading-rail a {
     margin: 0;
+  }
+
+  .article-reading-rail a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .article-reading-rail a:hover,
+  .article-reading-rail a:focus-visible {
+    color: var(--moura-wine);
   }
 
   .article-reading-rail p {
@@ -433,9 +470,9 @@ const formatDate = (date: Date) =>
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
-    margin-top: 1.8rem;
-    padding-top: 1.35rem;
-    border-top: 1px solid rgba(21, 21, 21, 0.14);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
   }
 
   .article-toc p {
@@ -478,6 +515,22 @@ const formatDate = (date: Date) =>
   .article-copy-link:hover {
     border-color: rgba(111, 38, 61, 0.5);
     color: var(--moura-ink);
+  }
+
+  .article-copy-link--hero {
+    justify-self: end;
+    margin: 0;
+    border-color: rgba(244, 239, 231, 0.22);
+    color: rgba(244, 239, 231, 0.78);
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    padding: 0.58rem 0.78rem;
+  }
+
+  .article-copy-link--hero:hover {
+    border-color: rgba(167, 124, 61, 0.6);
+    color: var(--moura-gold);
   }
 
   .article-mobile-utils {
@@ -715,8 +768,10 @@ const formatDate = (date: Date) =>
 
   @media (max-width: 900px) {
     .article-hero {
-      min-height: 82vh;
+      min-height: 100vh;
+      min-height: 100dvh;
       padding-top: 8rem;
+      padding-bottom: clamp(8rem, 17vw, 11rem);
     }
 
     .article-hero-grid,
@@ -736,10 +791,16 @@ const formatDate = (date: Date) =>
       padding: 1.5rem 0 0;
     }
 
+    .article-hero-footer {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .article-copy-link--hero {
+      justify-self: start;
+    }
+
     .article-reading-rail {
       position: static;
-      flex-direction: row;
-      flex-wrap: wrap;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid rgba(21, 21, 21, 0.16);
     }
@@ -757,9 +818,10 @@ const formatDate = (date: Date) =>
     }
 
     .article-hero {
-      min-height: auto;
+      min-height: 100vh;
+      min-height: 100dvh;
       align-items: end;
-      padding: 7.35rem 0 2.65rem;
+      padding: 6.6rem 0 11rem;
       background:
         radial-gradient(circle at 18% 18%, rgba(167, 124, 61, 0.12), transparent 36%),
         linear-gradient(145deg, #060606 0%, #101010 58%, #080808 100%);
@@ -805,10 +867,21 @@ const formatDate = (date: Date) =>
       line-height: 1.62;
     }
 
-    .article-meta-stack {
-      margin-top: 1.35rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
+    .article-hero-footer {
+      right: 1.125rem;
+      bottom: 2.1rem;
+      left: 1.125rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem 1rem;
+      padding-top: 0.9rem;
+      font-size: 0.56rem;
+      letter-spacing: 0.13em;
+    }
+
+    .article-copy-link--hero {
+      grid-column: 1 / -1;
+      margin-top: 0.15rem;
+      padding: 0.54rem 0.72rem;
     }
 
     .article-body-section {
@@ -876,13 +949,6 @@ const formatDate = (date: Date) =>
       color: var(--moura-muted);
       font-size: 0.95rem;
       line-height: 1.35;
-    }
-
-    .article-copy-link--mobile {
-      margin: 0;
-      justify-self: start;
-      padding: 0.66rem 0.9rem;
-      background: rgba(255, 253, 248, 0.54);
     }
 
     .article-content {

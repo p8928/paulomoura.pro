@@ -1,0 +1,10 @@
+Este artigo investiga a evolução e a importância da análise de marketing em um cenário empresarial cada vez mais orientado por dados. Os autores conduzem uma revisão sistemática da literatura para mapear a trajetória da análise de marketing, destacando sua função como uma ponte entre a psicologia do consumidor e a tomada de decisões de marketing. O estudo identifica sete temas principais, como o uso de big data para decisões, previsão, compreensão do comportamento do cliente e obtenção de vantagem competitiva. Em última análise, a pesquisa enfatiza como a análise de marketing, ao integrar insights psicológicos, capacita as empresas a desenvolver estratégias mais informadas e centradas no cliente.
+
+
+Tópicos principais:
+		
+		- marketing analytics
+		- psicologia do cliente
+		- tomada de decisão
+		- grandes dados / big data
+		- vantagem competitiva

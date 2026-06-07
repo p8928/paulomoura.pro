@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity } from '@data/schema';
 
 const categoryLabels = {
   branding: 'Marca',
@@ -39,6 +40,18 @@ const editorialAxes = categoryOrder
   }))
   .filter((axis) => axis.posts.length > 0);
 
+const editorialUrl = schemaIdentity.baseUrl + '/editorial/';
+const editorialListSchema = itemListSchema({
+  id: editorialUrl + '#itemlist',
+  name: 'Editorial Paulo Moura',
+  description: 'Visão compartilhada de Paulo Moura sobre marca, linguagem, busca, IA e presença digital.',
+  items: posts.map((post) => ({
+    name: post.data.title,
+    url: editorialUrl + post.id + '/',
+    description: post.data.description,
+  })),
+});
+
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
@@ -50,6 +63,9 @@ const formatDate = (date: Date) =>
 <BaseLayout
   title="Editorial"
   description="Ensaios de Paulo Moura sobre marca, linguagem, busca, IA e presença digital conduzida por substância real."
+  schemaPageType="CollectionPage"
+  schemaMainEntity={{ '@id': editorialUrl + '#itemlist' }}
+  structuredData={editorialListSchema}
   showChrome={false}
 >
   <script>
@@ -63,7 +79,7 @@ const formatDate = (date: Date) =>
       <div class="editorial-shell editorial-hero-grid">
         <div class="editorial-hero-copy">
           <p class="editorial-kicker">Editorial</p>
-          <h1 id="editorial-title">Leitura de marca para um digital mais exigente.</h1>
+          <h1 id="editorial-title">The Brand-Driver</h1>
         </div>
 
         <div class="editorial-hero-aside">
@@ -85,7 +101,7 @@ const formatDate = (date: Date) =>
     <section class="editorial-index" data-nav-surface="light" aria-labelledby="editorial-index-title">
       <div class="editorial-shell editorial-index-head">
         <p class="editorial-kicker editorial-kicker-dark">Ensaios</p>
-        <h2 id="editorial-index-title">Textos para quem precisa interpretar antes de publicar.</h2>
+        <h2 id="editorial-index-title">Visão compartilhada de Paulo Moura</h2>
       </div>
 
       <nav class="editorial-axis-nav" aria-label="Eixos editoriais" data-editorial-filters>

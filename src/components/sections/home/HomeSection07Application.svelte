@@ -116,6 +116,12 @@
     color: rgba(8, 8, 8, 0.9);
   }
 
+  .application-heading h2 span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
   .application-accordion {
     display: grid;
     max-width: 82rem;

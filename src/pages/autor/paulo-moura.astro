@@ -1,0 +1,778 @@
+---
+import { getCollection } from 'astro:content';
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity } from '@data/schema';
+
+const editorialPosts = (await getCollection('editorial'))
+  .filter((post) => !post.data.draft && post.id !== 'a-historia-do-unbranding')
+  .filter((post) => ['autenticidade-e-o-novo-seo', 'branding-voce-faz-errado', 'conteudo-precisa-ser-realmente-util'].includes(post.id));
+
+const postOrder = ['autenticidade-e-o-novo-seo', 'branding-voce-faz-errado', 'conteudo-precisa-ser-realmente-util'];
+const selectedPosts = postOrder
+  .map((id) => editorialPosts.find((post) => post.id === id))
+  .filter((post): post is NonNullable<typeof post> => Boolean(post));
+
+const areas = [
+  'SEO / GEO / AEO',
+  'Branding',
+  'Comunicação digital',
+  'Google Search',
+  'Autoridade digital',
+  'Marketing de conteúdo',
+  'Estratégia de conteúdo',
+  'Tecnologia da informação',
+  'Cibersegurança',
+];
+
+const references = [
+  ['Marca como percepção', 'A leitura de personalidade de marca e percepção do consumidor informa o modo como substância real se transforma em identidade reconhecível.'],
+  ['Conteúdo como experiência', 'Estudos sobre conteúdo digital reforçam que, em decisões de alto envolvimento, valor informativo pesa mais do que entretenimento superficial.'],
+  ['Decisão e psicologia', 'Marketing analytics e psicologia do consumidor ajudam a conectar dados, comportamento e decisões de presença digital com mais precisão.'],
+  ['Semiótica e tecnologia', 'Redes sociais, interfaces e plataformas entram como sistemas de significado, com regras próprias de produção, circulação e leitura.'],
+];
+
+const rejectedPatterns = [
+  'Branding reduzido a logotipo, paleta, tom de voz e apresentação bonita.',
+  'SEO técnico que ignora marca, reputação, entidade e experiência real.',
+  'Conteúdo de volume criado para preencher calendário ou perseguir palavra-chave.',
+  'Buyer persona inventada sem entrevistas, amostra, análise e rigor estratégico.',
+  'Relações públicas incorporadas ao branding para fabricar virtude enquanto a substância real permanece intocada.',
+  'Dependência de redes sociais como centro da presença digital.',
+];
+
+const authorUrl = schemaIdentity.baseUrl + '/autor/paulo-moura/';
+const authorArticleListSchema = itemListSchema({
+  id: authorUrl + '#selected-editorial',
+  name: 'Editorial selecionado de Paulo Moura',
+  description: 'Textos que representam a visão de Paulo Moura sobre autenticidade, branding, SEO, conteúdo e autoridade digital.',
+  items: selectedPosts.map((post) => ({
+    name: post.data.title,
+    url: schemaIdentity.baseUrl + '/editorial/' + post.id + '/',
+    description: post.data.description,
+  })),
+});
+
+const authorProfileSchema = {
+  '@type': 'Person',
+  '@id': schemaIdentity.personId,
+  name: 'Paulo Moura',
+  url: authorUrl,
+  jobTitle: 'Expert em Branding e Comunicação Digital',
+  description: 'Paulo Moura é expert em Branding e Comunicação Digital e criador da metodologia Brand-Driven para empresas premium e luxury.',
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    name: 'Graduação em Cibersegurança',
+    credentialCategory: 'degree',
+  },
+  knowsAbout: areas,
+  subjectOf: selectedPosts.map((post) => ({
+    '@type': 'Article',
+    name: post.data.title,
+    url: schemaIdentity.baseUrl + '/editorial/' + post.id + '/',
+  })),
+  sameAs: schemaIdentity.sameAs,
+};
+---
+
+<BaseLayout
+  title="Paulo Moura | Autor"
+  description="Paulo Moura é expert em Branding e Comunicação Digital e criador da metodologia Brand-Driven."
+  canonicalPath="/autor/paulo-moura"
+  schemaPageType="ProfilePage"
+  schemaMainEntity={{ '@id': schemaIdentity.personId }}
+  structuredData={[authorProfileSchema, authorArticleListSchema]}
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="author-page">
+    <section class="author-hero" data-nav-surface="dark" aria-labelledby="author-title">
+      <div class="author-shell author-hero-grid">
+        <div class="author-hero-copy">
+          <p class="author-kicker">Autor / Entidade</p>
+          <h1 id="author-title">Paulo Moura</h1>
+          <p class="author-role">Expert em Branding e Comunicação Digital.</p>
+        </div>
+
+        <aside class="author-hero-aside" aria-label="Síntese autoral">
+          <p>
+            Paulo Moura conduz a criação de presença digital para empresas e profissionais que entregam acima da média e precisam tornar essa substância legível para clientes, Google e sistemas de IA.
+          </p>
+          <a href="/editorial">Ler editorial</a>
+        </aside>
+      </div>
+
+      <aside class="author-hero-system" aria-label="Coordenadas de Paulo Moura">
+        <p>Brand-Driven</p>
+        <span>11 anos de setor</span>
+        <span>Cibersegurança</span>
+        <span>SEO / GEO / AEO</span>
+      </aside>
+    </section>
+
+    <section class="author-thesis" data-nav-surface="light" aria-labelledby="author-thesis-title">
+      <div class="author-shell author-two-column">
+        <div class="author-section-heading">
+          <p class="author-kicker author-kicker-dark">Tese</p>
+          <h2 id="author-thesis-title">Presença digital sólida nasce de substância organizada, não de aparência.</h2>
+        </div>
+        <div class="author-copy-stack">
+          <p>
+            O trabalho parte da ideia de que personalização, técnica e performance ao extremo são cruciais para construir uma presença digital sólida, coesa e escalável. A base está na operação, na experiência, na reputação e nos valores que a empresa realmente pratica.
+          </p>
+          <p>
+            Autenticidade, autoridade, reputação e experiência do usuário se fortalecem quando marca, conteúdo, site, busca, dados estruturados e linguagem comunicam a mesma empresa com precisão.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="author-fields" data-nav-surface="dark" aria-labelledby="author-fields-title">
+      <div class="author-shell author-fields-grid">
+        <div class="author-section-heading author-section-heading-dark">
+          <p class="author-kicker">Campo de atuação</p>
+          <h2 id="author-fields-title">Branding, busca, conteúdo e tecnologia sob a mesma direção.</h2>
+        </div>
+        <div class="author-field-list" aria-label="Áreas de conhecimento">
+          {areas.map((area, index) => (
+            <span>{String(index + 1).padStart(2, '0')} / {area}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="author-standard" data-nav-surface="light" aria-labelledby="author-standard-title">
+      <div class="author-shell author-two-column">
+        <div class="author-section-heading">
+          <p class="author-kicker author-kicker-dark">Critério</p>
+          <h2 id="author-standard-title">O que fica fora da assinatura autoral.</h2>
+        </div>
+        <div class="author-rule-list">
+          {rejectedPatterns.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{item}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="author-basis" data-nav-surface="dark" aria-labelledby="author-basis-title">
+      <div class="author-shell author-basis-grid">
+        <div class="author-section-heading author-section-heading-dark">
+          <p class="author-kicker">Base</p>
+          <h2 id="author-basis-title">Experiência prática, formação técnica e leitura crítica.</h2>
+        </div>
+        <div class="author-basis-copy">
+          <p>
+            A atuação combina 11 anos no setor, graduação em Cibersegurança e experiência em ambientes de tecnologia, performance e infraestrutura digital, incluindo quatro anos em uma empresa de edge computing.
+          </p>
+          <p>
+            A metodologia Brand-Driven nasce dessa combinação: leitura de marca, comunicação digital, tecnologia da informação, segurança, conteúdo, busca e reputação tratados como partes de um mesmo sistema.
+          </p>
+        </div>
+        <div class="author-reference-grid" aria-label="Referências de estudo">
+          {references.map((item) => (
+            <article>
+              <h3>{item[0]}</h3>
+              <p>{item[1]}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="author-editorial" data-nav-surface="light" aria-labelledby="author-editorial-title">
+      <div class="author-shell author-editorial-head">
+        <p class="author-kicker author-kicker-dark">Editorial selecionado</p>
+        <h2 id="author-editorial-title">Textos que deixam a visão pública.</h2>
+      </div>
+      <div class="author-shell author-post-list">
+        {selectedPosts.map((post, index) => (
+          <article>
+            <a href={'/editorial/' + post.id + '/'}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </div>
+              <em>Ler</em>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="author-services" data-nav-surface="dark" aria-labelledby="author-services-title">
+      <div class="author-shell author-services-grid">
+        <div class="author-section-heading author-section-heading-dark">
+          <p class="author-kicker">Serviços vinculados</p>
+          <h2 id="author-services-title">A autoria se manifesta em direção e continuidade.</h2>
+        </div>
+        <div class="author-service-links">
+          <a href="/m-signature">
+            <span>M-Signature</span>
+            <p>Implementação Brand-Driven para organizar presença digital, site, linguagem, busca e sinais de autoridade.</p>
+          </a>
+          <a href="/m-direction">
+            <span>M-Direction</span>
+            <p>Continuidade estratégica para marcas que precisam manter autoridade, conteúdo, reputação e evolução técnica sob direção.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .author-page {
+    background: var(--moura-paper);
+    color: var(--moura-ink);
+  }
+
+  .author-shell {
+    width: min(100% - clamp(3rem, 8vw, 9rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .author-kicker,
+  .author-hero-system {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .author-kicker {
+    color: rgba(167, 124, 61, 0.78);
+  }
+
+  .author-kicker-dark {
+    color: rgba(111, 38, 61, 0.64);
+  }
+
+  .author-hero,
+  .author-fields,
+  .author-basis,
+  .author-services {
+    background: linear-gradient(145deg, #050505 0%, #10100f 58%, #060606 100%);
+    color: var(--moura-ivory);
+  }
+
+  .author-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(7rem, 11vw, 10rem) clamp(4.5rem, 7vw, 6.5rem);
+  }
+
+  .author-hero-grid,
+  .author-two-column,
+  .author-fields-grid,
+  .author-basis-grid,
+  .author-services-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .author-hero-grid {
+    align-items: end;
+  }
+
+  .author-hero-copy,
+  .author-section-heading,
+  .author-editorial-head {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .author-hero h1,
+  .author-section-heading h2,
+  .author-editorial-head h2 {
+    margin: 0;
+    font-family: "Outfit", "Avenir Next", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+  }
+
+  .author-hero h1 {
+    color: rgba(244, 239, 231, 0.95);
+    font-size: clamp(4.4rem, 10.5vw, 12rem);
+    line-height: 0.86;
+  }
+
+  .author-role {
+    max-width: 34rem;
+    margin: 0;
+    color: rgba(244, 239, 231, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .author-hero-aside {
+    display: grid;
+    gap: clamp(1.4rem, 2.2vw, 2rem);
+    max-width: 35rem;
+    margin-left: auto;
+    border-left: 1px solid rgba(167, 124, 61, 0.38);
+    padding-left: clamp(1.2rem, 2.4vw, 2rem);
+  }
+
+  .author-hero-aside p,
+  .author-copy-stack,
+  .author-basis-copy {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.68);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.18vw, 1.16rem);
+    font-weight: 300;
+    line-height: 1.68;
+  }
+
+  .author-hero-aside a,
+  .author-service-links a,
+  .author-post-list a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .author-hero-aside a {
+    width: fit-content;
+    border: 1px solid rgba(167, 124, 61, 0.42);
+    padding: 0.85rem 1rem;
+    color: rgba(244, 239, 231, 0.9);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .author-hero-system {
+    position: absolute;
+    right: clamp(3rem, 8vw, 9rem);
+    bottom: clamp(2rem, 4vw, 4rem);
+    left: clamp(3rem, 8vw, 9rem);
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.75fr) repeat(3, minmax(8rem, 1fr));
+    gap: clamp(1rem, 3vw, 3rem);
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    padding-top: 1rem;
+    color: rgba(244, 239, 231, 0.42);
+  }
+
+  .author-hero-system p {
+    margin: 0;
+    color: rgba(167, 124, 61, 0.82);
+  }
+
+  .author-hero-system span {
+    text-align: right;
+  }
+
+  .author-thesis,
+  .author-standard,
+  .author-editorial {
+    position: relative;
+    padding-block: clamp(7rem, 11vw, 11rem);
+    background: var(--moura-paper);
+  }
+
+  .author-thesis::before,
+  .author-standard::before,
+  .author-editorial::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(8, 8, 8, 0.045) 1px, transparent 1px) 0 0 / 25% 100%;
+    opacity: 0.28;
+  }
+
+  .author-section-heading h2,
+  .author-editorial-head h2 {
+    max-width: 14ch;
+    color: rgba(8, 8, 8, 0.86);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(2.35rem, 4.9vw, 5.6rem);
+    font-weight: 300;
+    line-height: 1.02;
+  }
+
+  .author-section-heading-dark h2 {
+    color: rgba(244, 239, 231, 0.86);
+  }
+
+  .author-thesis .author-two-column,
+  .author-standard .author-two-column,
+  .author-fields-grid,
+  .author-basis-grid,
+  .author-services-grid {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(8, 8, 8, 0.12);
+    padding-top: clamp(1.5rem, 3vw, 2.4rem);
+  }
+
+  .author-fields-grid,
+  .author-basis-grid,
+  .author-services-grid {
+    border-top-color: rgba(244, 239, 231, 0.14);
+  }
+
+  .author-copy-stack,
+  .author-basis-copy {
+    display: grid;
+    gap: 0;
+    max-width: 43rem;
+    color: rgba(8, 8, 8, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.62;
+  }
+
+  .author-copy-stack {
+    margin-left: auto;
+    border-top: 1px solid rgba(8, 8, 8, 0.13);
+  }
+
+  .author-copy-stack p,
+  .author-basis-copy p {
+    margin: 0;
+  }
+
+  .author-copy-stack p {
+    display: grid;
+    grid-template-columns: clamp(2.4rem, 4vw, 3.5rem) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.09);
+    padding-block: clamp(1.1rem, 2vw, 1.5rem);
+  }
+
+  .author-copy-stack p::before {
+    color: rgba(111, 38, 61, 0.48);
+    font-size: 0.66rem;
+    line-height: 1.62;
+  }
+
+  .author-copy-stack p:nth-child(1)::before {
+    content: "01";
+  }
+
+  .author-copy-stack p:nth-child(2)::before {
+    content: "02";
+  }
+
+  .author-fields,
+  .author-basis,
+  .author-services {
+    position: relative;
+    padding-block: clamp(7rem, 11vw, 11rem);
+    background: linear-gradient(145deg, #060606 0%, #0c0c0b 58%, #050505 100%);
+  }
+
+  .author-fields::before,
+  .author-basis::before,
+  .author-services::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(244, 239, 231, 0.06) 1px, transparent 1px) 0 0 / 25% 100%;
+    opacity: 0.2;
+  }
+
+  .author-field-list,
+  .author-rule-list,
+  .author-reference-grid,
+  .author-service-links {
+    display: grid;
+    gap: 0;
+    background: transparent;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.1);
+  }
+
+  .author-field-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-left: auto;
+  }
+
+  .author-field-list span,
+  .author-rule-list article,
+  .author-reference-grid article,
+  .author-service-links a {
+    background: transparent;
+    padding: clamp(1rem, 1.8vw, 1.45rem);
+  }
+
+  .author-field-list span {
+    min-height: clamp(7rem, 9vw, 9rem);
+    border-right: 1px solid rgba(244, 239, 231, 0.1);
+    border-bottom: 1px solid rgba(244, 239, 231, 0.1);
+    color: rgba(244, 239, 231, 0.68);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.86rem, 0.92vw, 0.96rem);
+    font-weight: 300;
+    line-height: 1.35;
+  }
+
+  .author-standard .author-rule-list {
+    background: transparent;
+    border-block-color: rgba(8, 8, 8, 0.12);
+  }
+
+  .author-rule-list {
+    margin-left: auto;
+    border-top-color: rgba(8, 8, 8, 0.12);
+    border-bottom-color: rgba(8, 8, 8, 0.1);
+  }
+
+  .author-rule-list article {
+    display: grid;
+    grid-template-columns: clamp(2.4rem, 4vw, 3.4rem) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.09);
+    padding-block: clamp(0.95rem, 1.55vw, 1.25rem);
+  }
+
+  .author-rule-list span,
+  .author-post-list span {
+    color: rgba(111, 38, 61, 0.52);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.66rem;
+    font-weight: 300;
+    line-height: 1.56;
+  }
+
+  .author-rule-list p,
+  .author-reference-grid p,
+  .author-service-links p,
+  .author-post-list p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.92rem, 0.98vw, 1.02rem);
+    font-weight: 300;
+    line-height: 1.58;
+  }
+
+  .author-rule-list p {
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .author-basis-copy {
+    color: rgba(244, 239, 231, 0.68);
+    margin-left: auto;
+    border-top: 1px solid rgba(244, 239, 231, 0.14);
+  }
+
+  .author-basis-copy p {
+    border-bottom: 1px solid rgba(244, 239, 231, 0.1);
+    padding-block: clamp(1rem, 1.8vw, 1.4rem);
+  }
+
+  .author-reference-grid {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: clamp(3rem, 5.5vw, 4.8rem);
+  }
+
+  .author-reference-grid article {
+    display: grid;
+    gap: clamp(1.4rem, 2vw, 2rem);
+    min-height: clamp(13rem, 17vw, 16rem);
+    align-content: space-between;
+    border-right: 1px solid rgba(244, 239, 231, 0.1);
+  }
+
+  .author-reference-grid h3,
+  .author-post-list h3,
+  .author-service-links span {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  .author-reference-grid h3 {
+    color: rgba(167, 124, 61, 0.8);
+    font-size: clamp(1.2rem, 1.65vw, 1.85rem);
+    line-height: 1.08;
+  }
+
+  .author-reference-grid p,
+  .author-service-links p {
+    color: rgba(244, 239, 231, 0.56);
+  }
+
+  .author-editorial-head {
+    position: relative;
+    z-index: 1;
+    margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .author-post-list {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    border-top: 1px solid rgba(8, 8, 8, 0.14);
+  }
+
+  .author-post-list a {
+    display: grid;
+    grid-template-columns: clamp(2.8rem, 5vw, 4rem) minmax(0, 1fr) auto;
+    gap: clamp(1.2rem, 2.8vw, 2.8rem);
+    align-items: center;
+    border-bottom: 1px solid rgba(8, 8, 8, 0.1);
+    padding-block: clamp(1.25rem, 2.2vw, 1.85rem);
+  }
+
+  .author-post-list h3 {
+    color: rgba(8, 8, 8, 0.84);
+    font-size: clamp(1.35rem, 2vw, 2.35rem);
+    line-height: 1.04;
+  }
+
+  .author-post-list p {
+    max-width: 48rem;
+    margin-top: 0.55rem;
+    color: rgba(8, 8, 8, 0.54);
+  }
+
+  .author-post-list em {
+    color: rgba(111, 38, 61, 0.68);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.68rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .author-service-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .author-service-links a {
+    display: grid;
+    gap: clamp(1.4rem, 2vw, 2rem);
+    min-height: clamp(16rem, 22vw, 22rem);
+    align-content: space-between;
+    border-right: 1px solid rgba(244, 239, 231, 0.1);
+  }
+
+  .author-service-links span {
+    color: rgba(167, 124, 61, 0.84);
+    font-size: clamp(1.9rem, 3.3vw, 4rem);
+    line-height: 0.98;
+  }
+
+  @media (max-width: 980px) {
+    .author-hero-grid,
+    .author-two-column,
+    .author-fields-grid,
+    .author-basis-grid,
+    .author-services-grid,
+    .author-reference-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .author-hero-aside {
+      margin-left: 0;
+    }
+
+    .author-hero-system {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      width: min(100% - 3rem, 88rem);
+      margin: clamp(3rem, 8vw, 5rem) auto 0;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .author-hero-system span {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .author-shell {
+      width: min(100% - 3rem, 88rem);
+    }
+
+    .author-hero h1 {
+      font-size: clamp(4rem, 19vw, 6.8rem);
+    }
+
+    .author-thesis,
+    .author-standard,
+    .author-editorial,
+    .author-fields,
+    .author-basis,
+    .author-services {
+      padding-block: clamp(5.5rem, 15vw, 7rem);
+    }
+
+    .author-section-heading h2,
+    .author-editorial-head h2 {
+      max-width: 13ch;
+      font-size: clamp(2.35rem, 10.5vw, 3.55rem);
+      line-height: 1.04;
+    }
+
+    .author-copy-stack p,
+    .author-rule-list article {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.85rem;
+    }
+
+    .author-field-list {
+      grid-template-columns: 1fr;
+    }
+
+    .author-field-list span {
+      min-height: auto;
+      padding-block: 0.9rem;
+    }
+
+    .author-reference-grid article {
+      min-height: auto;
+    }
+
+    .author-service-links {
+      grid-template-columns: 1fr;
+    }
+
+    .author-service-links a {
+      min-height: auto;
+    }
+
+    .author-service-links span {
+      font-size: clamp(2rem, 10vw, 3.1rem);
+    }
+
+    .author-hero-system,
+    .author-post-list a,
+    .author-rule-list article {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

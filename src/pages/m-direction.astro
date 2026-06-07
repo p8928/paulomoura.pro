@@ -2,6 +2,7 @@
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity, serviceSchema } from '@data/schema';
 
 const continuityModules = [
   {
@@ -61,6 +62,21 @@ const formatItems = [
   ['Investimento', 'Sob consulta, calculado de acordo com os serviços prestados.'],
 ];
 
+const directionUrl = schemaIdentity.baseUrl + '/m-direction/';
+const directionServiceSchema = serviceSchema({
+  id: directionUrl + '#service',
+  name: 'M-Direction',
+  description: 'Direção estratégica contínua para clientes M-Signature que precisam expandir autoridade, conteúdo, reputação e presença digital com metodologia Brand-Driven.',
+  serviceType: 'Direção estratégica contínua de presença digital',
+  url: directionUrl,
+  audience: 'Clientes M-Signature',
+});
+const directionScopeSchema = itemListSchema({
+  id: directionUrl + '#scope',
+  name: 'Frentes possíveis do M-Direction',
+  items: scopeItems.map((item) => ({ name: item.title, description: item.copy })),
+});
+
 const processSteps = [
   {
     label: '01',
@@ -87,7 +103,11 @@ const processSteps = [
 
 <BaseLayout
   title="M-Direction"
-  description="M-Direction é a direção estratégica contínua para clientes M-Signature que precisam expandir autoridade, conteúdo, reputação e presença digital com metodologia Brand-Driven."
+  description="M-Direction oferece direção estratégica contínua para clientes M-Signature expandirem autoridade, conteúdo, reputação e presença digital."
+  canonicalPath="/m-direction"
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': directionUrl + '#service' }}
+  structuredData={[directionServiceSchema, directionScopeSchema]}
   showChrome={false}
 >
   <script>

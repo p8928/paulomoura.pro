@@ -1,5 +1,13 @@
 ---
+import { createBaseSchemaGraph, schemaIdentity } from '@data/schema';
+
 const destination = '/brand-driven';
+const canonicalUrl = new URL(destination, schemaIdentity.baseUrl);
+const schemaGraph = createBaseSchemaGraph({
+  canonicalUrl,
+  pageTitle: 'Brand-Driven | Paulo Moura',
+  description: 'Brand-Driven é o método de Paulo Moura para construir presença digital a partir de substância real, linguagem autoral, site, busca, IA e reputação.',
+});
 ---
 
 <!doctype html>
@@ -7,8 +15,9 @@ const destination = '/brand-driven';
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content={`0; url=${destination}`} />
-    <link rel="canonical" href={destination} />
-    <title>Brand-Driven</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <title>Brand-Driven | Paulo Moura</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
   </head>
   <body>
     <a href={destination}>Ir para Brand-Driven</a>

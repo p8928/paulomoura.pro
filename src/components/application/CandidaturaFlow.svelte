@@ -611,7 +611,8 @@
 
   .application-status h2,
   .application-thanks h2 {
-    max-width: 13ch;
+    max-width: min(13ch, 100%);
+    overflow-wrap: anywhere;
     margin: 1rem 0 0;
     color: rgba(244, 239, 231, 0.94);
     font-family: "Outfit", "Avenir Next", sans-serif;
@@ -622,7 +623,10 @@
   }
 
   .application-status span {
+    display: block;
+    max-width: 100%;
     color: rgba(244, 239, 231, 0.46);
+    overflow-wrap: anywhere;
   }
 
   .application-progress {

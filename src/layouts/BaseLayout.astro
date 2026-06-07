@@ -3,6 +3,7 @@ import SiteFooter from '@components/site/SiteFooter.astro';
 import SiteHeader from '@components/site/SiteHeader.astro';
 import CookieConsent from '@components/site/CookieConsent.astro';
 import { brand } from '@data/brand';
+import { createBaseSchemaGraph } from '@data/schema';
 import '@styles/global.css';
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
   canonicalPath?: string;
   ogType?: 'website' | 'article';
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  schemaPageType?: string | string[];
+  schemaMainEntity?: Record<string, unknown>;
   showChrome?: boolean;
 }
 
@@ -22,11 +25,22 @@ const {
   canonicalPath,
   ogType = 'website',
   structuredData,
+  schemaPageType = 'WebPage',
+  schemaMainEntity,
   showChrome = true,
 } = Astro.props;
 
 const pageTitle = title.includes(brand.name) ? title : title + ' | ' + brand.name;
 const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
+const structuredDataNodes = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
+const schemaGraph = createBaseSchemaGraph({
+  canonicalUrl,
+  pageTitle,
+  description,
+  pageType: schemaPageType,
+  mainEntity: schemaMainEntity,
+  extraNodes: structuredDataNodes,
+});
 ---
 
 <!doctype html>
@@ -46,7 +60,7 @@ const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
-    {structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
   </head>
   <body>
     {showChrome && <SiteHeader />}

@@ -8,7 +8,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 const standard = badgeStandardBySlug['moura-identity'];
 ---
 
-<BaseLayout title="Moura Identity" description={standard.description} showChrome={false}>
+<BaseLayout title="Moura Identity" description={standard.description} canonicalPath="/moura-identity" schemaPageType="ProfilePage" showChrome={false}>
   <script>
     import '@scripts/lenis';
   </script>

@@ -2,6 +2,7 @@
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity } from '@data/schema';
 
 const serviceLetter = [
   {
@@ -40,11 +41,25 @@ const serviceLetter = [
     context: 'Quando a presença publicada precisa acompanhar mudanças reais do negócio.',
   },
 ];
+const serviceLetterUrl = schemaIdentity.baseUrl + '/m-direction/carta-de-servicos-continuos/';
+const serviceLetterSchema = itemListSchema({
+  id: serviceLetterUrl + '#service-letter',
+  name: 'Carta de Serviços Contínuos',
+  description: 'Frentes possíveis para compor a continuidade estratégica semestral de clientes M-Signature.',
+  items: serviceLetter.map((item) => ({
+    name: item.title,
+    description: item.function + ' Contexto: ' + item.context,
+  })),
+});
 ---
 
 <BaseLayout
   title="Carta de Serviços Contínuos | M-Direction"
   description="Carta de Serviços Contínuos do M-Direction: frentes possíveis para compor a continuidade estratégica semestral de clientes M-Signature."
+  canonicalPath="/m-direction/carta-de-servicos-continuos"
+  schemaPageType="CollectionPage"
+  schemaMainEntity={{ '@id': serviceLetterUrl + '#service-letter' }}
+  structuredData={serviceLetterSchema}
   showChrome={false}
 >
   <script>

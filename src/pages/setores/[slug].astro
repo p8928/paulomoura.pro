@@ -3,6 +3,7 @@ import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import { signatureSectors } from '@data/signatureSectors';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { serviceSchema, schemaIdentity } from '@data/schema';
 
 export function getStaticPaths() {
   return signatureSectors.map((sector) => ({
@@ -12,26 +13,249 @@ export function getStaticPaths() {
 }
 
 const { sector } = Astro.props;
-const isArchitecture = sector.slug === 'arquitetura';
 
-const genericSignals = [
-  'Portfólio tratado como galeria visual, sem critério de leitura.',
-  'Texto institucional parecido com qualquer escritório do mercado.',
-  'Site construído para existir, não para sustentar autoridade.',
-  'Pouca conexão entre reputação, linguagem, obra, busca e experiência.',
-];
+const sectorPageContent = {
+  arquitetura: {
+    editorialImage: '/images/setores/architecture-editorial.webp',
+    editorialAlt: 'Modelo arquitetônico e materiais de projeto em ambiente contemporâneo',
+    sectionKicker: 'Arquitetura / Presença digital',
+    sectionTitle: 'O valor do projeto precisa ser percebido antes da primeira reunião.',
+    awarenessTitle: 'Fotografias de alta qualidade são commodities. Substância e critério tornam o escritório distinto.',
+    awareness: [
+      'Na arquitetura, presença digital precisa demonstrar o que sustenta o projeto: repertório, método, escuta, proporção e responsabilidade estética.',
+      'Imagem chama atenção; critério qualifica interesse. Quando o site mostra apenas resultados, o visitante vê a obra, mas não compreende a inteligência por trás dela.',
+      'A presença se torna sólida quando portfólio, linguagem, experiência, busca e reputação conduzem à mesma leitura: para quem o estúdio trabalha melhor e por que deve ser considerado.',
+    ],
+    solutionTitle: 'Do portfólio genérico ao ecossistema de autoridade.',
+    genericSignals: [
+      'Portfólio tratado como galeria visual, sem critério de leitura.',
+      'Texto institucional parecido com qualquer escritório do mercado.',
+      'Site construído para existir, não para sustentar autoridade.',
+      'Pouca conexão entre reputação, linguagem, obra, busca e experiência.',
+    ],
+    signatureSignals: [
+      'Narrativa que organiza repertório, método, valores e tipo de cliente ideal.',
+      'Site como núcleo técnico, editorial e visual do ecossistema de autoridade.',
+      'Arquitetura de informação pensada para qualificar interesse antes do contato.',
+      'Presença digital personalizada, coerente com ticket, entrega e ambição do estúdio.',
+    ],
+    offerTitle: 'Para escritórios que procuram direção, não apenas execução.',
+    offer: [
+      'O M-Signature organiza a presença digital de arquitetura como projeto de alta direção: diagnóstico, linguagem, estrutura, interface, performance, SEO, AEO, GEO e sinais de autoridade operando em conjunto.',
+      'A candidatura existe para entender maturidade, ambição, escopo e aderência antes da proposta. Um trabalho desse nível precisa de contexto real para ser dimensionado com critério.',
+    ],
+  },
+  'clinicas-medicas': {
+    editorialImage: '/images/setores/medical-clinics-editorial.webp',
+    editorialAlt: 'Clínica médica premium com interiores precisos, acolhimento discreto e atmosfera de confiança',
+    sectionKicker: 'Clínicas médicas / Confiança digital',
+    sectionTitle: 'Antes da consulta, o paciente já avaliou segurança, clareza e padrão de cuidado.',
+    awarenessTitle: 'Fotos de instalações e design limpo comunicam padrão. Autoridade e reputação determinam o agendamento.',
+    awareness: [
+      'Na saúde, a presença digital precisa comunicar segurança com clareza. Especialidade, estrutura, linguagem e experiência precisam reduzir incerteza.',
+      'Quando a clínica se apresenta como captação genérica, o paciente percebe publicidade, mas não entende critério médico, acolhimento, processo e responsabilidade.',
+      'A presença sólida organiza reputação, corpo clínico, áreas de atuação, jornada do paciente e sinais públicos em uma leitura confiável e tecnicamente clara.',
+    ],
+    solutionTitle: 'Da captação genérica à confiança institucional.',
+    genericSignals: [
+      'Página com aparência limpa, mas sem profundidade clínica ou institucional.',
+      'Serviços descritos como lista, sem contexto de decisão para o paciente.',
+      'Dependência de anúncios para gerar procura sem construir reputação orgânica.',
+      'Pouca consistência entre site, Google Business Profile, avaliações e linguagem.',
+    ],
+    signatureSignals: [
+      'Estrutura que apresenta especialidades, equipe, experiência e critérios de cuidado.',
+      'Presença local mais forte, com dados públicos consistentes e leitura confiável.',
+      'Site rápido, seguro e claro, pensado para reduzir ansiedade antes do contato.',
+      'Autoridade digital alinhada a reputação, ética, busca e entendimento por IA.',
+    ],
+    offerTitle: 'Para clínicas que precisam ser percebidas com o rigor que praticam.',
+    offer: [
+      'O M-Signature organiza a presença digital da clínica como sistema de confiança: linguagem, estrutura técnica, reputação local, experiência, SEO, AEO, GEO e sinais de autoridade.',
+      'A candidatura avalia momento, escopo, maturidade e padrão de entrega para dimensionar um projeto compatível com a responsabilidade de uma operação médica.',
+    ],
+  },
+  consultoria: {
+    editorialImage: '/images/setores/consulting-editorial.webp',
+    editorialAlt: 'Sala estratégica de consultoria premium com documentos, madeira escura e atmosfera executiva discreta',
+    sectionKicker: 'Consultoria / Autoridade intelectual',
+    sectionTitle: 'Quem vende diagnóstico precisa demonstrar pensamento antes de apresentar escopo.',
+    awarenessTitle: 'Autoridade consultiva não se afirma. Ela se torna legível.',
+    awareness: [
+      'Consultorias dependem de confiança intelectual. A presença digital precisa revelar método, capacidade de leitura e maturidade de condução.',
+      'Quando a comunicação se limita a promessas amplas, o cliente vê serviço, mas não identifica o tipo de problema que a consultoria sabe resolver melhor.',
+      'A presença sólida conecta tese, linguagem, casos possíveis, experiência, busca e reputação para qualificar conversas antes do primeiro contato.',
+    ],
+    solutionTitle: 'Da descrição de serviços à autoridade de pensamento.',
+    genericSignals: [
+      'Oferta apresentada por categorias genéricas e promessas difíceis de avaliar.',
+      'Pouca diferenciação entre método, repertório e forma de condução.',
+      'Site institucional que não ajuda o decisor a entender profundidade real.',
+      'Conteúdo sem arquitetura de autoridade ou conexão com busca qualificada.',
+    ],
+    signatureSignals: [
+      'Narrativa que torna tese, método e especialidade consultiva mais claros.',
+      'Estrutura pensada para decisores que precisam avaliar risco, fit e profundidade.',
+      'Site como núcleo de autoridade, linguagem, evidência e captação qualificada.',
+      'Presença digital alinhada a reputação, expertise, busca e leitura por IA.',
+    ],
+    offerTitle: 'Para consultorias que precisam ser entendidas antes da proposta.',
+    offer: [
+      'O M-Signature transforma conhecimento consultivo em presença digital organizada: diagnóstico, linguagem, arquitetura de informação, interface, performance, SEO, AEO, GEO e autoridade.',
+      'A candidatura permite avaliar especialidade, mercado, ciclo de venda e maturidade para definir uma implementação proporcional ao valor intelectual da consultoria.',
+    ],
+  },
+  restaurantes: {
+    editorialImage: '/images/setores/restaurant-editorial.webp',
+    editorialAlt: 'Restaurante asiático estrelado com sala ultrafina, mesa posta e atmosfera noturna sofisticada',
+    sectionKicker: 'Restaurantes / Experiência local',
+    sectionTitle: 'Antes da reserva, o cliente já formou uma expectativa sobre cozinha, ambiente e cuidado.',
+    awarenessTitle: 'Boa comida precisa ser percebida como experiência completa.',
+    awareness: [
+      'Restaurantes premium não vendem apenas prato. Vendem atmosfera, ritmo, hospitalidade, reputação local e confiança na escolha.',
+      'Quando a presença digital se apoia apenas em imagens e redes sociais, o cliente vê desejo, mas não encontra clareza suficiente para decidir, reservar ou recomendar.',
+      'A presença sólida conecta site, cardápio, reservas, busca local, avaliações, linguagem e narrativa para transformar intenção em visita qualificada.',
+    ],
+    solutionTitle: 'Da vitrine gastronômica ao sistema de desejo e reserva.',
+    genericSignals: [
+      'Presença dependente de redes sociais, sem núcleo próprio de informação.',
+      'Cardápio, reserva, localização e reputação apresentados de forma fragmentada.',
+      'Linguagem visual atraente, mas pouco clara sobre experiência e proposta da casa.',
+      'Busca local enfraquecida por inconsistência de dados, páginas e sinais públicos.',
+    ],
+    signatureSignals: [
+      'Site como centro de experiência, reserva, reputação e descoberta local.',
+      'Narrativa que conecta cozinha, ambiente, serviço, ocasião e tipo de público.',
+      'Google Business Profile e sinais públicos organizados para intenção de visita.',
+      'Presença digital alinhada a desejo, confiança, busca e recorrência.',
+    ],
+    offerTitle: 'Para casas que precisam transformar atmosfera em decisão.',
+    offer: [
+      'O M-Signature organiza a presença digital do restaurante como sistema de experiência: linguagem, site, reserva, reputação local, performance, SEO, AEO, GEO e sinais públicos.',
+      'A candidatura avalia proposta, operação, público, praça e maturidade para dimensionar uma implementação coerente com a ambição da casa.',
+    ],
+  },
+  tecnologia: {
+    editorialImage: '/images/setores/technology-editorial.webp',
+    editorialAlt: 'Ambiente tecnológico premium com infraestrutura discreta, vidro escuro e precisão técnica',
+    sectionKicker: 'Tecnologia / Clareza técnica',
+    sectionTitle: 'Complexidade só vira vantagem quando o mercado entende o que ela resolve.',
+    awarenessTitle: 'Diferenciação técnica precisa ser traduzida sem perder rigor.',
+    awareness: [
+      'Empresas de tecnologia precisam comunicar valor de negócio sem simplificar demais o que as torna difíceis de copiar.',
+      'Quando a presença digital fala apenas em features, inovação ou performance, o decisor percebe ruído técnico, mas não entende impacto, risco e aplicabilidade.',
+      'A presença sólida organiza tese, produto, arquitetura, segurança, casos de uso, busca e reputação para qualificar interesse e reduzir fricção comercial.',
+    ],
+    solutionTitle: 'Do discurso técnico à clareza de valor.',
+    genericSignals: [
+      'Comunicação centrada em features, stacks ou claims amplos de inovação.',
+      'Site que exige esforço do decisor para entender aplicação e diferenciação.',
+      'Pouca conexão entre tecnologia, problema de negócio, segurança e adoção.',
+      'Conteúdo e estrutura fracos para busca, IA e avaliação técnica externa.',
+    ],
+    signatureSignals: [
+      'Narrativa que traduz complexidade em valor, contexto e vantagem competitiva.',
+      'Arquitetura de informação para decisores técnicos e não técnicos.',
+      'Site de alta performance, segurança e clareza para sustentar confiança.',
+      'Presença digital preparada para busca, IA, autoridade e ciclos B2B.',
+    ],
+    offerTitle: 'Para empresas que precisam tornar tecnologia mais vendável sem banalizá-la.',
+    offer: [
+      'O M-Signature organiza a presença digital de tecnologia como sistema de clareza: diagnóstico, linguagem, estrutura, interface, performance, SEO, AEO, GEO e autoridade técnica.',
+      'A candidatura avalia produto, mercado, ciclo comercial, maturidade e complexidade para definir uma implementação compatível com a estratégia da empresa.',
+    ],
+  },
+  'e-commerce': {
+    editorialImage: '/images/setores/ecommerce-editorial.webp',
+    editorialAlt: 'Operação de e-commerce premium com embalagens refinadas, materiais nobres e composição precisa',
+    sectionKicker: 'E-commerce / Confiança de compra',
+    sectionTitle: 'Antes do checkout, o cliente mede produto, marca, segurança e desejo.',
+    awarenessTitle: 'Conversão qualificada começa antes do carrinho.',
+    awareness: [
+      'E-commerces premium precisam construir confiança em cada ponto da jornada: produto, marca, conteúdo, navegação, prova e segurança.',
+      'Quando a loja digital parece apenas um catálogo, o cliente vê oferta, mas não percebe critério, valor, diferenciação e motivo para comprar ali.',
+      'A presença sólida conecta experiência, conteúdo, busca, reputação e arquitetura comercial para reduzir fricção e sustentar recorrência.',
+    ],
+    solutionTitle: 'Do catálogo online ao ecossistema de confiança comercial.',
+    genericSignals: [
+      'Produto apresentado sem narrativa, contexto de uso ou construção de valor.',
+      'Experiência de compra fragmentada, lenta ou visualmente pouco confiável.',
+      'Dependência excessiva de mídia paga para gerar intenção de compra.',
+      'SEO, conteúdo, dados e autoridade tratados como apêndices da loja.',
+    ],
+    signatureSignals: [
+      'Narrativa de marca e produto integrada à experiência de compra.',
+      'Estrutura técnica, conteúdo e dados pensados para busca e decisão.',
+      'Interface orientada a confiança, clareza, desejo e redução de fricção.',
+      'Presença digital preparada para autoridade, recorrência e descoberta orgânica.',
+    ],
+    offerTitle: 'Para marcas digitais que precisam vender valor, não apenas produto.',
+    offer: [
+      'O M-Signature organiza a presença digital do e-commerce como sistema de confiança: linguagem, estrutura, experiência, performance, SEO, AEO, GEO e sinais de autoridade.',
+      'A candidatura avalia produto, margem, público, operação, tecnologia e maturidade para dimensionar uma implementação coerente com o potencial da marca.',
+    ],
+  },
+  juridico: {
+    editorialImage: '/images/setores/legal-editorial.webp',
+    editorialAlt: 'Escritório jurídico de luxo com mobília em madeira legalizada e atmosfera institucional',
+    sectionKicker: 'Jurídico / Reputação institucional',
+    sectionTitle: 'Confiança jurídica exige discrição, clareza e autoridade antes do contato.',
+    awarenessTitle: 'No jurídico, autoridade precisa ser precisa, sóbria e verificável.',
+    awareness: [
+      'Bancas e profissionais jurídicos dependem de reputação, especialidade e percepção de rigor. A presença digital precisa comunicar isso sem excesso promocional.',
+      'Quando a comunicação parece genérica ou agressiva, o potencial cliente não consegue avaliar discrição, competência, escopo e adequação ao caso.',
+      'A presença sólida organiza áreas de atuação, linguagem institucional, reputação, busca e sinais públicos para tornar a autoridade mais legível.',
+    ],
+    solutionTitle: 'Da página institucional à autoridade jurídica organizada.',
+    genericSignals: [
+      'Áreas de atuação listadas sem clareza sobre especialidade e profundidade.',
+      'Texto institucional parecido com qualquer banca ou profissional do mercado.',
+      'Presença digital que oscila entre formalismo excessivo e marketing genérico.',
+      'Pouca consistência entre reputação, busca, perfis públicos e experiência.',
+    ],
+    signatureSignals: [
+      'Linguagem sóbria que organiza especialidade, reputação e adequação ao caso.',
+      'Site institucional rápido, seguro e pensado para confiança antes do contato.',
+      'Estrutura de conteúdo compatível com busca, IA e avaliação criteriosa.',
+      'Presença digital alinhada a discrição, autoridade e consistência pública.',
+    ],
+    offerTitle: 'Para bancas e profissionais que precisam comunicar rigor sem ruído.',
+    offer: [
+      'O M-Signature organiza a presença digital jurídica como sistema institucional: diagnóstico, linguagem, estrutura, interface, performance, SEO, AEO, GEO e sinais de reputação.',
+      'A candidatura avalia especialidade, público, posicionamento, limitações éticas e maturidade para dimensionar uma implementação adequada ao contexto jurídico.',
+    ],
+  },
+};
 
-const signatureSignals = [
-  'Narrativa que organiza repertório, método, valores e tipo de cliente ideal.',
-  'Site como núcleo técnico, editorial e visual do ecossistema de autoridade.',
-  'Arquitetura de informação pensada para qualificar interesse antes do contato.',
-  'Presença digital personalizada, coerente com ticket, entrega e ambição do estúdio.',
-];
+const sectorPage = sectorPageContent[sector.slug as keyof typeof sectorPageContent] ?? sectorPageContent.arquitetura;
+const sectorMetaDescriptions = {
+  arquitetura: 'Presença digital para escritórios de arquitetura que precisam comunicar critério, repertório, método e autoridade com clareza Brand-Driven.',
+  'clinicas-medicas': 'Presença digital para clínicas médicas que precisam comunicar segurança, autoridade, reputação e experiência com clareza Brand-Driven.',
+  consultoria: 'Presença digital para consultorias premium que precisam traduzir conhecimento, método e valor estratégico com clareza Brand-Driven.',
+  restaurantes: 'Presença digital para restaurantes que precisam comunicar experiência, reputação, reserva e presença local com clareza Brand-Driven.',
+  tecnologia: 'Presença digital para empresas de tecnologia que precisam transformar complexidade técnica em clareza, confiança e autoridade.',
+  'e-commerce': 'Presença digital para e-commerces premium que precisam fortalecer confiança, experiência, diferenciação e autoridade de marca.',
+  juridico: 'Presença digital para escritórios jurídicos que precisam comunicar reputação, especialidade, discrição e autoridade institucional.',
+};
+const sectorMetaDescription = sectorMetaDescriptions[sector.slug as keyof typeof sectorMetaDescriptions] ?? sectorPage.offer[0];
+const sectorUrl = schemaIdentity.baseUrl + '/setores/' + sector.slug + '/';
+const sectorServiceSchema = serviceSchema({
+  id: sectorUrl + '#service',
+  name: 'M-Signature para ' + sector.name,
+  description: sectorPage.offer[0],
+  serviceType: 'Implementação Brand-Driven para presença digital setorial',
+  url: sectorUrl,
+  audience: sector.name,
+});
 ---
 
 <BaseLayout
   title={`${sector.name} | M-Signature`}
-  description={`Página setorial M-Signature para ${sector.name}.`}
+  description={sectorMetaDescription}
+  canonicalPath={'/setores/' + sector.slug + '/'}
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': sectorUrl + '#service' }}
+  structuredData={sectorServiceSchema}
   showChrome={false}
 >
   <script>
@@ -41,94 +265,23 @@ const signatureSignals = [
   <HeroNavigation client:load />
 
   <main class="sector-page">
-    {isArchitecture ? (
-      <>
-        <div class="sector-architecture-stack">
-          <div class="sector-architecture-sticky">
-            <section class="architecture-title-section" data-nav-surface="light" aria-labelledby="architecture-title-section">
-              <div class="architecture-shell architecture-title-grid">
-                <figure class="architecture-portrait" aria-label="Ambiente editorial de arquitetura">
-                  <img src="/images/setores/architecture-editorial.png" alt="Modelo arquitetônico e materiais de projeto em ambiente contemporâneo" loading="eager" decoding="async" />
-                </figure>
-                <div class="architecture-title-copy">
-                  <p>Arquitetura / Presença digital</p>
-                  <h2 id="architecture-title-section">O valor do projeto precisa ser percebido antes da primeira reunião.</h2>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <section
-            class:list={["sector-hero", "sector-hero--stacked", sector.heroImage && "sector-hero--illustrated"]}
-            style={sector.heroImage ? `--sector-hero-image: url("${sector.heroImage}")` : undefined}
-            data-nav-surface="dark"
-            aria-labelledby="sector-title"
-          >
-            <div class="sector-shell">
-              <p>M-Signature / Setor</p>
-              <h1 id="sector-title">{sector.name}</h1>
-            </div>
-          </section>
-        </div>
-
-        <section class="architecture-awareness" data-nav-surface="light" aria-labelledby="architecture-awareness-title">
-          <div class="architecture-shell architecture-editorial-grid">
-            <div class="architecture-section-heading">
-              <h2 id="architecture-awareness-title">Fotografias de alta qualidade são commodities. Substância e critério tornam o escritório distinto.</h2>
-            </div>
-            <div class="architecture-editorial-copy">
-              <p>Na arquitetura, presença digital precisa demonstrar o que sustenta o projeto: repertório, método, escuta, proporção e responsabilidade estética.</p>
-              <p>Imagem chama atenção; critério qualifica interesse. Quando o site mostra apenas resultados, o visitante vê a obra, mas não compreende a inteligência por trás dela.</p>
-              <p>A presença se torna sólida quando portfólio, linguagem, experiência, busca e reputação conduzem à mesma leitura: para quem o estúdio trabalha melhor e por que deve ser considerado.</p>
+    <div class="sector-architecture-stack">
+      <div class="sector-architecture-sticky">
+        <section class:list={["architecture-title-section", `sector-title-${sector.slug}`]} data-nav-surface="light" aria-labelledby="architecture-title-section">
+          <div class="architecture-shell architecture-title-grid">
+            <figure class="architecture-portrait" aria-label={sectorPage.sectionKicker}>
+              <img src={sectorPage.editorialImage} alt={sectorPage.editorialAlt} loading="eager" decoding="async" />
+            </figure>
+            <div class="architecture-title-copy">
+              <p>{sectorPage.sectionKicker}</p>
+              <h2 id="architecture-title-section">{sectorPage.sectionTitle}</h2>
             </div>
           </div>
         </section>
+      </div>
 
-        <section class="architecture-solution" data-nav-surface="dark" aria-labelledby="architecture-solution-title">
-          <div class="architecture-shell architecture-solution-layout">
-            <div class="architecture-section-heading architecture-section-heading--dark">
-              <h2 id="architecture-solution-title">Do portfólio genérico ao ecossistema de autoridade.</h2>
-            </div>
-            <div class="architecture-comparison" aria-label="Comparação entre presença genérica e M-Signature para arquitetura">
-              <section>
-                <span>Presença genérica</span>
-                <ul>
-                  {genericSignals.map((item) => <li>{item}</li>)}
-                </ul>
-              </section>
-              <section>
-                <span>M-Signature para arquitetura</span>
-                <ul>
-                  {signatureSignals.map((item) => <li>{item}</li>)}
-                </ul>
-              </section>
-            </div>
-          </div>
-        </section>
-
-        <section class="architecture-offer" data-nav-surface="light" aria-labelledby="architecture-offer-title">
-          <div class="architecture-shell architecture-offer-grid">
-            <aside class="architecture-signature-badge" aria-label="Coordenadas do M-Signature">
-              <p>M-Signature</p>
-              <div>
-                <span>90 dias / Projeto fechado</span>
-                <span>Leitura do negócio</span>
-                <span>SEO, AEO e GEO</span>
-                <span>Candidatura avaliada</span>
-              </div>
-            </aside>
-            <div class="architecture-offer-copy">
-              <h2 id="architecture-offer-title">Para escritórios que procuram direção, não apenas execução.</h2>
-              <p>O M-Signature organiza a presença digital de arquitetura como projeto de alta direção: diagnóstico, linguagem, estrutura, interface, performance, SEO, AEO, GEO e sinais de autoridade operando em conjunto.</p>
-              <p>A candidatura existe para entender maturidade, ambição, escopo e aderência antes da proposta. Um trabalho desse nível precisa de contexto real para ser dimensionado com critério.</p>
-              <a href="/candidatura">Iniciar candidatura</a>
-            </div>
-          </div>
-        </section>
-      </>
-    ) : (
       <section
-        class:list={["sector-hero", sector.heroImage && "sector-hero--illustrated"]}
+        class:list={["sector-hero", "sector-hero--stacked", sector.heroImage && "sector-hero--illustrated"]}
         style={sector.heroImage ? `--sector-hero-image: url("${sector.heroImage}")` : undefined}
         data-nav-surface="dark"
         aria-labelledby="sector-title"
@@ -138,7 +291,59 @@ const signatureSignals = [
           <h1 id="sector-title">{sector.name}</h1>
         </div>
       </section>
-    )}
+    </div>
+
+    <section class="architecture-awareness" data-nav-surface="light" aria-labelledby="architecture-awareness-title">
+      <div class="architecture-shell architecture-editorial-grid">
+        <div class="architecture-section-heading">
+          <h2 id="architecture-awareness-title">{sectorPage.awarenessTitle}</h2>
+        </div>
+        <div class="architecture-editorial-copy">
+          {sectorPage.awareness.map((item) => <p>{item}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-solution" data-nav-surface="dark" aria-labelledby="architecture-solution-title">
+      <div class="architecture-shell architecture-solution-layout">
+        <div class="architecture-section-heading architecture-section-heading--dark">
+          <h2 id="architecture-solution-title">{sectorPage.solutionTitle}</h2>
+        </div>
+        <div class="architecture-comparison" aria-label={`Comparação entre presença genérica e M-Signature para ${sector.name}`}>
+          <section>
+            <span>Presença genérica</span>
+            <ul>
+              {sectorPage.genericSignals.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+          <section>
+            <span>M-Signature para {sector.name}</span>
+            <ul>
+              {sectorPage.signatureSignals.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-offer" data-nav-surface="light" aria-labelledby="architecture-offer-title">
+      <div class="architecture-shell architecture-offer-grid">
+        <aside class="architecture-signature-badge" aria-label="Coordenadas do M-Signature">
+          <p>M-Signature</p>
+          <div>
+            <span>90 dias / Projeto fechado</span>
+            <span>Leitura do negócio</span>
+            <span>SEO, AEO e GEO</span>
+            <span>Candidatura avaliada</span>
+          </div>
+        </aside>
+        <div class="architecture-offer-copy">
+          <h2 id="architecture-offer-title">{sectorPage.offerTitle}</h2>
+          {sectorPage.offer.map((item) => <p>{item}</p>)}
+          <a href="/candidatura">Iniciar candidatura</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <SiteFooter />
@@ -297,6 +502,80 @@ const signatureSignals = [
     min-height: inherit;
     display: block;
     object-fit: cover;
+  }
+
+  .sector-title-clinicas-medicas .architecture-portrait img {
+    object-position: 58% center;
+    filter: saturate(0.82) brightness(1.04) contrast(0.96);
+  }
+
+  .sector-title-clinicas-medicas .architecture-title-copy {
+    max-width: 33rem;
+  }
+
+  .sector-title-consultoria .architecture-portrait {
+    min-height: min(68vh, 44rem);
+  }
+
+  .sector-title-consultoria .architecture-portrait img {
+    object-position: 42% center;
+    filter: saturate(0.72) contrast(1.02);
+  }
+
+
+  .sector-title-restaurantes .architecture-portrait img {
+    object-position: center;
+    filter: saturate(0.92) brightness(0.92) contrast(1.06);
+  }
+
+  .sector-title-restaurantes .architecture-title-copy p,
+  .sector-title-restaurantes .architecture-title-copy h2 {
+    color: rgba(79, 45, 23, 0.72);
+  }
+
+  .sector-title-tecnologia .architecture-title-grid {
+    grid-template-columns: minmax(20rem, 0.54fr) minmax(0, 0.7fr);
+  }
+
+  .sector-title-tecnologia .architecture-portrait img {
+    object-position: 56% center;
+    filter: saturate(0.74) brightness(0.98) contrast(1.08);
+  }
+
+  .sector-title-tecnologia .architecture-title-copy {
+    border-left-color: rgba(57, 82, 86, 0.2);
+  }
+
+  .sector-title-tecnologia .architecture-title-copy p,
+  .sector-title-tecnologia .architecture-title-copy h2 {
+    color: rgba(35, 61, 64, 0.76);
+  }
+
+  .sector-title-e-commerce .architecture-portrait img {
+    object-position: 50% center;
+    filter: saturate(0.9) brightness(1.02) contrast(0.98);
+  }
+
+  .sector-title-e-commerce .architecture-title-copy {
+    max-width: 32rem;
+  }
+
+  .sector-title-juridico .architecture-title-grid {
+    grid-template-columns: minmax(20rem, 0.58fr) minmax(0, 0.66fr);
+  }
+
+  .sector-title-juridico .architecture-portrait img {
+    object-position: 46% center;
+    filter: saturate(0.58) brightness(0.94) contrast(1.1);
+  }
+
+  .sector-title-juridico .architecture-title-copy {
+    border-left-color: rgba(8, 8, 8, 0.18);
+  }
+
+  .sector-title-juridico .architecture-title-copy p,
+  .sector-title-juridico .architecture-title-copy h2 {
+    color: rgba(8, 8, 8, 0.74);
   }
 
   .architecture-title-copy,

@@ -3,6 +3,7 @@ import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import { signatureSectors } from '@data/signatureSectors';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity, serviceSchema } from '@data/schema';
 
 const scopeItems = [
   {
@@ -88,6 +89,21 @@ const processSteps = [
 ];
 
 
+const signatureUrl = schemaIdentity.baseUrl + '/m-signature/';
+const signatureServiceSchema = serviceSchema({
+  id: signatureUrl + '#service',
+  name: 'M-Signature',
+  description: 'Implementação Brand-Driven para empresas premium que precisam transformar qualidade real em presença digital clara, confiável e legível para clientes, busca e IA.',
+  serviceType: 'Implementação Brand-Driven de presença digital',
+  url: signatureUrl,
+  audience: 'Empresas e profissionais premium ou luxury',
+});
+const signatureScopeSchema = itemListSchema({
+  id: signatureUrl + '#scope',
+  name: 'Escopo integrado do M-Signature',
+  items: scopeItems.map((item) => ({ name: item.title, description: item.copy })),
+});
+
 const technicalLayers = [
   ['Performance', 'carregamento rápido, arquitetura leve e menor dependência de camadas visuais limitadas'],
   ['Semântica', 'hierarquia de conteúdo, marcação clara e organização legível por sistemas'],
@@ -99,7 +115,11 @@ const technicalLayers = [
 
 <BaseLayout
   title="M-Signature"
-  description="M-Signature é a implementação Brand-Driven para empresas premium que precisam transformar qualidade real em presença digital clara, confiável e legível para clientes, busca e IA."
+  description="M-Signature implementa presença digital Brand-Driven para empresas premium que precisam comunicar qualidade real com clareza, confiança, busca e IA."
+  canonicalPath="/m-signature"
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': signatureUrl + '#service' }}
+  structuredData={[signatureServiceSchema, signatureScopeSchema]}
   showChrome={false}
 >
   <script>
