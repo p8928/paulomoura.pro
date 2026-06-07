@@ -152,23 +152,37 @@ const technicalLayers = [
       </aside>
     </section>
 
+    <section class="signature-thesis" data-nav-surface="light" aria-labelledby="signature-thesis-title">
+      <div class="signature-shell signature-thesis-layout">
+        <header class="signature-section-head signature-thesis-head">
+          <p class="signature-kicker signature-kicker-dark">Antes do escopo</p>
+          <span>01 / Leitura</span>
+        </header>
+
+        <div class="signature-thesis-copy">
+          <h2 id="signature-thesis-title">A presença digital precisa tornar evidente aquilo que a empresa já sustenta na prática.</h2>
+          <p>
+            Muitos negócios qualificados chegam ao digital com uma contradição: entregam bem, atendem bem, cobram de acordo com um padrão superior, mas aparecem como qualquer outro concorrente. O site não sustenta confiança, a linguagem não revela critério e os sinais públicos não ajudam clientes, Google ou sistemas de IA a entenderem por que aquela empresa merece atenção.
+          </p>
+        </div>
+
+        <aside class="signature-thesis-card" aria-label="Como o M-Signature resolve essa lacuna">
+          <span>M-Signature</span>
+          <p>
+            O M-Signature resolve essa lacuna por implementação. A marca é lida como operação, cultura, atendimento, oferta, reputação e experiência. Depois, essa leitura se transforma em linguagem, estrutura técnica, site, dados organizados e presença local mais coerente.
+          </p>
+        </aside>
+      </div>
+    </section>
+
     <section class="signature-clarity" data-nav-surface="light" aria-labelledby="signature-clarity-title">
       <div class="signature-shell signature-statement-layout">
         <header class="signature-section-head">
           <p class="signature-kicker signature-kicker-dark">O que você contrata</p>
-          <span>01 / Clareza</span>
+          <span>02 / Clareza</span>
         </header>
 
         <h2 id="signature-clarity-title">Uma implementação para tornar o valor real da empresa mais legível.</h2>
-
-        <div class="signature-statement-copy">
-          <p>
-            Muitos negócios qualificados chegam ao digital com uma contradição: entregam bem, atendem bem, cobram de acordo com um padrão superior, mas aparecem como qualquer outro concorrente. O site não sustenta confiança, a linguagem não revela critério e os sinais públicos não ajudam clientes, Google ou sistemas de IA a entenderem por que aquela empresa merece atenção.
-          </p>
-          <p>
-            O M-Signature resolve essa lacuna por implementação. A marca é lida como operação, cultura, atendimento, oferta, reputação e experiência. Depois, essa leitura se transforma em linguagem, estrutura técnica, site, dados organizados e presença local mais coerente.
-          </p>
-        </div>
 
         <div class="signature-clarity-modules" aria-label="Resumo da intervenção M-Signature">
           {clarityModules.map((item) => (
@@ -475,12 +489,112 @@ const technicalLayers = [
     text-align: right;
   }
 
+  .signature-thesis,
   .signature-clarity,
   .signature-fit,
   .signature-process,
   .signature-decision {
     padding-block: clamp(7rem, 11vw, 11rem);
     background: var(--moura-paper);
+  }
+
+  .signature-thesis {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding-block: clamp(4rem, 6vw, 5.5rem);
+  }
+
+  .signature-thesis-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+  }
+
+  .signature-thesis-layout::before {
+    content: "";
+    position: absolute;
+    inset: -8vh -8vw;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(167, 124, 61, 0.1), transparent 30%),
+      linear-gradient(90deg, rgba(8, 8, 8, 0.026) 1px, transparent 1px) 0 0 / calc(100% / 12) 100%;
+    opacity: 0.78;
+    pointer-events: none;
+  }
+
+  .signature-thesis-layout > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .signature-thesis-head {
+    grid-column: 1 / -1;
+    margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .signature-thesis-copy {
+    grid-column: 1 / 9;
+    display: grid;
+    gap: clamp(1.6rem, 3vw, 2.6rem);
+  }
+
+  .signature-thesis-copy h2 {
+    max-width: 15ch;
+    margin: 0;
+    color: rgba(8, 8, 8, 0.9);
+    font-size: clamp(3.1rem, 6.2vw, 7.4rem);
+    font-weight: 300;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .signature-thesis-copy p {
+    max-width: 65ch;
+    margin: 0;
+    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    padding-top: clamp(1.25rem, 2.2vw, 1.8rem);
+    color: rgba(8, 8, 8, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.02rem, 1.25vw, 1.22rem);
+    font-weight: 300;
+    line-height: 1.72;
+  }
+
+  .signature-thesis-card {
+    grid-column: 9 / -1;
+    display: grid;
+    gap: clamp(1.2rem, 2vw, 1.8rem);
+    align-self: end;
+    background:
+      linear-gradient(155deg, rgba(244, 239, 231, 0.055), rgba(244, 239, 231, 0.01)),
+      #080808;
+    border: 1px solid rgba(167, 124, 61, 0.28);
+    box-shadow: 0 2rem 5rem rgba(8, 8, 8, 0.18);
+    padding: clamp(1.5rem, 3vw, 2.6rem);
+    transform: translateY(clamp(1rem, 3vw, 2.5rem));
+  }
+
+  .signature-thesis-card span {
+    color: rgba(167, 124, 61, 0.86);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .signature-thesis-card p {
+    margin: 0;
+    color: rgba(244, 239, 231, 0.72);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.12vw, 1.12rem);
+    font-weight: 300;
+    line-height: 1.7;
   }
 
   .signature-statement-layout,
@@ -521,8 +635,8 @@ const technicalLayers = [
 
   .signature-statement-layout h2,
   .signature-process-layout h2 {
-    grid-column: 1 / 8;
-    max-width: 14ch;
+    grid-column: 1 / 9;
+    max-width: 16ch;
     font-size: clamp(2.8rem, 5.2vw, 6.4rem);
     line-height: 0.96;
     color: rgba(8, 8, 8, 0.9);
@@ -552,7 +666,7 @@ const technicalLayers = [
   }
 
   .signature-clarity-modules {
-    grid-column: 1 / -1;
+    grid-column: 4 / -1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     border-top: 1px solid rgba(8, 8, 8, 0.18);
@@ -994,14 +1108,21 @@ const technicalLayers = [
       text-align: left;
     }
 
+    .signature-thesis {
+      min-height: auto;
+      align-items: start;
+    }
+
+    .signature-thesis-layout,
     .signature-statement-layout,
     .signature-process-layout {
       grid-template-columns: 1fr;
     }
 
     .signature-section-head,
+    .signature-thesis-copy,
+    .signature-thesis-card,
     .signature-statement-layout h2,
-    .signature-statement-copy,
     .signature-clarity-modules,
     .signature-process-layout h2,
     .signature-process-list,
@@ -1046,6 +1167,10 @@ const technicalLayers = [
     .signature-scope-list article > h3,
     .signature-scope-list article > p {
       grid-column: 1;
+    }
+
+    .signature-thesis-card {
+      transform: none;
     }
 
     .signature-clarity-modules,
