@@ -290,11 +290,140 @@ textarea {
   gap: 1rem 1.1rem;
 }
 
-.composer-editor textarea {
+.composer-rich-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: end;
+  border: 1px solid rgba(244, 239, 231, 0.1);
+  background: rgba(244, 239, 231, 0.035);
+  padding: 0.8rem;
+}
+
+.composer-rich-toolbar label {
+  min-width: min(100%, 13rem);
+}
+
+.composer-rich-toolbar label > span {
+  color: var(--quiet);
+  font-size: 0.62rem;
+}
+
+.composer-rich-toolbar select {
+  min-height: 2.65rem;
+  padding-block: 0.7rem;
+}
+
+.composer-rich-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.composer-rich-tools button {
+  min-height: 2.65rem;
+  border: 1px solid rgba(244, 239, 231, 0.14);
+  border-radius: 3px;
+  background: rgba(8, 8, 8, 0.34);
+  color: rgba(244, 239, 231, 0.78);
+  cursor: pointer;
+  font-family: "Neue Haas Display", "Outfit", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  padding: 0.68rem 0.9rem;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.composer-rich-tools button:hover,
+.composer-rich-tools button:focus-visible {
+  border-color: rgba(167, 124, 61, 0.52);
+  background: rgba(167, 124, 61, 0.1);
+  color: var(--ink);
+  outline: none;
+}
+
+.composer-rich-tools code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+}
+
+.composer-rich-editor {
   min-height: 36rem;
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgba(244, 239, 231, 0.035), rgba(244, 239, 231, 0.018)),
+    var(--field);
+  color: var(--ink);
   font-family: "Neue Haas Display", "Avenir Next", sans-serif;
   font-size: 1.03rem;
+  font-weight: 300;
   line-height: 1.72;
+  padding: clamp(1rem, 2.4vw, 1.45rem);
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.composer-rich-editor:focus {
+  outline: none;
+  border-color: rgba(167, 124, 61, 0.68);
+  background: var(--field-focus);
+  box-shadow: 0 0 0 3px rgba(167, 124, 61, 0.14);
+}
+
+.composer-rich-editor p,
+.composer-rich-editor h2,
+.composer-rich-editor h3,
+.composer-rich-editor h4,
+.composer-rich-editor ul,
+.composer-rich-editor ol,
+.composer-rich-editor pre {
+  margin: 0 0 1rem;
+}
+
+.composer-rich-editor h2,
+.composer-rich-editor h3,
+.composer-rich-editor h4 {
+  color: rgba(244, 239, 231, 0.94);
+  font-family: "Outfit", "Neue Haas Display", sans-serif;
+  font-weight: 100;
+  line-height: 1.05;
+}
+
+.composer-rich-editor h2 { font-size: clamp(1.7rem, 3vw, 2.6rem); }
+.composer-rich-editor h3 { font-size: clamp(1.35rem, 2.2vw, 2rem); }
+.composer-rich-editor h4 { font-size: clamp(1.12rem, 1.7vw, 1.45rem); }
+
+.composer-rich-editor ul,
+.composer-rich-editor ol {
+  padding-left: 1.35rem;
+}
+
+.composer-rich-editor code,
+.composer-rich-editor pre {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.composer-rich-editor code {
+  border: 1px solid rgba(167, 124, 61, 0.24);
+  background: rgba(167, 124, 61, 0.09);
+  color: rgba(244, 239, 231, 0.86);
+  font-size: 0.88em;
+  padding: 0.08rem 0.28rem;
+}
+
+.composer-rich-editor pre {
+  white-space: pre-wrap;
+  border-left: 1px solid rgba(167, 124, 61, 0.46);
+  background: rgba(8, 8, 8, 0.38);
+  color: rgba(244, 239, 231, 0.76);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  padding: 1rem;
 }
 
 .composer-editor-head {
@@ -439,6 +568,33 @@ textarea {
 
 .composer-preview-body p {
   margin: 0 0 1rem;
+}
+
+.composer-preview-body strong {
+  color: rgba(244, 239, 231, 0.9);
+  font-weight: 500;
+}
+
+.composer-preview-body code {
+  border: 1px solid rgba(167, 124, 61, 0.22);
+  background: rgba(167, 124, 61, 0.08);
+  color: rgba(244, 239, 231, 0.86);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.86em;
+  padding: 0.08rem 0.28rem;
+}
+
+.composer-preview-body pre {
+  max-width: 760px;
+  overflow: auto;
+  border-left: 1px solid rgba(167, 124, 61, 0.42);
+  background: rgba(8, 8, 8, 0.34);
+  color: rgba(244, 239, 231, 0.72);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+  padding: 1rem;
 }
 
 .composer-preview-body ul,

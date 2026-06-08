@@ -296,7 +296,9 @@
     }
 
     .application-heading h2 {
-      max-width: 10ch;
+      max-width: 11ch;
+      font-size: clamp(2.35rem, 9.5vw, 3.4rem);
+      line-height: 1.02;
     }
 
     .application-accordion-item button {

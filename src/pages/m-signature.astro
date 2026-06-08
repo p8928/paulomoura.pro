@@ -1240,4 +1240,308 @@ const technicalLayers = [
       font-size: clamp(6.2rem, 27vw, 8.6rem);
     }
   }
+
+  @media (max-width: 640px) {
+    .signature-page {
+      --mobile-section: clamp(4.5rem, 14vw, 5.75rem);
+      --mobile-rule-dark: rgba(244, 239, 231, 0.14);
+      --mobile-rule-light: rgba(8, 8, 8, 0.14);
+    }
+
+    .signature-shell {
+      width: min(100% - 2rem, 88rem);
+    }
+
+    .signature-kicker,
+    .signature-section-head span,
+    .signature-hero-system,
+    .signature-scope-list span,
+    .signature-process-list > article > span {
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+
+    .signature-hero {
+      min-height: 100svh;
+      padding-block: 6.25rem 1.5rem;
+      background:
+        linear-gradient(180deg, rgba(244, 239, 231, 0.035), transparent 48%),
+        linear-gradient(180deg, #050505 0%, #0b0b0a 100%);
+      background-size: 100%;
+    }
+
+    .signature-hero-grid {
+      gap: clamp(2rem, 8vw, 3rem);
+      align-self: end;
+    }
+
+    .signature-hero-copy {
+      gap: 1rem;
+    }
+
+    .signature-hero h1,
+    .signature-thesis-copy h2,
+    .signature-statement-layout h2,
+    .signature-fit-title h2,
+    .signature-proof h2,
+    .signature-process-layout h2,
+    .signature-tech h2,
+    .signature-decision h2 {
+      max-width: 11.5ch;
+      font-size: clamp(2.55rem, 11.6vw, 3.9rem);
+      line-height: 0.96;
+    }
+
+    .signature-hero-aside {
+      gap: 1.2rem;
+      padding-top: 1.1rem;
+    }
+
+    .signature-hero-aside p,
+    .signature-scope-list p,
+    .signature-proof-copy p,
+    .signature-tech-copy p,
+    .signature-thesis-copy p,
+    .signature-thesis-card p,
+    .signature-clarity-modules p,
+    .signature-fit li,
+    .signature-process-list p,
+    .signature-decision-copy p,
+    .signature-decision-steps li {
+      font-size: 0.98rem;
+      line-height: 1.58;
+    }
+
+    .signature-page :global(.moura-button) {
+      width: 100%;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .signature-hero-system {
+      width: min(100% - 2rem, 88rem);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem 1rem;
+      margin-top: 2.4rem;
+      padding-top: 0.9rem;
+    }
+
+    .signature-hero-system p {
+      grid-column: 1 / -1;
+    }
+
+    .signature-hero-system span {
+      color: rgba(244, 239, 231, 0.48);
+      text-align: left;
+    }
+
+    .signature-thesis,
+    .signature-clarity,
+    .signature-fit,
+    .signature-process,
+    .signature-decision,
+    .signature-scope,
+    .signature-proof,
+    .signature-tech {
+      padding-block: var(--mobile-section);
+    }
+
+    .signature-thesis {
+      min-height: 100svh;
+    }
+
+    .signature-thesis-layout {
+      gap: 2rem;
+    }
+
+    .signature-thesis-layout::before,
+    .signature-statement-layout::before,
+    .signature-process-layout::before {
+      opacity: 0;
+    }
+
+    .signature-thesis-head {
+      margin-bottom: 0;
+    }
+
+    .signature-thesis-copy {
+      gap: 1.35rem;
+    }
+
+    .signature-thesis-copy h2 {
+      max-width: 12ch;
+    }
+
+    .signature-thesis-copy p {
+      padding-top: 1.05rem;
+    }
+
+    .signature-thesis-card {
+      gap: 1rem;
+      border-color: rgba(167, 124, 61, 0.24);
+      box-shadow: 0 1.3rem 3rem rgba(8, 8, 8, 0.14);
+      padding: 1.25rem;
+    }
+
+    .signature-statement-layout,
+    .signature-process-layout,
+    .signature-fit-grid,
+    .signature-proof-grid,
+    .signature-tech-grid,
+    .signature-decision-grid {
+      gap: 2rem;
+    }
+
+    .signature-section-head {
+      gap: 0.55rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--mobile-rule-light);
+    }
+
+    .signature-scope .signature-section-head,
+    .signature-proof .signature-section-head,
+    .signature-tech .signature-section-head {
+      border-bottom-color: var(--mobile-rule-dark);
+    }
+
+    .signature-clarity-modules {
+      border-left: 0;
+      border-top-color: var(--mobile-rule-light);
+    }
+
+    .signature-clarity-modules article {
+      min-height: auto;
+      gap: 0.75rem;
+      border-right: 0;
+      padding: 1.1rem 0;
+    }
+
+    .signature-scope-head {
+      gap: 0.85rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .signature-scope-head h2 {
+      grid-template-columns: clamp(3.15rem, 16vw, 4.4rem) minmax(0, 1fr);
+      column-gap: 0.65rem;
+      font-size: clamp(2.35rem, 10.5vw, 3.3rem);
+      line-height: 1;
+    }
+
+    .signature-scope-head h2 .signature-dropcap {
+      font-size: clamp(4.7rem, 20vw, 6.2rem);
+      transform: translateY(-0.04em);
+    }
+
+    .signature-scope-list article {
+      gap: 0.65rem;
+      padding-block: 1.35rem;
+    }
+
+    .signature-scope-list h3,
+    .signature-process-list h3,
+    .signature-fit h3 {
+      font-size: clamp(1.28rem, 6vw, 1.8rem);
+      line-height: 1.08;
+    }
+
+    .signature-fit-columns {
+      gap: 2.1rem;
+    }
+
+    .signature-fit-columns section {
+      padding-top: 1.1rem;
+    }
+
+    .signature-fit ul {
+      gap: 0;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(8, 8, 8, 0.1);
+    }
+
+    .signature-fit li {
+      grid-template-columns: 1.25rem 1fr;
+      gap: 0.65rem;
+      padding-block: 0.72rem;
+      border-bottom: 1px solid rgba(8, 8, 8, 0.1);
+    }
+
+    .signature-proof-copy {
+      gap: 0.85rem;
+    }
+
+    .signature-sector-list summary {
+      min-height: 48px;
+      padding-block: 0.8rem;
+    }
+
+    .signature-sector-list summary span {
+      font-size: clamp(1.05rem, 5.4vw, 1.42rem);
+      line-height: 1.15;
+    }
+
+    .signature-sector-list details > div {
+      gap: 0.95rem;
+      padding-bottom: 1rem;
+    }
+
+    .signature-sector-list a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.72rem 0.9rem;
+    }
+
+    .signature-process-list {
+      border-left: 0;
+    }
+
+    .signature-process-list article {
+      gap: 0.85rem;
+      border-right: 0;
+      padding: 1.15rem 0;
+    }
+
+    .signature-process-list p a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      vertical-align: middle;
+    }
+
+    .signature-tech-table div {
+      gap: 0.4rem;
+      padding-block: 0.95rem;
+    }
+
+    .signature-decision-copy {
+      gap: 1.15rem;
+      padding-top: 1.1rem;
+    }
+
+    .signature-decision-steps {
+      gap: 0;
+      width: 100%;
+      border-top: 1px solid rgba(8, 8, 8, 0.12);
+    }
+
+    .signature-decision-steps li {
+      grid-template-columns: 2rem 1fr;
+      gap: 0.65rem;
+      padding-block: 0.72rem;
+      border-bottom: 1px solid rgba(8, 8, 8, 0.12);
+    }
+  }
+
+  @supports (height: 100dvh) {
+    @media (max-width: 640px) {
+      .signature-hero,
+      .signature-thesis {
+        min-height: 100dvh;
+      }
+    }
+  }
 </style>

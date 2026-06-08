@@ -8,6 +8,8 @@ const keywordsInput = form.elements.keywords;
 const categoryInput = form.elements.category;
 const dateInput = form.elements.publishedAt;
 const bodyInput = form.elements.body;
+const richEditor = document.querySelector('[data-rich-editor]');
+const blockFormat = document.querySelector('[data-block-format]');
 const previewTitle = document.querySelector('[data-preview-title]');
 const previewMeta = document.querySelector('[data-preview-meta]');
 const previewDescription = document.querySelector('[data-preview-description]');
@@ -63,14 +65,15 @@ function convertPlainTextBlock(block) {
     .filter(Boolean);
 
   if (lines.length === 0) return '';
+  if (/^\x60\x60\x60/.test(lines[0])) return block;
 
   const allBullets = lines.every((line) => /^[-*•]\s+/.test(line));
-  if (allBullets) return lines.map((line) => `- ${normalizeMarkdownMarker(line)}`).join('\n');
+  if (allBullets) return lines.map((line) => '- ' + normalizeMarkdownMarker(line)).join('\n');
 
   const allNumbered = lines.every((line) => /^\d+[.)]\s+/.test(line));
-  if (allNumbered) return lines.map((line, index) => `${index + 1}. ${normalizeMarkdownMarker(line)}`).join('\n');
+  if (allNumbered) return lines.map((line, index) => String(index + 1) + '. ' + normalizeMarkdownMarker(line)).join('\n');
 
-  if (lines.length === 1 && isLikelyHeading(lines[0])) return `## ${normalizeMarkdownMarker(lines[0]).replace(/:$/, '')}`;
+  if (lines.length === 1 && isLikelyHeading(lines[0])) return '## ' + normalizeMarkdownMarker(lines[0]).replace(/:$/, '');
 
   return lines.join(' ').replace(/\s+/g, ' ');
 }
@@ -82,6 +85,142 @@ function normalizeBodyToMarkdown(body) {
     .map((block) => convertPlainTextBlock(block.trim()))
     .filter(Boolean)
     .join('\n\n');
+}
+
+function markdownInlineToFragment(text) {
+  const fragment = document.createDocumentFragment();
+  const pattern = /(\x60[^\x60]+\x60|\*\*[^*]+\*\*|\*[^*]+\*)/g;
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(pattern)) {
+    if (match.index > lastIndex) fragment.append(document.createTextNode(text.slice(lastIndex, match.index)));
+
+    const token = match[0];
+    const element = document.createElement(token.startsWith('**') ? 'strong' : token.startsWith('*') ? 'em' : 'code');
+    element.textContent = token
+      .replace(/^\*\*|\*\*$/g, '')
+      .replace(/^\*|\*$/g, '')
+      .replace(/^\x60|\x60$/g, '');
+    fragment.append(element);
+    lastIndex = match.index + token.length;
+  }
+
+  if (lastIndex < text.length) fragment.append(document.createTextNode(text.slice(lastIndex)));
+  return fragment;
+}
+
+function escapeMarkdownInline(value) {
+  return String(value ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function inlineNodeToMarkdown(node) {
+  if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? '';
+  if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+  const tag = node.tagName.toLowerCase();
+  const content = Array.from(node.childNodes).map(inlineNodeToMarkdown).join('');
+
+  if (tag === 'strong' || tag === 'b') return content ? '**' + content + '**' : '';
+  if (tag === 'em' || tag === 'i') return content ? '*' + content + '*' : '';
+  if (tag === 'code') return content ? '\x60' + content.replace(/\x60/g, '') + '\x60' : '';
+  if (tag === 'br') return '\n';
+  return content;
+}
+
+function hasNestedBlock(element) {
+  return Array.from(element.children).some((child) => ['ul', 'ol', 'pre', 'h2', 'h3', 'h4'].includes(child.tagName.toLowerCase()));
+}
+
+function mixedBlockToMarkdown(element) {
+  const blocks = [];
+  let inlineNodes = [];
+
+  function flushInline() {
+    const text = escapeMarkdownInline(inlineNodes.map(inlineNodeToMarkdown).join(''));
+    if (text) blocks.push(text);
+    inlineNodes = [];
+  }
+
+  for (const node of element.childNodes) {
+    if (node.nodeType === Node.ELEMENT_NODE && ['ul', 'ol', 'pre', 'h2', 'h3', 'h4'].includes(node.tagName.toLowerCase())) {
+      flushInline();
+      const nested = blockToMarkdown(node);
+      if (nested) blocks.push(nested);
+    } else {
+      inlineNodes.push(node);
+    }
+  }
+
+  flushInline();
+  return blocks.join('\\n\\n');
+}
+
+function blockToMarkdown(element) {
+  const tag = element.tagName.toLowerCase();
+
+  if ((tag === 'p' || tag === 'div') && hasNestedBlock(element)) return mixedBlockToMarkdown(element);
+
+  if (tag === 'ul') {
+    return Array.from(element.children)
+      .filter((child) => child.tagName.toLowerCase() === 'li')
+      .map((item) => '- ' + escapeMarkdownInline(Array.from(item.childNodes).map(inlineNodeToMarkdown).join('')))
+      .join('\n');
+  }
+
+  if (tag === 'ol') {
+    return Array.from(element.children)
+      .filter((child) => child.tagName.toLowerCase() === 'li')
+      .map((item, index) => String(index + 1) + '. ' + escapeMarkdownInline(Array.from(item.childNodes).map(inlineNodeToMarkdown).join('')))
+      .join('\n');
+  }
+
+  if (tag === 'pre') {
+    const code = element.textContent.replace(/\n+$/g, '');
+    return code ? '\x60\x60\x60\n' + code + '\n\x60\x60\x60' : '';
+  }
+
+  const text = escapeMarkdownInline(Array.from(element.childNodes).map(inlineNodeToMarkdown).join(''));
+  if (!text) return '';
+  if (tag === 'h2') return '## ' + text;
+  if (tag === 'h3') return '### ' + text;
+  if (tag === 'h4') return '#### ' + text;
+  return text;
+}
+
+function editorHtmlToMarkdown() {
+  const blocks = [];
+  let inlineNodes = [];
+
+  function flushInline() {
+    const text = escapeMarkdownInline(inlineNodes.map(inlineNodeToMarkdown).join(''));
+    if (text) blocks.push(text);
+    inlineNodes = [];
+  }
+
+  for (const node of richEditor.childNodes) {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      flushInline();
+      const block = blockToMarkdown(node);
+      if (block) blocks.push(block);
+    } else {
+      inlineNodes.push(node);
+    }
+  }
+
+  flushInline();
+  return blocks.join('\n\n');
+}
+
+function syncEditorToBody() {
+  bodyInput.value = editorHtmlToMarkdown();
+}
+
+function ensureEditorBlock() {
+  if (richEditor.childNodes.length === 0) {
+    const paragraph = document.createElement('p');
+    paragraph.append(document.createElement('br'));
+    richEditor.append(paragraph);
+  }
 }
 
 function renderPreviewBody(markdown) {
@@ -98,10 +237,19 @@ function renderPreviewBody(markdown) {
     const lines = block.split('\n');
     const firstLine = lines[0] ?? '';
 
-    if (/^##\s+/.test(firstLine)) {
+    if (/^#{2,4}\s+/.test(firstLine)) {
       const heading = document.createElement('h3');
-      heading.textContent = firstLine.replace(/^##\s+/, '');
+      heading.textContent = firstLine.replace(/^#{2,4}\s+/, '');
       previewBody.append(heading);
+      continue;
+    }
+
+    if (/^\x60\x60\x60/.test(firstLine)) {
+      const pre = document.createElement('pre');
+      const code = document.createElement('code');
+      code.textContent = block.replace(/^\x60\x60\x60\n?/, '').replace(/\n?\x60\x60\x60$/, '');
+      pre.append(code);
+      previewBody.append(pre);
       continue;
     }
 
@@ -109,7 +257,7 @@ function renderPreviewBody(markdown) {
       const list = document.createElement('ul');
       for (const line of lines) {
         const item = document.createElement('li');
-        item.textContent = line.replace(/^-\s+/, '');
+        item.append(markdownInlineToFragment(line.replace(/^-\s+/, '')));
         list.append(item);
       }
       previewBody.append(list);
@@ -120,7 +268,7 @@ function renderPreviewBody(markdown) {
       const list = document.createElement('ol');
       for (const line of lines) {
         const item = document.createElement('li');
-        item.textContent = line.replace(/^\d+\.\s+/, '');
+        item.append(markdownInlineToFragment(line.replace(/^\d+\.\s+/, '')));
         list.append(item);
       }
       previewBody.append(list);
@@ -128,7 +276,7 @@ function renderPreviewBody(markdown) {
     }
 
     const paragraph = document.createElement('p');
-    paragraph.textContent = block;
+    paragraph.append(markdownInlineToFragment(block));
     previewBody.append(paragraph);
   }
 }
@@ -141,12 +289,106 @@ function updatePreview() {
     .map((keyword) => keyword.trim())
     .filter(Boolean);
 
+  syncEditorToBody();
   previewTitle.textContent = titleInput.value.trim() || 'Sem título';
   previewDescription.textContent = description || 'Descrição ainda não definida.';
   previewMetaDescription.textContent = metaDescription || description || 'Usando descrição editorial.';
   previewKeywords.textContent = keywords.length > 0 ? keywords.join(', ') : 'Nenhuma keyword definida.';
-  previewMeta.textContent = `${categoryLabels[categoryInput.value] ?? 'categoria'} / ${dateInput.value || 'data'}`;
+  previewMeta.textContent = (categoryLabels[categoryInput.value] ?? 'categoria') + ' / ' + (dateInput.value || 'data');
   renderPreviewBody(normalizeBodyToMarkdown(bodyInput.value));
+}
+
+function getSelectionRange() {
+  richEditor.focus();
+  const selection = document.getSelection();
+  if (!selection || selection.rangeCount === 0) return null;
+  return selection.getRangeAt(0);
+}
+
+function placeCaretAfter(node) {
+  const selection = document.getSelection();
+  if (!selection) return;
+  const range = document.createRange();
+  range.setStartAfter(node);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
+function placeCaretInside(node) {
+  const selection = document.getSelection();
+  if (!selection) return;
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  range.collapse(false);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
+function currentBlock() {
+  const selection = document.getSelection();
+  let node = selection?.anchorNode;
+  if (!node || node === richEditor) return richEditor.lastElementChild || richEditor.firstElementChild;
+  if (node.nodeType === Node.TEXT_NODE) node = node.parentElement;
+  return node?.closest?.('p, h2, h3, h4, pre, li, div') || richEditor.lastElementChild || richEditor.firstElementChild;
+}
+
+function wrapSelection(tagName, fallbackText) {
+  const range = getSelectionRange();
+  if (!range) return;
+
+  const element = document.createElement(tagName);
+  element.textContent = range.collapsed ? fallbackText : range.toString();
+  range.deleteContents();
+  range.insertNode(element);
+
+  const spacer = document.createTextNode(' ');
+  element.after(spacer);
+  placeCaretAfter(spacer);
+}
+
+function replaceBlockTag(tagName) {
+  const block = currentBlock();
+  if (!block || block === richEditor) return;
+  const replacement = document.createElement(tagName);
+  replacement.innerHTML = block.innerHTML || '<br>';
+  block.replaceWith(replacement);
+  placeCaretInside(replacement);
+}
+
+function makeBulletList() {
+  const block = currentBlock();
+  if (!block || block === richEditor) return;
+
+  const list = document.createElement('ul');
+  const item = document.createElement('li');
+  item.innerHTML = block.textContent.trim() ? block.innerHTML : '<br>';
+  list.append(item);
+  block.replaceWith(list);
+  placeCaretInside(item);
+}
+
+function runEditorCommand(command) {
+  if (command === 'bold') wrapSelection('strong', 'strong');
+  if (command === 'italic') wrapSelection('em', 'ênfase');
+  if (command === 'code') wrapSelection('code', 'código');
+  if (command === 'insertUnorderedList') makeBulletList();
+  updatePreview();
+}
+
+function applyBlockFormat(value) {
+  replaceBlockTag(value === 'p' ? 'p' : value);
+  updatePreview();
+}
+
+function insertPlainText(text) {
+  const range = getSelectionRange();
+  if (!range) return;
+  const node = document.createTextNode(text);
+  range.deleteContents();
+  range.insertNode(node);
+  placeCaretAfter(node);
+  updatePreview();
 }
 
 async function init() {
@@ -162,6 +404,7 @@ async function init() {
 
   categoryInput.value = 'estrategia';
   dateInput.value = config.today;
+  ensureEditorBlock();
   updatePreview();
 }
 
@@ -179,11 +422,36 @@ metaDescriptionInput.addEventListener('input', updatePreview);
 keywordsInput.addEventListener('input', updatePreview);
 categoryInput.addEventListener('change', updatePreview);
 dateInput.addEventListener('change', updatePreview);
-bodyInput.addEventListener('input', updatePreview);
+
+richEditor.addEventListener('input', updatePreview);
+
+richEditor.addEventListener('paste', (event) => {
+  event.preventDefault();
+  insertPlainText(event.clipboardData?.getData('text/plain') ?? '');
+});
+
+richEditor.addEventListener('keydown', (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'b') {
+    event.preventDefault();
+    runEditorCommand('bold');
+  }
+
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'i') {
+    event.preventDefault();
+    runEditorCommand('italic');
+  }
+});
+
+document.querySelectorAll('[data-editor-command]').forEach((button) => {
+  button.addEventListener('click', () => runEditorCommand(button.dataset.editorCommand));
+});
+
+blockFormat.addEventListener('change', () => applyBlockFormat(blockFormat.value));
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   setStatus('Normalizando texto e salvando...');
+  syncEditorToBody();
 
   const payload = Object.fromEntries(new FormData(form));
   payload.draft = form.elements.draft.checked;
@@ -201,7 +469,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  setStatus(`Texto convertido para Markdown e salvo em ${result.filePath}`, 'success');
+  setStatus('Texto convertido para Markdown e salvo em ' + result.filePath, 'success');
 });
 
 init().catch((error) => setStatus(error.message, 'error'));

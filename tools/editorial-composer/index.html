@@ -99,7 +99,26 @@
               <span>Cole ou escreva livremente. Ao salvar, o CMS normaliza o corpo como Markdown.</span>
             </div>
           </div>
-          <textarea name="body" rows="22" required spellcheck="true" data-body-editor></textarea>
+          <div class="composer-rich-toolbar" aria-label="Ferramentas do editor de corpo">
+            <label>
+              <span>Bloco</span>
+              <select data-block-format aria-label="Formato do bloco">
+                <option value="p">Parágrafo</option>
+                <option value="h2">Heading 2</option>
+                <option value="h3">Heading 3</option>
+                <option value="h4">Heading 4</option>
+                <option value="pre">Código</option>
+              </select>
+            </label>
+            <div class="composer-rich-tools" role="group" aria-label="Formatação inline e listas">
+              <button type="button" data-editor-command="bold" aria-label="Aplicar strong"><strong>B</strong></button>
+              <button type="button" data-editor-command="italic" aria-label="Aplicar ênfase"><em>I</em></button>
+              <button type="button" data-editor-command="code" aria-label="Aplicar código"><code>&lt;/&gt;</code></button>
+              <button type="button" data-editor-command="insertUnorderedList" aria-label="Lista em bullet points">• Lista</button>
+            </div>
+          </div>
+          <div class="composer-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true" data-rich-editor></div>
+          <textarea name="body" required data-body-editor hidden></textarea>
         </section>
 
         <aside class="composer-preview composer-form-wide" aria-live="polite">

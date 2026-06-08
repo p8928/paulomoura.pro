@@ -191,10 +191,12 @@
   }
 
   .overlay-menu-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
     font-size: clamp(3.05rem, 8vw, 8.4rem);
     font-weight: 700;
+    min-height: 44px;
     line-height: 0.86;
     letter-spacing: 0;
     color: rgba(8, 8, 8, 0.9);
@@ -228,7 +230,28 @@
 
   .overlay-social-link {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     opacity: 0.84;
+  }
+
+  .overlay-contact a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    .overlay-menu-link {
+      min-height: 48px;
+      line-height: 0.94;
+    }
+
+    .overlay-contact {
+      line-height: 1.25;
+    }
   }
 
 
