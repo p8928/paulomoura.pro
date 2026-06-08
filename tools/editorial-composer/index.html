@@ -29,7 +29,30 @@
         </aside>
       </section>
 
-      <form class="composer-form" data-composer-form>
+      <nav class="composer-menu" aria-label="Navegação do composer">
+        <button type="button" data-composer-view="editor" aria-pressed="true">Editor</button>
+        <button type="button" data-composer-view="library" aria-pressed="false">Conteúdos</button>
+      </nav>
+
+      <section class="composer-library" data-library-view hidden aria-labelledby="library-title">
+        <div class="composer-library-head">
+          <div>
+            <p id="library-title">Conteúdos</p>
+            <h2>Publicados e rascunhos.</h2>
+          </div>
+          <button type="button" data-refresh-posts>Atualizar lista</button>
+        </div>
+        <div class="composer-library-filters" role="group" aria-label="Filtros de conteúdo">
+          <button type="button" data-library-filter="all" aria-pressed="true">Todos</button>
+          <button type="button" data-library-filter="published" aria-pressed="false">Publicados</button>
+          <button type="button" data-library-filter="draft" aria-pressed="false">Rascunhos</button>
+        </div>
+        <div class="composer-post-list" data-post-list>
+          <p>Carregando conteúdos...</p>
+        </div>
+      </section>
+
+      <form class="composer-form" data-composer-form data-editor-view>
         <label>
           <span>Título</span>
           <input name="title" type="text" required autocomplete="off" />
@@ -99,6 +122,12 @@
               <span>Cole ou escreva livremente. Ao salvar, o CMS normaliza o corpo como Markdown.</span>
             </div>
           </div>
+          <div class="composer-body-metrics" aria-label="Métricas do corpo do texto">
+            <span><strong data-body-stat="characters">0</strong> caracteres</span>
+            <span><strong data-body-stat="words">0</strong> palavras</span>
+            <span><strong data-body-stat="lines">0</strong> linhas</span>
+            <span><strong data-body-stat="paragraphs">0</strong> parágrafos</span>
+          </div>
           <div class="composer-rich-toolbar" aria-label="Ferramentas do editor de corpo">
             <label>
               <span>Bloco</span>
@@ -115,9 +144,14 @@
               <button type="button" data-editor-command="italic" aria-label="Aplicar ênfase"><em>I</em></button>
               <button type="button" data-editor-command="code" aria-label="Aplicar código"><code>&lt;/&gt;</code></button>
               <button type="button" data-editor-command="insertUnorderedList" aria-label="Lista em bullet points">• Lista</button>
+              <button type="button" data-editor-command="image" aria-label="Adicionar imagem do computador">Imagem</button>
+              <button type="button" data-editor-command="imageUrl" aria-label="Adicionar imagem por URL">Imagem URL</button>
+              <button type="button" data-editor-command="video" aria-label="Adicionar vídeo do computador">Vídeo</button>
+              <button type="button" data-editor-command="videoUrl" aria-label="Adicionar vídeo por URL">Vídeo URL</button>
             </div>
           </div>
           <div class="composer-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true" data-rich-editor></div>
+          <input type="file" accept="image/*,video/*" data-media-upload hidden />
           <textarea name="body" required data-body-editor hidden></textarea>
         </section>
 

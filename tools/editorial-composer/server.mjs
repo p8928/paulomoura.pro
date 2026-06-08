@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join } from 'node:path';
-import { categories, savePost, slugify, todayISO } from './editorial-utils.mjs';
+import { categories, getPost, listPosts, saveMedia, savePost, slugify, todayISO } from './editorial-utils.mjs';
 
 const port = Number(process.env.PORT || 4177);
 const root = new URL('.', import.meta.url).pathname;
@@ -32,6 +32,29 @@ const server = createServer(async (request, response) => {
     if (request.method === 'GET' && url.pathname === '/config') {
       response.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
       response.end(JSON.stringify({ categories, today: todayISO() }));
+      return;
+    }
+
+    if (request.method === 'GET' && url.pathname === '/api/posts') {
+      const posts = await listPosts();
+      response.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify({ ok: true, posts }));
+      return;
+    }
+
+    if (request.method === 'GET' && url.pathname.startsWith('/api/posts/')) {
+      const slug = decodeURIComponent(url.pathname.replace('/api/posts/', ''));
+      const post = await getPost(slug);
+      response.writeHead(post ? 200 : 404, { 'content-type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify(post ? { ok: true, post } : { ok: false, errors: ['Post nao encontrado.'] }));
+      return;
+    }
+
+    if (request.method === 'POST' && url.pathname === '/api/media') {
+      const payload = await parseBody(request);
+      const result = await saveMedia(payload);
+      response.writeHead(result.ok ? 200 : 400, { 'content-type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify(result));
       return;
     }
 

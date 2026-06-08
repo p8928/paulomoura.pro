@@ -66,22 +66,18 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at 84% 7%, rgba(167, 124, 61, 0.16), transparent 26rem),
-    radial-gradient(circle at 8% 20%, rgba(111, 38, 61, 0.16), transparent 28rem),
-    linear-gradient(90deg, rgba(244, 239, 231, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, #050505 0%, #10100f 34%, #080808 100%);
-  background-size: auto, auto, 6.25rem 6.25rem, auto;
+    radial-gradient(circle at 82% 8%, rgba(167, 124, 61, 0.11), transparent 28rem),
+    radial-gradient(circle at 10% 18%, rgba(111, 38, 61, 0.1), transparent 30rem),
+    linear-gradient(180deg, #040404 0%, #10100f 42%, #070707 100%);
   color: var(--ink);
-  font-family: "Neue Haas Display", "Avenir Next", sans-serif;
+  font-family: "Outfit", "Neue Haas Display", sans-serif;
 }
 
 body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(244, 239, 231, 0.045), transparent 22rem),
-    linear-gradient(90deg, transparent, rgba(244, 239, 231, 0.025), transparent);
+  background: linear-gradient(180deg, rgba(244, 239, 231, 0.035), transparent 24rem);
   content: "";
   pointer-events: none;
 }
@@ -120,17 +116,33 @@ body::before {
 }
 
 .composer-brandbar p,
-.composer-hero p,
 .composer-form label > span,
-.composer-editor p,
 .composer-preview > p,
 .composer-actions p,
-.composer-hero-note span {
+.composer-hero-note span,
+.composer-menu button,
+.composer-library-head p,
+.composer-library-head button,
+.composer-library-filters button,
+.composer-post-meta span,
+.composer-post-card button,
+.composer-preview-seo dt,
+.composer-body-metrics,
+.composer-rich-toolbar label > span {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.composer-hero p,
+.composer-editor p {
+  font-family: "Outfit", "Neue Haas Display", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 100;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .composer-brandbar p {
@@ -194,6 +206,169 @@ body::before {
   text-transform: none;
 }
 
+
+.composer-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.85rem;
+}
+
+.composer-menu button,
+.composer-library-head button,
+.composer-library-filters button,
+.composer-post-card button {
+  min-height: 2.75rem;
+  border: 1px solid rgba(244, 239, 231, 0.14);
+  border-radius: 3px;
+  background: rgba(244, 239, 231, 0.045);
+  color: rgba(244, 239, 231, 0.78);
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding: 0.72rem 0.95rem;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.composer-menu button[aria-pressed="true"],
+.composer-library-filters button[aria-pressed="true"],
+.composer-menu button:hover,
+.composer-library-head button:hover,
+.composer-library-filters button:hover,
+.composer-post-card button:hover {
+  border-color: rgba(167, 124, 61, 0.55);
+  background: rgba(167, 124, 61, 0.1);
+  color: var(--ink);
+}
+
+.composer-library {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(244, 239, 231, 0.065), rgba(244, 239, 231, 0.025)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  padding: clamp(1rem, 2.4vw, 1.8rem);
+}
+
+.composer-library[hidden] {
+  display: none;
+}
+
+.composer-library-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+}
+
+.composer-library-head p {
+  margin: 0 0 0.72rem;
+  color: var(--gold-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.composer-library-head h2 {
+  margin: 0;
+  color: rgba(244, 239, 231, 0.94);
+  font-family: "Outfit", "Neue Haas Display", sans-serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 100;
+  line-height: 0.96;
+}
+
+.composer-library-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.composer-post-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.composer-post-list > p {
+  margin: 0;
+  color: var(--quiet);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.composer-post-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(244, 239, 231, 0.1);
+  background: rgba(8, 8, 8, 0.28);
+  padding: 1rem;
+}
+
+.composer-post-card h3 {
+  margin: 0;
+  color: rgba(244, 239, 231, 0.9);
+  font-family: "Neue Haas Display", "Avenir Next", sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.22;
+}
+
+.composer-post-card p {
+  max-width: 64rem;
+  margin: 0.55rem 0 0;
+  color: var(--quiet);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.composer-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.composer-post-meta span {
+  border: 1px solid rgba(244, 239, 231, 0.11);
+  color: var(--gold-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  padding: 0.34rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.composer-post-card button {
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .composer-post-card {
+    grid-template-columns: 1fr;
+  }
+
+  .composer-post-card button {
+    width: 100%;
+  }
+}
+
 .composer-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -230,8 +405,9 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--field);
-  color: var(--ink);
-  font: inherit;
+  color: rgba(244, 239, 231, 0.9);
+  font-family: "Neue Haas Display", "Avenir Next", sans-serif;
+  font-size: 1rem;
   font-weight: 300;
   padding: 0.95rem 1rem;
   transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
@@ -328,12 +504,12 @@ textarea {
   background: rgba(8, 8, 8, 0.34);
   color: rgba(244, 239, 231, 0.78);
   cursor: pointer;
-  font-family: "Neue Haas Display", "Outfit", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-family: "Outfit", "Neue Haas Display", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 100;
+  letter-spacing: 0;
   padding: 0.68rem 0.9rem;
-  text-transform: uppercase;
+  text-transform: none;
   transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
 }
 
@@ -350,6 +526,24 @@ textarea {
   font-size: 0.68rem;
 }
 
+.composer-body-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  color: var(--quiet);
+}
+
+.composer-body-metrics span {
+  border: 1px solid rgba(244, 239, 231, 0.1);
+  background: rgba(8, 8, 8, 0.24);
+  padding: 0.48rem 0.62rem;
+}
+
+.composer-body-metrics strong {
+  color: rgba(244, 239, 231, 0.82);
+  font-weight: 500;
+}
+
 .composer-rich-editor {
   min-height: 36rem;
   width: 100%;
@@ -359,11 +553,12 @@ textarea {
   background:
     linear-gradient(180deg, rgba(244, 239, 231, 0.035), rgba(244, 239, 231, 0.018)),
     var(--field);
-  color: var(--ink);
+  color: rgba(244, 239, 231, 0.9);
   font-family: "Neue Haas Display", "Avenir Next", sans-serif;
   font-size: 1.03rem;
   font-weight: 300;
   line-height: 1.72;
+  text-transform: none;
   padding: clamp(1rem, 2.4vw, 1.45rem);
   transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
@@ -373,6 +568,11 @@ textarea {
   border-color: rgba(167, 124, 61, 0.68);
   background: var(--field-focus);
   box-shadow: 0 0 0 3px rgba(167, 124, 61, 0.14);
+}
+
+.composer-rich-editor *,
+.composer-rich-editor {
+  text-transform: none;
 }
 
 .composer-rich-editor p,
@@ -424,6 +624,79 @@ textarea {
   font-size: 0.88rem;
   line-height: 1.65;
   padding: 1rem;
+}
+
+.composer-media-block,
+.composer-preview-body figure {
+  position: relative;
+  max-width: 760px;
+  margin: 0 0 1rem;
+  border: 1px solid rgba(244, 239, 231, 0.12);
+  background: rgba(8, 8, 8, 0.26);
+  padding: 0.75rem;
+}
+
+.composer-media-block img,
+.composer-preview-body img,
+.composer-preview-body video,
+.composer-preview-body iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: rgba(8, 8, 8, 0.44);
+}
+
+.composer-media-block img,
+.composer-preview-body img {
+  height: auto;
+}
+
+.composer-preview-body video,
+.composer-preview-body iframe {
+  max-width: 760px;
+  aspect-ratio: 16 / 9;
+}
+
+.composer-media-video {
+  display: grid;
+  min-height: 12rem;
+  place-items: center;
+  border: 1px solid rgba(167, 124, 61, 0.2);
+  background: rgba(8, 8, 8, 0.38);
+  color: var(--gold-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.composer-media-remove {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  min-height: 2rem;
+  border-color: rgba(8, 8, 8, 0.42);
+  background: rgba(8, 8, 8, 0.72);
+  color: rgba(244, 239, 231, 0.78);
+  font-size: 0.58rem;
+  padding: 0.48rem 0.58rem;
+}
+
+.composer-media-remove:hover,
+.composer-media-remove:focus-visible {
+  border-color: rgba(227, 123, 114, 0.62);
+  background: rgba(111, 38, 61, 0.72);
+  color: var(--ink);
+}
+
+.composer-media-block figcaption,
+.composer-preview-body figcaption {
+  margin-top: 0.65rem;
+  color: var(--quiet);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.45;
 }
 
 .composer-editor-head {

@@ -10,13 +10,29 @@ const dateInput = form.elements.publishedAt;
 const bodyInput = form.elements.body;
 const richEditor = document.querySelector('[data-rich-editor]');
 const blockFormat = document.querySelector('[data-block-format]');
+const mediaUploadInput = document.querySelector('[data-media-upload]');
 const previewTitle = document.querySelector('[data-preview-title]');
 const previewMeta = document.querySelector('[data-preview-meta]');
 const previewDescription = document.querySelector('[data-preview-description]');
 const previewMetaDescription = document.querySelector('[data-preview-meta-description]');
 const previewKeywords = document.querySelector('[data-preview-keywords]');
 const previewBody = document.querySelector('[data-preview-body]');
+const editorView = document.querySelector('[data-editor-view]');
+const libraryView = document.querySelector('[data-library-view]');
+const postList = document.querySelector('[data-post-list]');
+const refreshPostsButton = document.querySelector('[data-refresh-posts]');
+const viewButtons = document.querySelectorAll('[data-composer-view]');
+const filterButtons = document.querySelectorAll('[data-library-filter]');
+const bodyStats = {
+  characters: document.querySelector('[data-body-stat="characters"]'),
+  words: document.querySelector('[data-body-stat="words"]'),
+  lines: document.querySelector('[data-body-stat="lines"]'),
+  paragraphs: document.querySelector('[data-body-stat="paragraphs"]'),
+};
 let slugTouched = false;
+let libraryFilter = 'all';
+let libraryPosts = [];
+let pendingMediaType = 'image';
 
 const categoryLabels = {
   branding: 'Marca',
@@ -87,6 +103,81 @@ function normalizeBodyToMarkdown(body) {
     .join('\n\n');
 }
 
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[char]);
+}
+
+function markdownInlineToHtml(text) {
+  return escapeHtml(text)
+    .replace(/\x60([^\x60]+)\x60/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+}
+
+function isEmbeddableVideoUrl(url) {
+  return /(?:youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)/i.test(String(url ?? ''));
+}
+
+function videoEmbedUrl(url) {
+  const value = String(url ?? '').trim();
+  const youtube = value.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/i);
+  if (youtube) return 'https://www.youtube.com/embed/' + youtube[1];
+  const vimeo = value.match(/vimeo\.com\/(\d+)/i);
+  if (vimeo) return 'https://player.vimeo.com/video/' + vimeo[1];
+  return value;
+}
+
+function mediaHtml(type, url, label = '') {
+  const safeUrl = escapeHtml(url);
+  const safeLabel = escapeHtml(label);
+  const labelAttr = safeLabel ? ' data-label="' + safeLabel + '"' : '';
+
+  const removeButton = '<button type="button" class="composer-media-remove" data-remove-media aria-label="Remover mídia">Remover</button>';
+
+  if (type === 'image') {
+    return '<figure class="composer-media-block" data-media-type="image" data-src="' + safeUrl + '"' + labelAttr + '>' + removeButton + '<img src="' + safeUrl + '" alt="' + safeLabel + '"><figcaption>' + (safeLabel || 'Imagem') + '</figcaption></figure>';
+  }
+
+  return '<figure class="composer-media-block" data-media-type="video" data-src="' + safeUrl + '"' + labelAttr + '>' + removeButton + '<div class="composer-media-video">Vídeo</div><figcaption>' + (safeLabel || safeUrl) + '</figcaption></figure>';
+}
+
+function markdownToEditorHtml(markdown) {
+  const blocks = String(markdown ?? '').replace(/\r\n?/g, '\n').split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+  if (blocks.length === 0) return '<p><br></p>';
+
+  return blocks.map((block) => {
+    const lines = block.split('\n');
+    const firstLine = lines[0] ?? '';
+
+    if (/^####\s+/.test(firstLine)) return '<h4>' + markdownInlineToHtml(firstLine.replace(/^####\s+/, '')) + '</h4>';
+    if (/^###\s+/.test(firstLine)) return '<h3>' + markdownInlineToHtml(firstLine.replace(/^###\s+/, '')) + '</h3>';
+    if (/^##\s+/.test(firstLine)) return '<h2>' + markdownInlineToHtml(firstLine.replace(/^##\s+/, '')) + '</h2>';
+
+    const image = block.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (image) return mediaHtml('image', image[2], image[1]);
+
+    const video = block.match(/^<video controls src="([^"]+)"(?: title="([^"]*)")?><\/video>$/i);
+    if (video) return mediaHtml('video', video[1], video[2] || '');
+
+    const iframe = block.match(/^<iframe src="([^"]+)"(?: title="([^"]*)")?[\s\S]*?><\/iframe>$/i);
+    if (iframe) return mediaHtml('video', iframe[1], iframe[2] || '');
+
+    if (/^\x60\x60\x60/.test(firstLine)) {
+      return '<pre>' + escapeHtml(block.replace(/^\x60\x60\x60\n?/, '').replace(/\n?\x60\x60\x60$/, '')) + '</pre>';
+    }
+
+    if (lines.every((line) => /^-\s+/.test(line))) {
+      return '<ul>' + lines.map((line) => '<li>' + markdownInlineToHtml(line.replace(/^-\s+/, '')) + '</li>').join('') + '</ul>';
+    }
+
+    if (lines.every((line) => /^\d+\.\s+/.test(line))) {
+      return '<ol>' + lines.map((line) => '<li>' + markdownInlineToHtml(line.replace(/^\d+\.\s+/, '')) + '</li>').join('') + '</ol>';
+    }
+
+    return '<p>' + markdownInlineToHtml(block.replace(/\n/g, ' ')) + '</p>';
+  }).join('');
+}
+
 function markdownInlineToFragment(text) {
   const fragment = document.createDocumentFragment();
   const pattern = /(\x60[^\x60]+\x60|\*\*[^*]+\*\*|\*[^*]+\*)/g;
@@ -128,7 +219,7 @@ function inlineNodeToMarkdown(node) {
 }
 
 function hasNestedBlock(element) {
-  return Array.from(element.children).some((child) => ['ul', 'ol', 'pre', 'h2', 'h3', 'h4'].includes(child.tagName.toLowerCase()));
+  return Array.from(element.children).some((child) => ['ul', 'ol', 'pre', 'h2', 'h3', 'h4', 'figure'].includes(child.tagName.toLowerCase()));
 }
 
 function mixedBlockToMarkdown(element) {
@@ -142,7 +233,7 @@ function mixedBlockToMarkdown(element) {
   }
 
   for (const node of element.childNodes) {
-    if (node.nodeType === Node.ELEMENT_NODE && ['ul', 'ol', 'pre', 'h2', 'h3', 'h4'].includes(node.tagName.toLowerCase())) {
+    if (node.nodeType === Node.ELEMENT_NODE && ['ul', 'ol', 'pre', 'h2', 'h3', 'h4', 'figure'].includes(node.tagName.toLowerCase())) {
       flushInline();
       const nested = blockToMarkdown(node);
       if (nested) blocks.push(nested);
@@ -159,6 +250,22 @@ function blockToMarkdown(element) {
   const tag = element.tagName.toLowerCase();
 
   if ((tag === 'p' || tag === 'div') && hasNestedBlock(element)) return mixedBlockToMarkdown(element);
+
+  if (tag === 'figure' && element.dataset.mediaType === 'image') {
+    const src = element.dataset.src || element.querySelector('img')?.getAttribute('src') || '';
+    const label = element.dataset.label || element.querySelector('img')?.getAttribute('alt') || '';
+    return src ? '![' + escapeMarkdownInline(label) + '](' + src + ')' : '';
+  }
+
+  if (tag === 'figure' && element.dataset.mediaType === 'video') {
+    const src = element.dataset.src || '';
+    const label = element.dataset.label || '';
+    if (!src) return '';
+    if (isEmbeddableVideoUrl(src) || /\/embed\//.test(src)) {
+      return '<iframe src="' + videoEmbedUrl(src) + '" title="' + escapeMarkdownInline(label || 'Vídeo') + '" loading="lazy" allowfullscreen></iframe>';
+    }
+    return '<video controls src="' + src + '" title="' + escapeMarkdownInline(label || 'Vídeo') + '"></video>';
+  }
 
   if (tag === 'ul') {
     return Array.from(element.children)
@@ -211,8 +318,29 @@ function editorHtmlToMarkdown() {
   return blocks.join('\n\n');
 }
 
+function updateBodyMetrics(markdown) {
+  const text = String(markdown ?? '').trim();
+  const plain = text
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^[-*]\s+/gm, '')
+    .replace(/^\d+\.\s+/gm, '')
+    .replace(/\x60\x60\x60[\s\S]*?\x60\x60\x60/g, (match) => match.replace(/\x60/g, ''))
+    .replace(/[\*_\x60]/g, '')
+    .trim();
+
+  const paragraphs = text ? text.split(/\n{2,}/).filter((block) => block.trim()).length : 0;
+  const lines = text ? text.split('\n').filter((line) => line.trim()).length : 0;
+  const words = plain ? (plain.match(/[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu) ?? []).length : 0;
+
+  bodyStats.characters.textContent = String(plain.length);
+  bodyStats.words.textContent = String(words);
+  bodyStats.lines.textContent = String(lines);
+  bodyStats.paragraphs.textContent = String(paragraphs);
+}
+
 function syncEditorToBody() {
   bodyInput.value = editorHtmlToMarkdown();
+  updateBodyMetrics(bodyInput.value);
 }
 
 function ensureEditorBlock() {
@@ -241,6 +369,43 @@ function renderPreviewBody(markdown) {
       const heading = document.createElement('h3');
       heading.textContent = firstLine.replace(/^#{2,4}\s+/, '');
       previewBody.append(heading);
+      continue;
+    }
+
+    const image = block.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (image) {
+      const figure = document.createElement('figure');
+      const img = document.createElement('img');
+      img.src = image[2];
+      img.alt = image[1];
+      figure.append(img);
+      if (image[1]) {
+        const caption = document.createElement('figcaption');
+        caption.textContent = image[1];
+        figure.append(caption);
+      }
+      previewBody.append(figure);
+      continue;
+    }
+
+    const video = block.match(/^<video controls src="([^"]+)"(?: title="([^"]*)")?><\/video>$/i);
+    if (video) {
+      const element = document.createElement('video');
+      element.controls = true;
+      element.src = video[1];
+      if (video[2]) element.title = video[2];
+      previewBody.append(element);
+      continue;
+    }
+
+    const iframe = block.match(/^<iframe src="([^"]+)"(?: title="([^"]*)")?[\s\S]*?><\/iframe>$/i);
+    if (iframe) {
+      const element = document.createElement('iframe');
+      element.src = iframe[1];
+      element.title = iframe[2] || 'Vídeo';
+      element.loading = 'lazy';
+      element.allowFullscreen = true;
+      previewBody.append(element);
       continue;
     }
 
@@ -368,11 +533,68 @@ function makeBulletList() {
   placeCaretInside(item);
 }
 
+function insertMediaBlock(type, url, label = '') {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = mediaHtml(type, url.trim(), label.trim());
+  const media = wrapper.firstElementChild;
+  const block = currentBlock();
+
+  if (block && block !== richEditor) block.after(media);
+  else richEditor.append(media);
+
+  const next = document.createElement('p');
+  next.append(document.createElement('br'));
+  media.after(next);
+  placeCaretInside(next);
+  updatePreview();
+}
+
+function insertMediaFromUrl(type) {
+  const url = window.prompt(type === 'image' ? 'URL da imagem' : 'URL do vídeo');
+  if (!url) return;
+  const label = window.prompt(type === 'image' ? 'Texto alternativo / legenda' : 'Título do vídeo') || '';
+  insertMediaBlock(type, url, label);
+}
+
+function chooseMediaFile(type) {
+  pendingMediaType = type;
+  mediaUploadInput.accept = type === 'image' ? 'image/*' : 'video/*';
+  mediaUploadInput.value = '';
+  mediaUploadInput.click();
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => resolve(String(reader.result).split(',')[1] || ''));
+    reader.addEventListener('error', () => reject(reader.error));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadMediaFile(file) {
+  setStatus('Enviando mídia local...');
+  const data = await fileToBase64(file);
+  const response = await fetch('/api/media', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ fileName: file.name, mimeType: file.type, data }),
+  });
+  const result = await response.json();
+
+  if (!result.ok) throw new Error(result.errors.join(' '));
+  return result;
+}
+
 function runEditorCommand(command) {
   if (command === 'bold') wrapSelection('strong', 'strong');
   if (command === 'italic') wrapSelection('em', 'ênfase');
   if (command === 'code') wrapSelection('code', 'código');
   if (command === 'insertUnorderedList') makeBulletList();
+  if (command === 'image') chooseMediaFile('image');
+  if (command === 'video') chooseMediaFile('video');
+  if (command === 'imageUrl') insertMediaFromUrl('image');
+  if (command === 'videoUrl') insertMediaFromUrl('video');
   updatePreview();
 }
 
@@ -389,6 +611,105 @@ function insertPlainText(text) {
   range.insertNode(node);
   placeCaretAfter(node);
   updatePreview();
+}
+
+function showView(view) {
+  const isLibrary = view === 'library';
+  editorView.hidden = isLibrary;
+  libraryView.hidden = !isLibrary;
+
+  viewButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.composerView === view));
+  });
+
+  if (isLibrary) loadPosts();
+}
+
+function renderPostList() {
+  postList.replaceChildren();
+  const posts = libraryPosts.filter((post) => {
+    if (libraryFilter === 'draft') return post.draft;
+    if (libraryFilter === 'published') return !post.draft;
+    return true;
+  });
+
+  if (posts.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Nenhum conteúdo encontrado para este filtro.';
+    postList.append(empty);
+    return;
+  }
+
+  for (const post of posts) {
+    const card = document.createElement('article');
+    card.className = 'composer-post-card';
+
+    const copy = document.createElement('div');
+    const title = document.createElement('h3');
+    title.textContent = post.title;
+    const description = document.createElement('p');
+    description.textContent = post.description || 'Sem descrição editorial.';
+    const meta = document.createElement('div');
+    meta.className = 'composer-post-meta';
+
+    for (const value of [post.draft ? 'Rascunho' : 'Publicado', categoryLabels[post.category] ?? post.category, post.publishedAt || 'Sem data', post.slug]) {
+      const item = document.createElement('span');
+      item.textContent = value;
+      meta.append(item);
+    }
+
+    copy.append(title, description, meta);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Editar';
+    button.addEventListener('click', () => loadPost(post.slug));
+
+    card.append(copy, button);
+    postList.append(card);
+  }
+}
+
+async function loadPosts() {
+  postList.replaceChildren();
+  const loading = document.createElement('p');
+  loading.textContent = 'Carregando conteúdos...';
+  postList.append(loading);
+
+  const response = await fetch('/api/posts');
+  const result = await response.json();
+  if (!result.ok) throw new Error(result.errors?.join(' ') || 'Falha ao listar conteúdos.');
+  libraryPosts = result.posts;
+  renderPostList();
+}
+
+function fillPostForm(post) {
+  titleInput.value = post.title || '';
+  slugInput.value = post.slug || '';
+  descriptionInput.value = post.description || '';
+  metaDescriptionInput.value = post.metaDescription || '';
+  keywordsInput.value = Array.isArray(post.keywords) ? post.keywords.join(', ') : (post.keywords || '');
+  categoryInput.value = post.category || 'estrategia';
+  dateInput.value = post.publishedAt || '';
+  form.elements.draft.checked = post.draft === true;
+  form.elements.overwrite.checked = true;
+  richEditor.innerHTML = markdownToEditorHtml(post.body || '');
+  slugTouched = true;
+  updatePreview();
+}
+
+async function loadPost(slug) {
+  setStatus('Carregando conteúdo para edição...');
+  const response = await fetch('/api/posts/' + encodeURIComponent(slug));
+  const result = await response.json();
+  if (!result.ok) {
+    setStatus(result.errors.join(' '), 'error');
+    return;
+  }
+
+  fillPostForm(result.post);
+  showView('editor');
+  setStatus('Editando ' + result.post.filePath, 'success');
 }
 
 async function init() {
@@ -425,6 +746,35 @@ dateInput.addEventListener('change', updatePreview);
 
 richEditor.addEventListener('input', updatePreview);
 
+richEditor.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-remove-media]');
+  if (!button) return;
+
+  const media = button.closest('.composer-media-block');
+  if (!media) return;
+
+  const next = media.nextElementSibling;
+  media.remove();
+  if (next?.matches('p') && !next.textContent.trim() && next.querySelector('br')) next.remove();
+  ensureEditorBlock();
+  updatePreview();
+  setStatus('Mídia removida do corpo do texto.', 'success');
+});
+
+mediaUploadInput.addEventListener('change', async () => {
+  const file = mediaUploadInput.files?.[0];
+  if (!file) return;
+
+  try {
+    const result = await uploadMediaFile(file);
+    const label = window.prompt(result.mediaType === 'image' ? 'Texto alternativo / legenda' : 'Título do vídeo', file.name.replace(/.[^.]+$/, '')) || '';
+    insertMediaBlock(result.mediaType || pendingMediaType, result.publicPath, label);
+    setStatus('Mídia adicionada em ' + result.publicPath, 'success');
+  } catch (error) {
+    setStatus(error.message, 'error');
+  }
+});
+
 richEditor.addEventListener('paste', (event) => {
   event.preventDefault();
   insertPlainText(event.clipboardData?.getData('text/plain') ?? '');
@@ -447,6 +797,20 @@ document.querySelectorAll('[data-editor-command]').forEach((button) => {
 });
 
 blockFormat.addEventListener('change', () => applyBlockFormat(blockFormat.value));
+
+viewButtons.forEach((button) => {
+  button.addEventListener('click', () => showView(button.dataset.composerView));
+});
+
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    libraryFilter = button.dataset.libraryFilter;
+    filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    renderPostList();
+  });
+});
+
+refreshPostsButton.addEventListener('click', () => loadPosts().catch((error) => setStatus(error.message, 'error')));
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();

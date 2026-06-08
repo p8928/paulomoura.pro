@@ -1,9 +1,10 @@
 import { existsSync } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { dirname, extname, join, resolve } from 'node:path';
 
 export const categories = ['branding', 'seo', 'geo', 'aeo', 'luxury', 'estrategia'];
 export const outputDir = resolve(process.cwd(), 'src/content/editorial');
+export const mediaDir = resolve(process.cwd(), 'public/uploads/editorial');
 
 export function slugify(input) {
   return input
@@ -17,6 +18,61 @@ export function slugify(input) {
 
 export function todayISO() {
   return new Date().toISOString().slice(0, 10);
+}
+
+
+const allowedMediaTypes = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+  'image/svg+xml',
+  'video/mp4',
+  'video/webm',
+  'video/ogg',
+  'video/quicktime',
+]);
+
+function mediaExtension(fileName, mimeType) {
+  const current = extname(fileName || '').toLowerCase();
+  if (current) return current;
+  if (mimeType === 'image/jpeg') return '.jpg';
+  if (mimeType === 'image/png') return '.png';
+  if (mimeType === 'image/webp') return '.webp';
+  if (mimeType === 'image/gif') return '.gif';
+  if (mimeType === 'image/svg+xml') return '.svg';
+  if (mimeType === 'video/mp4') return '.mp4';
+  if (mimeType === 'video/webm') return '.webm';
+  if (mimeType === 'video/ogg') return '.ogv';
+  if (mimeType === 'video/quicktime') return '.mov';
+  return '';
+}
+
+export async function saveMedia(data) {
+  const fileName = String(data.fileName ?? 'media');
+  const mimeType = String(data.mimeType ?? '');
+  const base64 = String(data.data ?? '');
+
+  if (!allowedMediaTypes.has(mimeType)) return { ok: false, errors: ['Tipo de midia nao permitido.'] };
+  if (!base64) return { ok: false, errors: ['Arquivo vazio.'] };
+
+  const buffer = Buffer.from(base64, 'base64');
+  if (buffer.length === 0) return { ok: false, errors: ['Arquivo vazio.'] };
+
+  const extension = mediaExtension(fileName, mimeType);
+  const baseName = slugify(fileName.replace(/.[^.]+$/, '')) || 'media';
+  const savedName = baseName + '-' + Date.now().toString(36) + extension;
+  const filePath = join(mediaDir, savedName);
+
+  await mkdir(mediaDir, { recursive: true });
+  await writeFile(filePath, buffer);
+
+  return {
+    ok: true,
+    filePath,
+    publicPath: '/uploads/editorial/' + savedName,
+    mediaType: mimeType.startsWith('video/') ? 'video' : 'image',
+  };
 }
 
 export function validatePost(data) {
@@ -101,6 +157,69 @@ export function normalizeBodyToMarkdown(body) {
     .map((block) => convertPlainTextBlock(block.trim()))
     .filter(Boolean)
     .join('\n\n');
+}
+
+
+function parseFrontmatterValue(value) {
+  const trimmed = String(value ?? '').trim();
+  if (trimmed === 'true') return true;
+  if (trimmed === 'false') return false;
+  if (/^[.*]$/.test(trimmed)) {
+    return trimmed
+      .slice(1, -1)
+      .split(',')
+      .map((item) => item.trim().replace(/^"|"$/g, '').replace(/\\"/g, '"'))
+      .filter(Boolean);
+  }
+  return trimmed.replace(/^"|"$/g, '').replace(/\\"/g, '"');
+}
+
+export function parseMarkdownPost(source, slug = '') {
+  const match = String(source ?? '').match(new RegExp('^---\\n([\\s\\S]*?)\\n---\\n?([\\s\\S]*)$'));
+  if (!match) return { slug, body: String(source ?? '') };
+
+  const frontmatter = {};
+  for (const line of match[1].split('\n')) {
+    const separator = line.indexOf(':');
+    if (separator === -1) continue;
+    const key = line.slice(0, separator).trim();
+    const value = line.slice(separator + 1).trim();
+    frontmatter[key] = parseFrontmatterValue(value);
+  }
+
+  return { slug, ...frontmatter, body: match[2].trim() };
+}
+
+export async function listPosts() {
+  await mkdir(outputDir, { recursive: true });
+  const files = (await readdir(outputDir)).filter((file) => file.endsWith('.md')).sort();
+  const posts = [];
+
+  for (const file of files) {
+    const slug = file.replace(/\.md$/, '');
+    const source = await readFile(join(outputDir, file), 'utf8');
+    const post = parseMarkdownPost(source, slug);
+    posts.push({
+      slug,
+      title: post.title || slug,
+      description: post.description || '',
+      category: post.category || 'estrategia',
+      publishedAt: post.publishedAt || '',
+      draft: post.draft === true,
+      filePath: join(outputDir, file),
+    });
+  }
+
+  return posts.sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)) || a.title.localeCompare(b.title));
+}
+
+export async function getPost(slug) {
+  const safeSlug = slugify(slug);
+  if (!safeSlug) return null;
+  const filePath = join(outputDir, safeSlug + '.md');
+  if (!existsSync(filePath)) return null;
+  const source = await readFile(filePath, 'utf8');
+  return { ...parseMarkdownPost(source, safeSlug), filePath };
 }
 
 export function createMarkdown(data) {
