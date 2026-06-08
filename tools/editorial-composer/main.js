@@ -107,8 +107,13 @@ function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[char]);
 }
 
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/"/g, '&quot;');
+}
+
 function markdownInlineToHtml(text) {
   return escapeHtml(text)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, url) => '<a href="' + escapeAttribute(url) + '">' + label + '</a>')
     .replace(/\x60([^\x60]+)\x60/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>');
@@ -180,13 +185,23 @@ function markdownToEditorHtml(markdown) {
 
 function markdownInlineToFragment(text) {
   const fragment = document.createDocumentFragment();
-  const pattern = /(\x60[^\x60]+\x60|\*\*[^*]+\*\*|\*[^*]+\*)/g;
+  const pattern = /(\[[^\]]+\]\([^)]+\)|\x60[^\x60]+\x60|\*\*[^*]+\*\*|\*[^*]+\*)/g;
   let lastIndex = 0;
 
   for (const match of text.matchAll(pattern)) {
     if (match.index > lastIndex) fragment.append(document.createTextNode(text.slice(lastIndex, match.index)));
 
     const token = match[0];
+    const link = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      const element = document.createElement('a');
+      element.href = link[2];
+      element.textContent = link[1];
+      fragment.append(element);
+      lastIndex = match.index + token.length;
+      continue;
+    }
+
     const element = document.createElement(token.startsWith('**') ? 'strong' : token.startsWith('*') ? 'em' : 'code');
     element.textContent = token
       .replace(/^\*\*|\*\*$/g, '')
@@ -214,6 +229,10 @@ function inlineNodeToMarkdown(node) {
   if (tag === 'strong' || tag === 'b') return content ? '**' + content + '**' : '';
   if (tag === 'em' || tag === 'i') return content ? '*' + content + '*' : '';
   if (tag === 'code') return content ? '\x60' + content.replace(/\x60/g, '') + '\x60' : '';
+  if (tag === 'a') {
+    const href = node.getAttribute('href') || '';
+    return content && href ? '[' + content.replace(/[\[\]]/g, '') + '](' + href + ')' : content;
+  }
   if (tag === 'br') return '\n';
   return content;
 }
@@ -512,6 +531,35 @@ function wrapSelection(tagName, fallbackText) {
   placeCaretAfter(spacer);
 }
 
+function normalizeUrl(value) {
+  const url = String(value ?? '').trim();
+  if (!url) return '';
+  if (/^(https?:|mailto:|tel:|\/|#)/i.test(url)) return url;
+  return 'https://' + url;
+}
+
+function insertLink() {
+  const range = getSelectionRange();
+  if (!range) return;
+
+  const selectedText = range.toString().trim();
+  const label = selectedText || window.prompt('Texto do link');
+  if (!label) return;
+
+  const href = normalizeUrl(window.prompt('URL do link'));
+  if (!href) return;
+
+  const element = document.createElement('a');
+  element.href = href;
+  element.textContent = label;
+  range.deleteContents();
+  range.insertNode(element);
+
+  const spacer = document.createTextNode(' ');
+  element.after(spacer);
+  placeCaretAfter(spacer);
+}
+
 function replaceBlockTag(tagName) {
   const block = currentBlock();
   if (!block || block === richEditor) return;
@@ -590,6 +638,7 @@ function runEditorCommand(command) {
   if (command === 'bold') wrapSelection('strong', 'strong');
   if (command === 'italic') wrapSelection('em', 'ênfase');
   if (command === 'code') wrapSelection('code', 'código');
+  if (command === 'link') insertLink();
   if (command === 'insertUnorderedList') makeBulletList();
   if (command === 'image') chooseMediaFile('image');
   if (command === 'video') chooseMediaFile('video');
@@ -789,6 +838,11 @@ richEditor.addEventListener('keydown', (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'i') {
     event.preventDefault();
     runEditorCommand('italic');
+  }
+
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+    event.preventDefault();
+    runEditorCommand('link');
   }
 });
 

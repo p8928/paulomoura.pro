@@ -526,6 +526,20 @@ textarea {
   font-size: 0.68rem;
 }
 
+.composer-rich-editor a,
+.composer-preview-body a {
+  color: rgba(212, 178, 116, 0.92);
+  text-decoration-color: rgba(212, 178, 116, 0.38);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.composer-rich-editor a:hover,
+.composer-preview-body a:hover {
+  color: var(--ink);
+  text-decoration-color: rgba(212, 178, 116, 0.72);
+}
+
 .composer-body-metrics {
   display: flex;
   flex-wrap: wrap;

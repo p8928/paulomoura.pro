@@ -349,6 +349,18 @@ const formatDate = (date: Date) =>
     white-space: nowrap;
   }
 
+  @media (min-width: 641px) {
+    .article-breadcrumbs > span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .article-breadcrumbs span[aria-current="page"] {
+      max-width: min(58vw, 82ch);
+    }
+  }
+
   .article-hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.55fr);
