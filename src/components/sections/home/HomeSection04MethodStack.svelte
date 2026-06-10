@@ -91,7 +91,7 @@
     <div class="method-scroll-shell">
       <div class="method-scroll-intro">
         <p class="method-scroll-kicker">Método</p>
-        <h2 id="method-stack-title">Da leitura à execução.</h2>
+        <h2 id="method-stack-title">Antes da execução, a leitura.</h2>
         <p>
           Depois da tese, vem o trabalho: investigar, decidir, estruturar e sustentar uma presença digital compatível com o que a empresa entrega.
         </p>

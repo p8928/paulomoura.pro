@@ -5,7 +5,7 @@
       copy: 'A análise começa pelo que existe na prática: atendimento, reputação, diferenciais percebidos, maturidade digital e ambição. A candidatura só avança quando há base real para um trabalho Brand-Driven.',
     },
     {
-      title: 'Há disponibilidade para uma revisão profunda?',
+      title: 'Há abertura para uma leitura profunda do negócio?',
       copy: 'O processo exige acesso ao negócio, escuta e decisões estratégicas. A agenda é limitada porque a direção é próxima e conduzida por Paulo Moura.',
     },
     {
