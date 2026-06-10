@@ -66,7 +66,7 @@
     min-height: 100vh;
     background: var(--moura-ivory);
     color: var(--moura-black);
-    padding: clamp(8rem, 12vw, 12rem) clamp(1.5rem, 4vw, 4.5rem) clamp(7rem, 11vw, 11rem);
+    padding: clamp(7rem, 10vw, 10rem) clamp(1.5rem, 4vw, 4.5rem) clamp(6rem, 9vw, 9rem);
     box-shadow: 0 -2rem 5rem rgba(0, 0, 0, 0.28);
   }
 
@@ -84,12 +84,12 @@
     width: 100%;
     max-width: 88rem;
     margin-inline: auto;
-    gap: clamp(4rem, 8vw, 7rem);
+    gap: clamp(3.2rem, 6vw, 5.5rem);
   }
 
   .application-heading {
     display: grid;
-    gap: clamp(1rem, 2vw, 1.5rem);
+    gap: clamp(0.85rem, 1.4vw, 1.15rem);
   }
 
   .application-kicker {
@@ -106,12 +106,12 @@
   .application-heading h2 {
     display: grid;
     gap: clamp(0.25rem, 0.8vw, 0.75rem);
-    max-width: 15ch;
+    max-width: 18ch;
     margin: 0;
     font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
-    font-size: clamp(3.5rem, 7.6vw, 8.8rem);
+    font-size: clamp(2.75rem, 5.4vw, 6.25rem);
     font-weight: 100;
-    line-height: 0.92;
+    line-height: 0.98;
     letter-spacing: 0;
     color: rgba(8, 8, 8, 0.9);
   }
@@ -124,13 +124,13 @@
 
   .application-accordion {
     display: grid;
-    max-width: 82rem;
+    width: min(100%, 66rem);
     margin-left: auto;
-    border-top: 1px solid rgba(8, 8, 8, 0.16);
+    border-top: 1px solid rgba(8, 8, 8, 0.12);
   }
 
   .application-accordion-item {
-    border-bottom: 1px solid rgba(8, 8, 8, 0.16);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.12);
   }
 
   .application-accordion-item h3 {
@@ -140,10 +140,10 @@
   .application-accordion-item button {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 1.75rem);
     align-items: center;
     width: 100%;
-    padding: clamp(1.35rem, 2.6vw, 2.35rem) 0;
+    padding: clamp(1.05rem, 1.8vw, 1.65rem) 0;
     border: 0;
     background: transparent;
     color: rgba(8, 8, 8, 0.86);
@@ -153,9 +153,9 @@
 
   .application-accordion-item button span:first-child {
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(2rem, 4.8vw, 5.6rem);
+    font-size: clamp(1.35rem, 2.35vw, 2.75rem);
     font-weight: 300;
-    line-height: 0.96;
+    line-height: 1.08;
     letter-spacing: 0;
     transition:
       color 520ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -164,9 +164,9 @@
 
   .application-accordion-marker {
     position: relative;
-    width: clamp(2rem, 3vw, 3rem);
-    height: clamp(2rem, 3vw, 3rem);
-    border: 1px solid rgba(8, 8, 8, 0.28);
+    width: clamp(1.35rem, 1.8vw, 1.8rem);
+    height: clamp(1.35rem, 1.8vw, 1.8rem);
+    border: 1px solid rgba(167, 124, 61, 0.46);
     border-radius: 999px;
     transition:
       border-color 520ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -201,15 +201,15 @@
   }
 
   .application-accordion-panel p {
-    max-width: min(80vw, 42rem);
+    max-width: min(80vw, 38rem);
     min-height: 0;
     overflow: hidden;
     margin: 0;
     padding: 0;
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(1rem, 1.16vw, 1.16rem);
+    font-size: clamp(0.95rem, 1.02vw, 1.06rem);
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.62;
     letter-spacing: 0.01em;
     color: rgba(8, 8, 8, 0.6);
     transition: padding 720ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -245,7 +245,7 @@
   }
 
   .application-accordion-item.is-open .application-accordion-panel p {
-    padding: 0 0 clamp(1.4rem, 2.6vw, 2.4rem) 0;
+    padding: 0 0 clamp(1.1rem, 2vw, 1.65rem) 0;
   }
 
   .application-action {
@@ -254,7 +254,7 @@
     gap: clamp(1rem, 1.8vw, 1.4rem);
     max-width: min(86vw, 42rem);
     margin-inline: auto;
-    padding-top: clamp(1rem, 2vw, 2rem);
+    padding-top: clamp(0.5rem, 1.4vw, 1.25rem);
     text-align: center;
   }
 
@@ -267,8 +267,8 @@
   }
 
   .application-action-title {
-    font-size: clamp(1.5rem, 2.4vw, 2.55rem);
-    line-height: 1.08;
+    font-size: clamp(1.32rem, 2vw, 2.1rem);
+    line-height: 1.14;
     color: rgba(8, 8, 8, 0.84);
   }
 
@@ -296,9 +296,9 @@
     }
 
     .application-heading h2 {
-      max-width: 11ch;
-      font-size: clamp(2.35rem, 9.5vw, 3.4rem);
-      line-height: 1.02;
+      max-width: 13ch;
+      font-size: clamp(2.15rem, 8vw, 3rem);
+      line-height: 1.04;
     }
 
     .application-accordion-item button {
