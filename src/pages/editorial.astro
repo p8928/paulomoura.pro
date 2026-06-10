@@ -26,7 +26,7 @@ const categoryDescriptions = {
 const categoryOrder = ['branding', 'seo', 'geo', 'aeo', 'luxury', 'estrategia'] as const;
 
 const posts = (await getCollection('editorial'))
-  .filter((post) => !post.data.draft)
+  .filter((post) => !post.data.draft && post.id !== 'a-historia-do-unbranding')
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 
 const [featuredPost] = posts;

@@ -28,6 +28,11 @@ interface Props {
   publishedAt: Date;
   updatedAt?: Date;
   readingTime: string;
+  readingMinutes?: number;
+  wordCount?: number;
+  schemaType?: 'Article' | 'BlogPosting';
+  schemaAbout?: string[];
+  schemaMentions?: string[];
   tableOfContents?: TableOfContentsItem[];
   recommendations?: Recommendation[];
 }
@@ -43,17 +48,33 @@ const {
   publishedAt,
   updatedAt,
   readingTime,
+  readingMinutes,
+  wordCount,
+  schemaType = 'Article',
+  schemaAbout = [],
+  schemaMentions = [],
   tableOfContents = [],
   recommendations = [],
 } = Astro.props;
 
 const pageDescription = metaDescription || description;
 const articleUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
-const articleSchema = {
-  '@type': 'Article',
+const schemaTerms = (terms: string[]) => terms.map((name) => ({ '@type': 'DefinedTerm', name }));
+const compactSchemaNode = (node: Record<string, unknown>) => Object.fromEntries(
+  Object.entries(node).filter(([, value]) => {
+    if (value === undefined || value === null) return false;
+    if (Array.isArray(value) && value.length === 0) return false;
+    return true;
+  }),
+);
+const articleSchema = compactSchemaNode({
+  '@type': schemaType,
   '@id': articleUrl.toString() + '#article',
+  url: articleUrl.toString(),
+  name: title,
   headline: title,
   description: pageDescription,
+  abstract: description,
   datePublished: publishedAt.toISOString(),
   dateModified: (updatedAt ?? publishedAt).toISOString(),
   author: { '@id': schemaIdentity.personId },
@@ -63,7 +84,13 @@ const articleSchema = {
   inLanguage: 'pt-BR',
   articleSection: category,
   keywords,
-};
+  genre: 'Ensaio editorial',
+  isAccessibleForFree: true,
+  wordCount,
+  timeRequired: readingMinutes ? 'PT' + readingMinutes + 'M' : undefined,
+  about: schemaAbout.length > 0 ? schemaTerms(schemaAbout) : undefined,
+  mentions: schemaMentions.length > 0 ? schemaTerms(schemaMentions) : undefined,
+});
 
 const articleBreadcrumbSchema = breadcrumbSchema({
   id: articleUrl.toString() + '#breadcrumb',
@@ -478,7 +505,7 @@ const formatDate = (date: Date) =>
 
   .article-reading-rail a:hover,
   .article-reading-rail a:focus-visible {
-    color: var(--moura-wine);
+    color: var(--moura-gold);
   }
 
   .article-reading-rail p {
@@ -520,10 +547,10 @@ const formatDate = (date: Date) =>
     min-height: 44px;
     font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
     margin-top: 1.55rem;
-    border: 1px solid rgba(111, 38, 61, 0.24);
-    border-radius: 999px;
+    border: 1px solid rgba(167, 124, 61, 0.96);
+    border-radius: 0;
     background: transparent;
-    color: var(--moura-wine);
+    color: var(--moura-gold);
     cursor: pointer;
     padding: 0.62rem 0.86rem;
     font-size: 0.62rem;
@@ -536,15 +563,15 @@ const formatDate = (date: Date) =>
   }
 
   .article-copy-link:hover {
-    border-color: rgba(111, 38, 61, 0.5);
-    color: var(--moura-ink);
+    border-color: rgba(167, 124, 61, 1);
+    color: var(--moura-gold);
   }
 
   .article-copy-link--hero {
     justify-self: end;
     margin: 0;
-    border-color: rgba(244, 239, 231, 0.22);
-    color: rgba(244, 239, 231, 0.78);
+    border-color: rgba(167, 124, 61, 0.96);
+    color: var(--moura-gold);
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;
@@ -552,7 +579,7 @@ const formatDate = (date: Date) =>
   }
 
   .article-copy-link--hero:hover {
-    border-color: rgba(167, 124, 61, 0.6);
+    border-color: rgba(167, 124, 61, 0.96);
     color: var(--moura-gold);
   }
 
@@ -614,8 +641,24 @@ const formatDate = (date: Date) =>
 
   .article-content :global(ul),
   .article-content :global(ol) {
-    margin: 1.6rem 0 0;
-    padding-left: 1.2rem;
+    margin: 1.6rem 0 2.15rem;
+    padding-left: 1.35rem;
+  }
+
+  .article-content :global(ul) {
+    list-style: disc;
+  }
+
+  .article-content :global(ol) {
+    list-style: decimal;
+  }
+
+  .article-content :global(li) {
+    padding-left: 0.25rem;
+  }
+
+  .article-content :global(li::marker) {
+    color: var(--moura-wine);
   }
 
   .article-content :global(li + li) {
@@ -1118,7 +1161,12 @@ const formatDate = (date: Date) =>
     .article-content :global(ul),
     .article-content :global(ol) {
       margin-top: 1.25rem;
-      padding-left: 1.1rem;
+      margin-bottom: 1.8rem;
+      padding-left: 1.25rem;
+    }
+
+    .article-content :global(li) {
+      padding-left: 0.18rem;
     }
 
     .article-content :global(li + li) {

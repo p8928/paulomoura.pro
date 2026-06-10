@@ -26,7 +26,8 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
 const words = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
-const readingTime = `${Math.max(1, Math.ceil(words / 220))} min de leitura`;
+const readingMinutes = Math.max(1, Math.ceil(words / 220));
+const readingTime = `${readingMinutes} min de leitura`;
 const tableOfContents = headings
   .filter((heading) => heading.depth === 2)
   .map((heading) => ({
@@ -66,6 +67,11 @@ const posts = (await getCollection('editorial'))
   publishedAt={post.data.publishedAt}
   updatedAt={post.data.updatedAt}
   readingTime={readingTime}
+  readingMinutes={readingMinutes}
+  wordCount={words}
+  schemaType={post.data.schemaType}
+  schemaAbout={post.data.schemaAbout}
+  schemaMentions={post.data.schemaMentions}
   tableOfContents={tableOfContents}
   recommendations={posts}
 >
