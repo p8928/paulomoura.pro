@@ -712,66 +712,179 @@ const distinctions = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
-    margin-top: clamp(3.2rem, 5.8vw, 5.2rem);
-    border-block: 1px solid rgba(8, 8, 8, 0.1);
-    background: rgba(8, 8, 8, 0.1);
+    margin-top: clamp(3.4rem, 6vw, 5.8rem);
+    border-block: 1px solid rgba(8, 8, 8, 0.075);
+    background:
+      linear-gradient(90deg, transparent, rgba(8, 8, 8, 0.085), transparent),
+      rgba(8, 8, 8, 0.055);
   }
 
   .moura-badge-card {
-    min-height: clamp(31rem, 42vw, 38rem);
+    position: relative;
+    min-height: clamp(32rem, 42vw, 39rem);
     display: grid;
-    grid-template-rows: auto 12.5rem 1fr auto;
+    grid-template-rows: clamp(6.25rem, 7.2vw, 6.9rem) 14rem 1fr auto;
     align-content: start;
-    gap: clamp(1.1rem, 1.7vw, 1.65rem);
-    padding: clamp(1.15rem, 1.7vw, 1.6rem);
+    gap: clamp(1rem, 1.58vw, 1.5rem);
+    padding: clamp(1.15rem, 1.72vw, 1.68rem);
+    overflow: hidden;
     background:
-      radial-gradient(circle at 50% 42%, rgba(167, 124, 61, 0.1), transparent 34%),
-      rgba(255, 253, 248, 0.72);
+      radial-gradient(ellipse at 50% 41%, rgba(167, 124, 61, 0.12), transparent 36%),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.84), rgba(255, 253, 248, 0.62)),
+      rgba(255, 253, 248, 0.74);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      inset 0 -1px 0 rgba(8, 8, 8, 0.035);
+    transition:
+      background 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-badge-card::before {
+    content: "";
+    position: absolute;
+    inset: clamp(0.52rem, 0.8vw, 0.8rem);
+    pointer-events: none;
+    border: 1px solid rgba(8, 8, 8, 0.035);
+    box-shadow: inset 0 0 0 1px rgba(255, 253, 248, 0.34);
+  }
+
+  .moura-badge-card::after {
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    top: 39%;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(167, 124, 61, 0.22), transparent);
+    opacity: 0.62;
+  }
+
+  .moura-badge-card:hover {
+    background:
+      radial-gradient(ellipse at 50% 41%, rgba(167, 124, 61, 0.17), transparent 39%),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.9), rgba(255, 253, 248, 0.68)),
+      rgba(255, 253, 248, 0.82);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      inset 0 -1px 0 rgba(8, 8, 8, 0.04),
+      0 1rem 2.4rem rgba(8, 8, 8, 0.045);
   }
 
   .moura-badge-card-head {
+    position: relative;
+    z-index: 1;
     display: grid;
-    gap: 0.62rem;
+    align-content: start;
+    gap: 0.56rem;
+  }
+
+  .moura-badge-card-head span {
+    color: rgba(167, 124, 61, 0.76);
   }
 
   .moura-badge-card-head h3 {
-    font-size: clamp(1.25rem, 1.95vw, 2.35rem);
+    max-width: 12ch;
+    font-size: clamp(1.18rem, 1.72vw, 2.04rem);
+    color: rgba(8, 8, 8, 0.78);
   }
 
   .moura-badge-card-head p {
-    color: rgba(8, 8, 8, 0.46);
+    color: rgba(8, 8, 8, 0.42);
   }
 
   .moura-badge-stage {
+    position: relative;
+    z-index: 1;
     display: grid;
-    height: 12.5rem;
-    min-height: 12.5rem;
+    height: 14rem;
+    min-height: 14rem;
     place-items: center;
     align-self: start;
     color: inherit;
     text-decoration: none;
   }
 
+  .moura-badge-stage::before {
+    content: "";
+    position: absolute;
+    width: min(72%, 12rem);
+    aspect-ratio: 1 / 0.32;
+    bottom: 1.1rem;
+    border-radius: 999px;
+    background: radial-gradient(ellipse at center, rgba(167, 124, 61, 0.18), rgba(167, 124, 61, 0.06) 42%, transparent 72%);
+    filter: blur(0.22rem);
+    opacity: 0.72;
+    transform: translateY(0.2rem);
+    transition:
+      opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-badge-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0.5rem 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(255, 253, 248, 0.24) 49%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 253, 248, 0.2), transparent 56%);
+    opacity: 0.46;
+    transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-badge-stage > * {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0.7rem 1.2rem rgba(8, 8, 8, 0.08));
+    transition:
+      filter 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .moura-badge-card:hover .moura-badge-stage::before {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .moura-badge-card:hover .moura-badge-stage::after {
+    opacity: 0.64;
+  }
+
+  .moura-badge-card:hover .moura-badge-stage > * {
+    filter: drop-shadow(0 0.9rem 1.5rem rgba(8, 8, 8, 0.1));
+    transform: translateY(-0.08rem);
+  }
+
   .moura-badge-description {
+    position: relative;
+    z-index: 1;
     align-self: start;
+    max-width: 28ch;
+    color: rgba(8, 8, 8, 0.5);
   }
 
   .moura-badge-arrow {
+    position: relative;
+    z-index: 1;
     display: inline-grid;
     width: 2.75rem;
     height: 2.75rem;
     place-items: center;
     align-self: end;
     justify-self: end;
-    border: 1px solid rgba(8, 8, 8, 0.18);
+    border: 1px solid rgba(8, 8, 8, 0.15);
     border-radius: 999px;
-    color: rgba(8, 8, 8, 0.72);
+    background: rgba(255, 253, 248, 0.2);
+    color: rgba(8, 8, 8, 0.64);
     text-decoration: none;
     transition:
       border-color 0.36s cubic-bezier(0.16, 1, 0.3, 1),
       color 0.36s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
-      background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+      background 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .moura-badge-arrow svg {
@@ -785,10 +898,11 @@ const distinctions = [
   }
 
   .moura-badge-arrow:hover {
-    border-color: rgba(167, 124, 61, 0.48);
-    background: rgba(167, 124, 61, 0.04);
+    border-color: rgba(167, 124, 61, 0.5);
+    background: rgba(255, 253, 248, 0.46);
+    box-shadow: 0 0.5rem 1.4rem rgba(167, 124, 61, 0.08);
     color: var(--moura-gold);
-    transform: translate(0.12rem, -0.12rem);
+    transform: translate(0.1rem, -0.1rem);
   }
 
   .moura-distinction {
