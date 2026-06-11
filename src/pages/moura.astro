@@ -242,7 +242,8 @@ const distinctions = [
 
 <style>
   .moura-page {
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     background: var(--moura-paper);
     color: var(--moura-ink);
   }
@@ -385,21 +386,41 @@ const distinctions = [
   }
 
   .moura-closing {
+    --closing-overlap: clamp(4.8rem, 9vw, 8rem);
+    position: relative;
+    z-index: 3;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
     display: grid;
     align-items: center;
     box-sizing: border-box;
-    position: relative;
+    margin-top: 0;
+    padding-top: clamp(7rem, 12vw, 12rem);
     overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.98), var(--moura-paper) 28%, var(--moura-paper) 100%);
+    border-top: 1px solid rgba(244, 239, 231, 0.74);
+    box-shadow:
+      0 -2.2rem 5.4rem rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   .moura-closing::before {
     content: "";
     position: absolute;
-    inset: auto 0 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(8, 8, 8, 0.16), transparent);
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 18% 22%, rgba(167, 124, 61, 0.08), transparent 34%),
+      linear-gradient(90deg, transparent, rgba(8, 8, 8, 0.035), transparent 52%, rgba(167, 124, 61, 0.035), transparent);
+  }
+
+  .moura-closing::after {
+    content: "";
+    position: absolute;
+    inset: clamp(1rem, 2vw, 1.75rem);
+    pointer-events: none;
+    border-top: 1px solid rgba(8, 8, 8, 0.055);
   }
 
   .moura-system {
@@ -419,12 +440,18 @@ const distinctions = [
   }
 
   .moura-closing-grid {
+    position: relative;
+    z-index: 1;
     align-items: center;
   }
 
   .moura-closing-heading {
     display: grid;
     gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .moura-closing-heading .moura-kicker {
+    color: rgba(167, 124, 61, 0.82);
   }
 
   .moura-section-heading h2,
@@ -460,6 +487,8 @@ const distinctions = [
     max-width: 34rem;
     margin-left: auto;
     gap: clamp(1.25rem, 2vw, 1.8rem);
+    border-left: 1px solid rgba(8, 8, 8, 0.08);
+    padding-left: clamp(1.4rem, 2.8vw, 2.4rem);
     color: rgba(8, 8, 8, 0.58);
   }
 
@@ -906,53 +935,95 @@ const distinctions = [
   }
 
   .moura-distinction {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    isolation: isolate;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100svh;
     box-sizing: border-box;
-    padding-block: clamp(5rem, 8vw, 9rem);
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding-block: clamp(6rem, 9vw, 10rem);
     background-color: #050505;
+    color: var(--moura-ivory);
+  }
+
+  .moura-distinction::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    min-height: 100vh;
+    min-height: 100svh;
     background:
-      radial-gradient(circle at 18% 20%, rgba(167, 124, 61, 0.14), transparent 28%),
-      linear-gradient(145deg, #060606 0%, #10100f 58%, #050505 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-color: #050505;
+      radial-gradient(ellipse at 17% 18%, rgba(167, 124, 61, 0.16), transparent 32%),
+      radial-gradient(ellipse at 72% 86%, rgba(244, 239, 231, 0.045), transparent 34%),
+      linear-gradient(150deg, #040404 0%, #0d0d0c 48%, #050505 100%);
+  }
+
+  .moura-distinction::after {
+    content: "";
+    position: absolute;
+    inset: clamp(1rem, 2vw, 1.75rem);
+    z-index: -1;
+    pointer-events: none;
+    border-block: 1px solid rgba(244, 239, 231, 0.045);
+    background:
+      linear-gradient(90deg, transparent, rgba(244, 239, 231, 0.028), transparent),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.018), transparent 22%, transparent 76%, rgba(167, 124, 61, 0.025));
+  }
+
+  .moura-distinction-grid {
+    position: relative;
+    z-index: 1;
+    align-items: center;
   }
 
   .moura-distinction-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-block: 1px solid rgba(244, 239, 231, 0.12);
-    background: rgba(244, 239, 231, 0.08);
     gap: 1px;
+    border-block: 1px solid rgba(244, 239, 231, 0.095);
+    background:
+      linear-gradient(90deg, transparent, rgba(244, 239, 231, 0.09), transparent),
+      rgba(244, 239, 231, 0.045);
+    box-shadow:
+      0 1rem 3rem rgba(0, 0, 0, 0.14),
+      inset 0 1px 0 rgba(255, 253, 248, 0.025);
   }
 
   .moura-distinction-list article {
-    min-height: clamp(13.5rem, 17vw, 17rem);
+    min-height: clamp(12.4rem, 15.2vw, 15.8rem);
     display: grid;
     grid-template-rows: auto auto 1fr;
-    gap: clamp(0.85rem, 1.35vw, 1.2rem);
-    padding: clamp(1.35rem, 2vw, 1.85rem);
+    gap: clamp(0.8rem, 1.22vw, 1.12rem);
+    padding: clamp(1.25rem, 1.82vw, 1.68rem);
     background:
-      linear-gradient(135deg, rgba(244, 239, 231, 0.035), transparent 46%),
-      rgba(8, 8, 8, 0.26);
-    transition: background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+      linear-gradient(135deg, rgba(244, 239, 231, 0.025), transparent 46%),
+      rgba(8, 8, 8, 0.18);
+    box-shadow: inset 0 1px 0 rgba(244, 239, 231, 0.018);
+    transition:
+      background 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .moura-distinction-list article:hover {
     background:
-      linear-gradient(135deg, rgba(167, 124, 61, 0.06), transparent 48%),
-      rgba(8, 8, 8, 0.34);
+      linear-gradient(135deg, rgba(167, 124, 61, 0.045), transparent 50%),
+      rgba(8, 8, 8, 0.25);
+    box-shadow: inset 0 1px 0 rgba(244, 239, 231, 0.03);
   }
 
   .moura-distinction-list h3 {
     max-width: 13ch;
     margin: 0;
     font-family: "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(1.42rem, 2.35vw, 2.72rem);
+    font-size: clamp(1.34rem, 2.05vw, 2.42rem);
     font-weight: 100;
-    line-height: 1;
-    color: rgba(244, 239, 231, 0.84);
+    line-height: 1.02;
+    color: rgba(244, 239, 231, 0.82);
   }
 
   .moura-distinction-list p {
@@ -960,10 +1031,10 @@ const distinctions = [
     max-width: 24rem;
     margin: 0;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
-    font-size: clamp(0.84rem, 0.9vw, 0.95rem);
+    font-size: clamp(0.84rem, 0.88vw, 0.93rem);
     font-weight: 300;
-    line-height: 1.58;
-    color: rgba(244, 239, 231, 0.52);
+    line-height: 1.62;
+    color: rgba(244, 239, 231, 0.5);
   }
 
   .moura-closing-copy a {
@@ -990,6 +1061,11 @@ const distinctions = [
   }
 
   @media (max-width: 1180px) {
+    .moura-distinction {
+      position: relative;
+      top: auto;
+    }
+
     .moura-hero-aside {
       margin-bottom: 0;
     }
@@ -1010,6 +1086,11 @@ const distinctions = [
     .moura-closing-copy {
       max-width: 42rem;
       margin-left: 0;
+    }
+
+    .moura-closing-copy {
+      border-left: 0;
+      padding-left: 0;
     }
 
     .moura-method-flow {
@@ -1059,6 +1140,11 @@ const distinctions = [
     .moura-closing h2 {
       font-size: clamp(2.35rem, 10.8vw, 3.75rem);
       line-height: 1;
+    }
+
+    .moura-closing {
+      --closing-overlap: 0rem;
+      padding-bottom: 6.4rem;
     }
 
     .moura-hero {
