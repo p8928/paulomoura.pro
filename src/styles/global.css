@@ -137,7 +137,7 @@
   --color-paper: var(--moura-paper);
   --color-panel: var(--moura-panel);
   --color-line: var(--moura-line);
-  --color-wine: var(--moura-wine);
+  --color-wine: var(--moura-gold);
   --color-moss: var(--moura-moss);
   --color-steel: var(--moura-steel);
   --color-gold: var(--moura-gold);
@@ -181,7 +181,7 @@ html {
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(244, 239, 231, 0.88);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(185, 143, 76, 0.92), rgba(111, 38, 61, 0.64));
+  background: linear-gradient(180deg, rgba(185, 143, 76, 0.92), rgba(167, 124, 61, 0.64));
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -489,7 +489,7 @@ body.is-overlay-open {
 }
 
 .brand-atmosphere-transition span {
-  color: rgba(111, 38, 61, 0.66);
+  color: rgba(167, 124, 61, 0.66);
 }
 
 .brand-atmosphere-transition p {
@@ -909,7 +909,7 @@ body.is-overlay-open {
   min-height: 340vh;
   overflow: clip;
   background:
-    radial-gradient(circle at 18% 14%, rgba(111, 38, 61, 0.18), transparent 34%),
+    radial-gradient(circle at 18% 14%, rgba(167, 124, 61, 0.18), transparent 34%),
     radial-gradient(circle at 82% 70%, rgba(167, 124, 61, 0.08), transparent 30%),
     linear-gradient(145deg, #050505 0%, #10100f 48%, #060606 100%);
   color: var(--moura-ivory);
@@ -1246,7 +1246,7 @@ body.is-overlay-open {
   align-items: center;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 78% 18%, rgba(111, 38, 61, 0.14), transparent 28%),
+    radial-gradient(circle at 78% 18%, rgba(167, 124, 61, 0.14), transparent 28%),
     linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
   color: var(--moura-ivory);
   padding: clamp(6.25rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(5rem, 7vw, 7rem);
@@ -1327,7 +1327,7 @@ body.is-overlay-open {
   font-weight: 400;
   text-shadow:
     0 0 18px rgba(244, 239, 231, 0.1),
-    0 0 26px rgba(111, 38, 61, 0.22);
+    0 0 26px rgba(167, 124, 61, 0.22);
 }
 
 .signature-line {
@@ -1378,7 +1378,7 @@ body.is-overlay-open {
 
 .site-footer {
   background:
-    radial-gradient(circle at 14% 20%, rgba(111, 38, 61, 0.12), transparent 28%),
+    radial-gradient(circle at 14% 20%, rgba(167, 124, 61, 0.12), transparent 28%),
     linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
   color: var(--moura-ivory);
   padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);

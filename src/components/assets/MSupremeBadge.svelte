@@ -37,7 +37,7 @@
   }
 
   .supreme-badge-wine {
-    --supreme-accent-rgb: 111, 38, 61;
+    --supreme-accent-rgb: 167, 124, 61;
     --supreme-warm-rgb: 146, 48, 79;
     --supreme-highlight-rgb: 188, 76, 110;
     --supreme-glow-rgb: 184, 68, 104;

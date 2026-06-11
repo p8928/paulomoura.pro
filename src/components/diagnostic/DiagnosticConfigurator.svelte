@@ -33,7 +33,7 @@
 
   <div class="mt-8 grid gap-6">
     <div>
-      <p class="text-sm uppercase tracking-[0.18em] text-wine">Diagnostico consultivo</p>
+      <p class="text-sm uppercase tracking-[0.18em] text-gold">Diagnostico consultivo</p>
       <h2 id="diagnostic-title" class="mt-3 font-serif text-4xl leading-tight">
         Uma candidatura guiada por substancia, escopo e momento.
       </h2>

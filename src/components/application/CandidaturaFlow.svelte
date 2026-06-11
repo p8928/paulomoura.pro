@@ -638,7 +638,7 @@
   .application-progress span {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, #6f263d, #a77c3d);
+    background: linear-gradient(90deg, #8f8a80, #a77c3d);
     transition: width 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -804,7 +804,7 @@
 
   .application-check input {
     width: auto;
-    accent-color: #8a304e;
+    accent-color: #a77c3d;
   }
 
   .application-choice-group {

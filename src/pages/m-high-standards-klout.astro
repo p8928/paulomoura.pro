@@ -229,7 +229,7 @@ const scores = [
     padding-block: clamp(8rem, 12vw, 11rem) clamp(4.5rem, 8vw, 7.5rem);
     background:
       radial-gradient(circle at 78% 20%, rgba(167, 124, 61, 0.15), transparent 28%),
-      radial-gradient(circle at 18% 78%, rgba(111, 38, 61, 0.2), transparent 34%),
+      radial-gradient(circle at 18% 78%, rgba(167, 124, 61, 0.2), transparent 34%),
       linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
     color: var(--moura-ivory);
   }
@@ -369,7 +369,7 @@ const scores = [
   .mhs-accordion-section {
     padding-block: clamp(7rem, 12vw, 12rem);
     background:
-      radial-gradient(circle at 15% 22%, rgba(111, 38, 61, 0.16), transparent 28%),
+      radial-gradient(circle at 15% 22%, rgba(167, 124, 61, 0.16), transparent 28%),
       linear-gradient(145deg, #060606 0%, #10100f 58%, #050505 100%);
     color: var(--moura-ivory);
   }
@@ -584,16 +584,16 @@ const scores = [
   }
 
   .mhs-score-track {
-    stroke: rgba(111, 38, 61, 0.14);
+    stroke: rgba(167, 124, 61, 0.14);
     stroke-width: 1.25;
   }
 
   .mhs-score-progress {
-    stroke: var(--moura-wine);
+    stroke: var(--moura-gold);
     stroke-width: 2;
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    filter: drop-shadow(0 0 4px rgba(111, 38, 61, 0.22));
+    filter: drop-shadow(0 0 4px rgba(167, 124, 61, 0.22));
     animation: drawScore 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   }
 
@@ -601,7 +601,7 @@ const scores = [
     content: "";
     position: absolute;
     inset: 13px;
-    border: 1px solid rgba(111, 38, 61, 0.08);
+    border: 1px solid rgba(167, 124, 61, 0.08);
     border-radius: 50%;
   }
 
@@ -613,7 +613,7 @@ const scores = [
     font-weight: 300;
     line-height: 1;
     letter-spacing: 0;
-    color: var(--moura-wine);
+    color: var(--moura-gold);
   }
 
   @keyframes drawScore {
@@ -652,7 +652,7 @@ const scores = [
     width: fit-content;
     min-height: 44px;
     margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
-    color: rgba(111, 38, 61, 0.88);
+    color: rgba(167, 124, 61, 0.88);
     transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
