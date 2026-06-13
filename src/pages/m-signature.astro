@@ -292,6 +292,11 @@ const technicalLayers = [
 
     <section class="signature-tech" data-nav-surface="dark" aria-labelledby="signature-tech-title">
       <div class="signature-shell signature-tech-grid">
+        <header class="signature-section-head signature-tech-head">
+          <p class="signature-kicker">Base técnica</p>
+          <span>07 / Técnica</span>
+        </header>
+
         <div class="signature-tech-table" aria-label="Camadas técnicas do M-Signature">
           {technicalLayers.map(([label, copy]) => (
             <div>
@@ -302,13 +307,9 @@ const technicalLayers = [
         </div>
 
         <div class="signature-tech-copy">
-          <p class="signature-kicker">Base técnica</p>
           <h2 id="signature-tech-title">A infraestrutura existe para tornar a substância mais legível.</h2>
           <p>
-            A construção técnica privilegia performance, segurança, estrutura semântica, dados organizados e experiência de leitura. Frameworks modernos como Astro e Svelte permitem uma presença mais rápida, controlada e durável do que soluções presas a construtores visuais limitados.
-          </p>
-          <p>
-            A função dessa base não é exibir tecnologia. É reduzir ruído, melhorar compreensão, sustentar confiança e facilitar a leitura da empresa por pessoas, motores de busca e sistemas generativos.
+            A construção técnica privilegia performance, segurança, estrutura semântica, dados organizados e experiência de leitura. O propósito é estabelecer uma comunicação limpa, compreensível e confiável para pessoas, motores de busca e sistemas generativos.
           </p>
         </div>
       </div>
@@ -401,10 +402,7 @@ const technicalLayers = [
     min-height: 100vh;
     align-items: center;
     padding-block: 8rem 6rem;
-    background:
-      linear-gradient(90deg, rgba(244, 239, 231, 0.045) 1px, transparent 1px),
-      linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
-    background-size: calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+    background: linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
   }
 
   .signature-hero-grid {
@@ -445,7 +443,7 @@ const technicalLayers = [
     justify-items: start;
     gap: 1.5rem;
     max-width: 35rem;
-    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    border-top: 1px solid rgba(244, 239, 231, 0.12);
     padding-top: 1.4rem;
   }
 
@@ -475,9 +473,9 @@ const technicalLayers = [
     grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(9rem, 1fr));
     gap: clamp(1.2rem, 3vw, 3rem);
     align-items: center;
-    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    border-top: 1px solid rgba(244, 239, 231, 0.1);
     padding-top: 1rem;
-    color: rgba(244, 239, 231, 0.44);
+    color: rgba(244, 239, 231, 0.38);
   }
 
   .signature-hero-system p {
@@ -611,8 +609,15 @@ const technicalLayers = [
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.032) 0 1px, transparent 1px calc(100% / 12));
-    opacity: 0.46;
     pointer-events: none;
+  }
+
+  .signature-statement-layout::before {
+    opacity: 0.22;
+  }
+
+  .signature-process-layout::before {
+    opacity: 0.46;
   }
 
   .signature-statement-layout > *,
@@ -669,8 +674,8 @@ const technicalLayers = [
     grid-column: 4 / -1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid rgba(8, 8, 8, 0.18);
-    border-left: 1px solid rgba(8, 8, 8, 0.18);
+    border-top: 1px solid rgba(8, 8, 8, 0.11);
+    border-left: 1px solid rgba(8, 8, 8, 0.11);
   }
 
   .signature-clarity-modules article {
@@ -678,8 +683,8 @@ const technicalLayers = [
     align-content: start;
     gap: 1rem;
     min-height: 13rem;
-    border-right: 1px solid rgba(8, 8, 8, 0.18);
-    border-bottom: 1px solid rgba(8, 8, 8, 0.18);
+    border-right: 1px solid rgba(8, 8, 8, 0.11);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.11);
     padding: clamp(1.2rem, 2vw, 1.7rem);
   }
 
@@ -690,6 +695,10 @@ const technicalLayers = [
     line-height: 1.1;
     text-transform: uppercase;
     color: rgba(167, 124, 61, 0.72);
+  }
+
+  .signature-clarity-modules p {
+    color: rgba(8, 8, 8, 0.72);
   }
 
   .signature-scope,
@@ -990,6 +999,7 @@ const technicalLayers = [
   }
 
   .signature-process-list h3 {
+    min-height: 2.25em;
     color: rgba(8, 8, 8, 0.86);
   }
 
@@ -1034,6 +1044,10 @@ const technicalLayers = [
     font-size: 1rem;
     font-weight: 300;
     line-height: 1.55;
+  }
+
+  .signature-tech-head {
+    grid-column: 1 / -1;
   }
 
   .signature-tech-copy {
@@ -1503,6 +1517,10 @@ const technicalLayers = [
       gap: 0.85rem;
       border-right: 0;
       padding: 1.15rem 0;
+    }
+
+    .signature-process-list h3 {
+      min-height: 0;
     }
 
     .signature-process-list p a {
