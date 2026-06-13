@@ -94,31 +94,31 @@
     {
       eyebrow: '01 / Responsável',
       title: 'Quem conduz a candidatura?',
-      copy: 'Começamos pelo contato principal para entender quem responde pela decisão e pelo contexto do negócio.',
+      copy: 'Informe quem responde pela decisão e pelo contexto do negócio.',
       fields: ['firstName', 'lastName', 'email', 'phone'],
     },
     {
       eyebrow: '02 / Empresa',
       title: 'Qual empresa será analisada?',
-      copy: 'O diagnóstico depende da leitura da operação real, dos sinais públicos e da estrutura digital existente.',
+      copy: 'A avaliação cruza operação real, sinais públicos e estrutura digital existente.',
       fields: ['company', 'cnpj', 'website', 'industry', 'companySize'],
     },
     {
       eyebrow: '03 / Momento',
       title: 'Que tipo de projeto faz sentido agora?',
-      copy: 'Investimento, urgência e canal de aquisição ajudam a avaliar aderência antes de abrir uma conversa comercial.',
+      copy: 'Investimento, urgência e aquisição indicam aderência antes da conversa comercial.',
       fields: ['budget', 'acquisition', 'urgency'],
     },
     {
       eyebrow: '04 / Motivo',
       title: 'Por que esta candidatura existe?',
-      copy: 'Selecione todos os pontos que descrevem o problema atual. Depois, acrescente contexto em texto livre se necessário.',
+      copy: 'Marque os pontos centrais e acrescente contexto apenas se necessário.',
       fields: ['reasons', 'context'],
     },
     {
       eyebrow: '05 / Revisão',
       title: 'Revise antes de enviar.',
-      copy: 'A candidatura será organizada em um e-mail com as informações principais para avaliação inicial.',
+      copy: 'As informações serão organizadas para avaliação inicial.',
       fields: [],
     },
   ];
@@ -417,11 +417,11 @@
         <div class="application-grid two">
           <label>
             <span>Nome</span>
-            <input bind:value={form.firstName} autocomplete="given-name" placeholder="Paulo" />
+            <input bind:value={form.firstName} autocomplete="given-name" placeholder="John" />
           </label>
           <label>
             <span>Sobrenome</span>
-            <input bind:value={form.lastName} autocomplete="family-name" placeholder="Moura" />
+            <input bind:value={form.lastName} autocomplete="family-name" placeholder="Doe" />
           </label>
           <label>
             <span>E-mail</span>
@@ -567,11 +567,11 @@
 
   .application-frame {
     min-height: clamp(42rem, 76vh, 58rem);
-    border: 1px solid rgba(244, 239, 231, 0.16);
+    border: 1px solid rgba(244, 239, 231, 0.12);
     background:
-      linear-gradient(145deg, rgba(167, 124, 61, 0.1), transparent 36%),
-      linear-gradient(180deg, rgba(244, 239, 231, 0.07), rgba(244, 239, 231, 0.025));
-    box-shadow: 0 34px 110px rgba(0, 0, 0, 0.42);
+      linear-gradient(145deg, rgba(167, 124, 61, 0.055), transparent 36%),
+      linear-gradient(180deg, rgba(244, 239, 231, 0.052), rgba(244, 239, 231, 0.02));
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
     padding: clamp(1.2rem, 3.2vw, 3rem);
   }
 
@@ -725,7 +725,7 @@
   .application-copy {
     max-width: 50rem;
     margin: 0;
-    color: rgba(244, 239, 231, 0.64);
+    color: rgba(244, 239, 231, 0.7);
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(1rem, 1.16vw, 1.18rem);
     font-weight: 300;

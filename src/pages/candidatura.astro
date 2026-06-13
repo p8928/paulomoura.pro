@@ -28,7 +28,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
         <aside class="application-hero-aside" aria-label="Resumo da candidatura">
           <p>
-            A candidatura organiza informações essenciais sobre negócio, momento, investimento e principais gargalos da presença digital. Ela não substitui o diagnóstico; apenas evita uma conversa comercial prematura ou genérica.
+            A candidatura organiza contexto, momento, investimento e gargalos principais antes de qualquer conversa sobre escopo.
           </p>
         </aside>
       </div>
@@ -41,27 +41,30 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       </aside>
     </section>
 
-    <section class="application-intro" data-nav-surface="light" aria-labelledby="application-intro-title">
-      <div class="application-shell application-intro-grid">
-        <header>
-          <p class="application-kicker application-kicker-dark">Como funciona</p>
-          <h2 id="application-intro-title">O formulário filtra o que precisa ser filtrado antes de abrir escopo.</h2>
-        </header>
+    <div class="application-stack">
+      <div class="application-stack-sticky">
+        <section class="application-intro" data-nav-surface="light" aria-labelledby="application-intro-title">
+          <div class="application-shell application-intro-grid">
+            <header>
+              <p class="application-kicker application-kicker-dark">Como funciona</p>
+              <h2 id="application-intro-title">O formulário filtra o que precisa ser filtrado antes de abrir escopo.</h2>
+            </header>
 
-        <div class="application-intro-copy">
-          <p>
-            M-Signature trabalha com personalização alta. Por isso, a entrada precisa revelar se a empresa tem contexto, maturidade e orçamento compatíveis com uma intervenção profunda em marca, linguagem, site, SEO, AEO, GEO e autoridade digital.
-          </p>
-          <p>
-            Ao final, os dados são organizados para envio por e-mail. Depois da avaliação inicial, o diagnóstico define se faz sentido conversar sobre escopo, investimento e próximos passos.
-          </p>
-        </div>
+            <div class="application-intro-copy">
+              <p>
+                O formulário identifica contexto, maturidade e orçamento antes do diagnóstico. Depois da avaliação inicial, só seguimos para escopo, investimento e próximos passos quando houver aderência real.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <section class="application-form-section" data-nav-surface="dark" aria-label="Formulário de candidatura">
-      <CandidaturaFlow client:load />
-    </section>
+      <div class="application-stack-panel">
+        <section class="application-form-section" data-nav-surface="dark" aria-label="Formulário de candidatura">
+          <CandidaturaFlow client:load />
+        </section>
+      </div>
+    </div>
   </main>
 
   <SiteFooter />
@@ -69,7 +72,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 <style>
   .application-page {
-    overflow: hidden;
     background: var(--moura-paper);
     color: var(--moura-ink);
   }
@@ -111,10 +113,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     align-items: center;
     padding-block: 8rem 6rem;
     background:
-      radial-gradient(circle at 82% 18%, rgba(167, 124, 61, 0.14), transparent 28rem),
-      linear-gradient(90deg, rgba(244, 239, 231, 0.045) 1px, transparent 1px),
+      radial-gradient(circle at 82% 18%, rgba(167, 124, 61, 0.08), transparent 28rem),
       linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
-    background-size: auto, calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
   }
 
   .application-hero-grid {
@@ -146,7 +146,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
   .application-hero-aside {
     max-width: 35rem;
-    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    border-top: 1px solid rgba(244, 239, 231, 0.12);
     padding-top: 1.4rem;
   }
 
@@ -172,9 +172,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(9rem, 1fr));
     gap: clamp(1.2rem, 3vw, 3rem);
     align-items: center;
-    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    border-top: 1px solid rgba(244, 239, 231, 0.1);
     padding-top: 1rem;
-    color: rgba(244, 239, 231, 0.44);
+    color: rgba(244, 239, 231, 0.38);
   }
 
   .application-hero-system p {
@@ -186,7 +186,30 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     text-align: right;
   }
 
+  .application-stack {
+    position: relative;
+    background: #060606;
+  }
+
+  .application-stack-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .application-stack-panel {
+    position: relative;
+    z-index: 2;
+  }
+
   .application-intro {
+    display: grid;
+    min-height: 100vh;
+    height: 100vh;
+    align-items: center;
+    overflow: hidden;
     padding-block: clamp(7rem, 11vw, 11rem);
     background: var(--moura-paper);
   }
@@ -220,18 +243,29 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   }
 
   .application-intro-copy p {
-    color: rgba(8, 8, 8, 0.62);
+    color: rgba(8, 8, 8, 0.72);
   }
 
   .application-form-section {
+    position: relative;
+    z-index: 2;
     padding-block: clamp(6rem, 10vw, 10rem);
-    background:
-      linear-gradient(90deg, rgba(244, 239, 231, 0.035) 1px, transparent 1px),
-      linear-gradient(180deg, #050505 0%, #10100f 50%, #050505 100%);
-    background-size: calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+    background: linear-gradient(180deg, #050505 0%, #10100f 50%, #050505 100%);
   }
 
   @media (max-width: 900px) {
+    .application-stack-sticky {
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+    }
+
+    .application-intro {
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+    }
+
     .application-hero-grid,
     .application-intro-grid {
       grid-template-columns: 1fr;

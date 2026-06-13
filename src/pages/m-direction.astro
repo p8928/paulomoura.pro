@@ -7,15 +7,15 @@ import { itemListSchema, schemaIdentity, serviceSchema } from '@data/schema';
 const continuityModules = [
   {
     label: 'Base já construída',
-    copy: 'M-Direction parte de uma presença criada ou reorganizada pelo M-Signature. A continuidade não começa do zero; ela expande uma base já orientada pelo método Brand-Driven.',
+    copy: 'Parte de uma presença já orientada pelo M-Signature e expande essa base com critério contínuo.',
   },
   {
     label: 'Direção contínua',
-    copy: 'A estratégia permanece acompanhada para que conteúdo, autoridade, reputação, tecnologia e sinais de busca avancem sob o mesmo critério.',
+    copy: 'Conteúdo, autoridade, reputação, tecnologia e busca avançam sob o mesmo critério.',
   },
   {
     label: 'Execução personalizada',
-    copy: 'O escopo é definido conforme a necessidade do cliente: editorial, autoridade pública, redes sociais, concorrência, tecnologia e outros serviços digitais.',
+    copy: 'O escopo combina editorial, autoridade pública, redes sociais, inteligência e tecnologia conforme a necessidade real.',
   },
 ];
 
@@ -151,10 +151,7 @@ const processSteps = [
 
         <div class="direction-statement-copy">
           <p>
-            O M-Signature cria a base. O M-Direction existe porque autoridade, conteúdo, reputação, tecnologia e sinais públicos respondem ao tempo. Sem continuidade, a presença ainda pode crescer, mas tende a avançar com menos ritmo, menos vantagem competitiva e menos precisão estratégica.
-          </p>
-          <p>
-            A direção contínua mantém a marca em evolução: identifica prioridades, organiza execução, acompanha oportunidades e preserva a coerência Brand-Driven em cada novo movimento digital.
+            O M-Signature cria a base. O M-Direction mantém autoridade, conteúdo, reputação, tecnologia e sinais públicos em evolução, com prioridades claras e coerência Brand-Driven a cada novo movimento digital.
           </p>
         </div>
 
@@ -208,8 +205,12 @@ const processSteps = [
 
     <section class="direction-format" data-nav-surface="dark" aria-labelledby="direction-format-title">
       <div class="direction-shell direction-format-grid">
-        <div class="direction-format-copy">
+        <header class="direction-section-head direction-format-head">
           <p class="direction-kicker">Formato comercial</p>
+          <span>05 / Formato</span>
+        </header>
+
+        <div class="direction-format-copy">
           <h2 id="direction-format-title">O escopo não é empacotado. Ele é calculado pela continuidade necessária.</h2>
           <p>
             M-Direction não funciona como mensalidade genérica, pacote de marketing ou agência de conteúdo. O contrato parte das necessidades reais do cliente depois do M-Signature e define serviços, prazos e investimento conforme o trabalho a ser executado.
@@ -318,10 +319,7 @@ const processSteps = [
     min-height: 100vh;
     align-items: center;
     padding-block: 8rem 6rem;
-    background:
-      linear-gradient(90deg, rgba(244, 239, 231, 0.045) 1px, transparent 1px),
-      linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
-    background-size: calc((100vw - clamp(2rem, 7vw, 8rem) * 2) / 12) 100%, 100%;
+    background: linear-gradient(180deg, #050505 0%, #0d0d0c 100%);
   }
 
   .direction-hero-grid {
@@ -361,7 +359,7 @@ const processSteps = [
     justify-items: start;
     gap: 1.5rem;
     max-width: 35rem;
-    border-top: 1px solid rgba(244, 239, 231, 0.18);
+    border-top: 1px solid rgba(244, 239, 231, 0.12);
     padding-top: 1.4rem;
   }
 
@@ -391,9 +389,9 @@ const processSteps = [
     grid-template-columns: minmax(14rem, 0.7fr) repeat(3, minmax(9rem, 1fr));
     gap: clamp(1.2rem, 3vw, 3rem);
     align-items: center;
-    border-top: 1px solid rgba(244, 239, 231, 0.14);
+    border-top: 1px solid rgba(244, 239, 231, 0.1);
     padding-top: 1rem;
-    color: rgba(244, 239, 231, 0.44);
+    color: rgba(244, 239, 231, 0.38);
   }
 
   .direction-hero-system p {
@@ -420,17 +418,24 @@ const processSteps = [
     row-gap: clamp(2.2rem, 4vw, 4rem);
   }
 
-  .direction-statement-layout::before::before,
+  .direction-statement-layout::before,
   .direction-process-layout::before {
     content: "";
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(90deg, rgba(8, 8, 8, 0.032) 0 1px, transparent 1px calc(100% / 12));
-    opacity: 0.46;
     pointer-events: none;
   }
 
-  .direction-statement-layout > * > *,
+  .direction-statement-layout::before {
+    opacity: 0.22;
+  }
+
+  .direction-process-layout::before {
+    opacity: 0.46;
+  }
+
+  .direction-statement-layout > *,
   .direction-process-layout > * {
     position: relative;
     z-index: 1;
@@ -482,17 +487,17 @@ const processSteps = [
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid rgba(8, 8, 8, 0.18);
-    border-left: 1px solid rgba(8, 8, 8, 0.18);
+    border-top: 1px solid rgba(8, 8, 8, 0.11);
+    border-left: 1px solid rgba(8, 8, 8, 0.11);
   }
 
   .direction-modules article {
     display: grid;
     align-content: start;
     gap: 1rem;
-    min-height: 14rem;
-    border-right: 1px solid rgba(8, 8, 8, 0.18);
-    border-bottom: 1px solid rgba(8, 8, 8, 0.18);
+    min-height: 11.5rem;
+    border-right: 1px solid rgba(8, 8, 8, 0.11);
+    border-bottom: 1px solid rgba(8, 8, 8, 0.11);
     padding: clamp(1.2rem, 2vw, 1.7rem);
   }
 
@@ -503,6 +508,11 @@ const processSteps = [
     line-height: 1.1;
     text-transform: uppercase;
     color: rgba(72, 84, 63, 0.78);
+  }
+
+  .direction-statement-copy p,
+  .direction-modules p {
+    color: rgba(8, 8, 8, 0.72);
   }
 
   .direction-scope,
@@ -635,6 +645,10 @@ const processSteps = [
 
   .direction-format-grid {
     align-items: center;
+  }
+
+  .direction-format-head {
+    grid-column: 1 / -1;
   }
 
   .direction-format-copy {
