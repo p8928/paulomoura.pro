@@ -4,6 +4,11 @@ dist/
 reports/
 test-results/
 playwright-report/
+docs/
+tests/
+tmp/
+tools/
+playwright.config.ts
 .DS_Store
 .env
 .env.*
