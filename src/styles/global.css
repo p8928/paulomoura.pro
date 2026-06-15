@@ -1454,26 +1454,73 @@ body.is-overlay-open {
 .site-footer-contact-group {
   display: grid;
   align-content: start;
-  gap: clamp(1.15rem, 1.6vw, 1.6rem);
+  gap: clamp(1.2rem, 1.7vw, 1.7rem);
 }
 
 .site-footer-contact {
   display: grid;
   align-content: start;
-  gap: 0.55rem;
-  color: rgba(244, 239, 231, 0.58);
-  font-size: clamp(0.92rem, 1vw, 1rem);
-  line-height: 1.55;
-  letter-spacing: 0.03em;
+  gap: clamp(0.8rem, 1vw, 1rem);
+  margin: 0;
+  color: rgba(244, 239, 231, 0.6);
+  font-size: clamp(0.88rem, 0.96vw, 0.98rem);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
 }
 
-.site-footer-contact p {
+.site-footer-contact-item {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.site-footer-contact dt,
+.site-footer-contact dd {
   margin: 0;
+}
+
+.site-footer-contact dt {
+  color: rgba(244, 239, 231, 0.42);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.site-footer-contact dd {
+  max-width: 22ch;
+}
+
+.site-footer-contact-item--region {
+  gap: 0.36rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(244, 239, 231, 0.1);
+  padding-top: 0.95rem;
+}
+
+.site-footer-contact-item--region dd {
+  display: grid;
+  gap: 0.36rem;
+  max-width: 32ch;
+  color: rgba(244, 239, 231, 0.56);
+  line-height: 1.5;
+}
+
+.site-footer-region-line {
+  display: block;
+}
+
+.site-footer-region-line + .site-footer-region-line {
+  color: rgba(244, 239, 231, 0.46);
+}
+
+.site-footer-nowrap {
+  white-space: nowrap;
 }
 
 .site-footer-contact a {
   display: inline-flex;
-  min-height: 44px;
+  min-height: 38px;
   align-items: center;
   color: rgba(244, 239, 231, 0.82);
   transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -1583,6 +1630,14 @@ body.is-overlay-open {
 
   .site-footer-bottom nav {
     justify-content: flex-start;
+  }
+
+  .site-footer-contact {
+    gap: 1.05rem;
+  }
+
+  .site-footer-contact a {
+    min-height: 44px;
   }
 }
 

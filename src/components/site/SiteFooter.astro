@@ -49,11 +49,23 @@ const socialLinks = [
     </nav>
 
     <div class="site-footer-contact-group">
-      <div class="site-footer-contact">
-        <p>telefone: <a href="tel:+5511922305905">(11) 92230—5905</a></p>
-        <p>e-mail: <a href="mailto:contato@paulomoura.pro">contato@paulomoura.pro</a></p>
-        <p>São Paulo, Jundiaí, Sorocaba e Campinas.</p>
-      </div>
+      <dl class="site-footer-contact" aria-label="Informações de contato">
+        <div class="site-footer-contact-item">
+          <dt>whatsapp</dt>
+          <dd><a href="https://wa.me/5511922305905">(11) 92230-5905</a></dd>
+        </div>
+        <div class="site-footer-contact-item">
+          <dt>e-mail</dt>
+          <dd><a href="mailto:contato@paulomoura.pro">contato@paulomoura.pro</a></dd>
+        </div>
+        <div class="site-footer-contact-item site-footer-contact-item--region">
+          <dt>atuação</dt>
+          <dd>
+            <span class="site-footer-region-line">Presencial prioritário em <span class="site-footer-nowrap">São Paulo</span>, Jundiaí, Sorocaba e Campinas.</span>
+            <span class="site-footer-region-line">Projetos em outras regiões sob avaliação.</span>
+          </dd>
+        </div>
+      </dl>
 
       <div class="site-footer-social" aria-label="Redes sociais">
         {socialLinks.map((social) => (
