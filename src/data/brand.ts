@@ -6,7 +6,7 @@ export const brand = {
   continuityOffer: 'M-Direction',
   promise:
     'Converter substancia real em comunicacao digital brand-driven de alto desempenho.',
-  markets: ['Sao Paulo', 'Jundiai', 'Sorocaba', 'Campinas'],
+  markets: ['São Paulo', 'Jundiaí', 'Sorocaba', 'Campinas'],
   remoteQualification:
     'Atendimento nacional para empresas digitais ou operacoes que dispensem a etapa presencial do diagnostico.',
 };

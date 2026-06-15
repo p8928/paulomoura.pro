@@ -32,6 +32,7 @@
       path: 'M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z',
     },
   ];
+  const activeSocialLinks = socialLinks.filter((social) => social.href !== "#");
 
   onMount(() => {
     let frame = 0;
@@ -147,21 +148,42 @@
       </ul>
     </nav>
 
-    <div class="absolute bottom-8 right-6 text-right lg:right-10">
-      <div class="overlay-contact">
-        <p>telefone: <a href="tel:+5511922305905">(11) 92230—5905</a></p>
-        <p>e-mail: <a href="mailto:contato@paulomoura.pro">contato@paulomoura.pro</a></p>
-      </div>
-      <div class="mt-7 flex justify-end gap-4">
-        {#each socialLinks as social}
+    <aside class={`overlay-auxiliary ${open ? "overlay-auxiliary-open" : ""}`} aria-label="Contato e atuação">
+      <dl class="overlay-contact">
+        <div class="overlay-contact-item">
+          <dt>whatsapp</dt>
+          <dd><a href="https://wa.me/5511922305905">(11) 92230-5905</a></dd>
+        </div>
+        <div class="overlay-contact-item">
+          <dt>e-mail</dt>
+          <dd><a href="mailto:contato@paulomoura.pro">contato@paulomoura.pro</a></dd>
+        </div>
+        <div class="overlay-contact-item overlay-contact-item-region">
+          <dt>atuação</dt>
+          <dd>
+            <span>Presencial prioritário em <span class="overlay-nowrap">São Paulo</span>, Jundiaí, Sorocaba e Campinas.</span>
+            <span>Projetos em outras regiões sob avaliação.</span>
+          </dd>
+        </div>
+      </dl>
+
+      <a class="overlay-application-link" href="/candidatura" onclick={() => (open = false)}>
+        <span>Iniciar candidatura</span>
+        <span aria-hidden="true">→</span>
+      </a>
+
+      {#if activeSocialLinks.length > 0}
+        <div class="overlay-social" aria-label="Redes sociais">
+        {#each activeSocialLinks as social}
           <a class="overlay-social-link" href={social.href} aria-label={social.label}>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-              <path d={social.path} fill-rule={social.label === 'LinkedIn' ? 'evenodd' : undefined}></path>
+              <path d={social.path} fill-rule={social.label === "LinkedIn" ? "evenodd" : undefined}></path>
             </svg>
           </a>
         {/each}
-      </div>
-    </div>
+        </div>
+      {/if}
+    </aside>
   </div>
 </div>
 
@@ -208,24 +230,135 @@
     transform: translateX(0.12em);
   }
 
+  .overlay-auxiliary {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 2rem;
+    display: grid;
+    width: min(23.5rem, calc(100vw - 3rem));
+    gap: 1.15rem;
+    text-align: right;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 760ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 440ms;
+  }
+
+  .overlay-auxiliary-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .overlay-contact {
+    display: grid;
+    gap: 0.82rem;
+    margin: 0;
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(0.85rem, 1.05vw, 1rem);
+    font-size: clamp(0.82rem, 0.92vw, 0.96rem);
     font-weight: 300;
-    line-height: 1.75;
-    letter-spacing: 0.04em;
-    color: rgba(8, 8, 8, 0.7);
+    line-height: 1.38;
+    letter-spacing: 0.02em;
+    color: rgba(8, 8, 8, 0.62);
+  }
+
+  .overlay-contact-item {
+    display: grid;
+    gap: 0.18rem;
+    justify-items: end;
+  }
+
+  .overlay-contact dt,
+  .overlay-contact dd {
+    margin: 0;
+  }
+
+  .overlay-contact dt {
+    color: rgba(8, 8, 8, 0.42);
+    font-size: 0.66rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 
   .overlay-contact a,
   .overlay-social-link {
-    color: rgba(8, 8, 8, 0.9);
-    transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1), opacity 360ms cubic-bezier(0.16, 1, 0.3, 1);
+    color: rgba(8, 8, 8, 0.86);
+    transition:
+      color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .overlay-contact a:hover,
   .overlay-social-link:hover {
+    color: rgba(8, 8, 8, 0.52);
+  }
+
+  .overlay-contact a {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+  }
+
+  .overlay-contact-item-region {
+    justify-self: end;
+    width: min(100%, 31ch);
+    margin-top: 0.12rem;
+    border-top: 1px solid rgba(8, 8, 8, 0.1);
+    padding-top: 0.9rem;
+  }
+
+  .overlay-contact-item-region dd {
+    display: grid;
+    gap: 0.32rem;
+    max-width: 31ch;
     color: rgba(8, 8, 8, 0.56);
+    line-height: 1.52;
+  }
+
+  .overlay-contact-item-region dd span + span {
+    color: rgba(8, 8, 8, 0.44);
+  }
+
+  .overlay-nowrap {
+    white-space: nowrap;
+  }
+
+  .overlay-application-link {
+    display: inline-flex;
+    justify-self: end;
+    align-items: center;
+    justify-content: flex-end;
+    width: min(100%, 31ch);
+    gap: 0.58rem;
+    min-height: 44px;
+    border-top: 1px solid rgba(8, 8, 8, 0.1);
+    padding-top: 0.78rem;
+    font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.72);
+    transition:
+      color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .overlay-application-link:hover {
+    color: rgba(8, 8, 8, 0.94);
+    transform: translateX(0.12rem);
+  }
+
+  .overlay-social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.72rem;
+    padding-top: 0.15rem;
   }
 
   .overlay-social-link {
@@ -234,13 +367,24 @@
     justify-content: center;
     width: 44px;
     height: 44px;
-    opacity: 0.84;
+    opacity: 0.72;
   }
 
-  .overlay-contact a {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
+  .overlay-social-link:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  .overlay-social-link svg {
+    width: 1.28rem;
+    height: 1.28rem;
+  }
+
+  @media (min-width: 1024px) {
+    .overlay-auxiliary {
+      right: 2.5rem;
+      bottom: 2.5rem;
+    }
   }
 
   @media (max-width: 640px) {
@@ -249,8 +393,48 @@
       line-height: 0.94;
     }
 
+    .overlay-auxiliary {
+      inset-inline: 1.5rem;
+      bottom: 1.35rem;
+      width: auto;
+      gap: 0.9rem;
+      text-align: left;
+    }
+
     .overlay-contact {
-      line-height: 1.25;
+      gap: 0.72rem;
+      font-size: 0.82rem;
+      line-height: 1.32;
+    }
+
+    .overlay-contact-item {
+      justify-items: start;
+    }
+
+    .overlay-contact a {
+      min-height: 40px;
+    }
+
+    .overlay-contact-item-region {
+      justify-self: start;
+      width: min(100%, 29ch);
+      padding-top: 0.72rem;
+    }
+
+    .overlay-contact-item-region dd {
+      max-width: 29ch;
+      line-height: 1.45;
+    }
+
+    .overlay-application-link {
+      justify-self: start;
+      justify-content: flex-start;
+      width: min(100%, 29ch);
+    }
+
+    .overlay-social {
+      justify-content: flex-start;
+      gap: 0.58rem;
     }
   }
 
