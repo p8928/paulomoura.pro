@@ -3,12 +3,23 @@ import BadgeStandardPage from '@components/sections/badges/BadgeStandardPage.ast
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import { badgeStandardBySlug } from '@data/badgeStandards';
+import { badgeStandardSchema, schemaIdentity } from '@data/schema';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 const standard = badgeStandardBySlug['moura-supreme'];
+const standardUrl = schemaIdentity.baseUrl + '/moura-supreme/';
+const standardSchema = badgeStandardSchema({ standard, url: standardUrl });
 ---
 
-<BaseLayout title="Moura Supreme" description={standard.description} canonicalPath="/moura-supreme" schemaPageType="ProfilePage" showChrome={false}>
+<BaseLayout
+  title="Moura Supreme"
+  description={standard.description}
+  canonicalPath="/moura-supreme"
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': standardUrl + '#standard' }}
+  structuredData={standardSchema}
+  showChrome={false}
+>
   <script>
     import '@scripts/lenis';
   </script>

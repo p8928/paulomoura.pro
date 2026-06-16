@@ -6,6 +6,7 @@ import MSupremeBadge from '@components/assets/MSupremeBadge.svelte';
 import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
 import SiteFooter from '@components/site/SiteFooter.astro';
 import { badgeStandards } from '@data/badgeStandards';
+import { schemaIdentity } from '@data/schema';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 const qualityBadges = badgeStandards;
@@ -65,6 +66,7 @@ const distinctions = [
   description="Moura é assinatura e método para presença digital de alto desempenho: marca, comunicação, experiência, busca e reputação sob uma mesma direção."
   canonicalPath="/moura"
   schemaPageType="AboutPage"
+  schemaMainEntity={{ '@id': schemaIdentity.organizationId }}
   showChrome={false}
 >
   <script>

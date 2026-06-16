@@ -1,4 +1,5 @@
 import { brand } from './brand';
+import type { BadgeStandard } from './badgeStandards';
 
 type JsonLdNode = Record<string, unknown>;
 
@@ -198,6 +199,40 @@ export const serviceSchema = ({
     },
   },
   audience: audience ? { '@type': 'Audience', audienceType: audience } : undefined,
+});
+
+export const badgeStandardSchema = ({
+  standard,
+  url,
+}: {
+  standard: BadgeStandard;
+  url: string;
+}) => compact({
+  '@type': 'DefinedTerm',
+  '@id': url + '#standard',
+  name: standard.expansion,
+  alternateName: standard.seal,
+  termCode: standard.seal,
+  description: standard.description,
+  url,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': schemaIdentity.baseUrl + '/#moura-standards',
+    name: 'Padrões Moura',
+    description: 'Critérios públicos usados por Paulo Moura para classificar presença digital, identidade, excelência técnica e distinção de execução.',
+    publisher: { '@id': schemaIdentity.organizationId },
+  },
+  creator: { '@id': schemaIdentity.personId },
+  publisher: { '@id': schemaIdentity.organizationId },
+  about: [
+    { '@type': 'Thing', name: standard.category },
+    ...standard.criteria.map((criterion) => ({
+      '@type': 'DefinedTerm',
+      name: criterion.title,
+      description: criterion.body,
+    })),
+  ],
+  audience: standard.audience.map((audience) => ({ '@type': 'Audience', audienceType: audience })),
 });
 
 export const itemListSchema = ({

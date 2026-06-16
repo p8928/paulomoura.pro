@@ -126,6 +126,7 @@
   let current = $state(0);
   let touched = $state(false);
   const formspreeEndpoint = 'https://formspree.io/f/meewojoa';
+  const localDashboardEndpoint = 'http://127.0.0.1:4181/api/applications';
 
   let submitted = $state(false);
   let submitting = $state(false);
@@ -268,6 +269,11 @@
       : [...form.reasons, reason];
   }
 
+  function getSubmissionEndpoint() {
+    if (typeof window === 'undefined') return formspreeEndpoint;
+    return ['localhost', '127.0.0.1'].includes(window.location.hostname) ? localDashboardEndpoint : formspreeEndpoint;
+  }
+
   function buildEmailBody() {
     const cnpj = form.cnpjLater ? 'Prefere informar depois' : form.cnpj;
     const site = form.noWebsite ? 'Empresa ainda não tem site' : form.website;
@@ -328,7 +334,7 @@
     submitting = true;
 
     try {
-      const response = await fetch(formspreeEndpoint, {
+      const response = await fetch(getSubmissionEndpoint(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -338,7 +344,7 @@
       });
 
       if (!response.ok) {
-        throw new Error('Formspree recusou o envio.');
+        throw new Error('O endpoint recusou o envio.');
       }
 
       submittedAt = new Intl.DateTimeFormat('pt-BR', {
