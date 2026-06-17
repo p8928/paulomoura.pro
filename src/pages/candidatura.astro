@@ -121,7 +121,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(21rem, 0.55fr);
     gap: clamp(3rem, 8vw, 8rem);
-    align-items: end;
+    align-items: center;
   }
 
   .application-hero-copy {
@@ -138,16 +138,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   }
 
   .application-hero h1 {
-    max-width: 12ch;
+    max-width: 12.6ch;
     color: rgba(244, 239, 231, 0.94);
-    font-size: clamp(3.5rem, 7.1vw, 8.8rem);
-    line-height: 0.9;
+    font-size: clamp(3.35rem, 6.45vw, 7.9rem);
+    line-height: 0.92;
   }
 
   .application-hero-aside {
+    align-self: center;
     max-width: 35rem;
     border-top: 1px solid rgba(244, 239, 231, 0.12);
     padding-top: 1.4rem;
+    transform: translateY(clamp(0.45rem, 1.4vw, 1.4rem));
   }
 
   .application-hero-aside p,
@@ -299,7 +301,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     }
 
     .application-hero h1 {
-      font-size: clamp(3.05rem, 16vw, 4.8rem);
+      font-size: clamp(2.9rem, 14.6vw, 4.4rem);
+    }
+
+    .application-hero-aside {
+      transform: none;
     }
   }
 </style>
