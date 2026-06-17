@@ -6,138 +6,86 @@ category: "seo"
 draft: false
 ---
 
-Passei três dias analisando 120 agências de SEO em sete países e as descobertas foram chocantes. Já vou lançar uma delas: apenas 26,6% está falando em AI SEO e derivações (exemplo: generative engine optimization / GEO). Há lugares onde esses termos nem mesmo são mencionados.
+Dediquei três dias a uma análise com 120 agências de SEO em sete países das Américas e da Europa, com o objetivo de entender como elas vêm se atualizando diante do avanço das tecnologias baseadas em inteligência artificial. Para minha surpresa, apenas 21,6% estão falando em AEO e GEO (answer / generative engine optimization), conceitos que, em tese, deveriam estar na ponta da língua dessas empresas, mas nem mesmo são mencionados na maioria dos casos.
 
-Se você me perguntasse "o que isso tem a ver com autenticidade", primeiro te convidaria para sentar à mesa e apreciarmos um drink de primeira enquanto conversamos a respeito — até sugiro que prepare um chá ou café, ou mesmo pegue sua cerveja na geladeira, e brindemos por você estar aqui, prestes a aprender algo precioso!
+No momento em que escrevo este texto, a AI Overview do Google, ou Modo IA, está em fase de calibração. Significa que os resultados são baseados mais nos aspectos informativos do que na reputação. Por exemplo, ao pesquisar "melhores práticas de SEO moderno", a lista de referências é majoritariamente composta por sites desconhecidos e pequenos canais no YouTube em vez de Semrush e Moz, marcas de autoridade incontestavelmente maior.
 
-Vamos lá: estamos em meio a uma tremenda virada de jogo causada pela integração da IA nos mecanismos de busca. É como se o Google estivesse recomeçando e nos dando a chance de participar desse recomeço. Hoje, o resultado generativo já é a primeira coisa que aparece.
+Parece contraditório afirmar que autenticidade é o novo SEO, pois o Google está priorizando o que há de mais recente entre as informações de qualidade que ele encontra. A Ahrefs aponta que 99% das palavras-chave que acionam o Modo IA têm intenção informativa — e 73% destas são genéricas, sem relação com marcas. Só que novidade não é sinônimo de inédito.
 
-Com a AI Overview em fase de calibração, os resultados se baseiam mais nos aspectos informativos do que na reputação. Experimente pesquisar "Quais são as melhores práticas de SEO moderno?" e se depare com uma extensa lista com sites desconhecidos e vídeos aparecendo antes de Semrush e Moz (os big bosses).
+Algo similar aconteceu quando os mecanismos de busca eram terra de ninguém. Quem entendia da tecnologia, conseguia se sobressair nos resultados usando técnicas e macetes. Conforme os motores evoluíram, a qualidade do conteúdo começou a prevalecer sobre a maneira como era publicado (com hacks e práticas questionáveis), gerando um espaço posteriormente dominado por empresas que souberam construir autoridade no ambiente digital.
 
-Sim, estou dizendo que ser autêntico ainda não é um grande fator para um site ser mencionado pela IA. Ainda, repito. Isso acontece porque, nesta fase do campeonato, a IA do Google prioriza o que é mais recente entre o que existe de informação qualificada. A autoridade ainda é levada em conta e pode prevalecer caso o conteúdo das maiores marcas seja atualizado, pois a coisa muda a todo instante.
+De modo equivalente, quem é mencionado hoje no Modo IA do Google está esquentando lugar para quem tem mais reputação e autoridade. É questão de tempo para que as marcas, por serem entidades que os motores de busca consideram mais confiáveis e mais propensas a oferecer a melhor experiência ao usuário, voltem a encabeçar as referências — contanto que invistam em conteúdo de alto nível e em autenticidade. Mas se existe alguém preparando as empresas para esse desafio, não são as agências de SEO.
 
-Como sei disso? Li na Ahref: "99.9% das palavras-chave que acionam o Modo IA têm intenção informativa". O mesmo estudo aponta que 76,3% delas são termos genéricos (ex: branding), sem relação com marcas (ex: Moura).
+Como quase 80% vendem a mesma fórmula da década passada, o mercado ficou congelado, estagnando as empresas no que tange ao SEO, como se uma cortina de fumaça tirasse o norte de vista. Enquanto o jogo passa por uma revolução, as agências vendem o mesmo serviço dito "técnico" que consiste em correspondência de keywords, backlinks forçados, auditoria técnica para levantar números altos que não retratam a realidade, etc. Essas práticas, diga-se de passagem, já estavam defasadas antes mesmo da popularização da IA.
 
-Algo similar aconteceu quando os mecanismos de busca eram "terra de ninguém". Quem compreendia a tecnologia, conseguia se sobressair e encabeçar a página de resultados. Com o passar do tempo, o espaço conquistado começou a ser ocupado por grandes marcas e empresas que souberam construir autoridade.
+Só que o problema é mais profundo do que parece. Obcecados pelos aspectos técnicos de SEO, agências e profissionais do ramo esquecem os quesitos que, na minha opinião, representam 95% do sucesso da presença digital de uma empresa, os quais estão ligados ao framework E-E-A-T (Experience - Expertise - Authoritativeness - Trustworthiness), com destaque para os sinais de branding — termo completamente ausente do vocabulário das agências nos EUA, na Inglaterra, na Alemanha, no Canadá, entre outros.
 
-Moral da história: quem é mencionado no Modo IA está esquentando o lugar para quem tem melhor reputação. E autoridade e reputação só podem ser construídas tendo a autenticidade como um alicerce. É o que torna a marca reconhecível sem o logotipo. E autoridade só se constrói com autenticidade. Mas aqui está o problema: ninguém no mercado está preparando empresas para isso.
+## Branding e SEO sempre estiveram associados
 
-Quando voltei aos dados da minha pesquisa sobre 120 agências em 7 países, a realidade ficou ainda mais clara. Decidi então pesquisar o mercado a fim de saber quem realmente entende o jogo que o Google está jogando agora.
+Estou prestes a mostrar que a relação entre branding e SEO é como somar a + b. Antes disso, explicarei o motivo pelo qual os conceitos são dissociados por padrão. A resposta se resume em uma só palavra: conveniência. Agências ganham por volume de clientes, então é mais prático trabalhar com projetos genéricos limitados ao SEO técnico, sem envolvimento próximo com o negócio do cliente.
 
-Os números: 21,6% falam em GEO, AI Overviews, abordagens modernas. 78,4% ainda vendem a mesma fórmula da década passada. Keywords. Backlinks. Auditoria técnica. Planilha bonita. Promessa vazia. Mas tem um número que me deixou acordado à noite: 0% Zero agências — literalmente zero em 120 — tratam branding como solução para SEO. Nem nos EUA, onde 30% se dizem "avançadas". Nem na Inglaterra, onde 35% falam a língua da IA generativa. Nem na Alemanha, Canadá, Brasil.
+Um serviço vendido como algo puramente técnico é conveniente para apresentar resultados, pois os relatórios facilmente apontam aumento significativo de tráfego e justificam problemas usando termos e conceitos que o cliente não conhece. Parecer irrefutável é uma tática eficaz de aprisionamento; se o cliente não renovar o contrato, a agência vai embora sem se despedir.
 
-## Por que ninguém está vendendo branding como SEO
+Infelizmente, o mercado se desenvolveu desse jeito. Agências nascem programadas para atuar assim, mesmo que carreguem inicialmente o propósito de fazer diferente. Isso faz de SEO uma commodity; P&D vira assunto de quem desenvolve ferramentas (ex: Semrush); e as empresas ficam sem opções para solucionar suas dores com a atenção necessária.
 
-Que existe uma filosofia defasada de SEO em curso, os números não deixam dúvidas. Mas tem algo pior nessa história: a conveniência.
+Quando afirmo que branding e SEO andam juntos, estou apenas interpretando a essência dos mecanismos de pesquisa — a partir do momento em que deixaram de ser indexadores simples. Mais do que publicar conteúdo, a empresa precisa demonstrar conteúdo por meio da marca. Se o branding está incorporado em tudo (produtos, serviços, departamentos, processos, pessoas), os valores da empresa se tornam mais perceptíveis.
 
-Já ouviu a frase "ninguém quer mexer no vespeiro"? Pois então, falar em branding é mexer no vespeiro, tomar o remédio amargo, cutucar a ferida ou qualquer outra expressão do tipo.
+Antes da IA como conhecemos hoje, aspectos de branding surtiam efeito somente no usuário devido à sua natureza abstrata. Agora, a abstração é legível para robôs, que não só podem como interpretarão os valores e características da marca. À medida que os sinais da marca correspondem às provas sociais, eles passam pelo crivo dos motores de busca e das IAs, adquirem legitimidade e fazem a marca ganhar força nos grafos de conhecimento.
 
-É mais fácil vender soluções quando apenas implemento algumas mudanças e ajustes e boom: aqui um relatório irrefutável cheio de métricas complexas apontando que aumentamos o tráfego em 138%.
+## Autenticidade manifestada como o novo SEO
 
-Não por acaso, uma das coisas que mais li nesses sites de agência foi "foco no resultado". Resultado sem envolvimento com o negócio do cliente? Ah, preciso mencionar o campeão "data-driven". Números não mentem, mas a interpretação pode levar ao engano.
+Autenticidade sempre foi importante para o sucesso das empresas dentro e fora da internet. Marcas premium se sustentam quando seus produtos e serviços têm características que os colocam como superiores à concorrência. Marcas que se consolidaram explorando o conceito de "estilo de vida" têm sucesso porque a filosofia e a cultura são genuínas e onipresentes: está na mente de quem planeja, fabrica, gerencia, vende e compra.
 
-Quando é necessário ajudar o cliente a entender que seus problemas com a presença online estão relacionados ao negócio, existe um trabalho de conscientização e educação que dificultam a venda — para quem vive de volume, é uma enorme pedra no caminho.
+Considerando que 56% dos consumidores pesquisam antes de comprar — no Brasil, 79% —, ignorar o fato de que a maioria das experiências começa pelo digital é incogitável. Na verdade, esses números só elevam a importância de dedicar esforço máximo à presença digital para que a autenticidade seja perceptível a ponto de gerar identificação imediata e legível o suficiente para ser reconhecida pelo Google.
 
-Levo em conta também que estamos tratando de uma visão de negócio obsoleta, mesmo. Nem digo que as agências são ruins, é que o mercado de SEO cresceu dessa forma, à base de macetes para burlar o algoritmo do Google em uma época quando as práticas puramente técnicas funcionavam.
+Somada essa necessidade à capacidade dos mecanismos de busca de identificar elementos abstratos, as pesquisas de palavras-chave deixaram de fundamentar a estratégia e passaram a ser um instrumento de descoberta secundário para casos de uso específicos. A gestão de entidades (marca, empresa, líderes, etc.) é onde os esforços devem ser concentrados.
 
-A evolução, embora passe despercebida por quem se deixou cegar pelos métodos tradicionais, não só existe como está em andamento. É preciso abandonar vícios e hábitos que te desviam do essencial se quiser obter a vantagem competitiva que esse momento de transição está possibilitando.
+Partindo desse propósito, todas as ações giram em torno da gestão de entidades, incluindo conteúdos, anúncios, publicidades, estruturação de dados, web design e quaisquer outras portas de comunicação digital. Ativos como site e redes sociais também se interligam. Como já disse, isso nada mais é do que corrigir rota; as coisas deveriam ser assim desde o princípio.
 
-## Por que a autenticidade é o novo SEO?
+O que esperar disso: emitir sinais de autenticidade por todos os canais pelos quais a empresa se comunica gera consistência e fortalece a confiabilidade da qual o Google não abre mão ao avaliar o que é melhor para o usuário. Seguindo um plano bem estruturado, as evidências são publicadas com a frequência necessária para que a entidade esteja sempre em alta.
 
-Autenticidade sempre foi importante para o sucesso de empresas na internet, mas o Google era incapaz de identificar algo tão abstrato; o negócio dele era palavra-chave. Só que esse era o velho Google.
+Inclusive, manter as engrenagens girando justifica a importância de encarar SEO como produto, o que vai ao encontro da problemática da estagnação do mercado. Eli Schwartz ensina: assim como um produto que precisa se manter relevante, SEO requer desenvolvimento contínuo para permanecer evoluindo, criar resiliência e gerar resultados melhores. É uma abordagem fundamental para nutrir a marca.
 
-Hoje, a sua marca é definida como entidade — nada espiritual, apenas algo que possa ser identificado e definido de forma única, como pessoa, lugar, empresa, produto, conceito, etc.
+## Breve introdução às entidades no contexto de SEO
 
-Vou simplificar com um pouco de ficção: Manoela Rezende é uma chef de cozinha, portuguesa, especialista em gastronomia mediterrânea, dona do restaurante Mare, localizado em Granada, Espanha, o qual ela dirige e lidera a equipe de cozinheiros.
+Entidade é praticamente qualquer elemento que existe, tem nome e pode ativar correspondência à pesquisa de um usuário. Cada entidade concebida na superfície da internet é registrada pelo Google, que passa a rastreá-la para compreender o seu papel, sua relevância no contexto de pesquisa, a quem está associada, se ela é confiável.
 
-Manoela não tem um site próprio, mas tem perfis nas redes sociais e outras evidências na internet, como alguma entrevista publicada pela imprensa local. A partir desses vestígios é que o Google monta o perfil de Manuela Rezende, que passa a ser reconhecida como entidade.
+É como se o Google tivesse uma ficha em mãos para cada entidade. Se há valor na informação, ele guarda na gaveta mais próxima porque sabe que a utilizará a qualquer momento; do contrário, ela ficará soterrada sob N outras fichas mais interessantes, por piores que sejam. Em outras palavras, o usuário não encontrará a sua marca ou empresa caso caiam nesse abismo de irrelevância.
 
-Também uma entidade, o restaurante Mare pode ser encontrado pelo site, perfil no Google Business Profile e Instagram.
+O funcionamento desse complexo mecanismo passa pelo grafo de conhecimento (knowledge graph), no qual são relacionadas as entidades e os fatos associados a elas. Quando um indivíduo (entidade 1) cria uma empresa (entidade 2) e sua respectiva marca (entidade 3), os três estão interconectados tanto no mundo real quanto na interpretação dos motores de busca — deixando claro que existe método para assegurar uma leitura completa e fiel.
 
-## De repente, temos um conjunto de entidades aqui
+Por exemplo: Manuela Rezende, chef de cozinha nascida em Lisboa, Portugal; especialista em gastronomia mediterrânea; proprietária do restaurante Mare, localizado em Granada, Espanha, na rua Gran Vía de Colón, no Centro da cidade. Essas seriam informações mínimas das entidades "Manuela Rezende" e "Mare", vinculadas às entidades "Lisboa", "Portugal", "Granada", "Espanha", "Rua Gran Vía de Colón" e possivelmente "Centro - Granada".
 
-- Manoela Rezende (chef & dona do restaurante Mare) - Mare (restaurante de alta gastronomia mediterrânea) - Endereço (rua, bairro, cidade, país; cada um é uma entidade diferente)
+Então, de um lado, o Google tem uma ramificação da sua marca e tudo que reconhece estar vinculado a ela. De outro, usuários em busca de respostas para problemas que a sua empresa resolve. É necessário fazer a ponte, e não uma ponte qualquer; o algoritmo é sofisticado e equipado o bastante para interpretar além do contexto básico (o que) e considerar geolocalização (onde) e perfil do usuário (quem) para calcular o resultado com maior potencial de sucesso.
 
-Essa tríade é correlacionada pelo motor do Google, que faz a apuração para determinar a relevância da entidade em relação às necessidades do usuário.
+Acabei de descrever — de forma bem simplificada — o papel do componente que atua ao lado do grafo de conhecimento: a busca de entidade (entity search). Ele faz a leitura das entidades mais qualificadas e formula a resposta, e aqui entra o que falei sobre a capacidade de compreender o abstrato: essa leitura é acompanhada de uma análise crítica cada vez mais apurada.
 
-Normalmente, alguém pesquisaria "restaurantes por perto". O Google começaria pelo fator geolocalização, que ativaria as entidades relacionadas ao endereço, como Espanha e Granada, e depois o Mare.
+## Autenticidade, entidades e branding
 
-Como entidade, a Manoela Rezende está vinculada ao restaurante. Quanto mais força o seu perfil tiver na internet, maior a contribuição para o Mare encabeçar a lista de recomendações no Maps e também no Modo IA.
+Retomando o exemplo da personagem Manuela Rezende, imaginemos um cenário de presença digital muito comum em que exista pelo menos um site. Genérica, a página exibe fotos e informações, arquivos JPEG do menu, história do restaurante, um pouco sobre a chef. Perfis nas redes sociais, como toda a concorrência. Algo que não diz muito. De quebra, um slogan do tipo "o melhor restaurante mediterrâneo da região".
 
-Para fazer esse cruzamento de dados e informações o Google usa seu motor de inteligência. Nele, há dois componentes fazem acontecer: o Knowledge Graph (KG) e o Entity Search (ES).
+Sem destrinchar muito, fica evidente que o site é visto pela proprietária como cartão de visitas, que ela não constrói autoridade usando seu título de chef e dona de restaurante, e não se preocupa em trazer identidade real ao Mare, fazendo da marca apenas um nome (e entidade vazia).
 
-## Knowledge Graph
+O slogan é quase uma forma de descredibilização. É "o melhor" segundo quem? A menos que tenha sido premiado ou aclamado pela crítica especializada, não tem valor além de permitir identificar que a comida mediterrânea é a especialidade da casa, o que seria nada mais que uma reiteração do que provavelmente diria o conteúdo do site.
 
-É um gráfico no qual estão desenhadas as interconexões de entidades e os fatos que as descrevem. Em vez de páginas, é armazenado o conhecimento contido nelas. A autenticidade é a fonte de informação; quando ela não existe ou carece de consistência, a presença online enfraquece.
+Se o usuário busca por "melhor restaurante mediterrâneo perto de mim", em Granada, poucos elementos contribuiriam para corresponder ao Mare. O Google reuniria as informações genéricas, cruzaria com as avaliações recebidas em plataformas como Google Maps e Tripadvisor, compararia com os concorrentes e formularia a resposta.
 
-Vamos pegar o próprio Mare para elucidar isso; se no site diz que é um bistrô, mas na descrição do Google Business Profile diz que é restaurante, o KG hesita em confiar nos "fatos" — afinal, são inconclusivos e tornam a autenticidade questionável.
+Entre restaurantes com a mesma especialidade, casas fusion e estabelecimentos com pratos mediterrâneos como itens avulsos no menu, centenas de negócios disputam o mesmo espaço digital que o Mare. Na prática, dificilmente apareceria nos resultados a menos que fatores como geolocalização ganhassem muito peso contextual (o usuário está a 60 metros, por exemplo).
 
-Fica a lição de casa: a comunicação digital precisa ser consistente para que a sua marca seja autêntica. O Google espera de você um posicionamento firme, sem margem para interpretações.
+As avaliações do público influenciam até certo ponto. O Mare pode ter nota máxima (5, no Google Maps), mas ter menos avaliações que outros 30 com a mesma nota. Se os números forem equivalentes, levam-se em conta: frequência, recência, proporção de comentários com fotos. A qualidade do Google Business Profile também entra em jogo. Restaurantes com mais matérias recentes na imprensa ganham superpoderes nessas horas.
 
-## Entity Search
+Gerir as entidades (Mare e associadas) é o único caminho para Manuela Rezende transformar a sua presença digital. Depender somente do offline só pioraria a situação, pois a disputa é selvagem, novos restaurantes surgem, outros são reformados ou trazem novidades que chamam o público. É preciso emitir sinais dos atributos exclusivos do Mare.
 
-Seu papel é vincular as palavras da busca a uma ou mais entidades dentro do KG. Aqui mora a sofisticação do novo Google, que é a capacidade de compreender o abstrato; hoje ele é um analista crítico de primeira linha.
+## Solução para esse contexto
 
-O que direi agora fará com que você perceba de vez o quanto as práticas comuns são obsoletas e até tacanhas. Partindo do exemplo de pesquisa "melhor restaurante perto de mim", o joguinho das palavras-chave mandaria enfiar "melhor restaurante de Granada" onde fosse possível para forçar uma correspondência.
+Quando direcionamos a solução para uma abordagem orientada pela marca, quebramos o paradigma das técnicas e práticas de SEO que tentam decifrar o algoritmo. Uma marca que constrói autoridade e dissemina valores genuínos tende a ser muito mais resiliente às atualizações do Google, pois elas são criadas justamente para favorecer quem compreende a essência do serviço e contribui para a satisfação do usuário.
 
-Por mais natural que tente ser, a melhor versão disso será o slogan vazio de comércio medíocre. "Somos a melhor padaria da região — segundo nós mesmos". É diferente de "O melhor restaurante de Granada segundo a revista Menu", quando há substância.
+Extraindo a parte técnica do processo, a solução para Manuela e seu restaurante se concentra nos pilares autenticidade, entidades e branding, com ênfase em autoridade e reputação — a razão de viver de um restaurante em termos de marketing. É um cenário muito propício para trabalhar a entidade da própria Manuela Rezende a fim de que sua assinatura comece a ganhar valor.
 
-A parte mais legal dessa história é que você não precisa fazer keyword stuffing, nem trabalhar com essa mentalidade de corresponder à pesquisa com exatidão. A mensagem passou a ter um peso muito maior do que as palavras.
+Mesmo presumindo que Manuela tenha talento e seja dedicada, há chefs tão ou mais talentosos, dedicados e conhecidos. A estratégia é transpor os valores que fazem de Manuela distinta e construir sua autoridade com ações calculadas, executadas com disciplina. Além disso, a sua trajetória profissional possibilita conexões com entidades relevantes, como a instituição na qual se formou cozinheira, professores, chefs com quem trabalhou, relações de parentesco com pessoas relevantes no segmento.
 
-Exemplo: se no site do Mare fala sobre harmonização de vinhos ou seu menu interativo forneça sugestões de drinks para elevar a experiência ao mais alto nível gastronômico, o Google já o ranqueia para "melhor sommelier de Granada", compreendendo que essa é uma qualidade que a entidade deixa evidente com consistência.
+A entidade Mare, nesse cenário, é mais um registro estilo CNPJ do que uma marca. Nesses casos, ela só é usada para NAP (nome, endereço e telefone), que pode até atrapalhar quando inconsistente. A solução requer um trabalho de branding baseado na autenticidade do restaurante e da chef, refletindo o físico antes mesmo do digital. Só então o site e demais ativos de comunicação seriam reformulados para comunicar a marca verbal e visualmente.
 
-Percebe o quanto você pode sair na frente dos concorrentes? Existe um amplo espaço para as marcas brilharem na internet sendo quem elas são, basta se comunicar do jeito certo.
+Continuamente, as entidades seriam alimentadas por meio de conteúdos, ações pontuais, gerenciamento de avaliações, anúncios e campanhas estrategicamente bem elaborados. No longo prazo, o Mare não só competiria no topo, mas também teria mais eficiência na captação orgânica de clientes, que teriam a oportunidade inédita de se identificarem com o local antes mesmo de conhecê-lo.
 
-É por isso que autenticidade é o novo SEO; ela é a única fonte de dados de alta fidelidade que o Google precisa para te reconhecer como uma entidade de autoridade e, finalmente, te escolher como a melhor resposta para a busca do cliente.
-
-## Como trabalhar a autenticidade da sua marca
-
-Você tem uma empresa, precisa se dedicar inteiramente ao core business e sua equipe não tem essa visão de como construir autoridade digital. Triste é acreditar que, muito provavelmente, os seus comandados nem entendam do negócio da empresa, permanecendo limitados ao que tange suas respectivas áreas de especialização.
-
-Mas conteúdo tem que oferecer conteúdo, então vou explicar de forma direta o que é necessário para o Google reconhecer a sua marca como autêntica. Ao todo são três os itens mais importantes para começar.
-
-## Comunicação consistente
-
-Bati nessa tecla algumas vezes ao longo do texto. Em qualquer lugar que sua marca apareça ou seja mencionada, ela é uma entidade para o Google, portanto tem credibilidade a zelar ou construir.
-
-Assim como dizem os policiais ao prender um suspeito: "tudo o que disser poderá e será usado contra você no tribunal". A sua marca nasceu para ser única, não mais um tijolo em uma parede. Concorda? Aposto que sim.
-
-Por isso, evite tratar a comunicação como algo que você apenas deve colocar no site para "estar na internet". Estar na web não é, necessariamente, estar no jogo. Comunicação é estratégia pura e sua execução exige técnica e sensibilidade.
-
-Defina, cuidadosamente, o que sua empresa se propõe a fazer e, a partir daí, crie a mensagem-chave que será disseminada. O objetivo é fazer com que a marca se torne uma entidade confiável para o Google.
-
-## Personalidade da marca
-
-Aqui entramos em questões ligadas a branding. Sem personalidade, sem destaque. Quem nunca conheceu o tipo de pessoa "Maria-vai-com-as-outras"? Quem muito confia nela, um dia se estrepa.
-
-Se a sua marca fica seguindo o fluxo de outras por motivo A ou B, mudando o que faz, suas causas, tom e voz, público-alvo e tudo mais, acaba não desenvolvendo uma essência. Resultado disso é a quebra do primeiro requisito, a consistência.
-
-As pessoas deixam de confiar em quem pula de galho em galho. Investidores percebem isso de longe — e longe se mantêm. Para o Google, a marca nunca teve singularidade, portanto é vista como genérica e instável, do tipo que espera por uma nova tendência para seguir na tentativa de fazer o negócio vingar.
-
-Isso faz parte de ser consistente, mas não é tudo. Principalmente em empresas que escalam rapidamente, a evolução da personalidade da marca passa a ficar cada vez mais distante dos fundadores, justamente as pessoas que tinham um propósito forte, tão forte que depositaram muito dinheiro pra fazer acontecer.
-
-Já vi de perto uma scale-up se perder com reformulações de branding. A empresa tentou transmitir externamente tudo o que ela não era internamente — meses depois, o castelo de areia foi arrasado pela maré de avaliações detratoras no Glassdoor que contrariam todo o discurso polido de quem almeja o selo GPTW.
-
-Outro exemplo é comunicar apoio a causas apenas por relações públicas. Practice what you preach! Falar em diversidade soa bonito, mas existe na empresa? "Hoje é Dia Internacional da Mulher, vamos criar um post sobre mulheres na tecnologia", com 95% das mulheres distribuídas em áreas como Administração, Finanças e RH. A artificialidade é gritante, pois as pautas não fazem parte do cotidiano, elas só aparecem em datas comemorativas, sem qualquer profundidade.
-
-Seja qual for a realidade da empresa, a comunicação deve ser condizente com ela. Diversidade é importante para a organização? Se sim, qual é a visão de diversidade? Como é aplicada? Por que é um ponto crucial? O que os funcionários dizem? Como tem beneficiado as pessoas e a empresa? As fotos publicadas no site corroboram? Se a empresa realmente se importa com isso, ela comunicará das mais diversas formas. Essa é a autenticidade que o Google reconhece.
-
-## Dados estruturados
-
-Sei que esse termo soa entediante. Talvez, a prática pareça um tédio para 98% dos leitores deste artigo, que é o uso de schema markup. Basicamente são dados e informação adicionados ao código para melhorar a compreensão dos mecanismos de busca em relação a você, seu negócio, seus produtos e serviços, etc.
-
-É uma tarefa técnica, mas não puramente; há muita estratégia no que você acrescenta ao schema markup, principalmente no que diz respeito a ser autêntico. A começar pelo fato de que você pode nutrir o Google com informações e respostas sem, necessariamente, adicioná-las ao conteúdo.
-
-Vamos supor que você criou conteúdo para a página de um produto, que é um software de cibersegurança, que está com densidade na medida certa e informação que equilibra informação técnica e linguagem de negócios. Conteúdo relevante, útil e objetivo.
-
-Só que o software pode fazer muito mais do que você consegue mostrar na página, senão vira uma documentação com linguagem de marketing. Um jeito de adicionar mais autoridade é adicionando uma espécie de FAQ dentro do schema markup a fim de levar informação extra ao Google. Assim:
-
-Na página visível: Texto focado, objetivo, vende o software. No schema (invisível para humanos, visível para Google):
-
-"Este software funciona para empresas de 10 funcionários?" → Resposta detalhada; "Integra com sistemas legados?" → Resposta técnica; "Qual o tempo de implementação?" → Caso real de cliente;
-
-## Então o Google absorve essas informações extras e a página começa a
-
-- gerar rich snippets no Google, aumentando a taxa de cliques mesmo sem encabeçar os resultados de pesquisa; - qualificar leads, visto que as respostas educam potenciais clientes, fazendo com que a página do produto atraia mais compradores, menos curiosos; - otimizar para AI Overviews: você comunica diretamente ao robô diversos casos de uso e sucesso, diferenciais e situações nas quais o produto não se aplica. O schema markup também ajuda a reforçar a consistência das informações sobre a entidade. Por exemplo, vinculando os perfis sociais, endereço, telefone, email, entre outras que o Google usa para fazer validações importantes sobre autenticidade. É um meio simples de ganhar pontos de autoridade, inclusive.
-
-Mas preciso frisar que você pode implementar tudo isso tecnicamente e ainda assim falhar. Porque somente técnica e "fazer tudo certinho, conforme o manual" tende a levar para o genérico, carente de personalidade. Não por acaso, o assunto aqui é autenticidade.
+Essa é a diferença entre um Mare que apostaria apenas no talento de Manuela como chef e um Mare com vantagem competitiva, potencial para abrir novas unidades e capacidade de ampliar o alcance do nome Manuela Rezende. Autenticidade é mais do que o novo SEO: é o que determinará, em grande parte, o sucesso das empresas.
