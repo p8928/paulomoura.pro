@@ -1,7 +1,7 @@
 ---
 title: "Autenticidade é o novo SEO"
 description: "Como a autenticidade passou a funcionar como sinal de confiança para pessoas, mecanismos de busca e sistemas de IA."
-publishedAt: 2026-05-29
+publishedAt: 2025-11-04
 category: "seo"
 draft: false
 ---
@@ -16,7 +16,7 @@ Com a AI Overview em fase de calibração, os resultados se baseiam mais nos asp
 
 Sim, estou dizendo que ser autêntico ainda não é um grande fator para um site ser mencionado pela IA. Ainda, repito. Isso acontece porque, nesta fase do campeonato, a IA do Google prioriza o que é mais recente entre o que existe de informação qualificada. A autoridade ainda é levada em conta e pode prevalecer caso o conteúdo das maiores marcas seja atualizado, pois a coisa muda a todo instante.
 
-Como sei disso? Li na Ahref: "99.9% das palavras-chave que acionam o Modo IA têm intenção informativa". O mesmo estudo aponta que 76,3% delas são termos genéricos (ex: branding), sem relação com marcas (ex: Moura). 
+Como sei disso? Li na Ahref: "99.9% das palavras-chave que acionam o Modo IA têm intenção informativa". O mesmo estudo aponta que 76,3% delas são termos genéricos (ex: branding), sem relação com marcas (ex: Moura).
 
 Algo similar aconteceu quando os mecanismos de busca eram "terra de ninguém". Quem compreendia a tecnologia, conseguia se sobressair e encabeçar a página de resultados. Com o passar do tempo, o espaço conquistado começou a ser ocupado por grandes marcas e empresas que souberam construir autoridade.
 
@@ -24,16 +24,7 @@ Moral da história: quem é mencionado no Modo IA está esquentando o lugar para
 
 Quando voltei aos dados da minha pesquisa sobre 120 agências em 7 países, a realidade ficou ainda mais clara. Decidi então pesquisar o mercado a fim de saber quem realmente entende o jogo que o Google está jogando agora.
 
-Os números:
-21,6% falam em GEO, AI Overviews, abordagens modernas.
-78,4% ainda vendem a mesma fórmula da década passada. Keywords. Backlinks. Auditoria técnica. Planilha bonita. Promessa vazia.
-Mas tem um número que me deixou acordado à noite:
-0%
-Zero agências — literalmente zero em 120 — tratam branding como solução para SEO.
-Nem nos EUA, onde 30% se dizem "avançadas".
-Nem na Inglaterra, onde 35% falam a língua da IA generativa.
-Nem na Alemanha, Canadá, Brasil.
-
+Os números: 21,6% falam em GEO, AI Overviews, abordagens modernas. 78,4% ainda vendem a mesma fórmula da década passada. Keywords. Backlinks. Auditoria técnica. Planilha bonita. Promessa vazia. Mas tem um número que me deixou acordado à noite: 0% Zero agências — literalmente zero em 120 — tratam branding como solução para SEO. Nem nos EUA, onde 30% se dizem "avançadas". Nem na Inglaterra, onde 35% falam a língua da IA generativa. Nem na Alemanha, Canadá, Brasil.
 
 ## Por que ninguém está vendendo branding como SEO
 
@@ -51,9 +42,7 @@ Levo em conta também que estamos tratando de uma visão de negócio obsoleta, m
 
 A evolução, embora passe despercebida por quem se deixou cegar pelos métodos tradicionais, não só existe como está em andamento. É preciso abandonar vícios e hábitos que te desviam do essencial se quiser obter a vantagem competitiva que esse momento de transição está possibilitando.
 
-
 ## Por que a autenticidade é o novo SEO?
-
 
 Autenticidade sempre foi importante para o sucesso de empresas na internet, mas o Google era incapaz de identificar algo tão abstrato; o negócio dele era palavra-chave. Só que esse era o velho Google.
 
@@ -65,11 +54,9 @@ Manoela não tem um site próprio, mas tem perfis nas redes sociais e outras evi
 
 Também uma entidade, o restaurante Mare pode ser encontrado pelo site, perfil no Google Business Profile e Instagram.
 
-De repente, temos um conjunto de entidades aqui: 
+## De repente, temos um conjunto de entidades aqui
 
-	- Manoela Rezende (chef & dona do restaurante Mare)
-	- Mare (restaurante de alta gastronomia mediterrânea)
-	- Endereço (rua, bairro, cidade, país; cada um é uma entidade diferente)
+- Manoela Rezende (chef & dona do restaurante Mare) - Mare (restaurante de alta gastronomia mediterrânea) - Endereço (rua, bairro, cidade, país; cada um é uma entidade diferente)
 
 Essa tríade é correlacionada pelo motor do Google, que faz a apuração para determinar a relevância da entidade em relação às necessidades do usuário.
 
@@ -79,8 +66,7 @@ Como entidade, a Manoela Rezende está vinculada ao restaurante. Quanto mais for
 
 Para fazer esse cruzamento de dados e informações o Google usa seu motor de inteligência. Nele, há dois componentes fazem acontecer: o Knowledge Graph (KG) e o Entity Search (ES).
 
-
-### Knowledge Graph
+## Knowledge Graph
 
 É um gráfico no qual estão desenhadas as interconexões de entidades e os fatos que as descrevem. Em vez de páginas, é armazenado o conhecimento contido nelas. A autenticidade é a fonte de informação; quando ela não existe ou carece de consistência, a presença online enfraquece.
 
@@ -88,8 +74,7 @@ Vamos pegar o próprio Mare para elucidar isso; se no site diz que é um bistrô
 
 Fica a lição de casa: a comunicação digital precisa ser consistente para que a sua marca seja autêntica. O Google espera de você um posicionamento firme, sem margem para interpretações.
 
-
-### Entity Search
+## Entity Search
 
 Seu papel é vincular as palavras da busca a uma ou mais entidades dentro do KG. Aqui mora a sofisticação do novo Google, que é a capacidade de compreender o abstrato; hoje ele é um analista crítico de primeira linha.
 
@@ -105,15 +90,13 @@ Percebe o quanto você pode sair na frente dos concorrentes? Existe um amplo esp
 
 É por isso que autenticidade é o novo SEO; ela é a única fonte de dados de alta fidelidade que o Google precisa para te reconhecer como uma entidade de autoridade e, finalmente, te escolher como a melhor resposta para a busca do cliente.
 
-
 ## Como trabalhar a autenticidade da sua marca
 
 Você tem uma empresa, precisa se dedicar inteiramente ao core business e sua equipe não tem essa visão de como construir autoridade digital. Triste é acreditar que, muito provavelmente, os seus comandados nem entendam do negócio da empresa, permanecendo limitados ao que tange suas respectivas áreas de especialização.
 
 Mas conteúdo tem que oferecer conteúdo, então vou explicar de forma direta o que é necessário para o Google reconhecer a sua marca como autêntica. Ao todo são três os itens mais importantes para começar.
 
-
-### 1. Comunicação consistente
+## Comunicação consistente
 
 Bati nessa tecla algumas vezes ao longo do texto. Em qualquer lugar que sua marca apareça ou seja mencionada, ela é uma entidade para o Google, portanto tem credibilidade a zelar ou construir.
 
@@ -123,8 +106,7 @@ Por isso, evite tratar a comunicação como algo que você apenas deve colocar n
 
 Defina, cuidadosamente, o que sua empresa se propõe a fazer e, a partir daí, crie a mensagem-chave que será disseminada. O objetivo é fazer com que a marca se torne uma entidade confiável para o Google.
 
-
-### 2. Personalidade da marca
+## Personalidade da marca
 
 Aqui entramos em questões ligadas a branding. Sem personalidade, sem destaque. Quem nunca conheceu o tipo de pessoa "Maria-vai-com-as-outras"? Quem muito confia nela, um dia se estrepa.
 
@@ -138,10 +120,9 @@ Já vi de perto uma scale-up se perder com reformulações de branding. A empres
 
 Outro exemplo é comunicar apoio a causas apenas por relações públicas. Practice what you preach! Falar em diversidade soa bonito, mas existe na empresa? "Hoje é Dia Internacional da Mulher, vamos criar um post sobre mulheres na tecnologia", com 95% das mulheres distribuídas em áreas como Administração, Finanças e RH. A artificialidade é gritante, pois as pautas não fazem parte do cotidiano, elas só aparecem em datas comemorativas, sem qualquer profundidade.
 
-Seja qual for a realidade da empresa, a comunicação deve ser condizente com ela. Diversidade é importante para a organização? Se sim, qual é a visão de diversidade? Como é aplicada? Por que é um ponto crucial? O que os funcionários dizem? Como tem beneficiado as pessoas e a empresa? As fotos publicadas no site corroboram? Se a empresa realmente se importa com isso, ela comunicará das mais diversas formas. Essa é a autenticidade que o Google reconhece. 
+Seja qual for a realidade da empresa, a comunicação deve ser condizente com ela. Diversidade é importante para a organização? Se sim, qual é a visão de diversidade? Como é aplicada? Por que é um ponto crucial? O que os funcionários dizem? Como tem beneficiado as pessoas e a empresa? As fotos publicadas no site corroboram? Se a empresa realmente se importa com isso, ela comunicará das mais diversas formas. Essa é a autenticidade que o Google reconhece.
 
-
-### 3. Dados estruturados
+## Dados estruturados
 
 Sei que esse termo soa entediante. Talvez, a prática pareça um tédio para 98% dos leitores deste artigo, que é o uso de schema markup. Basicamente são dados e informação adicionados ao código para melhorar a compreensão dos mecanismos de busca em relação a você, seu negócio, seus produtos e serviços, etc.
 
@@ -151,20 +132,12 @@ Vamos supor que você criou conteúdo para a página de um produto, que é um so
 
 Só que o software pode fazer muito mais do que você consegue mostrar na página, senão vira uma documentação com linguagem de marketing. Um jeito de adicionar mais autoridade é adicionando uma espécie de FAQ dentro do schema markup a fim de levar informação extra ao Google. Assim:
 
-Na página visível:
-Texto focado, objetivo, vende o software.
-No schema (invisível para humanos, visível para Google):
+Na página visível: Texto focado, objetivo, vende o software. No schema (invisível para humanos, visível para Google):
 
-"Este software funciona para empresas de 10 funcionários?" → Resposta detalhada;
-"Integra com sistemas legados?" → Resposta técnica;
-"Qual o tempo de implementação?" → Caso real de cliente;
+"Este software funciona para empresas de 10 funcionários?" → Resposta detalhada; "Integra com sistemas legados?" → Resposta técnica; "Qual o tempo de implementação?" → Caso real de cliente;
 
-Então o Google absorve essas informações extras e a página começa a:
+## Então o Google absorve essas informações extras e a página começa a
 
-	- gerar rich snippets no Google, aumentando a taxa de cliques mesmo sem encabeçar os resultados de pesquisa;
-	- qualificar leads, visto que as respostas educam potenciais clientes, fazendo com que a página do produto atraia mais compradores, menos curiosos;
-	- otimizar para AI Overviews: você comunica diretamente ao robô diversos casos de uso e sucesso, diferenciais e situações nas quais o produto não se aplica.
-	
-O schema markup também ajuda a reforçar a consistência das informações sobre a entidade. Por exemplo, vinculando os perfis sociais, endereço, telefone, email, entre outras que o Google usa para fazer validações importantes sobre autenticidade. É um meio simples de ganhar pontos de autoridade, inclusive.
+- gerar rich snippets no Google, aumentando a taxa de cliques mesmo sem encabeçar os resultados de pesquisa; - qualificar leads, visto que as respostas educam potenciais clientes, fazendo com que a página do produto atraia mais compradores, menos curiosos; - otimizar para AI Overviews: você comunica diretamente ao robô diversos casos de uso e sucesso, diferenciais e situações nas quais o produto não se aplica. O schema markup também ajuda a reforçar a consistência das informações sobre a entidade. Por exemplo, vinculando os perfis sociais, endereço, telefone, email, entre outras que o Google usa para fazer validações importantes sobre autenticidade. É um meio simples de ganhar pontos de autoridade, inclusive.
 
 Mas preciso frisar que você pode implementar tudo isso tecnicamente e ainda assim falhar. Porque somente técnica e "fazer tudo certinho, conforme o manual" tende a levar para o genérico, carente de personalidade. Não por acaso, o assunto aqui é autenticidade.

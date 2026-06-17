@@ -1,7 +1,7 @@
 ---
 title: "Conteúdo precisa ser realmente útil"
 description: "Uma leitura sobre utilidade real, ganho de informação e conteúdo que nasce do conhecimento profundo do negócio."
-publishedAt: 2026-05-31
+publishedAt: 2025-12-16
 category: "estrategia"
 draft: false
 ---
@@ -10,12 +10,11 @@ Conteúdo é minha especialidade. Estou nessa área desde 2015, quando alguém m
 
 Lá atrás, o entendimento geral era o seguinte: publicar conteúdo correspondente às palavras-chave mais recorrentes para atrair usuários e ganhar pontos de autoridade com o Google. Esse jeito simplório de pensar se arrastou por tanto tempo e, na real, ele ainda orbita a maioria dos profissionais e agências. Vou te explicar por que esse negócio é triste.
 
-Quando expliquei a relação entre autenticidade e SEO, falei sobre as novas capacidades do Google, que hoje interpreta o abstrato. Antes, o usuário pesquisava e o Google trazia como resultado as páginas que melhor exploraram o termo buscado. Hoje, ele está se formando perito em retornar a melhor experiência, expertise, autoridade e confiabilidade. 
+Quando expliquei a relação entre autenticidade e SEO, falei sobre as novas capacidades do Google, que hoje interpreta o abstrato. Antes, o usuário pesquisava e o Google trazia como resultado as páginas que melhor exploraram o termo buscado. Hoje, ele está se formando perito em retornar a melhor experiência, expertise, autoridade e confiabilidade.
 
 Isso é maravilhoso! Finalmente, os geradores de lero-lero com seus conteúdos rasos e enfadonhos perderão espaço. E não apenas os fazedores de volume, mas também quem se baseia em palavras-chave para criar o calendário editorial e esquece que existe um negócio ao qual o conteúdo serve. Sem profundidade e autenticidade, não vai mais rolar.
 
 Mas já tenho falado bastante sobre Google e sua relação com branding e autenticidade. Conteúdo tem tudo a ver com essas coisas, só que ele tem uma função importante a ponto de determinar a sua qualidade nesses outros critérios, que é a conexão com o leitor — única opinião que está acima do que pensam os mecanismos de buscas e as IAs, simplesmente.
-
 
 ## Conteúdo é estratégia minuciosa
 
@@ -29,8 +28,7 @@ Nele, a autora explica o verdadeiro processo de construção de persona, o qual 
 
 Significa que buyer persona não é para a sua empresa? Sim. Essa estratégia requer uma substância que dá muito trabalho obter, porque envolve conversar com clientes reais, coletar amostra significativa de informação acompanhada de análises profundas. Diria até que as empresas deveriam encomendar um estudo científico com base nas amostras antes de planejar qualquer ação em cima disso.
 
-Porém, não estou dizendo para abrir mão da estratégia. Pelo contrário! Vou te mostrar como a comunicação pode ser estratégica e customer-centric adotando uma abordagem simplificada. 
-
+Porém, não estou dizendo para abrir mão da estratégia. Pelo contrário! Vou te mostrar como a comunicação pode ser estratégica e customer-centric adotando uma abordagem simplificada.
 
 ## Persona é conversinha na maioria dos casos
 
@@ -41,7 +39,6 @@ Por exemplo, se estou falando com executivos, a linguagem deve ser superobjetiva
 Um bilionário que deseja construir sua mansão está buscando as mesmas habilidades técnicas que alguém de classe média reformando apartamento. Ambos querem: profissional que entende de projeto, cumpre prazo, resolve problemas estruturais com rigor técnico. O que muda: orçamento e escala. O que não muda: critérios de escolha. Por isso persona (Bilionário Beto, 55 anos, tem iate) é inútil. Audiência (clientes de arquitetura residencial) basta, não há segredo e nem método aqui.
 
 A comunicação é simples, o que não a torna menos estratégica. Até porque não se trata somente de como falamos, mas do que falamos e por que falamos. No fim, você verá que tudo leva para o caminho da autenticidade e da autoridade. É o branding entrando em ação.
-
 
 ## A comunicação começa por quem fala, não para quem
 
@@ -62,7 +59,6 @@ O que estou explicando é algo que quase ninguém faz. E olha que me refiro a pr
 
 Conteúdo útil, relevante e impactante demanda conhecimento dos negócios da empresa. É de dentro para fora. É o fundamental para criar um mindset que remete o conceito de Product-led Growth (PLG), que é a base para criar conteúdo que vende e o Google valoriza.
 
-
 ## Os problemas que você resolve são o conteúdo
 
 Quem pesquisa por um assunto está em busca de resolver um problema. Harry Browne dizia que estamos em uma busca contínua pela felicidade, o que nos leva a comprar coisas. Mesmo que seja para presentear alguém, fazemos porque nos deixa mais felizes. Soa egoísta, mas é como funcionamos.
@@ -74,7 +70,6 @@ As pessoas compram porque querem; não se trata de convencer ou motivar, e sim d
 Parece loucura à primeira vista, mas os valores éticos ajudam a construir relacionamentos sólidos e confiança mútua, o que é muito mais benéfico em longo prazo do que empurrar uma venda que resultará em insatisfação e laços rompidos. Um cliente detrator sai mais caro do que a receita por ele gerada.
 
 O que Browne ensina é um requisito importante para o que veremos daqui em diante, que é a incorporação do PLG ao marketing de conteúdo. É quando a função do conteúdo é apresentar soluções para problemas que o seu próprio produto ou serviço resolve.
-
 
 ## Product-led Growth é o seu novo motor de relevância
 

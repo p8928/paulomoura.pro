@@ -1,7 +1,7 @@
 ---
 title: "Branding: você faz errado"
 description: "Uma leitura sobre marca, operação, coragem de posicionamento e a distância entre identidade inventada e substância real."
-publishedAt: 2026-05-30
+publishedAt: 2025-11-05
 category: "branding"
 draft: false
 ---
@@ -14,7 +14,6 @@ Isso é uma opinião de Paulo Moura, autor deste post? Quem dera ser a mente por
 
 O ponto é que poucas empresas compreendem a marca dessa forma. Um olhar mais atento às marcas de sucesso e rapidamente percebemos que elas vendem mais do que um produto. Ou você enxerga Ferrari como apenas um carro?
 
-
 ## Ferrari: a simples distinção entre marca e veículo
 
 Qualquer um que tenha dinheiro o bastante pode adquirir um Ferrari F80, mas essa obra-prima da engenharia foi projetada do início ao fim para um público destemido que deseja dominar o lendário Cavallino Rampante.
@@ -22,7 +21,6 @@ Qualquer um que tenha dinheiro o bastante pode adquirir um Ferrari F80, mas essa
 Como marca, a Ferrari é um mito, sinônimo de "paixão por corridas, inegável proeza tecnológica e uma aura de exclusividade zelosamente guardada", conforme descreve esta [https://theambassador.it/the-cult-of-the-prancing-horse/](https://theambassador.it/the-cult-of-the-prancing-horse/) excelente publicação da Malcaus Edizione.
 
 Quem deseja se sentir pertencente ao "culto" Ferrari, além de compartilhar do conhecimento entusiástico, ser fã de Formula 1 e colecionar os veículos, adquire roupas, adereços e artigos oficiais. Mas Ferrari é exceção, a regra é outra.
-
 
 ## A personalidade vazia das marcas
 
@@ -35,7 +33,6 @@ Um sintoma comum das "marcas zumbis" é apoiar causas superficialmente. Isto é,
 Os anúncios sem sal que você vê na TV ou no Youtube são puro reflexo da artificialidade. É um posicionamento que leva a marca para um lado politizado, "certinho". CHATO. A falta de paixão é evidente. Não é como assistir à propaganda do novo Ford Mustang com câmbio manual, feito pra quem tem prazer em dirigir, dominar a máquina. Ou mesmo ver Terry Crews, conhecido por seu personagem muquirana, te convencendo a comprar importados da China, "mais baratinhos".
 
 Muitas marcas investem milhões em campanhas de marketing e publicidade em busca de engajamento. Sem autenticidade, no entanto, elas perdem aquela verdade que gera conexão. É tanto medo de desagradar que as pessoas acabam enxergando com indiferença. Enquanto isso, marcas que gostam de desafiar estão ocupando a mente e os sentidos do seu público.
-
 
 ## Branding exige coragem para se posicionar
 
@@ -53,12 +50,11 @@ Em 2014, no Brasil, quando grupos de jovens da periferia começaram a frequentar
 
 “Boa parte das marcas tem vergonha de seus clientes mais pobres. São marcas que historicamente foram posicionadas para a elite e o consumidor que compra exclusividade pode não estar muito feliz com essa democratização do consumo.”
 
-Antipopular? Sem dúvidas. Errado? Não, pois essa é a estratégia. A moralidade sempre desafia a lógica quando o assunto é dinheiro — queda de braço na qual o desafiante é sempre azarão. 
+Antipopular? Sem dúvidas. Errado? Não, pois essa é a estratégia. A moralidade sempre desafia a lógica quando o assunto é dinheiro — queda de braço na qual o desafiante é sempre azarão.
 
 Mas se marca autêntica não nasce de campanha bem produzida, de logo bonito ou de discurso polido... de onde ela nasce?
 
 Da operação. Do offline. Do que a empresa realmente é quando ninguém está fazendo performance.
-
 
 ## Branding começa por onde ninguém vê
 
@@ -67,7 +63,6 @@ Se eu te pergunto sobre o branding da sua empresa, você pode me falar das cores
 Essas coisas são válidas quando analisamos o acabamento. É a parte divertida do branding com a qual muitas agências apenas brincam. A questão desafiadora é: você me convidaria a analisar o interior? Visitar a famigerada cozinha de restaurante, onde o estabelecimento mostra quem realmente é?
 
 As percepções do cliente são o início da jornada. O problema é achar que esta se encerra na compra. Lembra do que Neumeier disse sobre a marca ser o que o cliente sente intuitivamente? A experiência é o veredito final do sentimento, o qual define o que ele pensa sobre você. Este é o ponto.
-
 
 ## Baseado em eventos reais
 
@@ -86,7 +81,6 @@ O suporte continuaria sendo excelente. Necessidades básicas continuariam sendo 
 Só que esse novo significado seria fruto de uma transformação interna em vez de apelo em forma de marketing.
 
 Mas nem toda empresa precisa de transformação radical. Muitas vezes, o problema não é o que você é, e sim como você comunica isso.
-
 
 ## Branding estratégico requer visão estratégica
 
@@ -108,6 +102,6 @@ Se a experiência é boa e o diferencial existe, o processo é mais simples. Ent
 
 O correto a se fazer é entender o que há de especial no molho — longe de revelar a receita, obviamente. Por exemplo, um molho de tomate maturado tem sabor mais intenso, então temos um processo que leva mais de um dia. A massa é fresca, preparada em cozinha aberta. Os tais ingredientes selecionados estão sempre à mostra para quem passar por perto.
 
-Reunindo esse tipo de substância é possível fazer uma leitura apurada dos valores e diferencias do negócio. Somente a partir daí que começamos a falar em branding e tudo que gira em sua órbita. 
+Reunindo esse tipo de substância é possível fazer uma leitura apurada dos valores e diferencias do negócio. Somente a partir daí que começamos a falar em branding e tudo que gira em sua órbita.
 
 Cores, logo, tom de voz? Tudo isso vem depois. Porque branding autêntico não é inventar identidade. É revelar a que já existe. Então faça isso o quanto antes e nunca mais precisará falar em rebranding.
