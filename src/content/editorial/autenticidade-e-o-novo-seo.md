@@ -10,7 +10,7 @@ Dediquei três dias a uma análise com 120 agências de SEO em sete países das 
 
 No momento em que escrevo este texto, a AI Overview do Google, ou Modo IA, está em fase de calibração. Significa que os resultados são baseados mais nos aspectos informativos do que na reputação. Por exemplo, ao pesquisar "melhores práticas de SEO moderno", a lista de referências é majoritariamente composta por sites desconhecidos e pequenos canais no YouTube em vez de Semrush e Moz, marcas de autoridade incontestavelmente maior.
 
-Parece contraditório afirmar que autenticidade é o novo SEO, pois o Google está priorizando o que há de mais recente entre as informações de qualidade que ele encontra. A Ahrefs aponta que 99% das palavras-chave que acionam o Modo IA têm intenção informativa — e 73% destas são genéricas, sem relação com marcas. Só que novidade não é sinônimo de inédito.
+Parece contraditório afirmar que autenticidade é o novo SEO, pois o Google está priorizando o que há de mais recente entre as informações de qualidade que ele encontra. A Ahrefs aponta que [99%](https://ahrefs.com/blog/ai-overviews-reduce-clicks/) das palavras-chave que acionam o Modo IA têm intenção informativa — e 73% destas são genéricas, sem relação com marcas. Só que novidade não é sinônimo de inédito.
 
 Algo similar aconteceu quando os mecanismos de busca eram terra de ninguém. Quem entendia da tecnologia, conseguia se sobressair nos resultados usando técnicas e macetes. Conforme os motores evoluíram, a qualidade do conteúdo começou a prevalecer sobre a maneira como era publicado (com hacks e práticas questionáveis), gerando um espaço posteriormente dominado por empresas que souberam construir autoridade no ambiente digital.
 
@@ -36,7 +36,7 @@ Antes da IA como conhecemos hoje, aspectos de branding surtiam efeito somente no
 
 Autenticidade sempre foi importante para o sucesso das empresas dentro e fora da internet. Marcas premium se sustentam quando seus produtos e serviços têm características que os colocam como superiores à concorrência. Marcas que se consolidaram explorando o conceito de "estilo de vida" têm sucesso porque a filosofia e a cultura são genuínas e onipresentes: está na mente de quem planeja, fabrica, gerencia, vende e compra.
 
-Considerando que 56% dos consumidores pesquisam antes de comprar — no Brasil, 79% —, ignorar o fato de que a maioria das experiências começa pelo digital é incogitável. Na verdade, esses números só elevam a importância de dedicar esforço máximo à presença digital para que a autenticidade seja perceptível a ponto de gerar identificação imediata e legível o suficiente para ser reconhecida pelo Google.
+Considerando que [56%](https://exame.com/bussola/79-dos-brasileiros-pesquisam-antes-de-comprar-aponta-levantamento/) dos consumidores pesquisam antes de comprar — no Brasil, 79% —, ignorar o fato de que a maioria das experiências começa pelo digital é incogitável. Na verdade, esses números só elevam a importância de dedicar esforço máximo à presença digital para que a autenticidade seja perceptível a ponto de gerar identificação imediata e legível o suficiente para ser reconhecida pelo Google.
 
 Somada essa necessidade à capacidade dos mecanismos de busca de identificar elementos abstratos, as pesquisas de palavras-chave deixaram de fundamentar a estratégia e passaram a ser um instrumento de descoberta secundário para casos de uso específicos. A gestão de entidades (marca, empresa, líderes, etc.) é onde os esforços devem ser concentrados.
 
