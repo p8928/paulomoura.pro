@@ -216,7 +216,7 @@
     display: inline-flex;
     align-items: center;
     font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
-    font-size: clamp(3.05rem, 8vw, 8.4rem);
+    font-size: clamp(2.9rem, 7.35vw, 7.85rem);
     font-weight: 700;
     min-height: 44px;
     line-height: 0.86;
