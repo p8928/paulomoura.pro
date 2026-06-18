@@ -74,7 +74,7 @@ export const organizationSchema = () => compact({
     '@id': schemaIdentity.logoId,
     url: schemaIdentity.logoUrl,
   },
-  description: 'Boutique digital conduzida por Paulo Moura para presença, reputação e busca sob direção próxima.',
+  description: 'Boutique digital para quem necessita comunicar com precisão os valores genuinamente premium de seus produtos e serviços.',
   slogan: 'Presença digital conduzida por marca, método e assinatura.',
   email: schemaIdentity.email,
   telephone: schemaIdentity.whatsapp,
@@ -113,6 +113,7 @@ export const websiteSchema = () => ({
   '@id': schemaIdentity.websiteId,
   name: brand.name,
   url: schemaIdentity.baseUrl + '/',
+  description: 'Boutique digital para quem necessita comunicar com precisão os valores genuinamente premium de seus produtos e serviços.',
   inLanguage: 'pt-BR',
   publisher: { '@id': schemaIdentity.organizationId },
 });
