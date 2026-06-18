@@ -26,5 +26,5 @@
 <div
   id="hero-overlay-menu"
   class={`fixed inset-0 z-40 bg-ivory transition duration-700 ease-out ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
-  aria-hidden={!open}
+  inert={!open}
 ></div>

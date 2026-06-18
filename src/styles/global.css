@@ -386,7 +386,7 @@ textarea {
   letter-spacing: clamp(0.12em, 0.22vw, 0.22em);
   text-align: center;
   text-transform: uppercase;
-  color: rgba(232, 227, 218, 0.52);
+  color: rgba(232, 227, 218, 0.72);
   opacity: 0;
   transform: translateY(14px);
   animation: hero-signature-note-enter 1300ms cubic-bezier(0.16, 1, 0.3, 1) 1350ms forwards;
@@ -409,7 +409,7 @@ textarea {
 }
 
 .hero-signature-note span + span {
-  color: rgba(232, 227, 218, 0.42);
+  color: rgba(232, 227, 218, 0.72);
 }
 
 @keyframes hero-signature-note-enter {
@@ -468,9 +468,9 @@ textarea {
 }
 
 .moura-button-light {
-  border-color: rgba(232, 227, 218, 0.46);
+  border-color: rgba(232, 227, 218, 0.72);
   color: rgba(244, 239, 231, 0.88);
-  background-color: rgba(244, 239, 231, 0.045);
+  background-color: rgba(244, 239, 231, 0.72);
 }
 
 .moura-button-light:hover {
@@ -480,9 +480,9 @@ textarea {
 }
 
 .moura-button-dark {
-  border-color: rgba(8, 8, 8, 0.48);
+  border-color: rgba(8, 8, 8, 0.68);
   color: rgba(8, 8, 8, 0.86);
-  background-color: rgba(8, 8, 8, 0.035);
+  background-color: rgba(8, 8, 8, 0.68);
 }
 
 .moura-button-dark:hover {
@@ -565,7 +565,7 @@ body.is-overlay-open {
 
 .brand-atmosphere-transition p {
   text-align: right;
-  color: rgba(8, 8, 8, 0.36);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 @media (max-width: 767px) {
@@ -612,7 +612,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.56;
   letter-spacing: 0.01em;
-  color: rgba(8, 8, 8, 0.66);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .brand-driven-description p {
@@ -621,7 +621,7 @@ body.is-overlay-open {
 
 .brand-driven-description p + p {
   max-width: min(100%, 34rem);
-  color: rgba(8, 8, 8, 0.52);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .brand-driven-index {
@@ -640,7 +640,7 @@ body.is-overlay-open {
   letter-spacing: 0.14em;
   text-align: right;
   text-transform: uppercase;
-  color: rgba(8, 8, 8, 0.42);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .brand-driven-index li {
@@ -667,7 +667,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.62;
   letter-spacing: 0.02em;
-  color: rgba(8, 8, 8, 0.5);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .brand-driven-prompt p {
@@ -789,7 +789,7 @@ body.is-overlay-open {
   line-height: 1;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(8, 8, 8, 0.42);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .comprehension-intro h2 {
@@ -813,7 +813,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.58;
   letter-spacing: 0.01em;
-  color: rgba(8, 8, 8, 0.52);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .comprehension-pillars {
@@ -856,7 +856,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.62;
   letter-spacing: 0.01em;
-  color: rgba(8, 8, 8, 0.5);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .comprehension-copy {
@@ -930,7 +930,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.18;
   letter-spacing: 0;
-  color: rgba(8, 8, 8, 0.66);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 @media (max-width: 900px) {
@@ -1014,7 +1014,7 @@ body.is-overlay-open {
   line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(244, 239, 231, 0.42);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .method-stack-intro h2 {
@@ -1036,7 +1036,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.52;
   letter-spacing: 0.01em;
-  color: rgba(244, 239, 231, 0.62);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .method-stack-track {
@@ -1054,7 +1054,7 @@ body.is-overlay-open {
   align-content: end;
   gap: clamp(1.15rem, 1.9vw, 1.65rem);
   border: 1px solid rgba(244, 239, 231, 0.14);
-  border-top-color: rgba(244, 239, 231, 0.26);
+  border-top-color: rgba(244, 239, 231, 0.72);
   padding: clamp(1.9rem, 3.3vw, 3.1rem);
   background:
     linear-gradient(180deg, rgba(244, 239, 231, 0.045), rgba(244, 239, 231, 0.014)),
@@ -1110,7 +1110,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.62;
   letter-spacing: 0.01em;
-  color: rgba(244, 239, 231, 0.58);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .method-stack-footer {
@@ -1135,7 +1135,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.52;
   letter-spacing: 0.01em;
-  color: rgba(244, 239, 231, 0.64);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 @media (max-width: 980px) {
@@ -1216,7 +1216,7 @@ body.is-overlay-open {
   line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(8, 8, 8, 0.42);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .qualified-presence-intro h2 {
@@ -1249,7 +1249,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.62;
   letter-spacing: 0.01em;
-  color: rgba(8, 8, 8, 0.58);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 .qualified-presence-copy span {
@@ -1260,7 +1260,7 @@ body.is-overlay-open {
 }
 
 .qualified-presence-copy p:last-child {
-  color: rgba(8, 8, 8, 0.66);
+  color: rgba(8, 8, 8, 0.68);
 }
 
 @media (max-width: 980px) {
@@ -1352,7 +1352,7 @@ body.is-overlay-open {
   line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(244, 239, 231, 0.42);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .signature-heading h2 {
@@ -1390,7 +1390,7 @@ body.is-overlay-open {
   font-weight: 300;
   line-height: 1.58;
   letter-spacing: 0.01em;
-  color: rgba(244, 239, 231, 0.62);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .signature-name {
@@ -1533,7 +1533,7 @@ body.is-overlay-open {
   align-content: start;
   gap: clamp(0.8rem, 1vw, 1rem);
   margin: 0;
-  color: rgba(244, 239, 231, 0.6);
+  color: rgba(244, 239, 231, 0.72);
   font-size: clamp(0.88rem, 0.96vw, 0.98rem);
   line-height: 1.35;
   letter-spacing: 0.02em;
@@ -1550,7 +1550,7 @@ body.is-overlay-open {
 }
 
 .site-footer-contact dt {
-  color: rgba(244, 239, 231, 0.42);
+  color: rgba(244, 239, 231, 0.72);
   font-size: 0.68rem;
   font-weight: 300;
   letter-spacing: 0.16em;
@@ -1573,7 +1573,7 @@ body.is-overlay-open {
   display: grid;
   gap: 0.36rem;
   max-width: 32ch;
-  color: rgba(244, 239, 231, 0.56);
+  color: rgba(244, 239, 231, 0.72);
   line-height: 1.5;
 }
 
@@ -1582,7 +1582,7 @@ body.is-overlay-open {
 }
 
 .site-footer-region-line + .site-footer-region-line {
-  color: rgba(244, 239, 231, 0.46);
+  color: rgba(244, 239, 231, 0.72);
 }
 
 .site-footer-nowrap {
@@ -1614,7 +1614,7 @@ body.is-overlay-open {
   justify-content: center;
   width: 44px;
   height: 44px;
-  color: rgba(244, 239, 231, 0.62);
+  color: rgba(244, 239, 231, 0.72);
   transition:
     color 360ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -1638,7 +1638,7 @@ body.is-overlay-open {
   gap: 2rem;
   border-top: 1px solid rgba(244, 239, 231, 0.14);
   padding-top: clamp(1.3rem, 2vw, 1.8rem);
-  color: rgba(244, 239, 231, 0.42);
+  color: rgba(244, 239, 231, 0.72);
   font-family: "Neue Haas Display", "Outfit", "Avenir Next", sans-serif;
   font-size: clamp(0.78rem, 0.86vw, 0.88rem);
   font-weight: 300;
@@ -1661,7 +1661,7 @@ body.is-overlay-open {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  color: rgba(244, 239, 231, 0.5);
+  color: rgba(244, 239, 231, 0.72);
   transition: color 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 

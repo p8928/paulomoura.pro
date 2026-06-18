@@ -100,7 +100,7 @@
     line-height: 1;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(8, 8, 8, 0.42);
+    color: rgba(8, 8, 8, 0.68);
   }
 
   .application-heading h2 {
@@ -211,7 +211,7 @@
     font-weight: 300;
     line-height: 1.62;
     letter-spacing: 0.01em;
-    color: rgba(8, 8, 8, 0.6);
+    color: rgba(8, 8, 8, 0.68);
     transition: padding 720ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -276,7 +276,7 @@
     max-width: 34rem;
     font-size: clamp(0.96rem, 1.14vw, 1.1rem);
     line-height: 1.56;
-    color: rgba(8, 8, 8, 0.58);
+    color: rgba(8, 8, 8, 0.68);
   }
 
   .application-action :global(a) {

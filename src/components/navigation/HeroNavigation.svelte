@@ -132,7 +132,9 @@
 <div
   id="hero-overlay-menu"
   class={`fixed inset-0 z-40 bg-ivory text-moura-black transition duration-700 ease-out ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
-  aria-hidden={!open}
+  role="dialog"
+  aria-label="Menu principal"
+  inert={!open}
 >
   <div class="relative min-h-screen px-6 lg:px-10">
     <nav aria-label="Menu aberto" class="absolute left-6 top-1/2 translate-y-[calc(-50%+2rem)] lg:left-10">
@@ -226,7 +228,7 @@
   }
 
   .overlay-menu-link:hover {
-    color: rgba(8, 8, 8, 0.56);
+    color: rgba(8, 8, 8, 0.7);
     transform: translateX(0.12em);
   }
 
@@ -260,7 +262,7 @@
     font-weight: 300;
     line-height: 1.38;
     letter-spacing: 0.02em;
-    color: rgba(8, 8, 8, 0.62);
+    color: rgba(8, 8, 8, 0.74);
   }
 
   .overlay-contact-item {
@@ -275,7 +277,7 @@
   }
 
   .overlay-contact dt {
-    color: rgba(8, 8, 8, 0.42);
+    color: rgba(8, 8, 8, 0.68);
     font-size: 0.66rem;
     font-weight: 300;
     letter-spacing: 0.16em;
@@ -294,7 +296,7 @@
 
   .overlay-contact a:hover,
   .overlay-social-link:hover {
-    color: rgba(8, 8, 8, 0.52);
+    color: rgba(8, 8, 8, 0.72);
   }
 
   .overlay-contact a {
@@ -315,12 +317,12 @@
     display: grid;
     gap: 0.32rem;
     max-width: 31ch;
-    color: rgba(8, 8, 8, 0.56);
+    color: rgba(8, 8, 8, 0.7);
     line-height: 1.52;
   }
 
   .overlay-contact-item-region dd span + span {
-    color: rgba(8, 8, 8, 0.44);
+    color: rgba(8, 8, 8, 0.68);
   }
 
   .overlay-nowrap {

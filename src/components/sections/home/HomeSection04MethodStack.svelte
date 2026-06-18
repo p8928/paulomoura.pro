@@ -158,7 +158,7 @@
     line-height: 1;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(244, 239, 231, 0.42);
+    color: rgba(244, 239, 231, 0.72);
   }
 
   .method-scroll-intro h2 {
@@ -182,7 +182,7 @@
     font-weight: 300;
     line-height: 1.52;
     letter-spacing: 0.01em;
-    color: rgba(244, 239, 231, 0.62);
+    color: rgba(244, 239, 231, 0.72);
   }
 
   .method-scroll-stage {
@@ -253,7 +253,7 @@
     font-weight: 300;
     line-height: 1.62;
     letter-spacing: 0.01em;
-    color: rgba(244, 239, 231, 0.58);
+    color: rgba(244, 239, 231, 0.72);
   }
 
   .method-scroll-outro {
@@ -284,7 +284,7 @@
     font-weight: 300;
     line-height: 1.52;
     letter-spacing: 0.01em;
-    color: rgba(244, 239, 231, 0.64);
+    color: rgba(244, 239, 231, 0.72);
   }
 
   .method-scroll-outro :global(a) {

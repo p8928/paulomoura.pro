@@ -412,9 +412,9 @@
     </div>
 
     <div class="application-step">
-      <label class="application-honeypot" aria-hidden="true">
+      <label class="application-honeypot">
         <span>Não preencha este campo</span>
-        <input bind:value={botField} name="_gotcha" tabindex="-1" autocomplete="off" />
+        <input bind:value={botField} name="_gotcha" tabindex="-1" autocomplete="off" aria-label="Não preencha este campo" />
       </label>
 
       <p class="application-copy">{step.copy}</p>
@@ -631,7 +631,7 @@
   .application-status span {
     display: block;
     max-width: 100%;
-    color: rgba(244, 239, 231, 0.46);
+    color: rgba(244, 239, 231, 0.72);
     overflow-wrap: anywhere;
   }
 
@@ -669,7 +669,7 @@
   }
 
   .application-thanks span {
-    color: rgba(244, 239, 231, 0.68);
+    color: rgba(244, 239, 231, 0.74);
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(1rem, 1.16vw, 1.18rem);
     font-weight: 300;
@@ -706,7 +706,7 @@
     border: 1px solid rgba(244, 239, 231, 0.2);
     border-radius: 0;
     background: transparent;
-    color: rgba(244, 239, 231, 0.68);
+    color: rgba(244, 239, 231, 0.74);
     cursor: pointer;
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: 0.75rem;
@@ -731,7 +731,7 @@
   .application-copy {
     max-width: 50rem;
     margin: 0;
-    color: rgba(244, 239, 231, 0.7);
+    color: rgba(244, 239, 231, 0.76);
     font-family: "Neue Haas Display", "Outfit", sans-serif;
     font-size: clamp(1rem, 1.16vw, 1.18rem);
     font-weight: 300;
@@ -779,7 +779,7 @@
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(244, 239, 231, 0.28);
+    color: rgba(244, 239, 231, 0.74);
   }
 
   input:focus,
@@ -939,7 +939,7 @@
 
   .application-controls .ghost {
     background: transparent;
-    color: rgba(244, 239, 231, 0.62);
+    color: rgba(244, 239, 231, 0.74);
   }
 
   .application-controls .primary {
