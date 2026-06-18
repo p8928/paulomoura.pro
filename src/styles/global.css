@@ -468,27 +468,27 @@ textarea {
 }
 
 .moura-button-light {
-  border-color: rgba(232, 227, 218, 0.72);
-  color: rgba(244, 239, 231, 0.88);
-  background-color: rgba(244, 239, 231, 0.72);
-}
-
-.moura-button-light:hover {
-  border-color: rgba(244, 239, 231, 0.82);
+  border-color: rgba(244, 239, 231, 0.92);
   color: #080808;
   background-color: rgba(244, 239, 231, 0.92);
 }
 
+.moura-button-light:hover {
+  border-color: rgba(244, 239, 231, 0.96);
+  color: rgba(244, 239, 231, 0.96);
+  background-color: transparent;
+}
+
 .moura-button-dark {
-  border-color: rgba(8, 8, 8, 0.68);
-  color: rgba(8, 8, 8, 0.86);
-  background-color: rgba(8, 8, 8, 0.68);
+  border-color: rgba(8, 8, 8, 0.9);
+  color: rgba(244, 239, 231, 0.96);
+  background-color: rgba(8, 8, 8, 0.9);
 }
 
 .moura-button-dark:hover {
   border-color: rgba(8, 8, 8, 0.9);
-  color: var(--moura-ivory);
-  background-color: rgba(8, 8, 8, 0.9);
+  color: rgba(8, 8, 8, 0.92);
+  background-color: transparent;
 }
 
 .hero-cta {
