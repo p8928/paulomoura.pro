@@ -1122,4 +1122,18 @@ const principles = [
       grid-column: auto;
     }
   }
+
+  /* Accessibility contrast overrides for small metadata on light/dark surfaces. */
+  .brand-page [data-nav-surface="dark"] :is(.brand-kicker, .brand-hero-system p, .brand-offer-number, .brand-offer-name span, .brand-principles span, .brand-vault-index) {
+    color: #c79a55;
+  }
+
+  .brand-page [data-nav-surface="dark"] :is(.brand-hero-system, .brand-hero-aside p, .brand-offer-copy p, .brand-offer-connector, .brand-closing-copy p) {
+    color: rgba(244, 239, 231, 0.78);
+  }
+
+  .brand-page [data-nav-surface="light"] :is(.brand-kicker-dark, .brand-thesis-index, .brand-thesis-notes span, .brand-signature-index, .brand-signature-list span, .brand-direction-index, .brand-direction-list strong) {
+    color: #6f4c1f;
+  }
+
 </style>

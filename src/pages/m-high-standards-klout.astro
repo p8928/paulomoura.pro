@@ -830,4 +830,23 @@ const scores = [
       height: 104px;
     }
   }
+
+  /* Accessibility contrast overrides for small metadata on light/dark surfaces. */
+  .mhs-page [data-nav-surface="dark"] :is(.mhs-kicker, .mhs-hero-verification-item span, .mhs-accordion-item summary > span, .mhs-accordion-item small) {
+    color: #c79a55;
+  }
+
+  .mhs-page [data-nav-surface="dark"] :is(.mhs-hero-verification-item strong, .mhs-accordion-content, .mhs-closing-status span, .mhs-closing-status strong) {
+    color: rgba(244, 239, 231, 0.78);
+  }
+
+  .mhs-page [data-nav-surface="light"] :is(.mhs-kicker-dark, .mhs-score-ring span, .mhs-proof-link) {
+    color: #6f4c1f;
+  }
+
+  .mhs-page [data-nav-surface="dark"] .mhs-accordion-indicator::before,
+  .mhs-page [data-nav-surface="dark"] .mhs-accordion-indicator::after {
+    background: #c79a55;
+  }
+
 </style>

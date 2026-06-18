@@ -1290,4 +1290,22 @@ const distinctions = [
       line-height: 1.54;
     }
   }
+
+  /* Accessibility contrast overrides for small metadata on light/dark surfaces. */
+  .moura-page [data-nav-surface="dark"] :is(.moura-kicker, .moura-hero-system p, .moura-method-step small, .moura-distinction-list span) {
+    color: #c79a55;
+  }
+
+  .moura-page [data-nav-surface="dark"] :is(.moura-hero-text, .moura-hero-system, .moura-method-step p, .moura-distinction-list p) {
+    color: rgba(244, 239, 231, 0.78);
+  }
+
+  .moura-page :is(.moura-kicker-dark, .moura-closing-heading .moura-kicker, .moura-pillar-card span, .moura-badge-card-head span) {
+    color: #6f4c1f;
+  }
+
+  .moura-page :is(.moura-closing-copy a:hover, .moura-badge-arrow:hover) {
+    color: #6f4c1f;
+  }
+
 </style>

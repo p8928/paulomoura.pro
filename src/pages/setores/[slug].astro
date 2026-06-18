@@ -1090,4 +1090,23 @@ const sectorServiceSchema = serviceSchema({
       padding-block: 1rem;
     }
   }
+
+  /* Accessibility contrast overrides for sector page metadata and counters. */
+  .sector-hero p,
+  .architecture-solution :is(.architecture-section-heading p, .architecture-comparison section + section span, .architecture-comparison section + section li::before) {
+    color: #c79a55;
+  }
+
+  .architecture-title-copy p,
+  .architecture-section-heading p,
+  .architecture-editorial-copy p::before,
+  .architecture-offer-copy p::before,
+  .architecture-signature-badge p {
+    color: #6f4c1f;
+  }
+
+  .architecture-solution :is(.architecture-comparison span, .architecture-comparison li, .architecture-comparison li::before) {
+    color: rgba(244, 239, 231, 0.78);
+  }
+
 </style>
