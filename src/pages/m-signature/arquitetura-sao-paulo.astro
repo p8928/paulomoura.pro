@@ -1,0 +1,1173 @@
+---
+import HeroNavigation from '@components/navigation/HeroNavigation.svelte';
+import SiteFooter from '@components/site/SiteFooter.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { itemListSchema, schemaIdentity, serviceSchema } from '@data/schema';
+
+const pagePath = '/m-signature/arquitetura-sao-paulo/';
+const pageUrl = schemaIdentity.baseUrl + pagePath;
+
+const scope = [
+  {
+    number: '01',
+    title: 'Leitura do escritório',
+    copy: 'Projetos, processo, repertório, atendimento, percepção dos clientes e ambição do negócio são observados antes de qualquer decisão visual ou técnica.',
+  },
+  {
+    number: '02',
+    title: 'Direção de marca e linguagem',
+    copy: 'Posicionamento, argumentos, voz e hierarquia de mensagens passam a revelar o critério que existe por trás da obra — sem reduzir o escritório a uma estética genérica.',
+  },
+  {
+    number: '03',
+    title: 'Site e experiência autoral',
+    copy: 'Arquitetura de informação, direção de interface, conteúdo e desenvolvimento são construídos como um mesmo sistema, com performance e acabamento compatíveis com a marca.',
+  },
+  {
+    number: '04',
+    title: 'Busca, autoridade e reputação',
+    copy: 'SEO, AEO, GEO, dados estruturados, presença local e sinais públicos tornam o escritório mais compreensível para clientes, Google e sistemas de IA.',
+  },
+];
+
+const process = [
+  ['01', 'Candidatura', 'A primeira leitura verifica momento, ambição, escopo e aderência ao método.'],
+  ['02', 'Imersão', 'A direção parte de conversas, materiais, projetos, operação e sinais públicos reais.'],
+  ['03', 'Construção', 'Marca, linguagem, experiência, código e busca evoluem sob o mesmo critério.'],
+  ['04', 'Entrega', 'Em 90 dias, o escritório recebe uma base proprietária pronta para sustentar autoridade.'],
+];
+
+const fit = [
+  'Escritórios com obra, repertório e atendimento acima da média.',
+  'Arquitetos cujo ticket exige confiança antes da primeira conversa.',
+  'Operações que precisam reunir branding, site e busca sob uma única direção.',
+  'Marcas dispostas a revisar mensagem e posicionamento, não apenas aparência.',
+];
+
+const architectureService = serviceSchema({
+  id: pageUrl + '#service',
+  name: 'M-Signature para escritórios de arquitetura em São Paulo',
+  description: 'Direção Brand-Driven que integra branding, linguagem, site, SEO, AEO, GEO e autoridade digital para escritórios de arquitetura em São Paulo.',
+  serviceType: 'Branding, site e presença digital para escritórios de arquitetura',
+  url: pageUrl,
+  audience: 'Escritórios de arquitetura em São Paulo',
+});
+
+const architectureScope = itemListSchema({
+  id: pageUrl + '#scope',
+  name: 'Escopo do M-Signature para arquitetura',
+  items: scope.map((item) => ({ name: item.title, description: item.copy })),
+});
+---
+
+<BaseLayout
+  title="Branding, site e SEO para arquitetos em São Paulo"
+  description="Presença digital Brand-Driven para escritórios de arquitetura em São Paulo: direção de marca, site autoral, SEO, AEO, GEO e autoridade sob uma única direção."
+  canonicalPath={pagePath}
+  schemaPageType="WebPage"
+  schemaMainEntity={{ '@id': pageUrl + '#service' }}
+  structuredData={[architectureService, architectureScope]}
+  showChrome={false}
+>
+  <script>
+    import '@scripts/lenis';
+
+    const revealArchitectureNote = () => {
+      const note = document.querySelector('.architecture-sp-thesis-note');
+      if (!note) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting) return;
+          note.classList.add('is-visible');
+          observer.disconnect();
+        },
+        { threshold: 0.35 },
+      );
+
+      observer.observe(note);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', revealArchitectureNote, { once: true });
+    } else {
+      revealArchitectureNote();
+    }
+  </script>
+
+  <HeroNavigation client:load />
+
+  <main class="architecture-sp-page">
+    <div class="architecture-sp-stack">
+      <div class="architecture-sp-image-stage" data-nav-surface="dark">
+        <figure class="architecture-sp-figure">
+          <img
+            src="/images/m-signature/arquitetura-sao-paulo-hero.webp"
+            alt="Interior arquitetônico contemporâneo em concreto, madeira e pedra, organizado ao redor de um pátio com árvore"
+            width="1672"
+            height="941"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <figcaption>Imagem conceitual criada para representar proporção, materialidade e rigor arquitetônico.</figcaption>
+        </figure>
+        <div class="architecture-sp-image-copy" aria-hidden="true">
+          <span>Proporção</span>
+        </div>
+      </div>
+
+      <section class="architecture-sp-hero" data-nav-surface="dark" aria-labelledby="architecture-sp-title">
+        <div class="architecture-sp-shell architecture-sp-hero-layout">
+          <p class="architecture-sp-kicker architecture-sp-enter architecture-sp-enter--1">M-Signature / Arquitetura / São Paulo</p>
+
+          <h1 id="architecture-sp-title" class="architecture-sp-enter architecture-sp-enter--2">
+            Sua arquitetura não deveria parecer comum no digital.
+          </h1>
+
+          <p class="architecture-sp-summary architecture-sp-enter architecture-sp-enter--3">
+            Branding, site, SEO e autoridade sob uma única direção, para escritórios cuja presença precisa refletir o rigor dos projetos que entregam.
+          </p>
+
+          <div class="architecture-sp-rule architecture-sp-enter architecture-sp-enter--4" aria-label="Presença digital com método">
+            <span aria-hidden="true"></span>
+            <p>Presença digital com método</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="architecture-sp-thesis" data-nav-surface="light" aria-labelledby="architecture-sp-thesis-title">
+      <div class="architecture-sp-shell architecture-sp-thesis-grid">
+        <header class="architecture-sp-section-marker">
+          <p>01 / Correspondência</p>
+          <span>São Paulo, SP</span>
+        </header>
+
+        <div class="architecture-sp-thesis-copy">
+          <h2 id="architecture-sp-thesis-title">Uma obra pode demonstrar excelência. Uma presença genérica consegue ocultá-la.</h2>
+          <div>
+            <p>O cliente avalia o escritório antes da primeira reunião. Portfólio, linguagem, site, reputação e busca determinam se existe apenas interesse visual ou confiança para avançar.</p>
+            <p>O M-Signature aproxima presença percebida e qualidade real. A leitura do escritório orienta marca, experiência e autoridade.</p>
+          </div>
+        </div>
+
+        <aside class="architecture-sp-thesis-note">
+          <span>Não é apenas branding visual!</span>
+          <p>É direção de marca, experiência, tecnologia e autoridade operando como partes da mesma arquitetura.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="architecture-sp-scope" data-nav-surface="dark" aria-labelledby="architecture-sp-scope-title">
+      <div class="architecture-sp-shell">
+        <header class="architecture-sp-scope-head">
+          <div class="architecture-sp-section-marker architecture-sp-section-marker--dark">
+            <p>02 / Oferta integrada</p>
+            <span>90 dias / Projeto fechado</span>
+          </div>
+          <h2 id="architecture-sp-scope-title">Uma direção.<br />Quatro frentes.</h2>
+          <p>O trabalho reúne disciplinas que normalmente são fragmentadas entre fornecedores diferentes. A coerência nasce porque todas respondem à mesma leitura do negócio.</p>
+        </header>
+
+        <div class="architecture-sp-scope-list">
+          {scope.map((item) => (
+            <article>
+              <span>{item.number}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-sp-process" data-nav-surface="light" aria-labelledby="architecture-sp-process-title">
+      <div class="architecture-sp-shell">
+        <header class="architecture-sp-process-head">
+          <div class="architecture-sp-section-marker">
+            <p>03 / Condução</p>
+            <span>Brand-Driven</span>
+          </div>
+          <h2 id="architecture-sp-process-title">O processo começa antes da interface.</h2>
+        </header>
+
+        <ol class="architecture-sp-process-list">
+          {process.map(([number, title, copy]) => (
+            <li>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </li>
+          ))}
+        </ol>
+
+        <p class="architecture-sp-process-link">
+          Conheça a <a href="/setores/arquitetura/">leitura editorial da Moura para o setor de arquitetura</a> ou veja o <a href="/m-signature/">M-Signature completo</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="architecture-sp-region" data-nav-surface="dark" aria-labelledby="architecture-sp-region-title">
+      <div class="architecture-sp-region-grid" aria-hidden="true"></div>
+      <div class="architecture-sp-shell architecture-sp-region-layout">
+        <div>
+          <p class="architecture-sp-kicker">São Paulo / Presencial prioritário</p>
+          <h2 id="architecture-sp-region-title">Proximidade para compreender o que não aparece em um briefing.</h2>
+        </div>
+        <div class="architecture-sp-region-copy">
+          <p>A etapa presencial pode incluir leitura do espaço, atendimento, materiais, dinâmica da equipe e relação entre discurso e operação. Para escritórios de São Paulo, essa proximidade amplia a precisão do diagnóstico sem transformar o projeto em uma sequência de reuniões improdutivas.</p>
+          <dl>
+            <div><dt>Direção</dt><dd>Paulo Moura</dd></div>
+            <div><dt>Formato</dt><dd>Híbrido</dd></div>
+            <div><dt>Duração</dt><dd>90 dias</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-sp-fit" data-nav-surface="light" aria-labelledby="architecture-sp-fit-title">
+      <div class="architecture-sp-shell architecture-sp-fit-grid">
+        <header>
+          <p class="architecture-sp-kicker architecture-sp-kicker--dark">04 / Aderência</p>
+          <h2 id="architecture-sp-fit-title">Para escritórios que procuram direção, não apenas execução.</h2>
+        </header>
+        <ul>
+          {fit.map((item, index) => (
+            <li><span>{String(index + 1).padStart(2, '0')}</span><p>{item}</p></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="architecture-sp-cta" data-nav-surface="dark" aria-labelledby="architecture-sp-cta-title">
+      <div class="architecture-sp-shell architecture-sp-cta-layout">
+        <p class="architecture-sp-kicker">Próximo passo</p>
+        <h2 id="architecture-sp-cta-title">Se a presença parece menor que o escritório, existe uma diferença a investigar.</h2>
+        <div>
+          <p>A candidatura permite avaliar contexto, maturidade e aderência antes de dimensionar uma proposta.</p>
+          <a href="/candidatura/">Iniciar candidatura</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .architecture-sp-page {
+    --architecture-black: #070707;
+    --architecture-paper: #f3f0e9;
+    --architecture-line: rgba(241, 237, 228, 0.46);
+    overflow: clip;
+    background: var(--architecture-paper);
+    color: #11110f;
+  }
+
+  .architecture-sp-shell {
+    width: min(100% - clamp(2.5rem, 7vw, 8rem), 92rem);
+    margin-inline: auto;
+  }
+
+  .architecture-sp-stack {
+    position: relative;
+    height: 200vh;
+    height: 200svh;
+    background: var(--architecture-black);
+  }
+
+  .architecture-sp-image-stage {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background: #080806;
+    color: #eeeae1;
+  }
+
+  .architecture-sp-figure,
+  .architecture-sp-figure img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .architecture-sp-figure {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+  }
+
+  .architecture-sp-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(4, 4, 3, 0.26), transparent 35%, rgba(4, 4, 3, 0.46)),
+      linear-gradient(90deg, rgba(4, 4, 3, 0.22), transparent 52%);
+  }
+
+  .architecture-sp-figure img {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.84) contrast(1.03);
+  }
+
+  .architecture-sp-figure figcaption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .architecture-sp-image-copy {
+    position: absolute;
+    z-index: 2;
+    inset: auto clamp(1rem, 2vw, 2rem) clamp(1.5rem, 2.8vw, 2.8rem);
+    overflow: visible;
+  }
+
+  .architecture-sp-image-copy span {
+    display: block;
+    padding-block: 0.1em 0.08em;
+    color: rgba(244, 240, 231, 0.9);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(5.5rem, 13.6vw, 14.5rem);
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -0.065em;
+    text-transform: uppercase;
+  }
+
+  .architecture-sp-hero {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: 100vh;
+    min-height: 100svh;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.035), transparent 26%),
+      linear-gradient(145deg, #050505, #0a0a09 58%, #050505);
+    color: #f0ede5;
+  }
+
+  .architecture-sp-hero-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: clamp(7.5rem, 13vh, 10rem) clamp(2rem, 4.5vh, 3.6rem);
+  }
+
+  .architecture-sp-kicker {
+    color: rgba(240, 237, 229, 0.58);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .architecture-sp-kicker--dark {
+    color: rgba(17, 17, 15, 0.48);
+  }
+
+  .architecture-sp-hero .architecture-sp-kicker {
+    grid-column: 1 / -1;
+    align-self: start;
+  }
+
+  .architecture-sp-hero h1 {
+    grid-column: 1 / 10;
+    align-self: center;
+    max-width: 11.5ch;
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(3.7rem, 7.1vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  .architecture-sp-summary {
+    grid-column: 9 / -1;
+    align-self: end;
+    max-width: 31rem;
+    margin: 0 0 clamp(5.2rem, 10vh, 7.7rem);
+    color: rgba(240, 237, 229, 0.68);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.25vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.52;
+  }
+
+  .architecture-sp-rule {
+    position: absolute;
+    right: calc(50% - 50vw + 1.5rem);
+    bottom: 2rem;
+    left: calc(50% - 50vw + 1.5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(13rem, 2fr);
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .architecture-sp-rule > span {
+    display: block;
+    height: 1px;
+    background: var(--architecture-line);
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: architecture-rule-grow 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+  }
+
+  .architecture-sp-rule p {
+    margin: 0;
+    color: rgba(240, 237, 229, 0.62);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateX(-0.75rem);
+    animation: architecture-label-in 0.7s ease 1.85s forwards;
+  }
+
+  .architecture-sp-enter {
+    opacity: 0;
+    transform: translateY(1.1rem);
+    animation: architecture-copy-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .architecture-sp-enter--1 { animation-delay: 0.12s; }
+  .architecture-sp-enter--2 { animation-delay: 0.27s; }
+  .architecture-sp-enter--3 { animation-delay: 0.52s; }
+  .architecture-sp-enter--4 { animation-delay: 0.72s; }
+
+  @keyframes architecture-copy-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes architecture-rule-grow {
+    to { transform: scaleX(1); }
+  }
+
+  @keyframes architecture-label-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .architecture-sp-thesis,
+  .architecture-sp-process,
+  .architecture-sp-fit {
+    background: var(--architecture-paper);
+  }
+
+  .architecture-sp-thesis {
+    padding-block: clamp(7rem, 13vw, 12rem);
+  }
+
+  .architecture-sp-thesis-grid {
+    display: grid;
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 7fr) minmax(13rem, 3fr);
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: start;
+  }
+
+  .architecture-sp-section-marker {
+    color: rgba(17, 17, 15, 0.48);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.64rem;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .architecture-sp-section-marker p,
+  .architecture-sp-section-marker span {
+    display: block;
+    margin: 0;
+  }
+
+  .architecture-sp-section-marker span {
+    margin-top: 0.35rem;
+    opacity: 0.62;
+  }
+
+  .architecture-sp-section-marker--dark {
+    color: rgba(240, 237, 229, 0.48);
+  }
+
+  .architecture-sp-thesis-copy h2,
+  .architecture-sp-process-head h2,
+  .architecture-sp-fit h2,
+  .architecture-sp-region h2,
+  .architecture-sp-cta h2 {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .architecture-sp-thesis-copy h2 {
+    max-width: 14ch;
+    font-size: clamp(2.7rem, 5.2vw, 6rem);
+    line-height: 0.98;
+  }
+
+  .architecture-sp-thesis-copy > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  }
+
+  .architecture-sp-thesis-copy > div p,
+  .architecture-sp-thesis-note p,
+  .architecture-sp-scope-head > p,
+  .architecture-sp-region-copy > p,
+  .architecture-sp-cta-layout > div p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1rem, 1.15vw, 1.13rem);
+    font-weight: 300;
+    line-height: 1.62;
+  }
+
+  .architecture-sp-thesis-copy > div p {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(17, 17, 15, 0.16);
+    color: rgba(17, 17, 15, 0.68);
+  }
+
+  .architecture-sp-thesis-note {
+    position: relative;
+    isolation: isolate;
+    align-self: start;
+    overflow: visible;
+    padding: clamp(1.7rem, 2.5vw, 2.4rem) clamp(0.5rem, 1vw, 1rem) clamp(1.8rem, 3vw, 2.8rem) clamp(1.5rem, 2.5vw, 2.5rem);
+    color: rgba(243, 240, 233, 0.92);
+  }
+
+  .architecture-sp-thesis-note::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0 -50vw 0 0;
+    background: #0a0a09;
+    transform: translateX(110%);
+    transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .architecture-sp-thesis-note.is-visible::before {
+    transform: translateX(0);
+  }
+
+  .architecture-sp-thesis-note span {
+    display: block;
+    margin-bottom: 1.2rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity 0.55s ease 0.5s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+  }
+
+  .architecture-sp-thesis-note p {
+    color: rgba(243, 240, 233, 0.68);
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity 0.55s ease 0.62s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.57s;
+  }
+
+  .architecture-sp-thesis-note.is-visible span,
+  .architecture-sp-thesis-note.is-visible p {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .architecture-sp-scope {
+    padding-block: clamp(7rem, 12vw, 11rem);
+    background: #0a0a09;
+    color: #f0ede5;
+  }
+
+  .architecture-sp-scope-head {
+    display: grid;
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 7fr) minmax(13rem, 3fr);
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: end;
+  }
+
+  .architecture-sp-scope-head h2 {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(3.2rem, 7.4vw, 8rem);
+    font-weight: 300;
+    line-height: 0.84;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  .architecture-sp-scope-head > p {
+    color: rgba(240, 237, 229, 0.62);
+  }
+
+  .architecture-sp-scope-list {
+    margin-top: clamp(5rem, 9vw, 8rem);
+    border-top: 1px solid rgba(240, 237, 229, 0.18);
+  }
+
+  .architecture-sp-scope-list article {
+    display: grid;
+    grid-template-columns: minmax(5rem, 1fr) minmax(14rem, 4fr) minmax(0, 7fr);
+    gap: clamp(1.5rem, 3vw, 4rem);
+    padding-block: clamp(1.8rem, 3vw, 2.8rem);
+    border-bottom: 1px solid rgba(240, 237, 229, 0.14);
+  }
+
+  .architecture-sp-scope-list article > span {
+    color: rgba(240, 237, 229, 0.34);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+  }
+
+  .architecture-sp-scope-list h3,
+  .architecture-sp-process-list h3 {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.45rem, 2.1vw, 2.15rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .architecture-sp-scope-list p {
+    max-width: 51rem;
+    margin: 0;
+    color: rgba(240, 237, 229, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .architecture-sp-process {
+    padding-block: clamp(7rem, 13vw, 12rem);
+  }
+
+  .architecture-sp-process-head {
+    display: grid;
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 10fr);
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: end;
+  }
+
+  .architecture-sp-process-head h2 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 5.8vw, 6.4rem);
+    line-height: 0.94;
+  }
+
+  .architecture-sp-process-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: clamp(5rem, 9vw, 8rem) 0 0;
+    padding: 0;
+    border-top: 1px solid rgba(17, 17, 15, 0.18);
+    list-style: none;
+  }
+
+  .architecture-sp-process-list li {
+    min-height: 20rem;
+    padding: 1.4rem clamp(1rem, 2vw, 2rem) 1.8rem;
+    border-right: 1px solid rgba(17, 17, 15, 0.14);
+  }
+
+  .architecture-sp-process-list li:first-child {
+    border-left: 1px solid rgba(17, 17, 15, 0.14);
+  }
+
+  .architecture-sp-process-list li > span {
+    display: block;
+    margin-bottom: clamp(5rem, 9vw, 8rem);
+    color: rgba(17, 17, 15, 0.38);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+  }
+
+  .architecture-sp-process-list p {
+    margin: 1.2rem 0 0;
+    color: rgba(17, 17, 15, 0.62);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .architecture-sp-process-link {
+    width: 25%;
+    max-width: none;
+    margin: 2.2rem 0 0 auto;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    color: rgba(17, 17, 15, 0.48);
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .architecture-sp-process-link a {
+    color: #11110f;
+    text-underline-offset: 0.2em;
+  }
+
+  .architecture-sp-region {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(8rem, 14vw, 13rem);
+    background: #10100e;
+    color: #f0ede5;
+  }
+
+  .architecture-sp-region-grid {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(240, 237, 229, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240, 237, 229, 0.045) 1px, transparent 1px);
+    background-size: clamp(4rem, 8vw, 8rem) clamp(4rem, 8vw, 8rem);
+    mask-image: linear-gradient(90deg, transparent, black 45%, black);
+  }
+
+  .architecture-sp-region-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(18rem, 4fr);
+    gap: clamp(3rem, 8vw, 9rem);
+    align-items: end;
+  }
+
+  .architecture-sp-region h2 {
+    max-width: 12ch;
+    margin-top: clamp(2.2rem, 4vw, 4rem);
+    font-size: clamp(3rem, 6.2vw, 6.8rem);
+    line-height: 0.94;
+  }
+
+  .architecture-sp-region-copy > p {
+    color: rgba(240, 237, 229, 0.64);
+  }
+
+  .architecture-sp-region dl {
+    margin: clamp(3rem, 5vw, 5rem) 0 0;
+    border-top: 1px solid rgba(240, 237, 229, 0.18);
+  }
+
+  .architecture-sp-region dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid rgba(240, 237, 229, 0.12);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .architecture-sp-region dt { color: rgba(240, 237, 229, 0.4); }
+  .architecture-sp-region dd { margin: 0; color: rgba(240, 237, 229, 0.78); }
+
+  .architecture-sp-fit {
+    padding-block: clamp(7rem, 13vw, 12rem);
+  }
+
+  .architecture-sp-fit-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(4rem, 9vw, 10rem);
+  }
+
+  .architecture-sp-fit h2 {
+    max-width: 12ch;
+    margin-top: 2rem;
+    font-size: clamp(2.8rem, 5.2vw, 5.8rem);
+    line-height: 0.97;
+  }
+
+  .architecture-sp-fit ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(17, 17, 15, 0.18);
+    list-style: none;
+  }
+
+  .architecture-sp-fit li {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: clamp(1.4rem, 2.5vw, 2rem);
+    border-bottom: 1px solid rgba(17, 17, 15, 0.14);
+  }
+
+  .architecture-sp-fit li span {
+    color: rgba(17, 17, 15, 0.34);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+  }
+
+  .architecture-sp-fit li p {
+    margin: 0;
+    font-family: "Neue Haas Display", "Outfit", sans-serif;
+    font-size: clamp(1.18rem, 1.7vw, 1.6rem);
+    font-weight: 300;
+    line-height: 1.25;
+  }
+
+  .architecture-sp-cta {
+    padding-block: clamp(8rem, 14vw, 13rem);
+    background: #070707;
+    color: #f0ede5;
+  }
+
+  .architecture-sp-cta-layout {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 5rem);
+  }
+
+  .architecture-sp-cta-layout > .architecture-sp-kicker {
+    grid-column: 1 / -1;
+  }
+
+  .architecture-sp-cta h2 {
+    grid-column: 1 / 9;
+    max-width: 13ch;
+    margin-top: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(3rem, 6vw, 6.7rem);
+    line-height: 0.95;
+  }
+
+  .architecture-sp-cta-layout > div {
+    grid-column: 9 / -1;
+    align-self: end;
+  }
+
+  .architecture-sp-cta-layout > div p {
+    color: rgba(240, 237, 229, 0.62);
+  }
+
+  .architecture-sp-cta a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 2rem;
+    border: 1px solid rgba(240, 237, 229, 0.5);
+    padding: 0.9rem 1.15rem;
+    color: #f0ede5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  .architecture-sp-cta a:hover {
+    background: #f0ede5;
+    color: #070707;
+  }
+
+  @media (max-width: 980px) {
+    .architecture-sp-hero h1 { grid-column: 1 / -1; }
+    .architecture-sp-summary { grid-column: 8 / -1; }
+
+    .architecture-sp-thesis-grid {
+      grid-template-columns: minmax(7rem, 2fr) minmax(0, 8fr);
+    }
+
+    .architecture-sp-thesis-note {
+      grid-column: 2;
+      max-width: 26rem;
+      margin-left: auto;
+    }
+
+    .architecture-sp-scope-head {
+      grid-template-columns: minmax(7rem, 2fr) minmax(0, 7fr);
+    }
+
+    .architecture-sp-scope-head > p {
+      grid-column: 2;
+      max-width: 32rem;
+    }
+
+    .architecture-sp-scope-list article {
+      grid-template-columns: 4rem minmax(12rem, 3fr) minmax(0, 6fr);
+    }
+
+    .architecture-sp-process-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .architecture-sp-process-list li:nth-child(3) {
+      border-left: 1px solid rgba(17, 17, 15, 0.14);
+    }
+
+    .architecture-sp-region-layout,
+    .architecture-sp-fit-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .architecture-sp-region-copy {
+      max-width: 35rem;
+      margin-left: auto;
+    }
+
+    .architecture-sp-fit ul {
+      width: min(100%, 42rem);
+      margin-left: auto;
+    }
+
+    .architecture-sp-cta h2 { grid-column: 1 / 10; }
+    .architecture-sp-cta-layout > div { grid-column: 8 / -1; }
+  }
+
+  @media (max-width: 640px) {
+    .architecture-sp-page {
+      --architecture-mobile-section: clamp(5.5rem, 20vw, 7rem);
+    }
+
+    .architecture-sp-shell {
+      width: min(100% - 2rem, 40rem);
+    }
+
+    .architecture-sp-stack {
+      height: 190svh;
+    }
+
+    .architecture-sp-image-stage {
+      height: 90svh;
+    }
+
+    .architecture-sp-figure img {
+      object-position: 61% center;
+    }
+
+    .architecture-sp-image-copy {
+      inset: auto 1rem 1.5rem;
+    }
+
+    .architecture-sp-image-copy span {
+      font-size: clamp(4rem, 20vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+    }
+
+    .architecture-sp-hero-layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
+      padding-block: 6.7rem 1.5rem;
+    }
+
+    .architecture-sp-hero h1 {
+      max-width: 10ch;
+      margin-top: auto;
+      font-size: clamp(3rem, 14.5vw, 4.7rem);
+      line-height: 0.91;
+    }
+
+    .architecture-sp-summary {
+      max-width: 29rem;
+      margin: 2rem 0 5.5rem;
+      font-size: 0.98rem;
+      line-height: 1.48;
+    }
+
+    .architecture-sp-rule {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .architecture-sp-rule p {
+      justify-self: end;
+    }
+
+    .architecture-sp-thesis,
+    .architecture-sp-process,
+    .architecture-sp-fit,
+    .architecture-sp-scope,
+    .architecture-sp-region,
+    .architecture-sp-cta {
+      padding-block: var(--architecture-mobile-section);
+    }
+
+    .architecture-sp-thesis-grid,
+    .architecture-sp-scope-head,
+    .architecture-sp-process-head,
+    .architecture-sp-fit-grid,
+    .architecture-sp-region-layout,
+    .architecture-sp-cta-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .architecture-sp-thesis-copy,
+    .architecture-sp-thesis-note,
+    .architecture-sp-scope-head > p,
+    .architecture-sp-cta h2,
+    .architecture-sp-cta-layout > div {
+      grid-column: 1;
+    }
+
+    .architecture-sp-thesis-copy h2,
+    .architecture-sp-process-head h2,
+    .architecture-sp-fit h2,
+    .architecture-sp-region h2,
+    .architecture-sp-cta h2 {
+      margin-top: 2.3rem;
+      font-size: clamp(2.6rem, 12.5vw, 4rem);
+      line-height: 0.96;
+    }
+
+    .architecture-sp-thesis-copy > div {
+      grid-template-columns: 1fr;
+      gap: 1.7rem;
+      margin-top: 3.5rem;
+    }
+
+    .architecture-sp-thesis-note {
+      max-width: none;
+      margin: 3.5rem 0 0;
+      padding: 1.7rem 1rem 1.9rem;
+    }
+
+    .architecture-sp-thesis-note::before {
+      right: -1rem;
+      left: -1rem;
+    }
+
+    .architecture-sp-scope-head h2 {
+      margin-top: 2.3rem;
+      font-size: clamp(3.3rem, 16vw, 5rem);
+      line-height: 0.87;
+    }
+
+    .architecture-sp-scope-head > p {
+      margin-top: 2.5rem;
+    }
+
+    .architecture-sp-scope-list {
+      margin-top: 4rem;
+    }
+
+    .architecture-sp-scope-list article {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      gap: 0.7rem 1rem;
+      padding-block: 1.7rem;
+    }
+
+    .architecture-sp-scope-list article p {
+      grid-column: 2;
+    }
+
+    .architecture-sp-process-list {
+      grid-template-columns: 1fr;
+      margin-top: 4rem;
+    }
+
+    .architecture-sp-process-list li,
+    .architecture-sp-process-list li:first-child,
+    .architecture-sp-process-list li:nth-child(3) {
+      display: grid;
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      min-height: 0;
+      padding: 1.6rem 0;
+      border-right: 0;
+      border-left: 0;
+      border-bottom: 1px solid rgba(17, 17, 15, 0.14);
+    }
+
+    .architecture-sp-process-list li > span {
+      grid-row: 1 / 3;
+      margin: 0;
+    }
+
+    .architecture-sp-process-list p {
+      margin-top: 0.8rem;
+    }
+
+    .architecture-sp-process-link {
+      width: 100%;
+      margin-top: 2.5rem;
+      padding-left: 0;
+      font-size: 0.78rem;
+    }
+
+    .architecture-sp-region-copy {
+      max-width: none;
+      margin: 3rem 0 0;
+    }
+
+    .architecture-sp-fit ul {
+      width: 100%;
+      margin-top: 3.5rem;
+    }
+
+    .architecture-sp-fit li {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+    }
+
+    .architecture-sp-cta-layout > div {
+      margin-top: 3rem;
+    }
+
+    .architecture-sp-cta a {
+      width: 100%;
+      min-height: 50px;
+    }
+  }
+
+  @supports (height: 100dvh) {
+    .architecture-sp-stack { height: 200dvh; }
+    .architecture-sp-image-stage,
+    .architecture-sp-hero,
+    .architecture-sp-hero-layout { min-height: 100dvh; }
+
+    @media (max-width: 640px) {
+      .architecture-sp-stack { height: 190dvh; }
+      .architecture-sp-image-stage { height: 90dvh; }
+      .architecture-sp-hero-layout { min-height: 100dvh; }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .architecture-sp-enter,
+    .architecture-sp-rule > span,
+    .architecture-sp-rule p,
+    .architecture-sp-thesis-note::before,
+    .architecture-sp-thesis-note span,
+    .architecture-sp-thesis-note p {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+name = "moura-landing-events"
+main = "worker.mjs"
+compatibility_date = "2026-06-18"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "moura_landing_events"
+database_id = "COLE_O_DATABASE_ID_AQUI"
+
+# Configure como secrets, nao como texto no arquivo:
+# wrangler secret put PUBLIC_EVENT_TOKEN
+# wrangler secret put EVENTS_API_TOKEN
