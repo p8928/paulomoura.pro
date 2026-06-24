@@ -1,5 +1,5 @@
 ---
-const consentVersion = '2026-06-04';
+const consentVersion = '2026-06-24';
 const categories = [
   {
     id: 'essential',
@@ -11,6 +11,12 @@ const categories = [
     id: 'analytics',
     label: 'Analytics',
     description: 'Métricas agregadas de navegação, como Cloudflare Web Analytics, quando ativado.',
+    required: false,
+  },
+  {
+    id: 'campaign',
+    label: 'Campanhas e mensuração',
+    description: 'Autoriza armazenamento para atribuição do Google Ads e preserva origem, landing e identificadores de clique.',
     required: false,
   },
   {

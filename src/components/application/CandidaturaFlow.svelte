@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { createApplicationId, readAttribution, type AttributionRecord } from '@scripts/attribution';
   type FormData = {
     firstName: string;
     lastName: string;
@@ -132,6 +133,7 @@
   let submitting = $state(false);
   let submitError = $state('');
   let submittedAt = $state('');
+  let applicationId = $state('');
   let botField = $state('');
   let form = $state<FormData>({
     firstName: '',
@@ -274,12 +276,14 @@
     return ['localhost', '127.0.0.1'].includes(window.location.hostname) ? localDashboardEndpoint : formspreeEndpoint;
   }
 
-  function buildEmailBody() {
+  function buildEmailBody(submissionId = '', attribution: AttributionRecord | null = null) {
     const cnpj = form.cnpjLater ? 'Prefere informar depois' : form.cnpj;
     const site = form.noWebsite ? 'Empresa ainda não tem site' : form.website;
+    const touch = attribution?.lastTouch;
 
     return [
       'Candidatura Moura',
+      `ID: ${submissionId || 'Não gerado'}`,
       '',
       `Responsável: ${form.firstName} ${form.lastName}`,
       `Empresa: ${form.company}`,
@@ -292,6 +296,15 @@
       `Orçamento: ${form.budget}`,
       `Canal de aquisição atual: ${form.acquisition}`,
       `Urgência: ${form.urgency}`,
+      '',
+      'Atribuição:',
+      `Visitor ID: ${attribution?.visitorId || 'Não autorizado'}`,
+      `Landing inicial: ${attribution?.firstTouch.landingPath || 'Não registrada'}`,
+      `Último touch: ${touch?.landingPath || 'Não registrado'}`,
+      `Origem / mídia: ${touch?.utm_source || 'Não informada'} / ${touch?.utm_medium || 'Não informada'}`,
+      `Campanha: ${touch?.utm_campaign || 'Não informada'}`,
+      `Termo: ${touch?.utm_term || 'Não informado'}`,
+      `GCLID: ${touch?.gclid || 'Não informado'}`,
       '',
       'Motivos:',
       ...form.reasons.map((reason) => `- ${reason}`),
@@ -310,8 +323,26 @@
     }
 
     const now = new Date();
+    const submissionId = applicationId || createApplicationId();
+    const attribution = readAttribution();
+    const touch = attribution?.lastTouch;
+    const summary = buildEmailBody(submissionId, attribution);
+    applicationId = submissionId;
     const payload = {
       _subject: `Candidatura Moura - ${form.company || form.firstName}`,
+      applicationId: submissionId,
+      visitorId: attribution?.visitorId || '',
+      attributionConsent: Boolean(attribution),
+      attribution,
+      landingPage: attribution?.firstTouch.landingPath || '',
+      gclid: touch?.gclid || '',
+      gbraid: touch?.gbraid || '',
+      wbraid: touch?.wbraid || '',
+      utmSource: touch?.utm_source || '',
+      utmMedium: touch?.utm_medium || '',
+      utmCampaign: touch?.utm_campaign || '',
+      utmTerm: touch?.utm_term || '',
+      utmContent: touch?.utm_content || '',
       name: `${form.firstName} ${form.lastName}`.trim(),
       firstName: form.firstName,
       lastName: form.lastName,
@@ -327,7 +358,7 @@
       urgency: form.urgency,
       reasons: form.reasons.join(', '),
       context: form.context || 'Não informado',
-      message: buildEmailBody(),
+      message: summary,
       submittedAt: now.toISOString(),
     };
 
@@ -355,11 +386,20 @@
       localStorage.setItem(
         'moura:candidatura:last',
         JSON.stringify({
+          applicationId: submissionId,
           submittedAt: now.toISOString(),
           form,
-          summary: buildEmailBody(),
+          attribution,
+          summary,
         }),
       );
+
+      window.dispatchEvent(new CustomEvent('moura:candidatura-submitted', {
+        detail: {
+          applicationId: submissionId,
+          visitorId: attribution?.visitorId || null,
+        },
+      }));
 
       submitted = true;
       touched = false;
@@ -375,6 +415,7 @@
     submitting = false;
     submitError = '';
     submittedAt = '';
+    applicationId = '';
     botField = '';
     current = 0;
     touched = false;

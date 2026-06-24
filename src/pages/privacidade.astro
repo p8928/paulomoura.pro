@@ -17,6 +17,7 @@ const sections = [
     body: [
       'Quando você envia uma candidatura ou entra em contato, podemos coletar dados como nome, sobrenome, empresa, e-mail, telefone, CNPJ, site, indústria, faixa de orçamento, canal de aquisição, urgência, motivos da candidatura e contexto informado livremente por você.',
       'Também podemos coletar dados técnicos de navegação em formato agregado ou limitado, como páginas visitadas, origem de acesso, dispositivo, navegador, país ou métricas gerais de uso, conforme as ferramentas ativadas no site.',
+      'Quando houver consentimento para atribuição de campanha, também poderão ser registrados parâmetros UTM, landing inicial, referência de origem, identificadores de clique fornecidos pela plataforma de anúncios e identificadores anônimos de visitante e candidatura.',
     ],
   },
   {
@@ -26,6 +27,7 @@ const sections = [
       'Responder contatos e dar continuidade a conversas comerciais iniciadas pelo próprio usuário.',
       'Organizar diagnóstico, proposta, atendimento e histórico mínimo de relacionamento.',
       'Medir desempenho do site, entender navegação e melhorar clareza, conteúdo e experiência.',
+      'Relacionar campanhas consentidas a candidaturas e avaliar a qualidade comercial das origens de aquisição.',
       'Prevenir abuso, spam, uso indevido do formulário e incidentes de segurança.',
       'Cumprir obrigações legais, regulatórias ou exercício regular de direitos, quando aplicável.',
     ],
@@ -34,11 +36,13 @@ const sections = [
     title: 'Ferramentas de terceiros',
     body: [
       'O site utiliza prestadores de serviço para operar formulários, infraestrutura, segurança, e-mail e medição básica de navegação. Esses fornecedores atuam conforme suas próprias políticas, contratos e configurações técnicas.',
-      'Atualmente, a candidatura pública é enviada ao Formspree. O site poderá utilizar Cloudflare Web Analytics para métricas agregadas de navegação. Caso novas ferramentas passem a tratar dados pessoais de forma relevante, esta política será atualizada.',
+      'Atualmente, a candidatura pública é enviada ao Formspree. O site poderá utilizar Cloudflare Web Analytics para métricas agregadas, armazenamento local first-party para atribuição consentida e a Google tag para mensuração de campanhas do Google Ads. A personalização de anúncios e o remarketing não estão habilitados.',
     ],
     items: [
       'Formspree: recebimento e processamento de formulários enviados pelo site.',
       'Cloudflare Web Analytics: medição agregada de tráfego e desempenho de páginas, se ativado.',
+      'Atribuição first-party: armazenamento local temporário de origem, landing, UTMs e identificadores de clique quando autorizado.',
+      'Google Ads: mensuração de campanhas e candidaturas, com o armazenamento publicitário negado por padrão e atualizado conforme a escolha de consentimento.',
       'Infraestrutura, hospedagem, CDN, segurança e e-mail: serviços necessários para operação técnica e comunicação.',
     ],
   },
@@ -83,7 +87,7 @@ const sections = [
     kicker="Privacidade"
     title="Política de Privacidade."
     summary="Documento sobre coleta, uso, compartilhamento e retenção de dados pessoais em candidaturas, contato e navegação no site."
-    updatedAt="04/06/2026"
+    updatedAt="24/06/2026"
     sections={sections}
   />
   <SiteFooter />

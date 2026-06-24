@@ -1,0 +1,38 @@
+---
+const googleAdsTagId = 'AW-18266637470';
+---
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500,
+  });
+  window.gtag('set', 'ads_data_redaction', true);
+
+  window.addEventListener('moura:consent', (event) => {
+    const accepted = Array.isArray(event.detail?.accepted) ? event.detail.accepted : [];
+    const campaignGranted = accepted.includes('campaign');
+
+    window.gtag('consent', 'update', {
+      ad_storage: campaignGranted ? 'granted' : 'denied',
+      ad_user_data: campaignGranted ? 'granted' : 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: accepted.includes('analytics') ? 'granted' : 'denied',
+    });
+  });
+</script>
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsTagId}`}></script>
+<script is:inline define:vars={{ googleAdsTagId }}>
+  window.gtag('js', new Date());
+  window.gtag('config', googleAdsTagId, {
+    allow_ad_personalization_signals: false,
+  });
+</script>
