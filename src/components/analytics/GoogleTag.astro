@@ -28,6 +28,16 @@ const googleAdsTagId = 'AW-18266637470';
       analytics_storage: accepted.includes('analytics') ? 'granted' : 'denied',
     });
   });
+
+  window.addEventListener('moura:candidatura-submitted', (event) => {
+    const applicationId = event.detail?.applicationId;
+    if (!applicationId) return;
+
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18266637470/eLTYCMXH8MQcEJ6Jm4ZE',
+      transaction_id: applicationId,
+    });
+  });
 </script>
 <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsTagId}`}></script>
 <script is:inline define:vars={{ googleAdsTagId }}>
