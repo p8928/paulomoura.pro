@@ -413,9 +413,16 @@
     }
 
     .overlay-contact {
-      gap: 0.72rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1rem;
+      row-gap: 0.72rem;
+      align-items: start;
       font-size: 0.82rem;
       line-height: 1.32;
+    }
+
+    .overlay-contact dd {
+      min-width: 0;
     }
 
     .overlay-contact-item {
@@ -424,9 +431,11 @@
 
     .overlay-contact a {
       min-height: 40px;
+      overflow-wrap: anywhere;
     }
 
     .overlay-contact-item-region {
+      grid-column: 1 / -1;
       justify-self: start;
       width: min(100%, 29ch);
       padding-top: 0.72rem;
