@@ -1466,7 +1466,7 @@ body.is-overlay-open {
     radial-gradient(circle at 14% 20%, rgba(167, 124, 61, 0.12), transparent 28%),
     linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
   color: var(--moura-ivory);
-  padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(1rem, calc(8vw - 4rem), 4rem) clamp(1.5rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
 }
 
 .site-footer-shell {
@@ -1701,7 +1701,7 @@ body.is-overlay-open {
 
 @media (max-width: 767px) {
   .site-footer {
-    padding-block: 4rem 2rem;
+    padding-block: 0 2rem;
   }
 
   .site-footer-shell {
