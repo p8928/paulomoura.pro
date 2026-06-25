@@ -427,16 +427,6 @@ textarea {
 }
 
 @media (max-width: 640px) {
-  .home-hero-section {
-    height: auto;
-    min-height: calc(100svh + 9.5rem);
-    place-items: start center;
-  }
-
-  .home-hero-core {
-    min-height: 100svh;
-  }
-
   .hero-tagline {
     width: 18.5rem;
     max-width: calc(100vw - 3rem);
@@ -445,18 +435,11 @@ textarea {
 
   .hero-signature-note {
     inset-inline: 1.25rem;
-    top: calc(100svh + 1.35rem);
-    bottom: auto;
+    bottom: clamp(1.35rem, 4vh, 2.25rem);
     display: grid;
-    justify-items: center;
     gap: 0.28rem;
     font-size: 0.62rem;
     letter-spacing: 0.12em;
-  }
-
-  .hero-signature-note span {
-    justify-content: center;
-    width: min(100%, 28rem);
   }
 }
 
@@ -1746,6 +1729,53 @@ body.is-overlay-open {
 
 /* Mobile experience final tuning: page-specific heading stacks */
 @media (max-width: 640px) {
+  .hero-signature-note {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-signature-note span {
+    justify-content: center;
+    width: min(100%, 28rem);
+  }
+
+  .comprehension-section {
+    padding-block: 5.25rem;
+  }
+
+  .comprehension-shell {
+    gap: 2.45rem;
+  }
+
+  .comprehension-pillars {
+    gap: 1.65rem;
+  }
+
+  .comprehension-proof {
+    gap: 2rem;
+  }
+
+  .comprehension-proof-visual img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .qualified-presence-section {
+    min-height: auto;
+    padding-block: 5.25rem;
+  }
+
+  .qualified-presence-shell {
+    gap: 2.35rem;
+  }
+
+  .qualified-presence-copy {
+    gap: 0.85rem;
+  }
+
+  .qualified-presence-copy p {
+    padding-top: 0.78rem;
+  }
+
   .comprehension-section .comprehension-intro h2,
   .qualified-presence-section .qualified-presence-intro h2 {
     font-size: clamp(2.15rem, 8.6vw, 3.1rem);

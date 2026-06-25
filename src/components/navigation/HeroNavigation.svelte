@@ -430,7 +430,7 @@
     }
 
     .overlay-contact a {
-      min-height: 40px;
+      min-height: 44px;
       overflow-wrap: anywhere;
     }
 
