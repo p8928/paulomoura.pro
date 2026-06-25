@@ -427,6 +427,16 @@ textarea {
 }
 
 @media (max-width: 640px) {
+  .home-hero-section {
+    height: auto;
+    min-height: calc(100svh + 9.5rem);
+    place-items: start center;
+  }
+
+  .home-hero-core {
+    min-height: 100svh;
+  }
+
   .hero-tagline {
     width: 18.5rem;
     max-width: calc(100vw - 3rem);
@@ -435,11 +445,18 @@ textarea {
 
   .hero-signature-note {
     inset-inline: 1.25rem;
-    bottom: clamp(1.35rem, 4vh, 2.25rem);
+    top: calc(100svh + 1.35rem);
+    bottom: auto;
     display: grid;
+    justify-items: center;
     gap: 0.28rem;
     font-size: 0.62rem;
     letter-spacing: 0.12em;
+  }
+
+  .hero-signature-note span {
+    justify-content: center;
+    width: min(100%, 28rem);
   }
 }
 
