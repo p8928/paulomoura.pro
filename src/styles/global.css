@@ -373,7 +373,7 @@ textarea {
 
 .hero-signature-note {
   position: absolute;
-  inset: auto clamp(1.5rem, 4vw, 4.5rem) clamp(2.2rem, 5vh, 4rem);
+  inset: auto clamp(1.5rem, 4vw, 4.5rem) calc(clamp(2.2rem, 5vh, 4rem) + 4rem);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -435,7 +435,7 @@ textarea {
 
   .hero-signature-note {
     inset-inline: 1.25rem;
-    bottom: clamp(1.35rem, 4vh, 2.25rem);
+    bottom: calc(clamp(1.35rem, 4vh, 2.25rem) + 4rem);
     display: grid;
     gap: 0.28rem;
     font-size: 0.62rem;
@@ -1466,7 +1466,7 @@ body.is-overlay-open {
     radial-gradient(circle at 14% 20%, rgba(167, 124, 61, 0.12), transparent 28%),
     linear-gradient(145deg, #050505 0%, #10100f 52%, #060606 100%);
   color: var(--moura-ivory);
-  padding: clamp(1rem, calc(8vw - 4rem), 4rem) clamp(1.5rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
 }
 
 .site-footer-shell {
@@ -1701,7 +1701,7 @@ body.is-overlay-open {
 
 @media (max-width: 767px) {
   .site-footer {
-    padding-block: 0 2rem;
+    padding-block: 4rem 2rem;
   }
 
   .site-footer-shell {
