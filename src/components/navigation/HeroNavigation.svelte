@@ -395,6 +395,10 @@
   }
 
   @media (max-width: 640px) {
+    .overlay-menu-nav {
+      transform: translateY(calc(-50% - 4rem));
+    }
+
     .overlay-menu-link {
       min-height: 48px;
       line-height: 0.94;
