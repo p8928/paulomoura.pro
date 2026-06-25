@@ -137,7 +137,7 @@
   inert={!open}
 >
   <div class="relative min-h-screen px-6 lg:px-10">
-    <nav aria-label="Menu aberto" class="absolute left-6 top-1/2 translate-y-[calc(-50%+2rem)] lg:left-10">
+    <nav aria-label="Menu aberto" class="overlay-menu-nav absolute left-6 lg:left-10">
       <ul class="grid gap-2 lg:gap-3">
         {#each overlayLinks as link, index}
           <li
@@ -207,6 +207,11 @@
       opacity 680ms cubic-bezier(0.16, 1, 0.3, 1),
       transform 680ms cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: calc(var(--item-index) * 72ms + 180ms);
+  }
+
+  .overlay-menu-nav {
+    top: 50%;
+    transform: translateY(calc(-50% + 2rem));
   }
 
   .overlay-menu-item-open {

@@ -265,6 +265,46 @@
     form[field] = value as never;
   }
 
+  function onlyDigits(value: string) {
+    return value.replace(/\D/g, "");
+  }
+
+  function formatPhone(value: string) {
+    const digits = onlyDigits(value).slice(0, 11);
+    const area = digits.slice(0, 2);
+    const prefix = digits.slice(2, 7);
+    const suffix = digits.slice(7, 11);
+
+    if (digits.length <= 2) return area ? "(" + area : "";
+    if (digits.length <= 7) return "(" + area + ") " + prefix;
+    return "(" + area + ") " + prefix + "-" + suffix;
+  }
+
+  function formatCnpj(value: string) {
+    const digits = onlyDigits(value).slice(0, 14);
+    const part1 = digits.slice(0, 2);
+    const part2 = digits.slice(2, 5);
+    const part3 = digits.slice(5, 8);
+    const part4 = digits.slice(8, 12);
+    const part5 = digits.slice(12, 14);
+
+    if (digits.length <= 2) return part1;
+    if (digits.length <= 5) return part1 + "." + part2;
+    if (digits.length <= 8) return part1 + "." + part2 + "." + part3;
+    if (digits.length <= 12) return part1 + "." + part2 + "." + part3 + "/" + part4;
+    return part1 + "." + part2 + "." + part3 + "/" + part4 + "-" + part5;
+  }
+
+  function handlePhoneInput(event: Event) {
+    const target = event.currentTarget as HTMLInputElement;
+    form.phone = formatPhone(target.value);
+  }
+
+  function handleCnpjInput(event: Event) {
+    const target = event.currentTarget as HTMLInputElement;
+    form.cnpj = formatCnpj(target.value);
+  }
+
   function toggleReason(reason: string) {
     form.reasons = form.reasons.includes(reason)
       ? form.reasons.filter((item) => item !== reason)
@@ -276,7 +316,7 @@
     return ['localhost', '127.0.0.1'].includes(window.location.hostname) ? localDashboardEndpoint : formspreeEndpoint;
   }
 
-  function buildEmailBody(submissionId = '', attribution: AttributionRecord | null = null) {
+  function buildEmailBody(submissionId = '', attribution: AttributionRecord | null = null, submittedAt = '') {
     const cnpj = form.cnpjLater ? 'Prefere informar depois' : form.cnpj;
     const site = form.noWebsite ? 'Empresa ainda não tem site' : form.website;
     const touch = attribution?.lastTouch;
@@ -304,13 +344,19 @@
       `Origem / mídia: ${touch?.utm_source || 'Não informada'} / ${touch?.utm_medium || 'Não informada'}`,
       `Campanha: ${touch?.utm_campaign || 'Não informada'}`,
       `Termo: ${touch?.utm_term || 'Não informado'}`,
+      `Conteúdo: ${touch?.utm_content || 'Não informado'}`,
       `GCLID: ${touch?.gclid || 'Não informado'}`,
+      `GBRAID: ${touch?.gbraid || 'Não informado'}`,
+      `WBRAID: ${touch?.wbraid || 'Não informado'}`,
       '',
       'Motivos:',
       ...form.reasons.map((reason) => `- ${reason}`),
       '',
       'Contexto adicional:',
       form.context || 'Não informado',
+      '',
+      'submittedAt:',
+      submittedAt || new Date().toISOString(),
     ].join('\n');
   }
 
@@ -326,7 +372,7 @@
     const submissionId = applicationId || createApplicationId();
     const attribution = readAttribution();
     const touch = attribution?.lastTouch;
-    const summary = buildEmailBody(submissionId, attribution);
+    const summary = buildEmailBody(submissionId, attribution, now.toISOString());
     applicationId = submissionId;
     const payload = {
       _subject: `Candidatura Moura - ${form.company || form.firstName}`,
@@ -476,7 +522,7 @@
           </label>
           <label>
             <span>Telefone</span>
-            <input bind:value={form.phone} autocomplete="tel" inputmode="tel" placeholder="(11) 99999-9999" />
+            <input bind:value={form.phone} oninput={handlePhoneInput} autocomplete="tel" inputmode="numeric" maxlength="15" placeholder="(11) 99999-9999" />
           </label>
         </div>
       {/if}
@@ -489,7 +535,7 @@
           </label>
           <label class:disabled={form.cnpjLater}>
             <span>CNPJ</span>
-            <input bind:value={form.cnpj} disabled={form.cnpjLater} inputmode="numeric" placeholder="00.000.000/0001-00" />
+            <input bind:value={form.cnpj} oninput={handleCnpjInput} disabled={form.cnpjLater} inputmode="numeric" maxlength="18" placeholder="00.000.000/0001-00" />
           </label>
           <label class="application-check">
             <input type="checkbox" bind:checked={form.cnpjLater} />

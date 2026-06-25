@@ -994,11 +994,15 @@ const sectorServiceSchema = serviceSchema({
     }
 
     .architecture-title-section {
-      padding-block: clamp(5.7rem, 15vw, 6.8rem) clamp(2.2rem, 8vw, 3.2rem);
+      height: auto;
+      min-height: 100dvh;
+      overflow: visible;
+      padding-block: clamp(5.7rem, 15vw, 6.8rem) clamp(3.8rem, 12vw, 5rem);
     }
 
     .architecture-title-grid {
       gap: clamp(1.3rem, 5vw, 1.8rem);
+      align-content: start;
     }
 
     .architecture-portrait {
@@ -1008,6 +1012,7 @@ const sectorServiceSchema = serviceSchema({
     .architecture-title-copy {
       max-width: min(100%, 32rem);
       padding-left: 1rem;
+      padding-bottom: 1.25rem;
     }
 
     .architecture-title-copy h2 {
