@@ -594,7 +594,18 @@ const formatDate = (date: Date) =>
     line-height: 1.86;
   }
 
-  .article-content :global(*) {
+  .article-content :global(p),
+  .article-content :global(li),
+  .article-content :global(h2),
+  .article-content :global(h3),
+  .article-content :global(blockquote) {
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .article-content :global(a),
+  .article-content :global(code) {
     overflow-wrap: anywhere;
   }
 
@@ -1117,7 +1128,9 @@ const formatDate = (date: Date) =>
       letter-spacing: 0.018em;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      hyphens: auto;
+      hyphens: none;
+      overflow-wrap: normal;
+      word-break: normal;
     }
 
     .article-content :global(p + p) {
