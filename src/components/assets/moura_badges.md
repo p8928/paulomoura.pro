@@ -11,7 +11,7 @@
 
 Os selos Moura são certificações de qualidade verificáveis posicionadas no rodapé do site de cada cliente. Confirmam a assinatura de Paulo Moura no desenvolvimento e condução da comunicação digital do projeto.
 
-Cada selo é verificável: ao clicar, o usuário é redirecionado a uma página no domínio da Moura que exibe o nome do cliente, a data de acreditação, o tipo de selo e um link para os critérios públicos da categoria correspondente. O sistema opera como rastro semântico de autoria — cada site certificado é um nó que referencia a entidade Paulo Moura, reforçando o Knowledge Graph.
+Cada selo é verificável: ao clicar, o usuário é redirecionado a uma página no domínio da Moura que exibe o nome do cliente, a data de emissão, o tipo de selo e um link para os critérios públicos da categoria correspondente. O sistema opera como rastro semântico de autoria — cada site certificado é um nó que referencia a entidade Paulo Moura, reforçando o Knowledge Graph.
 
 ### Categorias disponíveis
 
@@ -34,7 +34,7 @@ M-Supreme não é uma categoria separada. É o grau máximo de execução aplica
 
 ### Definição
 
-O M-HS certifica que o projeto digital atende aos requisitos de alto padrão estabelecidos pela metodologia Moura. Não é um selo de conclusão de projeto — é uma acreditação de qualidade que afirma: este site foi construído com o entendimento de que premium é o mínimo, e o mínimo é grandioso.
+O M-HS declara publicamente que o projeto digital atende aos requisitos de alto padrão estabelecidos pela metodologia Moura. Não é um selo de conclusão de projeto — é uma assinatura de critério que afirma: este site foi construído com o entendimento de que premium é o mínimo, e o mínimo é grandioso.
 
 A maioria dos sites de empresas de alto padrão falha por uma razão específica: a qualidade da operação offline não encontra equivalente no digital. O M-HS certifica que essa distância foi eliminada — que a presença digital é tão rigorosa quanto o serviço que representa.
 
@@ -60,7 +60,7 @@ Nenhuma página com copy genérico, promessas vagas ou linguagem de template. Ca
 
 ### Público
 
-Empresas e profissionais de alto padrão em qualquer setor que exigem que a presença digital esteja à altura da operação. É o selo de entrada na certificação Moura — o piso de qualidade abaixo do qual nenhum projeto é acreditado.
+Empresas e profissionais de alto padrão em qualquer setor que exigem que a presença digital esteja à altura da operação. É o selo de entrada na assinatura Moura — o piso de qualidade abaixo do qual nenhum projeto é publicado com selo.
 
 ### O que o M-HS não é
 
@@ -190,7 +190,7 @@ Projetos M-Supreme têm duração estendida e envolvimento mais profundo de Paul
 
 ### Público
 
-Marcas de luxo com exigência estética e operacional que não aceitam o bom como suficiente. Clientes que entendem que o máximo nível de execução tem custo proporcional — e que o resultado justifica cada centavo. Não é para quem quer o melhor dentro de um orçamento. É para quem quer o melhor, ponto.
+Marcas de luxo com exigência estética e operacional que não aceitam o bom como suficiente. Clientes que entendem que o máximo nível de execução tem custo proporcional — e que o resultado justifica cada centavo. Não é para quem quer o melhor dentro de um orçamento. É para quem não negocia o nível de execução.
 
 ### O que o M-Supreme não é
 
@@ -203,8 +203,8 @@ Não é um upgrade de pacote. Não é um projeto M-HS com mais páginas. Não é
 Cada selo exibe um link que redireciona para uma página no domínio da Moura contendo:
 
 - Nome do cliente certificado
-- Tipo de selo acreditado
-- Data de acreditação
+- Tipo de selo emitido
+- Data de emissão
 - Link para os critérios públicos da categoria
 - Confirmação de autoria: projeto desenvolvido e assinado por Paulo Moura
 

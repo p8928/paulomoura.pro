@@ -163,8 +163,8 @@
         <div class="overlay-contact-item overlay-contact-item-region">
           <dt>atuação</dt>
           <dd>
-            <span>Presencial prioritário em <span class="overlay-nowrap">São Paulo</span>, Jundiaí, Sorocaba e Campinas.</span>
-            <span>Projetos em outras regiões sob avaliação.</span>
+            <span>Presencial em <span class="overlay-nowrap">São Paulo</span> e região.</span>
+            <span>Projetos remotos sob critério.</span>
           </dd>
         </div>
       </dl>

@@ -41,16 +41,28 @@ const thesisNotes = [
 ];
 
 const principles = [
-  'Autenticidade como dado de alta fidelidade.',
-  'Marca como entidade reconhecível.',
-  'Conteúdo como prova de experiência.',
-  'Tecnologia como tradução da substância.',
+  {
+    title: 'Autenticidade como dado de alta fidelidade.',
+    detail: 'A leitura parte de operação, atendimento, repertório e provas reais, não de frases aspiracionais.',
+  },
+  {
+    title: 'Marca como entidade reconhecível.',
+    detail: 'Nome, linguagem, autoria, especialidade e vínculos públicos são organizados para sustentar identidade própria.',
+  },
+  {
+    title: 'Conteúdo como prova de experiência.',
+    detail: 'Cada página precisa demonstrar critério, contexto e ganho real de informação para quem avalia a empresa.',
+  },
+  {
+    title: 'Tecnologia como tradução da substância.',
+    detail: 'Performance, semântica, dados estruturados e arquitetura tornam a leitura do negócio legível por sistemas.',
+  },
 ];
 ---
 
 <BaseLayout
-  title="Brand-Driven"
-  description="Brand-Driven é o método de Paulo Moura para construir presença digital a partir de substância real, linguagem autoral, site, busca, IA e reputação."
+  title="MOURA | Brand-Driven"
+  description="Brand-Driven é o método MOURA para construir presença digital a partir de substância real, linguagem autoral, site, busca, IA e reputação."
   canonicalPath="/brand-driven"
   schemaPageType="WebPage"
   showChrome={false}
@@ -71,7 +83,7 @@ const principles = [
 
         <div class="brand-hero-aside">
           <p>
-            Serviços com metodologia proprietária que transformam a marca em um motor de presença digital. Da estratégia que parte da leitura do negócio à engenhosa construção da estrutura técnica que dissemina sinais de autoridade para clientes, Google e IA.
+            Serviços com metodologia proprietária que transformam a marca em um motor de presença digital. Da estratégia que parte da leitura do negócio à construção da estrutura técnica que torna a empresa reconhecível para clientes, Google e IA.
           </p>
           <a class="moura-button moura-button-outline-light" href="/candidatura">Iniciar análise</a>
         </div>
@@ -105,6 +117,8 @@ const principles = [
               Brand-Driven segue outro caminho: revelar a lógica própria da empresa, organizar suas provas de experiência e transformar essa diferença em presença digital legível para pessoas e sistemas. O objetivo deixa de ser apenas aparecer para uma busca e passa a ser reconhecido como referência confiável dentro de um território.
             </p>
           </div>
+
+          <p>O método opera na distinção entre quatro estados: o que a IA sintetiza, o que a entidade sustenta, o que merece ser citado e o que acumula autoridade com o tempo.</p>
 
           <aside class="brand-thesis-notes" aria-label="Âncoras conceituais da tese Brand-Driven">
             {thesisNotes.map((note) => (
@@ -192,7 +206,7 @@ const principles = [
 
         <div class="brand-principles" aria-label="Princípios Brand-Driven">
           {principles.map((principle, index) => (
-            <p><span>{String(index + 1).padStart(2, '0')}</span>{principle}</p>
+            <p><span>{String(index + 1).padStart(2, '0')}</span><strong>{principle.title}</strong>{principle.detail}</p>
           ))}
         </div>
       </div>

@@ -22,6 +22,13 @@ const heroInsignia = {
   mid: { mark: 'ID', label: ['Moura', 'Identity'] },
   msupreme: { mark: 'M', label: ['Supreme'] },
 }[standard.kind];
+const applicationLabels = {
+  mhs: 'Candidatura para alto padrão',
+  mstar: 'Candidatura para gastronomia',
+  mid: 'Candidatura para identidade pessoal',
+  msupreme: 'Candidatura para execução máxima',
+};
+const applicationHref = `/candidatura?origem=${encodeURIComponent(standard.slug)}`;
 const catalogItems = standard.notItems.map((item) => {
   const normalized = item.replace(/\.$/, '');
   const withoutPrefix = normalized.replace(/^Não é\s+/i, '');
@@ -122,7 +129,7 @@ const catalogItems = standard.notItems.map((item) => {
 
       <div class="badge-standard-audience-copy">
         {standard.audience.map((paragraph) => <p>{paragraph}</p>)}
-        <a class="badge-standard-application-link" href="/candidatura">Iniciar candidatura</a>
+        <a class="badge-standard-application-link" href={applicationHref}>{applicationLabels[standard.kind]}</a>
       </div>
 
       <aside class="badge-standard-audience-catalog" aria-label={standard.notTitle}>
